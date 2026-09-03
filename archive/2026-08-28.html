@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — August 28, 2026</title>
+<style>
+:root {
+  --bg:#0f1115; --surface:#171a21; --border:#2a2f3a; --text:#e8e8e8; --muted:#9aa0a6;
+  --up:#9ece6a; --down:#f7768e; --tech:#7aa2f7; --world:#f7768e; --business:#9ece6a;
+  --science:#bb9af7; --anthropic:#d4a27f;
+  --serif:"Iowan Old Style",Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:#fafaf8; --surface:#ffffff; --border:#e3e3de; --text:#1f1f1f; --muted:#666666;
+    --up:#3d7a1e; --down:#c2334f; --tech:#2b5fc7; --world:#c2334f; --business:#3d7a1e;
+    --science:#7c4dbc; --anthropic:#9c6b3f;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  background:var(--bg); color:var(--text); font-family:var(--sans);
+  font-size:16px; line-height:1.55; padding:20px 16px 40px;
+}
+.wrap { max-width:720px; margin:0 auto; }
+a { color:inherit; }
+.wire { font-family:var(--mono); font-size:12.5px; line-height:1.9; color:var(--text); }
+.wire .wn { color:var(--muted); }
+.wire .wsep { color:var(--muted); }
+.chg-up { color:var(--up); }
+.chg-down { color:var(--down); }
+.chg-flat { color:var(--muted); }
+.wire-label { font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:4px; }
+.lede { margin-top:28px; }
+.dateline { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.thesis { font-family:var(--serif); font-size:23px; line-height:1.3; font-weight:500; margin-top:10px; }
+.narrative { font-family:var(--serif); font-size:17.5px; line-height:1.6; margin-top:14px; }
+.readtime { font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:12px; }
+.ent { text-decoration:none; border-bottom:1px dotted var(--muted); }
+.ent.world { border-bottom-color:var(--world); color:var(--world); }
+.ent.business { border-bottom-color:var(--business); color:var(--business); }
+.ent.tech { border-bottom-color:var(--tech); color:var(--tech); }
+.ent.science { border-bottom-color:var(--science); color:var(--science); }
+.ent.anthropic { border-bottom-color:var(--anthropic); color:var(--anthropic); }
+.sop { display:grid; grid-template-columns:repeat(5,1fr); gap:0; border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border); margin-top:28px; }
+.sop-item { padding:14px 12px; border-left:1px solid var(--border); }
+.sop-item:first-child { border-left:none; }
+.sop-v { font-family:var(--mono); font-size:18px; }
+.sop-v.sop-down { color:var(--down); }
+.sop-v.sop-up { color:var(--up); }
+.sop-l { font-size:13px; margin-top:4px; }
+.sop-c { font-size:12px; color:var(--muted); margin-top:3px; }
+@media (max-width:640px) {
+  .sop { grid-template-columns:repeat(2,1fr); }
+  .sop-item { border-left:none; border-top:1px solid var(--border); }
+  .sop-item:nth-child(-n+2) { border-top:none; }
+}
+.charts { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:28px; }
+@media (max-width:640px) { .charts { grid-template-columns:1fr; } }
+.chart-box { background:var(--surface); border:1px solid var(--border); padding:14px; }
+.chart-box.full { grid-column:1 / -1; }
+.chart-t { font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:8px;
+  text-transform:uppercase; letter-spacing:.08em; }
+.chart-wrap { position:relative; height:180px; }
+.chart-note { font-size:12.5px; color:var(--muted); margin-top:8px; }
+.beat { margin-top:36px; }
+.beat-h { font-size:14px; letter-spacing:.14em; text-transform:uppercase; font-weight:500;
+  padding-bottom:8px; border-bottom:2px solid var(--border); }
+.beat.world .beat-h { color:var(--world); border-bottom-color:var(--world); }
+.beat.business .beat-h { color:var(--business); border-bottom-color:var(--business); }
+.beat.tech .beat-h { color:var(--tech); border-bottom-color:var(--tech); }
+.beat.science .beat-h { color:var(--science); border-bottom-color:var(--science); }
+.beat.anthropic .beat-h { color:var(--anthropic); border-bottom-color:var(--anthropic); }
+.beat.world { --beat-c:var(--world); }
+.beat.business { --beat-c:var(--business); }
+.beat.tech { --beat-c:var(--tech); }
+.beat.science { --beat-c:var(--science); }
+.beat.anthropic { --beat-c:var(--anthropic); }
+.story { padding:18px 0; border-bottom:1px solid var(--border); }
+.story-top { display:flex; align-items:center; gap:8px; }
+.kicker { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--beat-c); }
+.badge { font-family:var(--mono); font-size:12px; color:var(--muted);
+  background:var(--surface); border:1px solid var(--border); padding:1px 6px; }
+.story h3 { font-family:var(--serif); font-size:18.5px; line-height:1.32; font-weight:500; margin-top:8px; }
+.story.lead h3 { font-size:22px; }
+.why { font-size:14.5px; margin-top:8px; }
+.why strong { font-weight:500; }
+.next { font-size:13.5px; font-style:italic; color:var(--muted); margin-top:6px; }
+.story-foot { display:flex; justify-content:space-between; align-items:center; gap:10px;
+  margin-top:10px; flex-wrap:wrap; }
+.src { font-size:12.5px; color:var(--muted); }
+.src a { color:var(--muted); }
+.godeep { font-size:12.5px; text-decoration:none; color:var(--text);
+  border:1px solid var(--border); background:var(--surface); padding:4px 10px; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:0 24px; }
+.grid .story:nth-child(odd) { border-right:1px solid var(--border); padding-right:24px; margin-right:-12px; }
+@media (max-width:640px) {
+  .grid { grid-template-columns:1fr; }
+  .grid .story:nth-child(odd) { border-right:none; padding-right:0; margin-right:0; }
+}
+.sports { margin-top:36px; }
+.sports-h { font-size:14px; letter-spacing:.14em; text-transform:uppercase; font-weight:500;
+  padding-bottom:8px; border-bottom:2px solid var(--border); }
+.score-row { margin-top:16px; }
+.score-league { font-family:var(--mono); font-size:12px; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.08em; }
+.score-cards { display:flex; gap:10px; overflow-x:auto; scrollbar-width:none; margin-top:8px; }
+.score-cards::-webkit-scrollbar { display:none; }
+.score-card { font-family:var(--mono); font-size:13px; background:var(--surface);
+  border:1px solid var(--border); padding:8px 12px; white-space:nowrap; flex:0 0 auto; }
+.score-card.fav { border-left:3px solid var(--fav,#AA0000); }
+.score-win { color:var(--up); }
+.score-status { color:var(--muted); font-size:12px; }
+.ending { text-align:center; margin-top:48px; }
+.ending h2 { font-family:var(--serif); font-size:22px; font-weight:500; }
+.ending p { font-size:13px; color:var(--muted); margin-top:8px; }
+.ending a { color:var(--muted); }
+details.sources { margin-top:36px; border-top:1px solid var(--border); padding-top:14px; }
+details.sources summary { font-family:var(--mono); font-size:13px; color:var(--muted); cursor:pointer; }
+details.sources ul { list-style:none; margin-top:10px; }
+details.sources li { font-size:12px; color:var(--muted); padding:3px 0; }
+details.sources a { color:var(--muted); }
+.srcnote { font-size:12px; color:var(--muted); margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="wire"><span class="wi"><span class="wn">S&P 500</span> <span class="wv">7,730.99</span> <span class="chg-up">+0.7%</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">Dow</span> <span class="wv">53,569</span> <span class="chg-up">+0.2%</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">Nasdaq</span> <span class="wv">26,541</span> <span class="chg-up">+1.6%</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">Russell 2K</span> <span class="wv">3,014</span> <span class="chg-up">+0.3%</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">VIX</span> <span class="wv">14.51</span> <span class="chg-up">−4.6%</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">10-yr</span> <span class="wv">4.67%</span> <span class="chg-down">+2bp</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">Brent</span> <span class="wv">≈$88.5</span> <span class="chg-down">+0.8%</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">WTI</span> <span class="wv">≈$82.9</span> <span class="chg-down">+0.8%</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">Gold</span> <span class="wv">≈$4,650</span> <span class="chg-flat">≈flat</span></span><span class="wsep"> · </span><span class="wi"><span class="wn">BTC</span> <span class="wv">≈$80.3K</span> <span class="chg-up">+2.0%</span></span></div>
+<div class="wire-label">Thursday close · Aug 27 · markets reopen this morning · Warsh speaks 10am ET</div>
+
+<header class="lede">
+  <div class="dateline">Friday, August 28, 2026 — generated 6:46am PT</div>
+  <h1 class="thesis">The machine economy keeps sprinting. The physical world keeps sending invoices.</h1>
+  <p class="narrative">Thursday belonged to one company: Nvidia’s beat-and-raise dragged the S&amp;P 500 up 0.7% and the Nasdaq 1.6% even as most stocks fell — a <a class="ent business" href="https://claude.ai/new?q=Explain%20market%20breadth%20and%20concentration%20risk%20%E2%80%94%20why%20a%20market%20where%20Nvidia%20alone%20lifts%20the%20index%20while%20most%20stocks%20decline%20worries%20analysts%2C%20using%20the%20August%2027%2C%202026%20session%20as%20the%20example" target="_blank" rel="noopener">one-stock market</a> that meets its referee at 10am ET, when <a class="ent business" href="https://claude.ai/new?q=Profile%20Kevin%20Warsh%20%E2%80%94%20his%20path%20from%20youngest-ever%20Fed%20governor%20to%20Fed%20chair%20in%20May%202026%2C%20his%20views%20on%20inflation%2C%20and%20what%20markets%20want%20from%20his%20first%20Jackson%20Hole%20keynote" target="_blank" rel="noopener">Kevin Warsh</a> gives his first Jackson Hole keynote with inflation at 3.7% and hikes, not cuts, on the table. The same AI wave keeps pushing into the physical world — Anthropic previewed a <a class="ent anthropic" href="https://claude.ai/new?q=Explain%20Anthropic%27s%20Model%20Hardware%20Standard%20announced%20August%2027%2C%202026%20%E2%80%94%20what%20it%20lets%20Claude%20do%20with%20lab%20and%20factory%20equipment%2C%20and%20what%20safeguards%20it%20embeds" target="_blank" rel="noopener">standard for driving real hardware</a> and rented another 460 megawatts of compute — while the physical world pushed back: a Himalayan <a class="ent world" href="https://claude.ai/new?q=Explain%20the%20August%202026%20Nepal%E2%80%93Tibet%20glacier%20collapse%20disaster%20%E2%80%94%20what%20happened%2C%20why%20the%20USGS%20initially%20recorded%20it%20as%20an%20earthquake%2C%20and%20why%20Himalayan%20ice%20hazards%20are%20escalating" target="_blank" rel="noopener">glacier collapse</a> has killed 392 people with nearly 1,500 missing, and Iran is drafting its price for reopening the <a class="ent world" href="https://claude.ai/new?q=What%20is%20the%20Strait%20of%20Hormuz%2C%20what%20share%20of%20global%20oil%20and%20LNG%20normally%20transits%20it%2C%20and%20what%20would%20a%20jointly%20administered%20Iran%E2%80%93Oman%20shipping%20corridor%20mean%20for%20energy%20markets%3F" target="_blank" rel="noopener">Strait of Hormuz</a>. Sunday morning, <a class="ent science" href="https://claude.ai/new?q=What%20is%20NASA%27s%20Nancy%20Grace%20Roman%20Space%20Telescope%2C%20launching%20August%2030%2C%202026%20%E2%80%94%20what%20will%20it%20observe%2C%20and%20why%20could%20it%20find%20100%2C000%20new%20exoplanets%3F" target="_blank" rel="noopener">Roman</a> launches to hunt a hundred thousand worlds.</p>
+  <div class="readtime">~5 min read — 17 stories across 4 beats, plus Anthropic and your teams</div>
+</header>
+
+<section class="sop"><div class="sop-item">
+  <div class="sop-v sop-down">1,468</div>
+  <div class="sop-l">missing in the Nepal–Tibet floods</div>
+  <div class="sop-c">392 confirmed dead after a glacier collapse the USGS first logged as an earthquake</div>
+</div><div class="sop-item">
+  <div class="sop-v ">10:00am ET</div>
+  <div class="sop-l">Warsh takes the Jackson Hole podium</div>
+  <div class="sop-c">his first keynote as Fed chair, with inflation at 3.7% and no cuts priced</div>
+</div><div class="sop-item">
+  <div class="sop-v sop-up">+8.7%</div>
+  <div class="sop-l">Nvidia's Thursday pop</div>
+  <div class="sop-c">tech was the only S&P 500 sector to advance; most stocks fell</div>
+</div><div class="sop-item">
+  <div class="sop-v ">34%</div>
+  <div class="sop-l">of US adults use AI chatbots for health</div>
+  <div class="sop-c">Pew's June survey of 3,488 adults — only 29% of users trust them with their data</div>
+</div><div class="sop-item">
+  <div class="sop-v sop-up">460 MW</div>
+  <div class="sop-l">of compute Anthropic just rented</div>
+  <div class="sop-c">a $45B, six-year Nscale deal in West Virginia, live late 2027</div>
+</div></section>
+
+<section class="charts">
+  <div class="chart-box">
+    <div class="chart-t">S&amp;P 500 — last five closes</div>
+    <div class="chart-wrap"><canvas id="c-sp"></canvas></div>
+    <div class="chart-note">A flat week, then Nvidia dragged Thursday to 7,731 — on the thinnest of breadth.</div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-t">Brent crude — last five sessions</div>
+    <div class="chart-wrap"><canvas id="c-br"></canvas></div>
+    <div class="chart-note">The war premium keeps bleeding out as Hormuz-corridor diplomacy inches forward.</div>
+  </div>
+  <div class="chart-box full">
+    <div class="chart-t">Chart of the day — the chatbot will see you now (% of US adults)</div>
+    <div class="chart-wrap" style="height:200px"><canvas id="c-day"></canvas></div>
+    <div class="chart-note">Pew’s June survey: a third of American adults already use AI chatbots for health tasks
+      — adoption led by under-30s (44%) and Asian Americans (56%). <a class="ent tech" href="https://claude.ai/new?q=Analyze%20the%20trajectory%20of%20consumer%20health%20AI%20%E2%80%94%20Pew%20found%2034%25%20of%20US%20adults%20using%20chatbots%20for%20health%20tasks%20in%20mid-2026%3B%20project%20where%20this%20goes%20by%202030%20and%20what%20it%20means%20for%20primary%20care" target="_blank" rel="noopener">How big can this get?</a></div>
+  </div>
+</section>
+
+<section class="beat world">
+  <h2 class="beat-h">World &amp; Geopolitics</h2>
+  <article class="story lead">
+  <div class="story-top"><span class="kicker">Himalaya</span><span class="badge">9/10</span></div>
+  <h3>A glacier fell on the Himalaya: 392 dead, nearly 1,500 missing across Nepal and Tibet</h3>
+  <p class="why"><strong>Why it matters:</strong> The torrent of water and mud — several stories high — followed a glacier collapse so violent the US Geological Survey first logged it as an earthquake, then reclassified it as a magnitude-5.2 collapse. Nepal counts 389 dead and roughly 910 missing, including foreign pilgrims; Tibet reports 3 dead and 558 missing, and the China–Nepal “Friendship Bridge” has been washed away. <a class="ent world" href="https://claude.ai/new?q=Explain%20glacial%20lake%20outburst%20floods%20and%20glacier%20collapses%20in%20the%20Himalaya%20%E2%80%94%20why%20ICIMOD%20says%20they%20are%20increasing%20at%20an%20unprecedented%20pace%2C%20how%20they%20are%20monitored%2C%20and%20why%20warning%20systems%20failed%20in%20the%20August%202026%20Nepal%E2%80%93Tibet%20disaster" target="_blank" rel="noopener">Glacial-lake and glacier hazards</a> are rising sharply as the range warms.</p>
+  <p class="next">What’s next: With monsoon-swollen rivers and severed roads, the casualty count will keep moving for days.</p>
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.washingtontimes.com/news/2026/aug/27/catastrophic-floods-kill-390-people-nepal-tibet-1400-missing/" target="_blank" rel="noopener">Associated Press (via The Washington Times)</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.washingtontimes.com%2Fnews%2F2026%2Faug%2F27%2Fcatastrophic-floods-kill-390-people-nepal-tibet-1400-missing%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20glacier%20fell%20on%20the%20Himalaya%3A%20392%20dead%2C%20nearly%201%2C500%20missing%20across%20Nepal%20and%20Tibet%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20is%20known%20about%20the%20cause%20of%20the%20glacier%20collapse%2C%20how%20rescue%20is%20being%20coordinated%20across%20the%20Nepal%E2%80%93China%20border%2C%20and%20what%20this%20event%20reveals%20about%20monitoring%20gaps%20in%20the%20high%20Himalaya%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article>
+  <div class="grid"><article class="story">
+  <div class="story-top"><span class="kicker">Iran–US war</span><span class="badge">8/10</span></div>
+  <h3>Iran is writing its price list for reopening Hormuz</h3>
+  <p class="why"><strong>Why it matters:</strong> Top security official <a class="ent world" href="https://claude.ai/new?q=Profile%20Mohsen%20Rezaei%20%E2%80%94%20the%20former%20IRGC%20commander%20now%20a%20top%20Iranian%20security%20official%2C%20his%20role%20in%20the%202026%20war%2C%20and%20his%20leverage%20over%20the%20Strait%20of%20Hormuz%20reopening%20decision" target="_blank" rel="noopener">Mohsen Rezaei</a> says mediators asked Tehran to name its terms: ending the regional war, lifting what Iran calls a blockade of its ports, compensation and sanctions relief — with a corridor through the strait already sketched out with Oman. Pre-war, the waterway carried roughly a fifth of global oil and LNG; ceasefires in April and June both failed to reopen it, and Trump says Washington is “not talking” and prefers economic punishment.</p>
+  <p class="next">What’s next: Iran and Oman are still drafting how the corridor — and its revenues — would be shared.</p>
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.al-monitor.com/originals/2026/08/iran-sets-conditions-reopening-strait-hormuz-top-security-official-rezaei-says" target="_blank" rel="noopener">Reuters (via Al-Monitor)</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.al-monitor.com%2Foriginals%2F2026%2F08%2Firan-sets-conditions-reopening-strait-hormuz-top-security-official-rezaei-says%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Iran%20is%20writing%20its%20price%20list%20for%20reopening%20Hormuz%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20are%20each%20of%20Iran%27s%20stated%20conditions%2C%20which%20of%20them%20Washington%20has%20any%20incentive%20to%20meet%2C%20and%20what%20happens%20to%20oil%20prices%20if%20the%20corridor%20opens%20%E2%80%94%20or%20doesn%27t%20%E2%80%94%20by%20winter%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article><article class="story">
+  <div class="story-top"><span class="kicker">Ukraine</span><span class="badge">7/10</span></div>
+  <h3>The CIA director flew to Moscow to tell Russia it's losing</h3>
+  <p class="why"><strong>Why it matters:</strong> Per New York Times reporting, John Ratcliffe delivered FSB chief <a class="ent world" href="https://claude.ai/new?q=Profile%20Aleksandr%20Bortnikov%2C%20the%20head%20of%20Russia%27s%20FSB%20%E2%80%94%20his%20history%2C%20his%20standing%20with%20Putin%2C%20and%20why%20a%20CIA%20director%20would%20deliver%20a%20war%20assessment%20to%20him%20rather%20than%20through%20diplomatic%20channels" target="_blank" rel="noopener">Aleksandr Bortnikov</a> a “bleak” assessment of Russia's military and economic position and urged the Kremlin to cut a deal before it worsens — while warning, without threats, against any move on NATO. The Kremlin confirmed the talks took place and says Putin was briefed.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.cnbc.com/2026/08/27/ratcliffe-moscow-russia-nato-ukraine-iran.html" target="_blank" rel="noopener">CNBC (citing The New York Times)</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F08%2F27%2Fratcliffe-moscow-russia-nato-ukraine-iran.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22The%20CIA%20director%20flew%20to%20Moscow%20to%20tell%20Russia%20it%27s%20losing%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20exactly%20did%20Ratcliffe%20reportedly%20tell%20Bortnikov%2C%20why%20was%20the%20message%20delivered%20through%20intelligence%20channels%2C%20and%20what%20are%20the%20realistic%20odds%20it%20restarts%20stalled%20negotiations%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article><article class="story">
+  <div class="story-top"><span class="kicker">Israel</span><span class="badge">7/10</span></div>
+  <h3>Israel surges troops into the West Bank on a “multi-front” alert</h3>
+  <p class="why"><strong>Why it matters:</strong> Chief of staff <a class="ent world" href="https://claude.ai/new?q=Profile%20Lt.%20Gen.%20Eyal%20Zamir%2C%20Israel%27s%20IDF%20chief%20of%20staff%20%E2%80%94%20his%20multi-front%20readiness%20doctrine%2C%20his%20August%202026%20West%20Bank%20reinforcement%20order%2C%20and%20his%20public%20friction%20with%20the%20treasury%20over%20war%20funding" target="_blank" rel="noopener">Eyal Zamir</a> ordered a major reinforcement of the territory, saying Israel is “advancing battle procedures on all fronts, from Iran and Lebanon to Gaza” — and demanded extra funds from the treasury to do it. The order lands with the <a class="ent world" href="https://claude.ai/new?q=What%20is%20the%20Gaza%20%27Board%20of%20Peace%27%20%E2%80%94%20who%20sits%20on%20it%2C%20what%20its%2015-point%20plan%20proposes%20for%20Hamas%20disarmament%20and%20Israeli%20withdrawal%2C%20and%20where%20the%20plan%20stands%20after%20Israel%27s%20August%209%20rejection%3F" target="_blank" rel="noopener">Board of Peace</a> disarmament plan stalled: Israel rejected the 15-point framework on Aug 9, and Hamas ties any disarmament to a full withdrawal.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.timesofisrael.com/liveblog-august-27-2026/" target="_blank" rel="noopener">The Times of Israel</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.timesofisrael.com%2Fliveblog-august-27-2026%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Israel%20surges%20troops%20into%20the%20West%20Bank%20on%20a%20%E2%80%9Cmulti-front%E2%80%9D%20alert%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20prompted%20the%20West%20Bank%20reinforcement%20order%2C%20how%20it%20interacts%20with%20the%20stalled%20Gaza%20disarmament%20plan%2C%20and%20what%20%E2%80%9Cbattle%20procedures%20on%20all%20fronts%E2%80%9D%20implies%20about%20escalation%20risk%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article></div>
+</section>
+<section class="beat business">
+  <h2 class="beat-h">Business &amp; Markets</h2>
+  <article class="story lead">
+  <div class="story-top"><span class="kicker">Federal Reserve</span><span class="badge">8/10</span></div>
+  <h3>Warsh's first Jackson Hole speech has one job: explain how this Fed thinks</h3>
+  <p class="why"><strong>Why it matters:</strong> At 10am ET, <a class="ent business" href="https://claude.ai/new?q=Profile%20Kevin%20Warsh%20%E2%80%94%20his%20path%20from%20youngest-ever%20Fed%20governor%20in%202006%20to%20Fed%20chair%20in%20May%202026%2C%20his%20long-held%20views%20on%20inflation%20and%20the%20dollar%2C%20and%20why%20markets%20call%20him%20deliberately%20opaque" target="_blank" rel="noopener">Kevin Warsh</a> gives his first extended read of the economy since taking the chair in May — with inflation at 3.7%, core PCE at 3.3%, the funds rate parked at 3.50–3.75% since December, and half the committee expecting at least one hike this year. He has pointedly refused to spell out his <a class="ent business" href="https://claude.ai/new?q=Explain%20a%20central%20bank%20%27reaction%20function%27%20%E2%80%94%20what%20it%20means%2C%20why%20Fed%20chair%20Kevin%20Warsh%20has%20refused%20to%20specify%20his%2C%20and%20how%20that%20ambiguity%20feeds%20volatility%20in%20bond%20markets" target="_blank" rel="noopener">reaction function</a>, and bond markets want the void filled.</p>
+  <p class="next">What’s next: Prepared text drops at 10am ET; final August consumer sentiment lands the same morning.</p>
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.npr.org/2026/08/27/nx-s1-5945044/federal-reserve-kevin-warsh-jackson-hole-wyoming-bond-markets" target="_blank" rel="noopener">NPR</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.npr.org%2F2026%2F08%2F27%2Fnx-s1-5945044%2Ffederal-reserve-kevin-warsh-jackson-hole-wyoming-bond-markets%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Warsh%27s%20first%20Jackson%20Hole%20speech%20has%20one%20job%3A%20explain%20how%20this%20Fed%20thinks%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20Warsh%20actually%20said%2C%20whether%20he%20finally%20described%20his%20reaction%20function%2C%20and%20how%20bond%20and%20equity%20markets%20reacted%20in%20the%20hours%20after%20the%20speech%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article>
+  <div class="grid"><article class="story">
+  <div class="story-top"><span class="kicker">Markets</span><span class="badge">7/10</span></div>
+  <h3>One stock did the lifting: Nvidia's +8.7% masked a falling market</h3>
+  <p class="why"><strong>Why it matters:</strong> The S&P 500 rose 0.7% to 7,730.99 and the Nasdaq 1.6% — yet most S&P constituents fell, tech was the only sector to advance, and Nvidia alone more than offset the majority's losses after its beat-and-raise quarter. That's textbook thin <a class="ent business" href="https://claude.ai/new?q=Explain%20market%20breadth%20%E2%80%94%20why%20a%20session%20where%20one%20stock%20lifts%20the%20index%20while%20most%20stocks%20fall%20worries%20analysts%2C%20using%20the%20August%2027%2C%202026%20Nvidia-led%20rally%20as%20the%20worked%20example" target="_blank" rel="noopener">market breadth</a>, on the eve of a Fed chair speech.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://lancasteronline.com/business/stock_market/how-major-us-stock-indexes-fared-thursday-8-27-2026/article_99156a88-abbf-5d6c-923d-1976809289ff.html" target="_blank" rel="noopener">Associated Press (via LancasterOnline)</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Flancasteronline.com%2Fbusiness%2Fstock_market%2Fhow-major-us-stock-indexes-fared-thursday-8-27-2026%2Farticle_99156a88-abbf-5d6c-923d-1976809289ff.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22One%20stock%20did%20the%20lifting%3A%20Nvidia%27s%20%2B8.7%25%20masked%20a%20falling%20market%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20exactly%20how%20narrow%20Thursday%27s%20advance%20was%2C%20what%20history%20says%20about%20one-stock%20rallies%2C%20and%20what%20would%20confirm%20or%20break%20this%20one%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article><article class="story">
+  <div class="story-top"><span class="kicker">Earnings</span><span class="badge">6/10</span></div>
+  <h3>Marvell posts record revenue — and the stock falls anyway</h3>
+  <p class="why"><strong>Why it matters:</strong> Fiscal Q2: a record $2.739B in revenue, up 37%, with data center up 46% to $2.17B and non-GAAP EPS of $0.94. Shares still slipped 2–3% after hours — the stock came in up roughly 175% for the year, priced past perfection. The AI-capex bar now punishes mere beats.</p>
+  <p class="next">What’s next: Management guided to accelerating growth through the rest of fiscal 2027.</p>
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://investor.marvell.com/news-events/press-releases/detail/1031/marvell-technology-inc-reports-second-quarter-of-fiscal-year-2027-financial-results" target="_blank" rel="noopener">Marvell (press release)</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Finvestor.marvell.com%2Fnews-events%2Fpress-releases%2Fdetail%2F1031%2Fmarvell-technology-inc-reports-second-quarter-of-fiscal-year-2027-financial-results%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Marvell%20posts%20record%20revenue%20%E2%80%94%20and%20the%20stock%20falls%20anyway%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20why%20a%20record%2C%20accelerating%20quarter%20still%20made%20the%20stock%20fall%20%E2%80%94%20what%20was%20already%20priced%20in%2C%20and%20what%20the%20revised%20FY27%20and%20FY28%20outlooks%20imply%20for%20AI%20capital%20spending%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article></div>
+</section>
+<section class="beat tech">
+  <h2 class="beat-h">Tech &amp; AI</h2>
+  <article class="story lead">
+  <div class="story-top"><span class="kicker">AI & society</span><span class="badge">7/10</span></div>
+  <h3>A third of American adults now take health questions to a chatbot</h3>
+  <p class="why"><strong>Why it matters:</strong> Pew's June survey of 3,488 adults finds 34% use AI chatbots for at least one health task — 28% for quick health information, 25% to understand symptoms, 22% to find lower-cost care. Nearly half of users call the answers very helpful, but only 29% are very comfortable sharing health data, and a companion report finds Americans think chatbots hurt more than help for loneliness and depression. <a class="ent tech" href="https://claude.ai/new?q=Compare%20how%20patients%20and%20clinicians%20are%20actually%20using%20AI%20chatbots%20for%20health%20in%202026%20%E2%80%94%20adoption%20data%2C%20documented%20benefits%2C%20documented%20harms%2C%20and%20where%20medical%20groups%20say%20the%20line%20should%20be" target="_blank" rel="noopener">The chatbot-doctor shift</a> is no longer fringe behavior.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.pewresearch.org/science/2026/08/25/from-diagnoses-to-treatments-why-americans-use-ai-chatbots-for-health/" target="_blank" rel="noopener">Pew Research Center</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.pewresearch.org%2Fscience%2F2026%2F08%2F25%2Ffrom-diagnoses-to-treatments-why-americans-use-ai-chatbots-for-health%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20third%20of%20American%20adults%20now%20take%20health%20questions%20to%20a%20chatbot%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20which%20health%20tasks%20people%20are%20trusting%20chatbots%20with%2C%20where%20clinicians%20say%20that%20trust%20is%20misplaced%2C%20and%20what%20safeguards%20exist%20for%20the%2034%25%20already%20doing%20it%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article>
+  <div class="grid"><article class="story">
+  <div class="story-top"><span class="kicker">Cybersecurity</span><span class="badge">7/10</span></div>
+  <h3>A cyberattack has frozen shipping at one of the biggest heart-device makers</h3>
+  <p class="why"><strong>Why it matters:</strong> Boston Scientific — pacemakers, defibrillators, stents — told the SEC an attack detected Tuesday is disrupting global order processing and shipping, with no restoration timeline. Analysts project weeks of disruption and hundreds of millions in lost Q3 revenue, and it's the third major <a class="ent tech" href="https://claude.ai/new?q=Why%20are%20medical%20device%20makers%20%E2%80%94%20Boston%20Scientific%2C%20Stryker%2C%20Abbott%20%E2%80%94%20being%20hit%20by%20major%20cyberattacks%20in%202026%2C%20and%20what%20happens%20to%20hospitals%20and%20patients%20when%20a%20pacemaker%20manufacturer%20cannot%20process%20or%20ship%20orders%3F" target="_blank" rel="noopener">device-maker breach</a> this year, after Stryker and Abbott.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://techcrunch.com/2026/08/26/medical-device-maker-boston-scientific-says-a-cyberattack-is-causing-a-global-disruption-to-its-operations/" target="_blank" rel="noopener">TechCrunch</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ftechcrunch.com%2F2026%2F08%2F26%2Fmedical-device-maker-boston-scientific-says-a-cyberattack-is-causing-a-global-disruption-to-its-operations%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20cyberattack%20has%20frozen%20shipping%20at%20one%20of%20the%20biggest%20heart-device%20makers%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20is%20known%20about%20the%20attackers%20and%20their%20method%2C%20how%20exposed%20hospitals%20that%20depend%20on%20Boston%20Scientific%20devices%20are%2C%20and%20what%20precedent%20the%20Stryker%20and%20Abbott%20incidents%20set%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article><article class="story">
+  <div class="story-top"><span class="kicker">Silicon</span><span class="badge">6/10</span></div>
+  <h3>Intel shows its 256-core answer to AMD — arriving in 2027</h3>
+  <p class="why"><strong>Why it matters:</strong> At Hot Chips, Xeon 7 “Diamond Rapids”: 256 performance cores across 16 compute chiplets on <a class="ent tech" href="https://claude.ai/new?q=Explain%20Intel%27s%2018A%20and%2018A-P%20process%20nodes%20%E2%80%94%20what%20RibbonFET%20and%20backside%20power%20delivery%20are%2C%20and%20whether%2018A%20can%20restore%20Intel%27s%20competitiveness%20against%20TSMC%20in%20the%20data%20center" target="_blank" rel="noopener">Intel 18A-P</a>, 1.28GB of last-level cache, memory to 12,800 MT/s, and FP8-capable AMX for AI work. The catch: launch has slipped to 2027, leaving AMD's 256-core EPYC Venice a clear runway.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.tomshardware.com/pc-components/cpus/intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-of-last-level-cache-next-gen-18a-p-cpu-also-brings-avx-10-2-and-uses-ucie-s-instead-of-emib" target="_blank" rel="noopener">Tom's Hardware</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.tomshardware.com%2Fpc-components%2Fcpus%2Fintel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-of-last-level-cache-next-gen-18a-p-cpu-also-brings-avx-10-2-and-uses-ucie-s-instead-of-emib%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Intel%20shows%20its%20256-core%20answer%20to%20AMD%20%E2%80%94%20arriving%20in%202027%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20Diamond%20Rapids%20compares%20on%20paper%20with%20AMD%27s%20EPYC%20Venice%2C%20and%20whether%20the%20slip%20to%202027%20matters%20for%20Intel%27s%20data-center%20market%20share%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article></div>
+</section>
+<section class="beat science">
+  <h2 class="beat-h">Science &amp; Space</h2>
+  <article class="story lead">
+  <div class="story-top"><span class="kicker">Astronomy</span><span class="badge">7/10</span></div>
+  <h3>Roman is on the pad. Sunday, 7:26am ET.</h3>
+  <p class="why"><strong>Why it matters:</strong> NASA's <a class="ent science" href="https://claude.ai/new?q=Profile%20Nancy%20Grace%20Roman%2C%20NASA%27s%20first%20chief%20astronomer%20%E2%80%94%20why%20the%20Roman%20Space%20Telescope%20bears%20her%20name%20and%20what%20the%20mission%20owes%20to%20her%20fight%20for%20space-based%20astronomy" target="_blank" rel="noopener">Nancy Grace Roman</a> Space Telescope is encapsulated atop a Falcon Heavy at pad 39A, flight readiness review passed and weather favorable. Its camera sees 100× Hubble's field of view and surveys ~1,000× faster; over five years it could find on the order of 100,000 new exoplanets and put real constraints on <a class="ent science" href="https://claude.ai/new?q=Explain%20dark%20energy%20and%20how%20the%20Roman%20Space%20Telescope%27s%20wide-field%20surveys%20are%20designed%20to%20test%20whether%20it%20changes%20over%20cosmic%20time" target="_blank" rel="noopener">dark energy</a>.</p>
+  <p class="next">What’s next: Launch window Sunday 7:26am ET; backup Monday 7:22am ET.</p>
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.nasa.gov/news-release/nasa-sets-coverage-for-roman-space-telescope-launch-from-florida/" target="_blank" rel="noopener">NASA</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nasa.gov%2Fnews-release%2Fnasa-sets-coverage-for-roman-space-telescope-launch-from-florida%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Roman%20is%20on%20the%20pad.%20Sunday%2C%207%3A26am%20ET.%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20Roman%20will%20observe%20in%20its%20first%20year%2C%20how%20its%20microlensing%20exoplanet%20survey%20works%2C%20and%20what%20it%20could%20settle%20about%20dark%20energy%20that%20current%20telescopes%20cannot%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article>
+  <div class="grid"><article class="story">
+  <div class="story-top"><span class="kicker">Neuroscience</span><span class="badge">6/10</span></div>
+  <h3>The brain has a built-in brake for chronic pain — WashU just found it</h3>
+  <p class="why"><strong>Why it matters:</strong> Receptors in the <a class="ent science" href="https://claude.ai/new?q=Explain%20the%20locus%20coeruleus%20%E2%80%94%20what%20this%20tiny%20brainstem%20nucleus%20does%2C%20and%20why%20restoring%20receptors%20there%20could%20shut%20off%20chronic%20pain%20without%20body-wide%20opioid%20side%20effects" target="_blank" rel="noopener">locus coeruleus</a>, the brainstem's alarm center, act as biological brakes on pain: nerve injury silences them, and restoring them in mice reversed hypersensitivity outright. Published Aug 17 in Current Biology, it points to pain relief that doesn't touch opioid receptors body-wide.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://medicine.washu.edu/news/scientists-identify-brains-brake-that-shuts-off-chronic-pain/" target="_blank" rel="noopener">WashU Medicine</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fmedicine.washu.edu%2Fnews%2Fscientists-identify-brains-brake-that-shuts-off-chronic-pain%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22The%20brain%20has%20a%20built-in%20brake%20for%20chronic%20pain%20%E2%80%94%20WashU%20just%20found%20it%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20exactly%20the%20team%20restored%20in%20the%20locus%20coeruleus%2C%20how%20far%20this%20is%20from%20a%20human%20therapy%2C%20and%20why%20it%20might%20avoid%20classic%20opioid%20side%20effects%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article><article class="story">
+  <div class="story-top"><span class="kicker">Genomics</span><span class="badge">6/10</span></div>
+  <h3>AI decoded the “on switch” written into 60% of human genes</h3>
+  <p class="why"><strong>Why it matters:</strong> A UC San Diego team measured gene-expression activity across ~500,000 variants of the initiator element, trained a model on the results, and found the decoded signature in roughly 60% of human genes — a working key to predict which mutations quietly break gene activation, published in Genes & Development.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://today.ucsd.edu/story/researchers-use-ai-to-decode-key-dna-sequence-in-gene-activation" target="_blank" rel="noopener">UC San Diego Today</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ftoday.ucsd.edu%2Fstory%2Fresearchers-use-ai-to-decode-key-dna-sequence-in-gene-activation%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22AI%20decoded%20the%20%E2%80%9Con%20switch%E2%80%9D%20written%20into%2060%25%20of%20human%20genes%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20the%20initiator%20element%20is%2C%20how%20the%20model%20decoded%20its%20signature%2C%20and%20how%20this%20could%20change%20the%20interpretation%20of%20disease-causing%20mutations%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article></div>
+</section>
+
+<section class="beat anthropic">
+  <h2 class="beat-h">Anthropic</h2>
+  <article class="story lead">
+  <div class="story-top"><span class="kicker">Physical AI</span><span class="badge">8/10</span></div>
+  <h3>Claude gets hands: Anthropic previews a standard for running real-world hardware</h3>
+  <p class="why"><strong>Why it matters:</strong> The <a class="ent anthropic" href="https://claude.ai/new?q=Explain%20Anthropic%27s%20Model%20Hardware%20Standard%20%28MHS%29%20%E2%80%94%20how%20a%20machine-readable%20description%20of%20equipment%20with%20embedded%20safety%20limits%20lets%20an%20AI%20model%20operate%20lab%20and%20factory%20hardware%2C%20and%20how%20it%20relates%20to%20the%20Model%20Context%20Protocol" target="_blank" rel="noopener">Model Hardware Standard</a> packages how a machine works — including its safety envelope, like a robot arm's speed and angle limits — so models can drive lab and factory equipment after hours of integration instead of weeks. AWS, Danaher, Hugging Face (LeRobot) and Raspberry Pi are already testing; it ships as a research preview with a waitlist, explicitly to find failure modes before wide release.</p>
+  <p class="next">What’s next: TNW notes the timing lines up with EU machinery-regulation deadlines landing in 2027.</p>
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" target="_blank" rel="noopener">Anthropic</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.anthropic.com%2Fnews%2Fmodel-hardware-standard-research-preview%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Claude%20gets%20hands%3A%20Anthropic%20previews%20a%20standard%20for%20running%20real-world%20hardware%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20the%20Model%20Hardware%20Standard%20actually%20specifies%2C%20how%20its%20embedded%20safety%20limits%20work%2C%20and%20what%20the%20realistic%20failure%20modes%20are%20when%20language%20models%20drive%20physical%20machines%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article>
+  <article class="story">
+  <div class="story-top"><span class="kicker">Compute</span><span class="badge">7/10</span></div>
+  <h3>$45 billion for 460 megawatts: Anthropic's biggest bet yet on Vera Rubin</h3>
+  <p class="why"><strong>Why it matters:</strong> The six-year deal with <a class="ent anthropic" href="https://claude.ai/new?q=What%20is%20Nscale%2C%20the%20British%20AI-infrastructure%20firm%20founded%20in%202024%20%E2%80%94%20who%20backs%20it%2C%20what%20it%20has%20built%2C%20and%20how%20it%20landed%20multibillion-dollar%20compute%20deals%20with%20Microsoft%20and%20Anthropic%20within%20two%20years%20of%20founding%3F" target="_blank" rel="noopener">Nscale</a>, a British firm founded in 2024, rents Anthropic ~460MW at a West Virginia campus built on Nvidia's <a class="ent anthropic" href="https://claude.ai/new?q=What%20is%20Nvidia%27s%20Vera%20Rubin%20platform%20%E2%80%94%20its%20architecture%2C%20expected%20performance%20versus%20Blackwell%2C%20and%20which%20AI%20labs%20and%20clouds%20have%20committed%20to%20deploying%20it%3F" target="_blank" rel="noopener">Vera Rubin</a> racks, with first capacity in late 2027 — extending a compute streak (SpaceX, Amazon, Google, Broadcom) ahead of an expected fall IPO.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.cnbc.com/2026/08/26/anthropic-and-nscale-strike-45-billion-cloud-deal-sources-say.html" target="_blank" rel="noopener">CNBC</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F08%2F26%2Fanthropic-and-nscale-strike-45-billion-cloud-deal-sources-say.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22%2445%20billion%20for%20460%20megawatts%3A%20Anthropic%27s%20biggest%20bet%20yet%20on%20Vera%20Rubin%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20%2445%20billion%20for%20460%20megawatts%20says%20about%20AI%20compute%20economics%2C%20and%20how%20this%20fits%20Anthropic%27s%20multi-vendor%20infrastructure%20strategy%20heading%20into%20an%20IPO%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article>
+</section>
+
+<section class="sports">
+  <h2 class="sports-h">Your teams</h2>
+  <article class="story lead" style="--beat-c:#AA0000">
+  <div class="story-top"><span class="kicker">49ers</span><span class="badge">6/10</span></div>
+  <h3>Six field goals, a 2-1 preseason, and a flight to Melbourne</h3>
+  <p class="why"><strong>Why it matters:</strong> Eddy Piñeiro scored all 18 points in the 18-12 finale win over the Raiders — six field goals, three from 50+, the longest a 59-yarder. Now the real deadline: the roster cuts from 90 to 53 by Sunday, and the team flies out Wednesday for the Sept 10 season opener against the Rams in Melbourne, Australia.</p>
+  <p class="next">What’s next: Cutdown day Sunday; watch the backup-QB call with Kurtis Rourke nursing fractured ribs.</p>
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.49ers.com/news/49ers-defeat-raiders-18-12-in-preseason-finale-5-takeaways-from-sfvslv" target="_blank" rel="noopener">49ers.com</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.49ers.com%2Fnews%2F49ers-defeat-raiders-18-12-in-preseason-finale-5-takeaways-from-sfvslv%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Six%20field%20goals%2C%20a%202-1%20preseason%2C%20and%20a%20flight%20to%20Melbourne%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20who%20won%20and%20lost%20the%20roster-bubble%20battles%2C%20and%20how%20the%20team%20is%20handling%20the%20logistics%20of%20opening%20the%20season%20in%20Melbourne%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article>
+  <article class="story" style="--beat-c:#F4793E">
+  <div class="story-top"><span class="kicker">Giants</span><span class="badge">6/10</span></div>
+  <h3>Gilbert goes leadoff deep, Giants take the opener 6-1</h3>
+  <p class="why"><strong>Why it matters:</strong> Drew Gilbert's leadoff homer set the tone and the pitching held Arizona to one run at Oracle Park — a steadying win from a team the Chronicle framed as “still standing” in the wild-card scrap. The series continues tonight: Blade Tidwell (3.58 ERA) against Kohl Drake, 7:15pm PT.</p>
+  
+  <div class="story-foot">
+    <span class="src">Source: <a href="https://www.sfchronicle.com/sports/giants/article/giants-still-standing-show-mettle-taking-22406395.php" target="_blank" rel="noopener">San Francisco Chronicle</a></span>
+    <a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.sfchronicle.com%2Fsports%2Fgiants%2Farticle%2Fgiants-still-standing-show-mettle-taking-22406395.php%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Gilbert%20goes%20leadoff%20deep%2C%20Giants%20take%20the%20opener%206-1%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20where%20the%20Giants%20stand%20in%20the%20National%20League%20wild-card%20race%20after%20this%20win%2C%20and%20what%20Drew%20Gilbert%27s%20emergence%20means%20for%20the%20outfield%20picture%3F" target="_blank" rel="noopener">Go deeper →</a>
+  </div>
+</article>
+
+  <div class="score-row">
+    <div class="score-league">NFL · Preseason Week 3 (final week)</div>
+    <div class="score-cards">
+      <div class="score-card fav" style="--fav:#AA0000"><span class="score-win">SF 18</span> · LV 12 <span class="score-status">Final · Thu</span></div>
+    </div>
+  </div>
+  <div class="score-row">
+    <div class="score-league">MLB · Regular season, wild-card race</div>
+    <div class="score-cards">
+      <div class="score-card fav" style="--fav:#F4793E"><span class="score-win">SF 6</span> · AZ 1 <span class="score-status">Final · Thu</span></div>
+      <div class="score-card fav" style="--fav:#F4793E">AZ @ SF <span class="score-status">Tonight 7:15pm PT · Tidwell vs Drake</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="ending">
+  <h2>That’s your briefing. You’re caught up.</h2>
+  <p>17 stories this morning — every headline, name and “Go deeper” link opens a longer conversation.<br>
+  <a href="archive/">Past briefings →</a></p>
+</footer>
+
+<details class="sources">
+  <summary>Sources (17)</summary>
+  <ul><li>A glacier fell on the Himalaya: 392 dead, nearly 1,500 mi… — <a href="https://www.washingtontimes.com/news/2026/aug/27/catastrophic-floods-kill-390-people-nepal-tibet-1400-missing/" target="_blank" rel="noopener">Associated Press (via The Washington Times)</a> — AP wire story; toll figures corroborated across Manila Times, KATU and WCCB syndications</li><li>Iran is writing its price list for reopening Hormuz — <a href="https://www.al-monitor.com/originals/2026/08/iran-sets-conditions-reopening-strait-hormuz-top-security-official-rezaei-says" target="_blank" rel="noopener">Reuters (via Al-Monitor)</a> — Reuters original syndicated to Al-Monitor and Internazionale; corridor detail per Al Jazeera Aug 28</li><li>The CIA director flew to Moscow to tell Russia it's losing — <a href="https://www.cnbc.com/2026/08/27/ratcliffe-moscow-russia-nato-ukraine-iran.html" target="_blank" rel="noopener">CNBC (citing The New York Times)</a> — NYT original; trip and message corroborated by Kyiv Post, Jerusalem Post and Gulf News accounts</li><li>Israel surges troops into the West Bank on a “multi-front… — <a href="https://www.timesofisrael.com/liveblog-august-27-2026/" target="_blank" rel="noopener">The Times of Israel</a> — Aug 27 liveblog; Zamir quotes as reported there, Board of Peace status per Al Jazeera and WaPo</li><li>Warsh's first Jackson Hole speech has one job: explain ho… — <a href="https://www.npr.org/2026/08/27/nx-s1-5945044/federal-reserve-kevin-warsh-jackson-hole-wyoming-bond-markets" target="_blank" rel="noopener">NPR</a> — NPR preview; 10am ET timing and stakes corroborated by Yahoo Finance live and CNN previews</li><li>One stock did the lifting: Nvidia's +8.7% masked a fallin… — <a href="https://lancasteronline.com/business/stock_market/how-major-us-stock-indexes-fared-thursday-8-27-2026/article_99156a88-abbf-5d6c-923d-1976809289ff.html" target="_blank" rel="noopener">Associated Press (via LancasterOnline)</a> — AP index roundup; sole-sector-advance detail per TheStreet's Aug 27 close coverage</li><li>Marvell posts record revenue — and the stock falls anyway — <a href="https://investor.marvell.com/news-events/press-releases/detail/1031/marvell-technology-inc-reports-second-quarter-of-fiscal-year-2027-financial-results" target="_blank" rel="noopener">Marvell (press release)</a> — Company press release (primary); stock reaction per 24/7 Wall St. and Yahoo Finance live coverage</li><li>A third of American adults now take health questions to a… — <a href="https://www.pewresearch.org/science/2026/08/25/from-diagnoses-to-treatments-why-americans-use-ai-chatbots-for-health/" target="_blank" rel="noopener">Pew Research Center</a> — Pew report page (primary); figures corroborated by Healthcare Dive and AI Weekly</li><li>A cyberattack has frozen shipping at one of the biggest h… — <a href="https://techcrunch.com/2026/08/26/medical-device-maker-boston-scientific-says-a-cyberattack-is-causing-a-global-disruption-to-its-operations/" target="_blank" rel="noopener">TechCrunch</a> — SEC-filing-based reporting; disruption scope corroborated by CBS News and MedTech Dive</li><li>Intel shows its 256-core answer to AMD — arriving in 2027 — <a href="https://www.tomshardware.com/pc-components/cpus/intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-of-last-level-cache-next-gen-18a-p-cpu-also-brings-avx-10-2-and-uses-ucie-s-instead-of-emib" target="_blank" rel="noopener">Tom's Hardware</a> — Hot Chips 2026 session coverage; specs corroborated by ServeTheHome and The Register</li><li>Roman is on the pad. Sunday, 7:26am ET. — <a href="https://www.nasa.gov/news-release/nasa-sets-coverage-for-roman-space-telescope-launch-from-florida/" target="_blank" rel="noopener">NASA</a> — NASA coverage release (primary); encapsulation and weather per AccuWeather and Space.com updates</li><li>The brain has a built-in brake for chronic pain — WashU j… — <a href="https://medicine.washu.edu/news/scientists-identify-brains-brake-that-shuts-off-chronic-pain/" target="_blank" rel="noopener">WashU Medicine</a> — University release (primary); Current Biology publication corroborated by EurekAlert and Medical Xpress</li><li>AI decoded the “on switch” written into 60% of human genes — <a href="https://today.ucsd.edu/story/researchers-use-ai-to-decode-key-dna-sequence-in-gene-activation" target="_blank" rel="noopener">UC San Diego Today</a> — University release (primary); corroborated by Phys.org and ScienceDaily</li><li>Claude gets hands: Anthropic previews a standard for runn… — <a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" target="_blank" rel="noopener">Anthropic</a> — Anthropic announcement (primary URL via search); details corroborated by Bloomberg, Fortune and Japan Times</li><li>$45 billion for 460 megawatts: Anthropic's biggest bet ye… — <a href="https://www.cnbc.com/2026/08/26/anthropic-and-nscale-strike-45-billion-cloud-deal-sources-say.html" target="_blank" rel="noopener">CNBC</a> — CNBC sourced report; terms corroborated by TechCrunch, Quartz and IT Pro</li><li>Six field goals, a 2-1 preseason, and a flight to Melbourne — <a href="https://www.49ers.com/news/49ers-defeat-raiders-18-12-in-preseason-finale-5-takeaways-from-sfvslv" target="_blank" rel="noopener">49ers.com</a> — Team site recap (primary); score and Piñeiro line corroborated by ESPN recap and PFF</li><li>Gilbert goes leadoff deep, Giants take the opener 6-1 — <a href="https://www.sfchronicle.com/sports/giants/article/giants-still-standing-show-mettle-taking-22406395.php" target="_blank" rel="noopener">San Francisco Chronicle</a> — Chronicle game story; 6-1 final per ESPN box score, tonight's matchup per Bleacher Nation</li></ul><p class="srcnote">Verification note: this environment’s network policy blocks direct page fetches, so every story above was verified through multiple independent search results — including source-scoped queries confirming each URL and its claims — rather than a full-text fetch. Market figures reflect Thursday, Aug 27 closes; Brent points are settlement-area figures that vary slightly by source, and gold and bitcoin are approximate levels from same-day price coverage.</p>
+</details>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  var light = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  var tick = light ? '#666666' : '#9aa0a6';
+  var grid = light ? 'rgba(0,0,0,0.07)' : 'rgba(255,255,255,0.07)';
+  var mono = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+  var spData = [7674.37, 7652.86, 7677.28, 7675.7, 7730.99];
+  var spLabels = ["Aug 21", "Aug 24", "Aug 25", "Aug 26", "Aug 27"];
+  var brData = [93.82, 92.6, 87.12, 87.84, 88.52];
+  var brLabels = ["Aug 21", "Aug 24", "Aug 25", "Aug 26", "Aug 27"];
+
+  if (typeof Chart === 'undefined') {
+    var fallbacks = {
+      'c-sp': 'S&P 500: 7,674 → 7,731 over five sessions (+0.7%), Thursday\u2019s jump Nvidia-driven.',
+      'c-br': 'Brent: $93.82 → ~$88.5 over five sessions (−5.7%) as Hormuz diplomacy progressed.',
+      'c-day': 'Pew: 34% of US adults use AI chatbots for a health task; 28% quick info, 25% symptoms, 22% cheaper care.'
+    };
+    Object.keys(fallbacks).forEach(function (id) {
+      var c = document.getElementById(id);
+      if (c && c.parentNode) { c.parentNode.innerHTML = '<p style="font-size:13px;color:' + tick + '">' + fallbacks[id] + '</p>'; }
+    });
+    return;
+  }
+
+  function lineOpts(prefix) {
+    return {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: tick, font: { family: mono, size: 11 } }, grid: { display: false } },
+        y: { ticks: { color: tick, font: { family: mono, size: 11 },
+              callback: function (v) { return prefix + v.toLocaleString(); } },
+             grid: { color: grid } }
+      }
+    };
+  }
+
+  new Chart(document.getElementById('c-sp'), {
+    type: 'line',
+    data: { labels: spLabels, datasets: [{ data: spData,
+      borderColor: light ? '#2b5fc7' : '#7aa2f7', backgroundColor: 'transparent',
+      borderWidth: 2, pointRadius: 3, pointBackgroundColor: light ? '#2b5fc7' : '#7aa2f7',
+      tension: 0.25 }] },
+    options: lineOpts('')
+  });
+
+  new Chart(document.getElementById('c-br'), {
+    type: 'line',
+    data: { labels: brLabels, datasets: [{ data: brData,
+      borderColor: light ? '#3d7a1e' : '#9ece6a', backgroundColor: 'transparent',
+      borderWidth: 2, pointRadius: 3, pointBackgroundColor: light ? '#3d7a1e' : '#9ece6a',
+      tension: 0.25 }] },
+    options: lineOpts('$')
+  });
+
+  new Chart(document.getElementById('c-day'), {
+    type: 'bar',
+    data: {
+      labels: ['Any health task', 'Quick health info', 'What\u2019s causing symptoms', 'Cheaper-care info'],
+      datasets: [{ data: [34, 28, 25, 22],
+        backgroundColor: light ? '#2b5fc7' : '#7aa2f7', borderWidth: 0, barThickness: 22 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { min: 0, max: 40,
+          ticks: { color: tick, font: { family: mono, size: 11 },
+            callback: function (v) { return v + '%'; } },
+          grid: { color: grid } },
+        y: { ticks: { color: tick, font: { family: mono, size: 12 } }, grid: { display: false } }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

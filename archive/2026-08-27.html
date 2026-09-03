@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — Thursday, August 27, 2026</title>
+<style>
+  :root {
+    --bg: #0f1115; --surface: #171a21; --border: #2a2f3a;
+    --text: #e8e8e8; --muted: #9aa0a6;
+    --up: #9ece6a; --down: #f7768e;
+    --tech: #7aa2f7; --world: #f7768e; --business: #9ece6a;
+    --science: #bb9af7; --anthropic: #d4a27f;
+    --niners: #AA0000; --giants: #F4793E; --sharks: #006D75; --warriors: #1D428A;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fafaf8; --surface: #ffffff; --border: #e3e3de;
+      --text: #1f1f1f; --muted: #666666;
+      --up: #3f7d20; --down: #c22f4b;
+      --tech: #2b5fc7; --world: #c22f4b; --business: #3f7d20;
+      --science: #7040b8; --anthropic: #96562a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; overflow-wrap: break-word; }
+  a { color: inherit; }
+  .serif { font-family: "Iowan Old Style", Palatino, Georgia, serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+  /* 1. Wire strip */
+  .wire { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.9; color: var(--muted); }
+  .wire b { font-weight: 500; color: var(--text); }
+  .wire .up { color: var(--up); } .wire .dn { color: var(--down); }
+  .wire .sep { color: var(--border); padding: 0 2px; }
+  .wire-label { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
+
+  /* 2. Lede */
+  .dateline { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 10px; }
+  h1.thesis { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 23px; line-height: 1.35; font-weight: 500; margin: 0 0 14px; }
+  .narrative { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 17.5px; line-height: 1.65; margin: 0 0 14px; }
+  .readtime { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--muted); border: 1px solid var(--border); display: inline-block; padding: 3px 9px; }
+
+  a.ent { color: inherit; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; text-decoration-color: var(--tech); }
+  a.ent:hover { color: var(--tech); }
+  a.ent.w { text-decoration-color: var(--world); } a.ent.w:hover { color: var(--world); }
+  a.ent.b { text-decoration-color: var(--business); } a.ent.b:hover { color: var(--business); }
+  a.ent.s { text-decoration-color: var(--science); } a.ent.s:hover { color: var(--science); }
+  a.ent.a { text-decoration-color: var(--anthropic); } a.ent.a:hover { color: var(--anthropic); }
+
+  /* 3. State of play */
+  .sop { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 28px 0; }
+  .sop > div { padding: 14px 10px; border-left: 1px solid var(--border); }
+  .sop > div:first-child { border-left: none; }
+  .sop .v { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 18px; font-weight: 500; }
+  .sop .l { font-size: 12.5px; margin-top: 2px; }
+  .sop .c { font-size: 12px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+  @media (max-width: 560px) {
+    .sop { grid-template-columns: repeat(2, 1fr); }
+    .sop > div { border-left: none; border-top: 1px solid var(--border); }
+    .sop > div:nth-child(-n+2) { border-top: none; }
+  }
+
+  /* 4. Chart */
+  .chartwrap { background: var(--surface); border: 1px solid var(--border); padding: 16px; margin: 0 0 32px; }
+  .chartwrap h3 { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; color: var(--muted); margin: 0 0 12px; }
+  .chartwrap .annot { font-size: 13px; color: var(--muted); margin: 10px 0 0; line-height: 1.5; }
+  .chartbox { position: relative; height: 240px; }
+
+  /* 5. Sections */
+  section { margin: 36px 0 0; }
+  .beathead { font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; padding-bottom: 8px; border-bottom: 2px solid var(--border); margin: 0 0 18px; }
+  .beathead.tech { color: var(--tech); border-color: var(--tech); }
+  .beathead.world { color: var(--world); border-color: var(--world); }
+  .beathead.business { color: var(--business); border-color: var(--business); }
+  .beathead.science { color: var(--science); border-color: var(--science); }
+  .beathead.anthropic { color: var(--anthropic); border-color: var(--anthropic); }
+  .beathead.sports { color: var(--muted); border-color: var(--border); }
+
+  .story { margin: 0 0 22px; }
+  .story .kicker { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .klabel { font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+  .klabel.tech { color: var(--tech); } .klabel.world { color: var(--world); }
+  .klabel.business { color: var(--business); } .klabel.science { color: var(--science); }
+  .klabel.anthropic { color: var(--anthropic); }
+  .score { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 1px 6px; }
+  .story h2 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 18px; line-height: 1.4; font-weight: 500; margin: 0 0 6px; }
+  .story.lead h2 { font-size: 21px; }
+  .story p { font-size: 14.5px; line-height: 1.6; margin: 0 0 6px; }
+  .story .wim b { font-weight: 500; }
+  .story .wn { font-style: italic; color: var(--muted); font-size: 13.5px; }
+  .story .foot { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .story .src { font-size: 12.5px; color: var(--muted); }
+  .story .src a { color: var(--muted); }
+  .story .src a:hover { color: var(--text); }
+  a.deeper { font-size: 12px; letter-spacing: 0.04em; text-decoration: none; color: var(--text); background: var(--surface); border: 1px solid var(--border); padding: 4px 10px; }
+  a.deeper:hover { border-color: var(--muted); }
+
+  .beatgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; border-top: 1px solid var(--border); padding-top: 18px; position: relative; }
+  .beatgrid::before { content: ""; position: absolute; top: 18px; bottom: 0; left: 50%; width: 1px; background: var(--border); }
+  @media (max-width: 560px) {
+    .beatgrid { grid-template-columns: 1fr; }
+    .beatgrid::before { display: none; }
+  }
+
+  /* Sports */
+  .teamhead { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; margin: 0 0 6px; }
+  .sb-league { margin: 18px 0 0; }
+  .sb-lab { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .sb-row { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .sb-row::-webkit-scrollbar { display: none; }
+  .card { flex: 0 0 auto; min-width: 128px; background: var(--surface); border: 1px solid var(--border); padding: 8px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.55; }
+  .card .st { font-size: 11.5px; color: var(--muted); }
+  .card .st.live { color: var(--down); }
+  .card .w { color: var(--up); }
+  .card.t-giants { border-left: 3px solid var(--giants); }
+  .card.t-niners { border-left: 3px solid var(--niners); }
+
+  /* Ending */
+  .ending { text-align: center; margin: 56px 0 40px; }
+  .ending .big { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 21px; font-weight: 500; }
+  .ending .sub { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
+  .ending a { color: var(--muted); }
+
+  /* Sources */
+  details { border-top: 1px solid var(--border); padding-top: 14px; margin-top: 8px; }
+  summary { cursor: pointer; font-size: 14px; font-weight: 500; color: var(--muted); }
+  .man { font-size: 12px; color: var(--muted); line-height: 1.8; margin: 10px 0 0; }
+  .man a { color: var(--muted); }
+  .man a:hover { color: var(--text); }
+  .caveat { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 10px; }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- 1. Wire strip -->
+  <div class="wire" aria-label="Market wire">
+    S&amp;P 500 <b>7,676</b> <span class="dn">−0.0%</span><span class="sep"> · </span>Dow <b>53,464</b> <span class="dn">−0.2%</span><span class="sep"> · </span>Nasdaq <b>26,130</b> <span class="dn">−0.1%</span><span class="sep"> · </span>VIX <b>15.45</b> <span class="up">−2.5%</span><span class="sep"> · </span>10-yr <b>4.66%</b> <span class="dn">rising</span><span class="sep"> · </span>Brent <b>$87.84</b> <span class="dn">−0.8%</span><span class="sep"> · </span>WTI <b>$82.23</b> <span class="dn">−0.1%</span><span class="sep"> · </span>Gold <b>≈$4,626</b> <span class="up">+11% 30d</span><span class="sep"> · </span>BTC <b>≈$78.7K</b> <span class="dn">−0.5%</span><span class="sep"> · </span>NVDA <b>after-hrs</b> <span class="up">+6.6%</span>
+  </div>
+  <p class="wire-label">Wednesday close (Aug 26) — markets reopen this morning. NVDA move is post-earnings, after hours.</p>
+
+  <!-- 2. Lede -->
+  <p class="dateline">Thursday, August 27, 2026 — generated 6:45am PT</p>
+  <h1 class="thesis">The AI machine is printing money faster than the Fed can make it expensive.</h1>
+  <p class="narrative serif">Nvidia answered the bubble question for at least one more quarter: revenue doubled year over year to $96.2 billion, guidance went higher still, and <a class="ent" data-prompt="Profile Jensen Huang — his background, how he runs Nvidia, and why his forecast of ~70% revenue growth in fiscal 2028 matters more than the quarter Nvidia just reported.">Jensen Huang</a> told Wall Street to expect roughly 70% growth again next fiscal year. Within hours came reports that Nvidia will spend about $13 billion of that on <a class="ent" data-prompt="What is Hugging Face, who leads it, and what would Nvidia owning the dominant open-source AI model hub mean for the rest of the AI industry?">Hugging Face</a> — even as OpenAI's first in-house chip beat Nvidia's own silicon on efficiency in verified tests. The boom's shadow side is monetary: sticky US inflation and a 4.66% ten-year greet <a class="ent b" data-prompt="Profile Kevin Warsh — his path to becoming Fed chair in May 2026, his monetary policy views, and what to expect from his first Jackson Hole keynote.">Kevin Warsh</a> as he opens his first <a class="ent b" data-prompt="Explain the Jackson Hole Economic Policy Symposium — why it moves markets, and why the 2026 theme of financial innovation and payments is unusual.">Jackson Hole</a> as Fed chair, and Seoul hiked rates this morning because chips are running its economy hot. Oil eased as Qatar shuttled to Tehran and an Iran–Oman arrangement on the <a class="ent w" data-prompt="Explain the Strait of Hormuz — why it is the world's most important oil chokepoint, what happened to shipping through it in 2026, and what an Iran-Oman administration deal would change.">Strait of Hormuz</a> inched closer to reopening the world's most important oil chokepoint. And look up tonight: 96% of the Moon slides into Earth's shadow, three days before NASA's <a class="ent s" data-prompt="What is the Nancy Grace Roman Space Telescope, what will it observe after its August 30, 2026 launch, and how does it complement Hubble and JWST?">Roman telescope</a> rides a Falcon Heavy.</p>
+  <span class="readtime">~5 min read — 19 stories across 5 beats, plus your teams</span>
+
+  <!-- 3. State of play -->
+  <div class="sop">
+    <div><div class="v" style="color:var(--up)">$96.2B</div><div class="l">Nvidia Q2 revenue</div><div class="c">Up 106% y/y — Street expected $92.2B</div></div>
+    <div><div class="v" style="color:var(--down)">4.66%</div><div class="l">10-year Treasury</div><div class="c">Rising into Warsh's first Jackson Hole</div></div>
+    <div><div class="v" style="color:var(--down)">$16.68B</div><div class="l">Meta's settlement</div><div class="c">With 29 states over teen addiction claims</div></div>
+    <div><div class="v">$100B</div><div class="l">SpaceX's Louisiana bet</div><div class="c">Largest spaceport ever proposed</div></div>
+    <div><div class="v" style="color:var(--up)">96%</div><div class="l">Of the Moon in shadow</div><div class="c">Deep partial eclipse tonight, 9:12pm PT</div></div>
+  </div>
+
+  <!-- 4. Chart of the day -->
+  <div class="chartwrap">
+    <h3>Chart of the day — Nvidia quarterly revenue ($B)</h3>
+    <div class="chartbox"><canvas id="nvchart"></canvas></div>
+    <p class="annot">Selected reported quarters from Nvidia's earnings releases; the final bar is company guidance of $108B ±2% for the October quarter. A year ago this line was $46.7B — ask what has to stay true for <a class="ent" data-prompt="Nvidia guided to $108 billion revenue for its October 2026 quarter and Jensen Huang forecast ~70% growth in fiscal 2028. What assumptions about AI capex, power availability, and custom-silicon competition (like OpenAI's Jalapeño chip) have to hold for that to happen?">the curve to keep bending</a>.</p>
+  </div>
+
+  <!-- 5. Dominant section -->
+  <section>
+    <h2 class="beathead tech">The Nvidia Moment</h2>
+
+    <article class="story lead">
+      <div class="kicker"><span class="klabel tech">Tech &amp; AI · Earnings</span><span class="score">9/10</span></div>
+      <h2 class="serif">Nvidia doubles revenue to $96.2 billion and says the boom is still accelerating</h2>
+      <p class="wim"><b>Why it matters:</b> Data-center revenue hit $89.0 billion — up 117% year over year and now 92% of all sales — with gross margins at 75% and October-quarter guidance of $108 billion, about $4 billion above Wall Street's forecast. On the call, Jensen Huang went further: roughly 70% revenue growth in fiscal 2028, far above analyst models. Shares rose 6.6% after hours.</p>
+      <p class="wn">What's next: the guide implies Nvidia's first $100B+ quarter, reported in late November.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000073/q2fy27pr.htm" target="_blank" rel="noopener">Nvidia (SEC 8-K)</a></span>
+        <a class="deeper" data-prompt="Read this article: https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000073/q2fy27pr.htm — if the URL is unavailable, search for 'Nvidia announces financial results second quarter fiscal 2027' and find the original release — then assess: with 92% of revenue now from data center, what customer concentration, power constraints, or custom-silicon risks could break the growth Nvidia is guiding to?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <div class="beatgrid">
+      <article class="story">
+        <div class="kicker"><span class="klabel tech">Tech &amp; AI · M&amp;A</span><span class="score">8/10</span></div>
+        <h2 class="serif">Nvidia closes in on Hugging Face in a reported ~$13 billion deal</h2>
+        <p class="wim"><b>Why it matters:</b> The Information reports an agreed price near $12.9 billion — almost triple Hugging Face's 2023 valuation — which would put the hub hosting most of the world's open AI models inside the company that sells the chips they run on. Bloomberg and Business Insider caution no agreement has been signed, and neither company has confirmed.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.bloomberg.com/news/articles/2026-08-27/nvidia-discussed-buying-ai-startup-hugging-face-insider-says" target="_blank" rel="noopener">Bloomberg</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.bloomberg.com/news/articles/2026-08-27/nvidia-discussed-buying-ai-startup-hugging-face-insider-says — if the URL is unavailable, search for 'Nvidia Hugging Face acquisition 13 billion' and find the original reporting — then analyze the antitrust and open-source-ecosystem implications of the chip monopolist owning the main distribution hub for open AI models." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="kicker"><span class="klabel tech">Tech &amp; AI · Silicon</span><span class="score">8/10</span></div>
+        <h2 class="serif">OpenAI's 'Jalapeño' chip beats Blackwell on inference efficiency in verified tests</h2>
+        <p class="wim"><b>Why it matters:</b> <a class="ent" data-prompt="What is SemiAnalysis, who runs it, and why has its InferenceX benchmark become a trusted independent yardstick for AI chips?">SemiAnalysis</a> engineers ran their public InferenceX benchmark inside OpenAI's labs and measured 1.5–1.9× more AI work per watt than Nvidia Blackwell across three open models, with up to 3.6× lower latency. Caveat: Jalapeño uses newer HBM4 memory, so Nvidia's Rubin is the fairer fight.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.cnbc.com/2026/08/26/openai-jalapeno-ai-chip-nvidia.html" target="_blank" rel="noopener">CNBC</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.cnbc.com/2026/08/26/openai-jalapeno-ai-chip-nvidia.html — if the URL is unavailable, search for 'OpenAI Jalapeno chip beats Blackwell inference per watt SemiAnalysis' and find the original reporting — then evaluate: how much of Nvidia's inference revenue is actually at risk from customer-designed chips, and on what timeline?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Tech beat -->
+  <section>
+    <h2 class="beathead tech">Tech &amp; AI</h2>
+
+    <article class="story lead">
+      <div class="kicker"><span class="klabel tech">Platforms · Law</span><span class="score">8/10</span></div>
+      <h2 class="serif">Meta buys its way out of the teen-addiction trial for up to $16.68 billion</h2>
+      <p class="wim"><b>Why it matters:</b> The settlement with 29 states — disclosed mid-trial in Judge Yvonne Gonzalez Rogers' Oakland courtroom — forces Meta to impose daily time caps and overnight restrictions for teen users of Facebook and Instagram nationwide and to strengthen age verification. It is among the largest corporate settlements ever, and Meta still denies all liability. California AG <a class="ent" data-prompt="Profile Rob Bonta — California's Attorney General, his record on tech enforcement, and his role leading the 29-state social media addiction litigation against Meta.">Rob Bonta</a> led the 29-state coalition.</p>
+      <p class="wn">What's next: all parties waive appeal once the court enters final judgment.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.cnbc.com/2026/08/26/meta-social-media-trial-settlement.html" target="_blank" rel="noopener">CNBC</a></span>
+        <a class="deeper" data-prompt="Read this article: https://www.cnbc.com/2026/08/26/meta-social-media-trial-settlement.html — if the URL is unavailable, search for 'Meta settles social media addiction case states 16.7 billion' and find the original reporting — then explain what the mandated teen time caps and age-verification requirements will look like in practice, and whether this settlement sets a template for suits against TikTok and YouTube." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <div class="beatgrid">
+      <article class="story">
+        <div class="kicker"><span class="klabel tech">Cybersecurity</span><span class="score">8/10</span></div>
+        <h2 class="serif">US disrupts Chinese hacking platforms that burrowed into the Fed, DOJ, NASA and the Senate</h2>
+        <p class="wim"><b>Why it matters:</b> Court filings unsealed Wednesday say a state-sponsored group dubbed QTFY, operating through China-based Nanjing Xinjiuwei Network Technology, ran two hacking platforms — QScan and QTRouter — against US agencies, hospitals, power companies and defense contractors since at least 2018. The DOJ seized the platforms' domains; Beijing calls the claims a smear.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.cnbc.com/2026/08/26/china-hacker-federal-reserve-doj-nasa.html" target="_blank" rel="noopener">CNBC</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.cnbc.com/2026/08/26/china-hacker-federal-reserve-doj-nasa.html — if the URL is unavailable, search for 'Chinese hackers Justice Department NASA Federal Reserve Senate QScan QTRouter' and find the original reporting — then explain how hacking-platform-as-a-service operations like QScan work and why domain seizures do or don't durably disrupt them." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="kicker"><span class="klabel tech">AI labor</span><span class="score">6/10</span></div>
+        <h2 class="serif">Amazon pulls the plug on Mechanical Turk after 21 years</h2>
+        <p class="wim"><b>Why it matters:</b> The marketplace Jeff Bezos called "artificial artificial intelligence" — over 500,000 workers at its peak, labeling the data that trained the first machine-learning era — closes September 30. Its work now goes to Scale AI, Mercor and Prolific, and increasingly to the models it helped create.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.cnbc.com/2026/08/25/amazon-service-that-jeff-bezos-called-artificial-ai-is-shutting-down.html" target="_blank" rel="noopener">CNBC</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.cnbc.com/2026/08/25/amazon-service-that-jeff-bezos-called-artificial-ai-is-shutting-down.html — if the URL is unavailable, search for 'Amazon Mechanical Turk shutting down September 30 2026' and find the original reporting — then trace what happened to the crowdwork labor market: where did MTurk's workers go, and what does the rise of Scale AI, Mercor and Prolific say about how AI training data is sourced now?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- World beat -->
+  <section>
+    <h2 class="beathead world">World &amp; Geopolitics</h2>
+
+    <article class="story lead">
+      <div class="kicker"><span class="klabel world">Middle East</span><span class="score">8/10</span></div>
+      <h2 class="serif">Hormuz diplomacy inches forward as Qatar shuttles to Tehran</h2>
+      <p class="wim"><b>Why it matters:</b> Iran's Revolutionary Guard claimed Tehran and Muscat have agreed how to share the Strait of Hormuz and its revenues — but a senior Iranian source told Reuters no accord is finalized. Brent still eased 0.8% to $87.84 as traders priced progress toward resuming shipping through the chokepoint. Qatari PM <a class="ent w" data-prompt="Profile Sheikh Mohammed bin Abdulrahman Al Thani — Qatar's prime minister and foreign minister, his role as the region's mediator, and his leverage in the Iran talks.">Sheikh Mohammed bin Abdulrahman Al Thani</a> is in Tehran today to restart broader diplomacy.</p>
+      <p class="wn">What's next: details of the Iran–Oman arrangement are still being negotiated; no timeline announced.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.yahoo.com/news/politics/articles/iran-oman-discuss-temporary-hormuz-222048889.html" target="_blank" rel="noopener">Reuters (via Yahoo News)</a></span>
+        <a class="deeper" data-prompt="Read this article: https://www.yahoo.com/news/politics/articles/iran-oman-discuss-temporary-hormuz-222048889.html — if the URL is unavailable, search for 'Iran Oman Strait of Hormuz accord not finalized Reuters' and find the original reporting — then explain what an Iran-Oman co-administration of Hormuz would actually govern, why the IRGC and Iran's government are messaging differently, and what it means for tanker traffic and oil prices." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <div class="beatgrid">
+      <article class="story">
+        <div class="kicker"><span class="klabel world">Ukraine</span><span class="score">7/10</span></div>
+        <h2 class="serif">Kyiv knocks Russia's Lukoil refining network offline</h2>
+        <p class="wim"><b>Why it matters:</b> The overnight drone strike on the NORSI refinery in Kstovo — 17 million tonnes of annual capacity, up to 11% of Russia's gasoline — left all of <a class="ent w" data-prompt="What is Lukoil, how central is it to Russia's refining and export economy, and what has Ukraine's 2026 campaign against its refineries done to Russian fuel supply?">Lukoil</a>'s major refineries offline at once, per the Kyiv Independent. Russia's overnight counterstrikes severely damaged the Kherson combined heat-and-power plant.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://kyivindependent.com/ukraine-war-latest-drone-strike-sparks-fire-at-major-russian-oil-refinery-general-staff-says/" target="_blank" rel="noopener">The Kyiv Independent</a></span>
+          <a class="deeper" data-prompt="Read this article: https://kyivindependent.com/ukraine-war-latest-drone-strike-sparks-fire-at-major-russian-oil-refinery-general-staff-says/ — if the URL is unavailable, search for 'Ukraine drone strike Kstovo NORSI Lukoil refinery' and find the original reporting — then quantify the cumulative effect of Ukraine's 2026 refinery campaign on Russian fuel production, exports, and war financing." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="kicker"><span class="klabel world">Middle East</span><span class="score">7/10</span></div>
+        <h2 class="serif">Israel strikes Lebanon as the IDF talks up 'multi-front' readiness</h2>
+        <p class="wim"><b>Why it matters:</b> The strikes followed what the IDF says were Hezbollah drone launches at its troops overnight. Chief of Staff <a class="ent w" data-prompt="Profile Eyal Zamir — Israel's IDF Chief of Staff, his approach to the multi-front conflict, and what his order to reinforce the West Bank signals.">Eyal Zamir</a> ordered a major reinforcement of the West Bank and said forces are "advancing battle procedures on all fronts, from Iran and Lebanon to Gaza" — while Netanyahu called off opening a Gaza border crossing despite US pressure.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.timesofisrael.com/liveblog-august-27-2026/" target="_blank" rel="noopener">The Times of Israel</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.timesofisrael.com/liveblog-august-27-2026/ — if the URL is unavailable, search for 'Israel strikes Lebanon Hezbollah drones Zamir West Bank August 2026' and find the original reporting — then assess the risk that the Lebanon front reopens fully, and how the Gaza crossing dispute with Washington fits the Board of Peace framework." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="kicker"><span class="klabel world">Global health</span><span class="score">6/10</span></div>
+        <h2 class="serif">Uganda is Ebola-free again; Congo's outbreak isn't</h2>
+        <p class="wim"><b>Why it matters:</b> The WHO declared Uganda's outbreak over after the standard 42 days without a new case — 20 confirmed cases, 2 deaths, the last on June 21. The <a class="ent w" data-prompt="Explain Bundibugyo ebolavirus — how it differs from Zaire ebolavirus, its fatality rate, and why the 2026 outbreak in DR Congo is proving harder to control than Uganda's.">Bundibugyo-virus</a> outbreak across the border in DR Congo remains uncontrolled.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.aljazeera.com/news/2026/8/26/world-health-organization-says-ebola-outbreak-in-uganda-is-over" target="_blank" rel="noopener">Al Jazeera</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.aljazeera.com/news/2026/8/26/world-health-organization-says-ebola-outbreak-in-uganda-is-over — if the URL is unavailable, search for 'WHO Uganda Ebola outbreak over 42 days' and find the original reporting — then compare Uganda's rapid containment (20 cases, 2 deaths) with the ongoing DR Congo outbreak: what did Uganda do differently, and what would it take to end the DRC outbreak?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Business beat -->
+  <section>
+    <h2 class="beathead business">Business &amp; Markets</h2>
+
+    <article class="story lead">
+      <div class="kicker"><span class="klabel business">Fed · Inflation</span><span class="score">8/10</span></div>
+      <h2 class="serif">Sticky inflation hands Kevin Warsh a hawkish script for his Jackson Hole debut</h2>
+      <p class="wim"><b>Why it matters:</b> July headline <a class="ent b" data-prompt="Explain the PCE price index — how it differs from CPI, why the Fed prefers it, and what July 2026's 0.2% monthly readings with sticky annual rates imply for policy.">PCE</a> rose 0.2% on the month — above consensus — with core in line but annual readings still stuck above target, and stocks drifted lower into the data. The Kansas City Fed's symposium opens today under the theme "Financial Innovation: Implications for Payments and Policy," and Warsh — Fed chair since May — delivers his first keynote Friday morning with the 10-year yield at 4.66% and a hiking bias in the air.</p>
+      <p class="wn">What's next: Warsh speaks Friday ~8am MT; markets will parse every word for the rate path.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.cp24.com/news/money/2026/08/26/us-futures-slip-ahead-of-newest-read-on-inflation-and-quarterly-earnings-from-nvidia/" target="_blank" rel="noopener">Associated Press (via CP24)</a></span>
+        <a class="deeper" data-prompt="Read this article: https://www.cp24.com/news/money/2026/08/26/us-futures-slip-ahead-of-newest-read-on-inflation-and-quarterly-earnings-from-nvidia/ — if the URL is unavailable, search for 'July PCE inflation sticky Jackson Hole Warsh 2026' and find the original reporting — then lay out the scenarios for Warsh's first Jackson Hole keynote: what would a hawkish vs dovish surprise look like, and how are bond markets positioned into it?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <div class="beatgrid">
+      <article class="story">
+        <div class="kicker"><span class="klabel business">Central banks</span><span class="score">6/10</span></div>
+        <h2 class="serif">Seoul hikes again as the chip boom runs its economy hot</h2>
+        <p class="wim"><b>Why it matters:</b> The <a class="ent b" data-prompt="What is the Bank of Korea, why is it hiking rates in 2026 while citing semiconductor exports, and what does Korea's tightening cycle signal about the global AI economy?">Bank of Korea</a> raised its base rate a quarter point to 3.00% this morning — a second straight hike — and lifted its 2026 growth forecast from 2.6% to 3.3%, crediting semiconductor exports. The AI supercycle is now literally setting interest rates in Seoul.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.koreaherald.com/article/10854054" target="_blank" rel="noopener">The Korea Herald</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.koreaherald.com/article/10854054 — if the URL is unavailable, search for 'Bank of Korea raises rate 3.00% second straight hike August 2026' and find the original reporting — then explain how Korea's chip-export boom is transmitting into inflation and rates, and what that preview means for other AI-exposed economies." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="kicker"><span class="klabel business">China property</span><span class="score">6/10</span></div>
+        <h2 class="serif">China Vanke's losses deepen as the property unwind grinds on</h2>
+        <p class="wim"><b>Why it matters:</b> First-half loss of 12 billion yuan (~$1.7B), 21% wider than a year ago, on revenue down 26% — with 364.3 billion yuan of interest-bearing debt outstanding. State-owned <a class="ent b" data-prompt="What is Shenzhen Metro Group, why is it propping up China Vanke with billions in loans, and what does state life-support for a flagship developer say about how Beijing is managing the property unwind?">Shenzhen Metro</a> keeps one of the last un-defaulted majors alive with loans.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.scmp.com/business/article/3348596/vanke-posts-record-8856-billion-yuan-loss-china-property-market-woes-linger" target="_blank" rel="noopener">South China Morning Post</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.scmp.com/business/article/3348596/vanke-posts-record-8856-billion-yuan-loss-china-property-market-woes-linger — if the URL is unavailable, search for 'China Vanke first half 2026 loss deepens' and find the original reporting — then assess: is Vanke heading for China's biggest-ever restructuring, and what would a default by the last flagship developer mean for the financial system?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Science beat -->
+  <section>
+    <h2 class="beathead science">Science &amp; Space</h2>
+
+    <article class="story lead">
+      <div class="kicker"><span class="klabel science">Spaceflight</span><span class="score">7/10</span></div>
+      <h2 class="serif">SpaceX commits $100 billion to a second Starship city in Louisiana</h2>
+      <p class="wim"><b>Why it matters:</b> "Starbase Louisiana" would put five launch complexes — ten pads — on 125,000 acres of former Exxon land in Vermilion Parish, with fuel production, power generation, deep-water shipping and some 10,000 jobs. Construction starts in 2027, first <a class="ent s" data-prompt="Explain SpaceX's Starship program in 2026 — its flight record, the role of Starbase Texas, and why a second $100 billion spaceport in Louisiana would be needed for thousands of launches a year.">Starship</a> launch targeted for 2029 — infrastructure sized for thousands of launches a year.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.cnbc.com/2026/08/25/spacex-louisiana-spaceport.html" target="_blank" rel="noopener">CNBC</a></span>
+        <a class="deeper" data-prompt="Read this article: https://www.cnbc.com/2026/08/25/spacex-louisiana-spaceport.html — if the URL is unavailable, search for 'SpaceX 100 billion Starbase Louisiana Vermilion Parish spaceport' and find the original reporting — then examine the environmental, regulatory and financing hurdles between this announcement and a 2029 first launch, and who actually funds $100 billion." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <div class="beatgrid">
+      <article class="story">
+        <div class="kicker"><span class="klabel science">Astronomy</span><span class="score">7/10</span></div>
+        <h2 class="serif">Roman Space Telescope is on its rocket; launch set for Sunday</h2>
+        <p class="wim"><b>Why it matters:</b> Named for <a class="ent s" data-prompt="Profile Nancy Grace Roman — NASA's first chief astronomer, why she is called the mother of Hubble, and why NASA named its 2026 flagship telescope after her.">Nancy Grace Roman</a>, the observatory is mated to its Falcon Heavy at pad 39A after clearing its flight readiness review. Liftoff is Sunday, August 30 at 7:26am ET; its survey camera sees 100× Hubble's field of view and could detect on the order of 100,000 new planets.</p>
+        <p class="wn">What's next: final launch readiness review Friday; backup window Monday.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://science.nasa.gov/blogs/roman/2026/08/21/teams-complete-flight-readiness-review-for-nasas-roman-telescope/" target="_blank" rel="noopener">NASA (Roman mission blog)</a></span>
+          <a class="deeper" data-prompt="Read this article: https://science.nasa.gov/blogs/roman/2026/08/21/teams-complete-flight-readiness-review-for-nasas-roman-telescope/ — if the URL is unavailable, search for 'Roman Space Telescope flight readiness review August 30 launch' and find the original reporting — then explain Roman's core science missions (dark energy, microlensing exoplanets, coronagraph) and what its first year of data should deliver." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="kicker"><span class="klabel science">Climate</span><span class="score">7/10</span></div>
+        <h2 class="serif">A Manhattan-sized ice island snaps off Greenland's Petermann Glacier</h2>
+        <p class="wim"><b>Why it matters:</b> The 76.4 km² tabular berg — up to 150 meters thick — calved on August 4, the glacier's largest loss since 2012 and the Arctic's largest calving since 2020, tracked by ESA's <a class="ent s" data-prompt="Explain the Sentinel-1 radar satellites — how they image glaciers through cloud and polar night, and how they caught the 2026 Petermann Glacier calving as it happened.">Sentinel-1</a> radar. Researchers monitoring the ice tongue warn two even larger sections could follow.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Sentinel-1_captures_major_ice_loss_from_Greenland_glacier" target="_blank" rel="noopener">ESA</a></span>
+          <a class="deeper" data-prompt="Read this article: https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Sentinel-1_captures_major_ice_loss_from_Greenland_glacier — if the URL is unavailable, search for 'Petermann Glacier ice island calving August 2026 Sentinel-1' and find the original reporting — then explain what repeated large calvings from Petermann's floating ice tongue mean for the glacier's stability and sea-level contribution." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="kicker"><span class="klabel science">Tonight's sky</span><span class="score">6/10</span></div>
+        <h2 class="serif">Tonight: 96% of the Moon slides into Earth's shadow</h2>
+        <p class="wim"><b>Why it matters:</b> The deep partial eclipse peaks at 9:12pm PT tonight, turning most of the lunar disk red — the best lunar eclipse visible anywhere on Earth until New Year's Eve 2028, and it needs no equipment at all. West Coast viewers see maximum a few hours after sunset.</p>
+        <div class="foot">
+          <span class="src">Source: <a href="https://svs.gsfc.nasa.gov/5672/" target="_blank" rel="noopener">NASA SVS</a></span>
+          <a class="deeper" data-prompt="Read this page: https://svs.gsfc.nasa.gov/5672/ — if the URL is unavailable, search for 'deep partial lunar eclipse August 27 28 2026' and find NASA's visualization page — then give me a viewing plan for the San Francisco Bay Area tonight: exact local timings for each eclipse phase, where to look, and what the 96% partial phase will look like versus a total eclipse." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Anthropic -->
+  <section>
+    <h2 class="beathead anthropic">Anthropic</h2>
+
+    <article class="story lead">
+      <div class="kicker"><span class="klabel anthropic">Partnership</span><span class="score">8/10</span></div>
+      <h2 class="serif">Salesforce and Anthropic launch Claudeforce — Claude becomes the default brain of the #1 CRM</h2>
+      <p class="wim"><b>Why it matters:</b> Claude now powers the Atlas Reasoning Engine behind <a class="ent a" data-prompt="What is Salesforce Agentforce, how does its Atlas Reasoning Engine use frontier models, and what does making Claude its default reasoning model change for enterprise AI adoption?">Agentforce</a> and is the default model for Slack — while a "Salesforce in Claude" plugin ships 37 prebuilt sales skills, letting sellers query and update live CRM data without opening Salesforce, wired together over <a class="ent a" data-prompt="Explain the Model Context Protocol (MCP) — what it standardizes, why enterprises like Salesforce build integrations on it, and how it underpins products like Claudeforce.">MCP</a>. Pilots start now; open beta in September.</p>
+      <p class="wn">What's next: skills for functions beyond sales begin launching in Q3.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/" target="_blank" rel="noopener">Salesforce (press release)</a></span>
+        <a class="deeper" data-prompt="Read this press release: https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/ — if the URL is unavailable, search for 'Salesforce Anthropic Claudeforce announcement' and find the original release — then analyze the strategic trade for each side: what does Salesforce gain and risk by putting its CRM inside Claude's interface, and what does Anthropic gain from being the default across Agentforce and Slack?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <article class="story">
+      <div class="kicker"><span class="klabel anthropic">Product</span><span class="score">6/10</span></div>
+      <h2 class="serif">Claude's memory is now one memory — and you can read it</h2>
+      <p class="wim"><b>Why it matters:</b> Anthropic merged the memory systems behind Claude chat and Claude Cowork on Tuesday, so what Claude learns in one surface carries to the other — and users can now read, edit or delete anything it has retained, a transparency move as assistants become persistent by default.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/" target="_blank" rel="noopener">TechCrunch</a></span>
+        <a class="deeper" data-prompt="Read this article: https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/ — if the URL is unavailable, search for 'Claude Cowork memory unification Anthropic' and find the original reporting — then compare how Anthropic, OpenAI and Google handle assistant memory: persistence, user visibility, and deletion controls." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- Sports -->
+  <section>
+    <h2 class="beathead sports">Your Teams</h2>
+
+    <article class="story">
+      <div class="teamhead" style="color:var(--niners)">49ers</div>
+      <h2 class="serif">Final auditions tonight in Vegas, then 37 cuts by Sunday</h2>
+      <p class="wim"><b>Why it matters:</b> The preseason finale at the Raiders kicks off at 5pm PT tonight with most starters sitting — the last tape for bubble players before the roster drops from 90 to 53 by Sunday 3pm PT. Newly acquired LB Deion Jones (traded from New Orleans for RB Zamir White) is among those fighting for a spot before the season opens Week 1 in Australia.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.49ers.com/news/day-17-of-2026-training-camp-53-man-cut-is-near-as-49ers-gear-up-for-final-preseason-game" target="_blank" rel="noopener">49ers.com</a></span>
+        <a class="deeper" data-prompt="Read this article: https://www.49ers.com/news/day-17-of-2026-training-camp-53-man-cut-is-near-as-49ers-gear-up-for-final-preseason-game — if the URL is unavailable, search for '49ers 53-man roster cuts 2026 preseason finale Raiders' and find the original reporting — then project the 49ers' final 53: which bubble players helped themselves this preseason, and where are the toughest calls?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <article class="story">
+      <div class="teamhead" style="color:var(--giants)">Giants</div>
+      <h2 class="serif">A six-run lead, a seven-run ninth: Giants gut-punched by the Reds</h2>
+      <p class="wim"><b>Why it matters:</b> Eugenio Suárez's grand slam capped Cincinnati's seven-run ninth inning in a 10–9 Giants loss at Oracle Park — a six-run lead gone in one frame, in front of 24,130. The Diamondbacks arrive tonight at 6:45pm PT with no time to dwell on it.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.espn.com/mlb/game/_/gameId/401816690/reds-giants" target="_blank" rel="noopener">ESPN</a></span>
+        <a class="deeper" data-prompt="Read this box score: https://www.espn.com/mlb/game/_/gameId/401816690/reds-giants — if the URL is unavailable, search for 'Reds 10-9 Giants August 26 2026 Suarez grand slam' and find the original recap — then break down how the Giants bullpen surrendered a seven-run ninth, and what it means for their playoff positioning with a month left." href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <article class="story">
+      <div class="teamhead" style="color:var(--warriors)">Warriors</div>
+      <h2 class="serif">Steph's $136.7 million decision window opens Saturday</h2>
+      <p class="wim"><b>Why it matters:</b> Curry becomes eligible Saturday to sign a two-year, $136.7 million extension. GM Mike Dunleavy is "pretty confident" he retires a Warrior, but ESPN's Brian Windhorst argues waiting preserves over $100 million in 2027 cap space — a real debate after an offseason that lost out on LeBron and added only Georges Niang and Brandon Williams to a 37-win roster.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://www.nbcsportsbayarea.com/nba/golden-state-warriors/steph-curry-contract-extension-idea/1952471/" target="_blank" rel="noopener">NBC Sports Bay Area</a></span>
+        <a class="deeper" data-prompt="Read this article: https://www.nbcsportsbayarea.com/nba/golden-state-warriors/steph-curry-contract-extension-idea/1952471/ — if the URL is unavailable, search for 'Curry 136.7 million extension eligible August 29 Warriors' and find the original reporting — then lay out the cap math: what does signing now vs waiting do to the Warriors' 2027 flexibility, and what should Curry actually do?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <article class="story">
+      <div class="teamhead" style="color:var(--sharks)">Sharks</div>
+      <h2 class="serif">Celebrini captaincy 'all but certain' before opening night</h2>
+      <p class="wim"><b>Why it matters:</b> Fresh off a 45-goal, 115-point season — fourth in NHL scoring at age 20 — Macklin Celebrini is reportedly set to become the Sharks' first captain since Logan Couture, with his record five-year, $18.8M-a-year extension kicking in come 2027-28.</p>
+      <div class="foot">
+        <span class="src">Source: <a href="https://sanjosehockeynow.com/san-jose-sharks-celebrini-cameli-off-campus-thornton-han-verhoeff/" target="_blank" rel="noopener">San Jose Hockey Now</a></span>
+        <a class="deeper" data-prompt="Search for 'Macklin Celebrini Sharks captain 2026' and read the latest reporting — then assess where the Sharks' rebuild stands entering 2026-27: is the roster around Celebrini good enough to end the playoff drought?" href="https://claude.ai/new" target="_blank" rel="noopener">Go deeper →</a>
+      </div>
+    </article>
+
+    <div class="sb-league">
+      <div class="sb-lab">MLB — Wednesday finals · playoff races, ~30 games left</div>
+      <div class="sb-row">
+        <div class="card t-giants"><span class="w">CIN 10</span> · SF 9<br><span class="st">Final</span></div>
+        <div class="card t-giants">ARI @ SF<br><span class="st live">Tonight 6:45pm PT</span></div>
+        <div class="card"><span class="w">NYY 9</span> · HOU 3<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">ATL 6</span> · LAD 5<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">PHI 6</span> · SD 3<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">ARI 2</span> · CHC 0<br><span class="st">Final</span></div>
+      </div>
+    </div>
+    <div class="sb-league">
+      <div class="sb-lab">NFL — Preseason finales this week</div>
+      <div class="sb-row">
+        <div class="card t-niners">SF @ LV<br><span class="st live">Tonight 5:00pm PT</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ending -->
+  <div class="ending">
+    <p class="big serif">That's your briefing. You're caught up.</p>
+    <p class="sub">19 stories plus your teams — every link above goes deeper when you're ready.<br><a href="archive/">Browse the archive →</a></p>
+  </div>
+
+  <!-- Sources -->
+  <details>
+    <summary>Sources (23)</summary>
+    <p class="man">
+      Nvidia doubles revenue to $96.2B — <a href="https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000073/q2fy27pr.htm" target="_blank" rel="noopener">Nvidia (SEC 8-K)</a> — primary filing; figures corroborated by CNBC and Fortune coverage<br>
+      Nvidia closes in on Hugging Face — <a href="https://www.bloomberg.com/news/articles/2026-08-27/nvidia-discussed-buying-ai-startup-hugging-face-insider-says" target="_blank" rel="noopener">Bloomberg</a> — original reporting; deal unconfirmed by both companies, flagged as such<br>
+      OpenAI 'Jalapeño' chip benchmarks — <a href="https://www.cnbc.com/2026/08/26/openai-jalapeno-ai-chip-nvidia.html" target="_blank" rel="noopener">CNBC</a> — corroborated by The Decoder and SemiAnalysis-cited coverage<br>
+      Meta $16.68B settlement — <a href="https://www.cnbc.com/2026/08/26/meta-social-media-trial-settlement.html" target="_blank" rel="noopener">CNBC</a> — court filing reported Aug 26; figures cross-checked vs NBC, CBS, The Hill<br>
+      Chinese hacking platforms disrupted — <a href="https://www.cnbc.com/2026/08/26/china-hacker-federal-reserve-doj-nasa.html" target="_blank" rel="noopener">CNBC</a> — based on unsealed court documents; corroborated by CNN, CBC, US News<br>
+      Mechanical Turk shutdown — <a href="https://www.cnbc.com/2026/08/25/amazon-service-that-jeff-bezos-called-artificial-ai-is-shutting-down.html" target="_blank" rel="noopener">CNBC</a> — Sept 30 closure date corroborated by Quartz and TechCrunch<br>
+      Hormuz diplomacy — <a href="https://www.yahoo.com/news/politics/articles/iran-oman-discuss-temporary-hormuz-222048889.html" target="_blank" rel="noopener">Reuters (via Yahoo News)</a> — Reuters original; Qatar-Tehran visit per Just Security roundup<br>
+      Lukoil refinery strike — <a href="https://kyivindependent.com/ukraine-war-latest-drone-strike-sparks-fire-at-major-russian-oil-refinery-general-staff-says/" target="_blank" rel="noopener">The Kyiv Independent</a> — General Staff confirmation; capacity figures per Ukrainska Pravda<br>
+      Israel–Lebanon strikes, multi-front alert — <a href="https://www.timesofisrael.com/liveblog-august-27-2026/" target="_blank" rel="noopener">The Times of Israel</a> — Aug 27 liveblog; Gaza crossing detail per Haaretz<br>
+      Uganda Ebola-free — <a href="https://www.aljazeera.com/news/2026/8/26/world-health-organization-says-ebola-outbreak-in-uganda-is-over" target="_blank" rel="noopener">Al Jazeera</a> — WHO declaration; case counts corroborated by allAfrica<br>
+      PCE + Jackson Hole — <a href="https://www.cp24.com/news/money/2026/08/26/us-futures-slip-ahead-of-newest-read-on-inflation-and-quarterly-earnings-from-nvidia/" target="_blank" rel="noopener">Associated Press (via CP24)</a> — PCE figures also per Schwab; Warsh keynote timing per KC Fed symposium coverage<br>
+      Bank of Korea hike — <a href="https://www.koreaherald.com/article/10854054" target="_blank" rel="noopener">The Korea Herald</a> — corroborated by Korea Times and Seoul Economic Daily<br>
+      Vanke first-half loss — <a href="https://www.scmp.com/business/article/3348596/vanke-posts-record-8856-billion-yuan-loss-china-property-market-woes-linger" target="_blank" rel="noopener">South China Morning Post</a> — loss and debt figures corroborated by Bloomberg and Yicai<br>
+      Starbase Louisiana — <a href="https://www.cnbc.com/2026/08/25/spacex-louisiana-spaceport.html" target="_blank" rel="noopener">CNBC</a> — corroborated by CBS News, Space.com, Louisiana Illuminator<br>
+      Roman telescope launch prep — <a href="https://science.nasa.gov/blogs/roman/2026/08/21/teams-complete-flight-readiness-review-for-nasas-roman-telescope/" target="_blank" rel="noopener">NASA (Roman mission blog)</a> — primary; Aug 30 07:26 ET window per NASA launch countdown page<br>
+      Petermann ice island — <a href="https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Sentinel-1_captures_major_ice_loss_from_Greenland_glacier" target="_blank" rel="noopener">ESA</a> — primary satellite record; 76.4 km² figure per university release on EurekAlert<br>
+      Lunar eclipse tonight — <a href="https://svs.gsfc.nasa.gov/5672/" target="_blank" rel="noopener">NASA SVS</a> — primary visualization; 9:12pm PT maximum per EarthSky<br>
+      Claudeforce — <a href="https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/" target="_blank" rel="noopener">Salesforce (press release)</a> — primary; details corroborated by VentureBeat and TechCrunch<br>
+      Claude memory unification — <a href="https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/" target="_blank" rel="noopener">TechCrunch</a> — original reporting on Tuesday announcement<br>
+      49ers finale &amp; cuts — <a href="https://www.49ers.com/news/day-17-of-2026-training-camp-53-man-cut-is-near-as-49ers-gear-up-for-final-preseason-game" target="_blank" rel="noopener">49ers.com</a> — team primary; kickoff time per 49ers Webzone<br>
+      Giants collapse — <a href="https://www.espn.com/mlb/game/_/gameId/401816690/reds-giants" target="_blank" rel="noopener">ESPN</a> — box score; tonight's ARI game per ESPN schedule<br>
+      Curry extension window — <a href="https://www.nbcsportsbayarea.com/nba/golden-state-warriors/steph-curry-contract-extension-idea/1952471/" target="_blank" rel="noopener">NBC Sports Bay Area</a> — Aug 29 eligibility corroborated by Yardbarker and Yahoo Sports<br>
+      Celebrini captaincy — <a href="https://sanjosehockeynow.com/san-jose-sharks-celebrini-cameli-off-campus-thornton-han-verhoeff/" target="_blank" rel="noopener">San Jose Hockey Now</a> — beat outlet; "all but certain" per multiple NHL notebooks<br>
+    </p>
+    <p class="caveat">Verification note: this environment's network policy blocks direct page fetches, so every story above was verified through multiple independent search results — including domain-scoped queries confirming each source URL and its claims — rather than a full-text fetch. Market figures reflect Wednesday, Aug 26 closes; gold and bitcoin are approximate levels from same-day price coverage.</p>
+  </details>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  // Conversation-layer links
+  document.querySelectorAll('a[data-prompt]').forEach(function (a) {
+    a.href = 'https://claude.ai/new?q=' + encodeURIComponent(a.getAttribute('data-prompt'));
+    if (!a.target) { a.target = '_blank'; a.rel = 'noopener'; }
+  });
+
+  var labels = ['Q2 FY26', 'Q1 FY27', 'Q2 FY27', 'Q3 FY27 guide'];
+  var values = [46.7, 81.6, 96.2, 108.0];
+
+  if (typeof Chart === 'undefined') {
+    var box = document.querySelector('.chartbox');
+    if (box) {
+      box.style.height = 'auto';
+      box.innerHTML = '<p style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.8;margin:0">' +
+        labels.map(function (l, i) { return l + ': $' + values[i].toFixed(1) + 'B'; }).join('<br>') +
+        '</p>';
+    }
+    return;
+  }
+
+  var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var tick = dark ? '#9aa0a6' : '#666666';
+  var grid = dark ? '#2a2f3a' : '#e3e3de';
+  var barColor = dark ? '#7aa2f7' : '#2b5fc7';
+  var guideColor = dark ? 'rgba(122,162,247,0.45)' : 'rgba(43,95,199,0.45)';
+
+  new Chart(document.getElementById('nvchart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: [barColor, barColor, barColor, guideColor],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: tick, font: { family: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace', size: 11 } }, grid: { display: false } },
+        y: { ticks: { color: tick, font: { family: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace', size: 11 }, callback: function (v) { return '$' + v + 'B'; } }, grid: { color: grid }, beginAtZero: true }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
