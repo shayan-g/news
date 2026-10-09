@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — October 6, 2026</title>
+<style>
+:root{--bg:#0f1115;--surface:#171a21;--border:#2a2f3a;--text:#e8e8e8;--muted:#9aa0a6;
+--up:#9ece6a;--down:#f7768e;--tech:#7aa2f7;--world:#f7768e;--business:#9ece6a;--science:#bb9af7;--anthropic:#d4a27f;
+--serif:"Iowan Old Style",Palatino,Georgia,serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+@media (prefers-color-scheme: light){:root{--bg:#fafaf8;--surface:#ffffff;--border:#e3e3de;--text:#1f1f1f;--muted:#666666;
+--up:#4a7a1e;--down:#c43c54;--tech:#2b5fc7;--world:#c43c54;--business:#4a7a1e;--science:#7847c4;--anthropic:#9a6a42;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);-webkit-text-size-adjust:100%;overflow-x:hidden}
+main{max-width:720px;margin:0 auto;padding:20px 20px 64px}
+a{color:inherit}
+.wire{font-family:var(--mono);font-size:13px;line-height:2;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:10px}
+.wire .wn{color:var(--muted)}.wire .wv{color:var(--text)}
+.wire .up{color:var(--up)}.wire .down{color:var(--down)}
+.wire .dotsep{color:var(--border)}
+.session{font-family:var(--mono);font-size:12px;color:var(--muted);margin:6px 0 0}
+.dateline{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:30px 0 10px}
+.thesis{font-family:var(--serif);font-weight:500;font-size:23px;line-height:1.3;margin:0 0 14px}
+.narrative{font-family:var(--serif);font-size:17.5px;line-height:1.65;margin:0 0 14px}
+.readtime{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:4px;display:inline-block;padding:3px 9px}
+.sop{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:30px 0}
+.sop-item{padding:14px 12px;border-left:1px solid var(--border)}
+.sop-item:first-child{border-left:none}
+.sop-val{font-family:var(--mono);font-size:18px;font-weight:500}
+.sop-up{color:var(--up)}.sop-down{color:var(--down)}
+.sop-label{font-size:12.5px;margin-top:3px}
+.sop-sub{font-size:12px;color:var(--muted);line-height:1.45;margin-top:2px}
+@media (max-width:640px){.sop{grid-template-columns:repeat(3,1fr)}.sop-item:nth-child(4){border-left:none;border-top:1px solid var(--border)}.sop-item:nth-child(4),.sop-item:nth-child(5){border-top:1px solid var(--border)}}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 8px}
+@media (max-width:640px){.charts{grid-template-columns:1fr}}
+.chartcard{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px}
+.chartcard h4{margin:0 0 10px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chartwrap{position:relative;height:160px}
+.chartnote{font-size:12.5px;color:var(--muted);margin:10px 0 0;line-height:1.5}
+.cotd{margin:16px 0 0}
+.cotd .chartwrap{height:180px}
+.beat{margin:44px 0 0}
+.bhead{font-size:14px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;margin:0 0 18px;padding-bottom:8px}
+.b-tech{color:var(--tech)}.b-world{color:var(--world)}.b-business{color:var(--business)}.b-science{color:var(--science)}.b-anthropic{color:var(--anthropic)}
+.bb-tech{border-bottom:1px solid var(--tech)}.bb-world{border-bottom:1px solid var(--world)}.bb-business{border-bottom:1px solid var(--business)}.bb-science{border-bottom:1px solid var(--science)}.bb-anthropic{border-bottom:1px solid var(--anthropic)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin-top:6px}
+.grid .story{border-top:1px solid var(--border)}
+.grid .story:nth-child(odd){border-right:1px solid var(--border);padding-right:28px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.grid .story:nth-child(odd){border-right:none;padding-right:0}}
+.story{padding:16px 0}
+.story-lead{padding-top:4px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:3px 8px;margin-bottom:10px}
+.slabel{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.badge{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.shead{font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.35;margin:0 0 8px}
+.shead-lead{font-size:21px}
+.why{font-size:14.5px;line-height:1.6;margin:0 0 6px}
+.why strong{font-weight:500}
+.next{font-size:13.5px;color:var(--muted);margin:0 0 6px}
+.sfoot{display:flex;align-items:center;gap:14px;margin-top:8px}
+.src{font-size:12.5px;color:var(--muted);text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px}
+.src:hover{color:var(--text)}
+.deeper{font-size:12.5px;font-family:var(--mono);color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:3px 10px;text-decoration:none}
+.deeper:hover{border-color:var(--muted)}
+.ent{text-decoration:underline dotted;text-underline-offset:3px;text-decoration-thickness:1px}
+.e-lede{color:var(--tech)}.e-tech{color:var(--tech)}.e-world{color:var(--world)}.e-business{color:var(--business)}.e-science{color:var(--science)}.e-anthropic{color:var(--anthropic)}
+.league{margin:14px 0}
+.lg-label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--text);margin-bottom:8px}
+.lg-label .ctx{color:var(--muted);letter-spacing:0}
+.cards{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.cards::-webkit-scrollbar{display:none}
+.card{flex:0 0 auto;min-width:132px;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:8px 12px;font-family:var(--mono);font-size:13px}
+.card .row{display:flex;justify-content:space-between;gap:16px}
+.card .win{color:var(--up)}
+.card .status{font-size:11px;color:var(--muted);margin-top:4px}
+.ending{text-align:center;margin:56px 0 8px}
+.ending h2{font-family:var(--serif);font-weight:500;font-size:22px;margin:0 0 6px}
+.ending p{font-size:13.5px;color:var(--muted);margin:0}
+.ending a{color:var(--muted)}
+details.sources{margin:36px 0 0;border-top:1px solid var(--border);padding-top:14px}
+details.sources summary{cursor:pointer;font-size:13.5px;color:var(--muted)}
+details.sources .vnote{font-size:12px;color:var(--muted);margin:10px 0 2px;font-style:italic}
+details.sources ul{list-style:none;margin:8px 0 0;padding:0}
+details.sources li{font-size:12px;color:var(--muted);line-height:1.6;padding:4px 0;border-bottom:1px solid var(--border)}
+details.sources .mh{color:var(--text)}
+details.sources a{color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+
+<div class="wire"><span class="wi"><span class="wn">S&P 500</span> <span class="wv">7,773.99</span> <span class="up">+0.66%</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">Dow</span> <span class="wv">51,267.90</span> <span class="up">+0.18%</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">Nasdaq</span> <span class="wv">27,477.31</span> <span class="up">+1.05%</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">Russell 2K</span> <span class="wv">2,847.14</span> <span class="up">+0.50%</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">VIX</span> <span class="wv">15.59</span> <span class="down">+1.83%</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">10Y</span> <span class="wv">5.28%</span> <span class="up">−3bp</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">Brent</span> <span class="wv">$100.32</span> <span class="down">−1.9%</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">WTI</span> <span class="wv">$89.22</span> <span class="down">−1.8%</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">Gold</span> <span class="wv">$4,123.55</span> <span class="down">−0.4%</span></span><span class="dotsep"> · </span><span class="wi"><span class="wn">Bitcoin</span> <span class="wv">$86,374</span> <span class="up">+0.6%</span></span></div>
+<p class="session">Monday close — US markets reopen this morning</p>
+
+<section class="lede">
+<p class="dateline">Tuesday, October 6, 2026 — generated 6:35am PT</p>
+<h1 class="thesis">The buildout isn&rsquo;t waiting for cheaper money.</h1>
+<p class="narrative">Dell, Apollo and Japan&rsquo;s biggest power generator <a class="ent e-lede" href="https://claude.ai/new?q=What%20is%20JERA%2C%20who%20leads%20it%2C%20and%20why%20is%20Japan%27s%20biggest%20power%20generator%20suddenly%20central%20to%20the%20global%20AI%20datacenter%20race%3F" target="_blank" rel="noopener">JERA</a> unveiled a $140 billion plan for up to four gigawatts of AI datacenters on the same day the 10-year Treasury touched 5.35% — its highest since 2002 — the clearest picture yet of a buildout that refuses to wait for cheaper money. The Nasdaq set a record and Nvidia closed at an all-time high even as <a class="ent e-lede" href="https://claude.ai/new?q=Explain%20how%20the%20CME%20FedWatch%20tool%20infers%20rate-hike%20odds%20from%20fed%20funds%20futures%2C%20and%20what%20kind%20of%20data%20moves%20October%202026%20hike%20odds%20from%2070%25%20to%2020%25%20in%20one%20week" target="_blank" rel="noopener">CME FedWatch</a> odds of an October hike collapsed to 20% after Friday&rsquo;s soft jobs report: stocks, yields and the Fed are each telling a different story. Brent held near $100 as Tehran dangled a conditional proposal to reopen the <a class="ent e-lede" href="https://claude.ai/new?q=Explain%20the%202026%20Strait%20of%20Hormuz%20crisis%20%E2%80%94%20how%20the%20strait%20came%20to%20be%20closed%2C%20the%20naval%20blockade%2C%20where%20diplomacy%20stands%20in%20October%202026%2C%20and%20the%20leverage%20each%20side%20holds" target="_blank" rel="noopener">Strait of Hormuz</a> and Europe&rsquo;s emergency diesel release began to land. Across Europe, <a class="ent e-lede" href="https://claude.ai/new?q=Profile%20Friedrich%20Merz%20as%20German%20chancellor%20in%202026%20%E2%80%94%20how%20his%20Ukraine%20policy%20differs%20from%20Scholz%27s%20and%20the%20domestic%20politics%20constraining%20him" target="_blank" rel="noopener">Friedrich Merz</a> carried &euro;1.35 billion to Kyiv by night train and <a class="ent e-lede" href="https://claude.ai/new?q=Profile%20Pedro%20S%C3%A1nchez%20and%20his%20gamble%20on%20a%20November%2029%2C%202026%20snap%20election%20in%20Spain%20%E2%80%94%20his%20coalition%20record%20since%202023%2C%20the%20housing%20crisis%2C%20and%20his%20leverage%20against%20the%20opposition" target="_blank" rel="noopener">Pedro Sánchez</a> bet his government on a November 29 snap election over housing. And in Stockholm, Nobel week turned to the bottom of the world: <a class="ent e-lede" href="https://claude.ai/new?q=Profile%20Francis%20Halzen%20%E2%80%94%20his%20path%20from%20Belgium%20to%20the%20South%20Pole%2C%20the%201988%20origins%20of%20IceCube%2C%20and%20why%20the%202026%20physics%20Nobel%20went%20to%20neutrino%20astronomy" target="_blank" rel="noopener">Francis Halzen</a> won the physics prize for catching ghost particles in a cubic kilometer of South Pole ice.</p>
+<span class="readtime">~5 min read — 22 stories across 6 sections</span>
+</section>
+
+<section class="sop">
+<div class="sop-item"><div class="sop-val sop-down">5.35%</div><div class="sop-label">10-year Treasury, Monday peak</div><div class="sop-sub">Highest yield since 2002 before easing to 5.28% at the close</div></div>
+<div class="sop-item"><div class="sop-val">20%</div><div class="sop-label">Odds of an October Fed hike</div><div class="sop-sub">Down from 70% a week ago after Friday's soft jobs report (CME FedWatch)</div></div>
+<div class="sop-item"><div class="sop-val sop-up">$140B</div><div class="sop-label">Dell–Apollo–JERA AI plan</div><div class="sop-sub">Up to 4GW of datacenters across Japan and Asia, phase one at a Chiba gas plant</div></div>
+<div class="sop-item"><div class="sop-val sop-down">$100.32</div><div class="sop-label">Brent settlement</div><div class="sop-sub">Still carrying a Hormuz premium as Tehran attaches conditions to reopening</div></div>
+<div class="sop-item"><div class="sop-val sop-down">40,000</div><div class="sop-label">Phishing URLs vs US finance</div><div class="sop-sub">Netcraft's H1 2026 count, fueled by agentic AI and bulletproof hosting</div></div>
+</section>
+
+<section class="charts">
+<div class="chartcard">
+<h4>S&amp;P 500 — last five closes</h4>
+<div class="chartwrap"><canvas id="spChart"></canvas></div>
+<p class="chartnote">Up 1.3% in five sessions to 7,773.99 — a tape climbing straight into the highest long yields since 2002.</p>
+</div>
+<div class="chartcard">
+<h4>Brent — last five settlements</h4>
+<div class="chartwrap"><canvas id="brentChart"></canvas></div>
+<p class="chartnote">The $102 Hormuz spike faded to $100.32 as Europe&rsquo;s emergency diesel release began to land.</p>
+</div>
+</section>
+
+<section class="chartcard cotd">
+<h4>Chart of the day — the Fed repricing, in one week</h4>
+<div class="chartwrap"><canvas id="fedChart"></canvas></div>
+<p class="chartnote">Market-implied odds of Fed action (CME FedWatch, via TheStreet): Friday&rsquo;s soft jobs report crushed October hike odds from 70% to 20% — yet an <a class="ent e-business" href="https://claude.ai/new?q=Explain%20why%20bond%20markets%20can%20price%20an%2084%25%20chance%20of%20a%20Fed%20rate%20hike%20by%20end%20of%202026%20while%20October%20hike%20odds%20collapse%20to%2020%25%20%E2%80%94%20what%20the%20fed%20funds%20futures%20curve%20is%20saying%20about%20the%20path%20of%20policy" target="_blank" rel="noopener">84% chance of a hike by year-end</a> still stands. The long end isn&rsquo;t waiting to find out.</p>
+</section>
+
+<section class="beat">
+<h2 class="bhead b-tech bb-tech">TECH & AI</h2>
+<article class="story story-lead">
+<div class="chip"><span class="slabel b-tech">TECH & AI</span><span class="badge">9/10</span></div>
+<h3 class="shead shead-lead">Dell, Apollo and JERA launch a $140 billion bid to make Japan an AI power</h3>
+<p class="why"><strong>Why it matters:</strong> The partners plan up to <b>4GW</b> of AI datacenters across Japan and Asia, starting with a <b>$15 billion, 400MW</b> campus built directly at <a class="ent e-tech" href="https://claude.ai/new?q=What%20is%20JERA%2C%20who%20leads%20it%2C%20and%20why%20is%20Japan%27s%20biggest%20power%20generator%20suddenly%20central%20to%20the%20global%20AI%20datacenter%20race%3F" target="_blank" rel="noopener">JERA</a>'s Chiba thermal power plant near Tokyo — a behind-the-meter design that skips years of grid-connection queue.</p>
+<p class="next"><em>What&rsquo;s next:</em> Phase one targets first operations around 2028 and full capacity in 2029, under 15–25 year power contracts.</p><div class="sfoot"><a class="src" href="https://www.techradar.com/pro/the-keyword-is-speed-to-power-dell-apollo-and-jera-launch-a-usd140b-plan-to-build-up-to-4gw-of-ai-data-centers-across-japan-and-asia" target="_blank" rel="noopener">TechRadar Pro</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.techradar.com%2Fpro%2Fthe-keyword-is-speed-to-power-dell-apollo-and-jera-launch-a-usd140b-plan-to-build-up-to-4gw-of-ai-data-centers-across-japan-and-asia%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Dell%2C%20Apollo%20and%20JERA%20launch%20a%20%24140%20billion%20bid%20to%20make%20Japan%20an%20AI%20power%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20does%20%27behind-the-meter%27%20mean%20for%20this%20project%2C%20why%20does%20co-locating%20with%20JERA%27s%20Chiba%20gas%20plant%20cut%20years%20off%20the%20timeline%2C%20and%20what%20could%20derail%20the%20full%20%24140%20billion%20build-out%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="grid">
+<article class="story">
+<div class="chip"><span class="slabel b-tech">TECH & AI</span><span class="badge">7/10</span></div>
+<h3 class="shead">OpenAI starts putting visual ads inside ChatGPT, beginning with image generation</h3>
+<p class="why"><strong>Why it matters:</strong> The US-only test rolls out <b>this month</b>: labeled display ads appear alongside generated images on free tiers, while Plus, Pro and Enterprise stay ad-free. OpenAI's pitch — ads let it serve "a much larger market than subscriptions alone" — makes the free tier the monetization frontier.</p>
+<p class="next"><em>What&rsquo;s next:</em> OpenAI says new ad formats beyond image generation will follow later this year.</p><div class="sfoot"><a class="src" href="https://techcrunch.com/2026/10/05/openai-launches-visual-ads-that-appear-alongside-image-generation-results/" target="_blank" rel="noopener">TechCrunch</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ftechcrunch.com%2F2026%2F10%2F05%2Fopenai-launches-visual-ads-that-appear-alongside-image-generation-results%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22OpenAI%20starts%20putting%20visual%20ads%20inside%20ChatGPT%2C%20beginning%20with%20image%20generation%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20will%20OpenAI%20keep%20ads%20visually%20separate%20from%20generated%20results%2C%20which%20users%20will%20see%20them%2C%20and%20what%20does%20this%20signal%20about%20the%20economics%20of%20free%20AI%20products%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-tech">TECH & AI</span><span class="badge">6/10</span></div>
+<h3 class="shead">At a NYC Council hearing, an ex-DeepMind researcher warns the industry is &#x27;racing to build our own adversary&#x27;</h3>
+<p class="why"><strong>Why it matters:</strong> Executives from Anthropic, OpenAI, Google and Meta testified Monday as former DeepMind researcher <a class="ent e-tech" href="https://claude.ai/new?q=Profile%20Alex%20Turner%2C%20the%20former%20Google%20DeepMind%20researcher%20who%20testified%20to%20the%20New%20York%20City%20Council%20in%20October%202026%20%E2%80%94%20his%20research%20background%20and%20his%20argument%20that%20misaligned%20AI%20is%20more%20dangerous%20than%20losing%20a%20race%20with%20China" target="_blank" rel="noopener">Alex Turner</a> warned misaligned AI could outweigh the China race, and Anthropic whistleblower <b>Jacob Coxon</b> called current development "extremely reckless" — city-level scrutiny arriving before federal rules.</p>
+<div class="sfoot"><a class="src" href="https://www.cnbc.com/2026/10/05/anthropic-openai-google-meta-execs-testify-nyc-council-ai-hearing.html" target="_blank" rel="noopener">CNBC</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F10%2F05%2Fanthropic-openai-google-meta-execs-testify-nyc-council-ai-hearing.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22At%20a%20NYC%20Council%20hearing%2C%20an%20ex-DeepMind%20researcher%20warns%20the%20industry%20is%20%27racing%20to%20build%20our%20own%20adversary%27%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20specific%20warnings%20did%20Alex%20Turner%20and%20Jacob%20Coxon%20give%2C%20what%20authority%20does%20a%20city%20council%20actually%20have%20over%20frontier%20AI%2C%20and%20what%20could%20New%20York%20plausibly%20regulate%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-tech">TECH & AI</span><span class="badge">6/10</span></div>
+<h3 class="shead">Nearly 40,000 phishing campaigns hit US financial firms in six months — and AI agents are running them</h3>
+<p class="why"><strong>Why it matters:</strong> Netcraft counted <b>~40,000</b> unique phishing URLs against US financial services in H1 2026 across 645 hosting providers; a new Seychelles bulletproof host, <b>Omegatech</b>, grabbed 3% of the market in six months, and free developer hosting carried 12.6% of attacks.</p>
+<div class="sfoot"><a class="src" href="https://www.techradar.com/pro/nearly-40-000-phishing-attacks-hit-us-financial-firms-in-h1-2026-automated-ai-agents-and-a-new-seychelles-bulletproof-host-fuel-aggressive-new-campaigns" target="_blank" rel="noopener">TechRadar Pro</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.techradar.com%2Fpro%2Fnearly-40-000-phishing-attacks-hit-us-financial-firms-in-h1-2026-automated-ai-agents-and-a-new-seychelles-bulletproof-host-fuel-aggressive-new-campaigns%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Nearly%2040%2C000%20phishing%20campaigns%20hit%20US%20financial%20firms%20in%20six%20months%20%E2%80%94%20and%20AI%20agents%20are%20running%20them%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20are%20agentic%20AI%20tools%20changing%20the%20economics%20of%20phishing%2C%20what%20makes%20a%20%27bulletproof%20host%27%20like%20Omegatech%20hard%20to%20take%20down%2C%20and%20what%20should%20banks%20change%20first%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+</section>
+<section class="beat">
+<h2 class="bhead b-business bb-business">BUSINESS & MARKETS</h2>
+<article class="story story-lead">
+<div class="chip"><span class="slabel b-business">BUSINESS & MARKETS</span><span class="badge">8/10</span></div>
+<h3 class="shead shead-lead">The 10-year touches 5.35% — the bond market&#x27;s loudest level since 2002</h3>
+<p class="why"><strong>Why it matters:</strong> Yields spiked to <b>5.349%</b> intraday Monday before closing at 5.28%, even as <a class="ent e-business" href="https://claude.ai/new?q=Explain%20how%20the%20CME%20FedWatch%20tool%20infers%20rate-hike%20odds%20from%20fed%20funds%20futures%2C%20and%20what%20kind%20of%20data%20moves%20October%202026%20hike%20odds%20from%2070%25%20to%2020%25%20in%20one%20week" target="_blank" rel="noopener">CME FedWatch</a> odds of an October hike collapsed to <b>20% from 70%</b> a week ago on Friday's soft jobs report. The Fed hiked last month for the first time in three years; the long end is now pricing something hike odds can't explain.</p>
+<p class="next"><em>What&rsquo;s next:</em> Markets still price an 84% chance of another hike by year-end; this week's data runs through Friday.</p><div class="sfoot"><a class="src" href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-05-2026" target="_blank" rel="noopener">TheStreet</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.thestreet.com%2Fstock-market-today%2Fstock-market-today-dow-jones-sp-500-nasdaq-updates-oct-05-2026%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22The%2010-year%20touches%205.35%25%20%E2%80%94%20the%20bond%20market%27s%20loudest%20level%20since%202002%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20why%20are%2010-year%20yields%20at%20a%202002-era%20high%20while%20October%20hike%20odds%20are%20collapsing%2C%20what%20is%20the%20term%20premium%20story%20here%2C%20and%20what%20does%20a%205.3%25%20risk-free%20rate%20do%20to%20equity%20valuations%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="grid">
+<article class="story">
+<div class="chip"><span class="slabel b-business">BUSINESS & MARKETS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Nasdaq sets a record and Nvidia closes at an all-time high — tech shrugs at the bond market</h3>
+<p class="why"><strong>Why it matters:</strong> The Nasdaq rose <b>1.05% to 27,477.31</b>, a record, with <a class="ent e-business" href="https://claude.ai/new?q=What%20is%20driving%20Nvidia%27s%20business%20in%20late%202026%20%E2%80%94%20datacenter%20demand%2C%20competitive%20threats%2C%20and%20whether%20its%20first%20record%20close%20since%20May%20is%20supported%20by%20fundamentals" target="_blank" rel="noopener">Nvidia</a> notching its first all-time closing high since May — AI and semiconductor names are absorbing a 5%+ risk-free rate that would have cracked the 2023-era tape.</p>
+<div class="sfoot"><a class="src" href="https://finance.yahoo.com/markets/live/stock-market-today-monday-october-5-dow-sp-500-nasdaq-081220790.html" target="_blank" rel="noopener">Yahoo Finance</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ffinance.yahoo.com%2Fmarkets%2Flive%2Fstock-market-today-monday-october-5-dow-sp-500-nasdaq-081220790.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Nasdaq%20sets%20a%20record%20and%20Nvidia%20closes%20at%20an%20all-time%20high%20%E2%80%94%20tech%20shrugs%20at%20the%20bond%20market%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20drove%20Nvidia%20to%20its%20first%20record%20close%20since%20May%202026%2C%20and%20can%20AI%20capex%20momentum%20keep%20outrunning%20rising%20discount%20rates%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-business">BUSINESS & MARKETS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Crude slips as Europe&#x27;s 100-million-barrel diesel release starts to land</h3>
+<p class="why"><strong>Why it matters:</strong> Brent settled at <b>$100.32</b> (−1.9%) and WTI at $89.22 as the G7's emergency fuel release met rising Middle East crude exports — the first sign the wartime diesel squeeze is easing, though Brent still holds a Hormuz premium near $100.</p>
+<div class="sfoot"><a class="src" href="https://www.schwab.com/learn/story/stock-market-update-open" target="_blank" rel="noopener">Charles Schwab</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.schwab.com%2Flearn%2Fstory%2Fstock-market-update-open%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Crude%20slips%20as%20Europe%27s%20100-million-barrel%20diesel%20release%20starts%20to%20land%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20does%20releasing%20roughly%20100%20million%20barrels%20of%20emergency%20diesel%20interact%20with%20Brent%20pinned%20near%20%24100%20by%20the%20Hormuz%20crisis%2C%20and%20is%20the%20diesel%20squeeze%20actually%20easing%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-business">BUSINESS & MARKETS</span><span class="badge">6/10</span></div>
+<h3 class="shead">Point72 and Citadel staff targeted by AI voice-cloning attacks</h3>
+<p class="why"><strong>Why it matters:</strong> AI-generated voice phishing — 'vishing' — campaigns reached employees at some of the largest US hedge funds, including <b>Point72</b> and <b>Citadel</b>, per InvestmentNews: the same agentic-AI tooling flooding retail banks is now aimed at firms whose traders move billions on a phone call.</p>
+<div class="sfoot"><a class="src" href="https://www.investmentnews.com/fintech/point72-citadel-among-hedge-funds-hit-by-ai-vishing-attacks/267708" target="_blank" rel="noopener">InvestmentNews</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.investmentnews.com%2Ffintech%2Fpoint72-citadel-among-hedge-funds-hit-by-ai-vishing-attacks%2F267708%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Point72%20and%20Citadel%20staff%20targeted%20by%20AI%20voice-cloning%20attacks%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20did%20AI%20voice-cloning%20attacks%20reach%20Point72%20and%20Citadel%20employees%2C%20what%20were%20the%20attackers%20after%2C%20and%20which%20defenses%20actually%20work%20against%20vishing%20at%20financial%20firms%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-business">BUSINESS & MARKETS</span><span class="badge">6/10</span></div>
+<h3 class="shead">Q3 earnings season opens into a 5% world</h3>
+<p class="why"><strong>Why it matters:</strong> Constellation Brands and RPM International report <b>today</b> (with Lamb Weston and Apogee also on this week's slate) — the first corporate results to be discounted at 2002-era yields, and an early read on the US consumer and construction demand.</p>
+<p class="next"><em>What&rsquo;s next:</em> Big-bank earnings open the season in earnest next week.</p><div class="sfoot"><a class="src" href="https://www.kiplinger.com/investing/stocks/17494/next-week-earnings-calendar-stocks" target="_blank" rel="noopener">Kiplinger</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.kiplinger.com%2Finvesting%2Fstocks%2F17494%2Fnext-week-earnings-calendar-stocks%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Q3%20earnings%20season%20opens%20into%20a%205%25%20world%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20should%20investors%20watch%20in%20Constellation%20Brands%20and%20RPM%20International%20results%20this%20week%20as%20early%20reads%20on%20the%20US%20consumer%20and%20construction%20demand%20in%20a%205%25%20rate%20environment%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+</section>
+<section class="beat">
+<h2 class="bhead b-world bb-world">WORLD & GEOPOLITICS</h2>
+<article class="story story-lead">
+<div class="chip"><span class="slabel b-world">WORLD & GEOPOLITICS</span><span class="badge">8/10</span></div>
+<h3 class="shead shead-lead">Tehran floats reopening Hormuz — with strings attached</h3>
+<p class="why"><strong>Why it matters:</strong> Iran mounted a renewed diplomatic push touting a proposal to reopen the Strait of Hormuz, but Foreign Minister <a class="ent e-world" href="https://claude.ai/new?q=Profile%20Abbas%20Araqchi%2C%20Iran%27s%20foreign%20minister%20%E2%80%94%20his%20negotiating%20history%20with%20the%20West%20and%20his%20leverage%20in%20the%202026%20Strait%20of%20Hormuz%20talks" target="_blank" rel="noopener">Abbas Araqchi</a> insists the strait "cannot be separated" from the wider US-Israel war, and state media say Tehran would not cede control under the draft US deal. Shipping through the chokepoint — normally ~20% of global oil trade — remains far below normal under a fragile ceasefire.</p>
+<p class="next"><em>What&rsquo;s next:</em> Washington has sanctioned Iran's new 'Strait Authority'; talks continue through regional intermediaries.</p><div class="sfoot"><a class="src" href="https://www.cbsnews.com/live-updates/iran-war-us-strait-of-hormuz-sanctions/" target="_blank" rel="noopener">CBS News</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cbsnews.com%2Flive-updates%2Firan-war-us-strait-of-hormuz-sanctions%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Tehran%20floats%20reopening%20Hormuz%20%E2%80%94%20with%20strings%20attached%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20conditions%20is%20Tehran%20attaching%20to%20reopening%20the%20Strait%20of%20Hormuz%2C%20which%20of%20them%20are%20plausibly%20negotiable%2C%20and%20what%20would%20reopening%20do%20to%20oil%20prices%20and%20war-risk%20shipping%20insurance%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="grid">
+<article class="story">
+<div class="chip"><span class="slabel b-world">WORLD & GEOPOLITICS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Russia, China and Iran run surprise naval drills at the mouth of Hormuz</h3>
+<p class="why"><strong>Why it matters:</strong> The three navies exercised under the <b>'Maritime Security Belt 2026'</b> framework amid a massive US Mideast buildup — a pointed signal that any US move to force the strait open now carries three-power risk, not one.</p>
+<div class="sfoot"><a class="src" href="https://gulfnews.com/world/mena/russian-chinese-iran-warships-conduct-surprise-hormuz-strait-exercises-amid-massive-us-military-mideast-buildup-1.500448199" target="_blank" rel="noopener">Gulf News</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fgulfnews.com%2Fworld%2Fmena%2Frussian-chinese-iran-warships-conduct-surprise-hormuz-strait-exercises-amid-massive-us-military-mideast-buildup-1.500448199%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Russia%2C%20China%20and%20Iran%20run%20surprise%20naval%20drills%20at%20the%20mouth%20of%20Hormuz%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20signal%20are%20Russia%2C%20China%20and%20Iran%20sending%20with%20the%20Maritime%20Security%20Belt%202026%20exercises%2C%20and%20how%20do%20the%20drills%20constrain%20US%20naval%20options%20in%20the%20Gulf%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-world">WORLD & GEOPOLITICS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Merz takes the night train to Kyiv with €1.35 billion</h3>
+<p class="why"><strong>Why it matters:</strong> A day after the Kremlin said foreign diplomats in Kyiv were in "mortal danger," Chancellor <a class="ent e-world" href="https://claude.ai/new?q=Profile%20Friedrich%20Merz%20as%20German%20chancellor%20in%202026%20%E2%80%94%20how%20his%20Ukraine%20policy%20differs%20from%20Scholz%27s%20and%20the%20domestic%20politics%20constraining%20him" target="_blank" rel="noopener">Friedrich Merz</a> arrived by rail and pledged <b>~€1 billion</b> in military aid — air defense, long-range strike, combat drones, satellite communications — plus <b>€350 million</b> to harden Ukraine's power grid before winter.</p>
+<div class="sfoot"><a class="src" href="https://www.bloomberg.com/news/articles/2026-10-04/germany-s-merz-in-kyiv-reiterates-support-for-ukraine-warns-on-russia" target="_blank" rel="noopener">Bloomberg</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.bloomberg.com%2Fnews%2Farticles%2F2026-10-04%2Fgermany-s-merz-in-kyiv-reiterates-support-for-ukraine-warns-on-russia%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Merz%20takes%20the%20night%20train%20to%20Kyiv%20with%20%E2%82%AC1.35%20billion%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20exactly%20is%20in%20Germany%27s%20%E2%82%AC1.35%20billion%20package%2C%20why%20does%20energy%20aid%20before%20winter%20matter%20as%20much%20as%20weapons%2C%20and%20what%20does%20the%20visit%20say%20about%20Berlin%27s%20risk%20tolerance%20after%20the%20Kremlin%27s%20%27mortal%20danger%27%20warning%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-world">WORLD & GEOPOLITICS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Sánchez dissolves parliament and bets his government on housing</h3>
+<p class="why"><strong>Why it matters:</strong> After Congress rejected two housing decrees — rent caps, an eviction ban, limits on corporate home purchases — PM <a class="ent e-world" href="https://claude.ai/new?q=Profile%20Pedro%20S%C3%A1nchez%20and%20his%20gamble%20on%20a%20November%2029%2C%202026%20snap%20election%20in%20Spain%20%E2%80%94%20his%20coalition%20record%20since%202023%2C%20the%20housing%20crisis%2C%20and%20his%20leverage%20against%20the%20opposition" target="_blank" rel="noopener">Pedro Sánchez</a> called a snap election for <b>November 29</b>, gambling that fury over housing (stoked by the televised eviction of an 87-year-old in Madrid) cuts his way.</p>
+<p class="next"><em>What&rsquo;s next:</em> The government says it will re-impose the decrees in the interim via a rarely used legislative mechanism.</p><div class="sfoot"><a class="src" href="https://www.aljazeera.com/news/2026/10/5/spanish-prime-minister-pedro-sanchez-announces-snap-election" target="_blank" rel="noopener">Al Jazeera</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.aljazeera.com%2Fnews%2F2026%2F10%2F5%2Fspanish-prime-minister-pedro-sanchez-announces-snap-election%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22S%C3%A1nchez%20dissolves%20parliament%20and%20bets%20his%20government%20on%20housing%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20why%20did%20Spain%27s%20housing%20decrees%20fail%20in%20parliament%2C%20what%20do%20polls%20say%20about%20Pedro%20S%C3%A1nchez%27s%20chances%20on%20November%2029%2C%20and%20what%20happens%20to%20rent%20caps%20and%20the%20eviction%20ban%20in%20the%20meantime%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+</section>
+<section class="beat">
+<h2 class="bhead b-science bb-science">SCIENCE & SPACE</h2>
+<article class="story story-lead">
+<div class="chip"><span class="slabel b-science">SCIENCE & SPACE</span><span class="badge">8/10</span></div>
+<h3 class="shead shead-lead">A cubic kilometer of ice wins the physics Nobel: Francis Halzen honored for IceCube</h3>
+<p class="why"><strong>Why it matters:</strong> The 82-year-old Belgian-born <a class="ent e-science" href="https://claude.ai/new?q=Profile%20Francis%20Halzen%20%E2%80%94%20his%20path%20from%20Belgium%20to%20the%20South%20Pole%2C%20the%201988%20origins%20of%20IceCube%2C%20and%20why%20the%202026%20physics%20Nobel%20went%20to%20neutrino%20astronomy" target="_blank" rel="noopener">Francis Halzen</a> of UW–Madison wins for "decisive contributions" to the <b>IceCube Neutrino Observatory</b> — a detector buried in a cubic kilometer of South Pole ice that caught high-energy neutrinos from violent cosmic accelerators, an idea he first pitched in <b>1988</b>.</p>
+<div class="sfoot"><a class="src" href="https://www.nobelprize.org/prizes/physics/2026/press-release/" target="_blank" rel="noopener">NobelPrize.org</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nobelprize.org%2Fprizes%2Fphysics%2F2026%2Fpress-release%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20cubic%20kilometer%20of%20ice%20wins%20the%20physics%20Nobel%3A%20Francis%20Halzen%20honored%20for%20IceCube%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20IceCube%20actually%20detects%2C%20why%20high-energy%20astrophysical%20neutrinos%20opened%20a%20new%20window%20on%20the%20universe%2C%20and%20why%20the%20committee%20singled%20out%20one%20person%20for%20a%20hundreds-strong%20collaboration." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="grid">
+<article class="story">
+<div class="chip"><span class="slabel b-science">SCIENCE & SPACE</span><span class="badge">7/10</span></div>
+<h3 class="shead">Optogenetics takes the medicine Nobel</h3>
+<p class="why"><strong>Why it matters:</strong> Karl Deisseroth, Peter Hegemann and Georg Nagel share Monday's prize for <b>optogenetics</b> — using light-sensitive algal proteins to switch individual neurons on and off, the technique that turned brain circuits from correlation into cause.</p>
+<div class="sfoot"><a class="src" href="https://aljazeera.com/news/2026/10/5/nobel-medicine-prize-honours-us-and-german-scientists-for-optogenetics-work" target="_blank" rel="noopener">Al Jazeera</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Faljazeera.com%2Fnews%2F2026%2F10%2F5%2Fnobel-medicine-prize-honours-us-and-german-scientists-for-optogenetics-work%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Optogenetics%20takes%20the%20medicine%20Nobel%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20optogenetics%20%E2%80%94%20what%20Deisseroth%2C%20Hegemann%20and%20Nagel%20each%20contributed%2C%20and%20how%20light-controlled%20neurons%20are%20used%20in%20labs%20and%20early%20clinical%20work%20today." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-science">SCIENCE & SPACE</span><span class="badge">7/10</span></div>
+<h3 class="shead">A &#x27;phoenix planet&#x27;: astronomers find a world seemingly reborn from its dead star&#x27;s ashes</h3>
+<p class="why"><strong>Why it matters:</strong> A likely gas giant around white dwarf <b>HS 0209+0832</b>, ~270 light-years away, shows signs of having formed <i>after</i> the star died — which would make it the first known <b>second-generation planet</b>, and it solves a decades-old Hubble anomaly in the process.</p>
+<p class="next"><em>What&rsquo;s next:</em> Follow-up observations, including with JWST's MIRI instrument, are needed to confirm the candidate.</p><div class="sfoot"><a class="src" href="https://science.nasa.gov/missions/hubble/suspected-second-generation-planet-solves-nasa-hubble-cold-case/" target="_blank" rel="noopener">NASA</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fscience.nasa.gov%2Fmissions%2Fhubble%2Fsuspected-second-generation-planet-solves-nasa-hubble-cold-case%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20%27phoenix%20planet%27%3A%20astronomers%20find%20a%20world%20seemingly%20reborn%20from%20its%20dead%20star%27s%20ashes%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20evidence%20points%20to%20a%20second-generation%20planet%20around%20HS%200209%2B0832%2C%20what%20was%20the%20Hubble%20%27cold%20case%27%20it%20solves%2C%20and%20how%20will%20astronomers%20confirm%20or%20kill%20the%20claim%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-science">SCIENCE & SPACE</span><span class="badge">6/10</span></div>
+<h3 class="shead">NASA will sound the Moon&#x27;s depths at the Marius Hills pit</h3>
+<p class="why"><strong>Why it matters:</strong> The PSI-led <b>GIMLI</b> mission, selected under NASA's PRISM program and led by Than Putzig, will carry radar, seismometers, gravity sensors and cameras to a lunar pit that may open into a vast lava tube — the first surface seismic survey since <b>Apollo</b>, and a scouting trip for future crew shelters.</p>
+<div class="sfoot"><a class="src" href="https://www.eurekalert.org/news-releases/1146374" target="_blank" rel="noopener">EurekAlert (PSI)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.eurekalert.org%2Fnews-releases%2F1146374%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22NASA%20will%20sound%20the%20Moon%27s%20depths%20at%20the%20Marius%20Hills%20pit%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20instruments%20does%20GIMLI%20carry%2C%20how%20does%20a%20seismic%20and%20radar%20survey%20reveal%20a%20hidden%20lava%20tube%2C%20and%20why%20do%20lunar%20caves%20matter%20for%20future%20astronaut%20shelters%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+</section>
+<section class="beat">
+<h2 class="bhead b-anthropic bb-anthropic">ANTHROPIC</h2>
+<article class="story story-lead">
+<div class="chip"><span class="slabel b-anthropic">ANTHROPIC</span><span class="badge">7/10</span></div>
+<h3 class="shead shead-lead">The monk and the machine: Anthropic&#x27;s consciousness summits keep rippling outward</h3>
+<p class="why"><strong>Why it matters:</strong> <a class="ent e-anthropic" href="https://claude.ai/new?q=Profile%20Swami%20Sarvapriyananda%20%E2%80%94%20the%20Vedanta%20Society%20of%20New%20York%20leader%20invited%20to%20Anthropic%2C%20and%20what%20Vedantic%20philosophy%20says%20about%20consciousness%20that%20would%20interest%20an%20AI%20lab" target="_blank" rel="noopener">Swami Sarvapriyananda</a> of the Vedanta Society of New York described being invited to Anthropic's San Francisco HQ to discuss Claude's training, ethics and possible moral status — the latest participant to speak since the NYT's Sept 29 investigation revealed co-founder <a class="ent e-anthropic" href="https://claude.ai/new?q=Profile%20Chris%20Olah%20%E2%80%94%20from%20neural-network%20interpretability%20research%20to%20Anthropic%20co-founder%2C%20and%20his%20role%20in%20the%20company%27s%20AI-consciousness%20and%20model-welfare%20debates" target="_blank" rel="noopener">Chris Olah</a> convened ~20 religious and philosophical leaders, many under NDA.</p>
+<div class="sfoot"><a class="src" href="https://www.businesstoday.in/technology/news/story/anthropic-brought-a-hindu-monk-to-san-francisco-to-help-claude-tackle-ai-ethics-and-consciousness-559618-2026-10-06" target="_blank" rel="noopener">Business Today</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.businesstoday.in%2Ftechnology%2Fnews%2Fstory%2Fanthropic-brought-a-hindu-monk-to-san-francisco-to-help-claude-tackle-ai-ethics-and-consciousness-559618-2026-10-06%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22The%20monk%20and%20the%20machine%3A%20Anthropic%27s%20consciousness%20summits%20keep%20rippling%20outward%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20did%20Swami%20Sarvapriyananda%20say%20about%20his%20discussions%20at%20Anthropic%2C%20what%20is%20the%20company%20actually%20claiming%20%E2%80%94%20and%20not%20claiming%20%E2%80%94%20about%20Claude%27s%20consciousness%20and%20moral%20status%2C%20and%20why%20were%20participants%20asked%20to%20sign%20NDAs%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel b-anthropic">ANTHROPIC</span><span class="badge">6/10</span></div>
+<h3 class="shead">Anthropic asks Claude users to share voice data for training — off by default</h3>
+<p class="why"><strong>Why it matters:</strong> A new opt-in toggle in Settings → Privacy ("Allow us to use your voice data") covers audio recordings from Claude's voice mode, and is <b>independent</b> of the existing chat and Claude Code training consent — a separate consent surface for a more sensitive data type.</p>
+<div class="sfoot"><a class="src" href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-asks-claude-users-to-share-voice-data-for-ai-model-training/" target="_blank" rel="noopener">BleepingComputer</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.bleepingcomputer.com%2Fnews%2Fartificial-intelligence%2Fanthropic-asks-claude-users-to-share-voice-data-for-ai-model-training%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Anthropic%20asks%20Claude%20users%20to%20share%20voice%20data%20for%20training%20%E2%80%94%20off%20by%20default%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20exactly%20would%20Anthropic%20collect%20under%20the%20new%20voice-data%20toggle%2C%20how%20does%20it%20differ%20from%20the%20existing%20chat-training%20consent%2C%20and%20what%20are%20the%20privacy%20trade-offs%20of%20sharing%20voice%20recordings%20with%20an%20AI%20lab%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</section>
+
+<section class="beat">
+<h2 class="bhead" style="color:var(--text);border-bottom:1px solid var(--border)">SPORTS — YOUR TEAMS</h2>
+<article class="story">
+<div class="chip"><span class="slabel" style="color:#AA0000">49ERS</span><span class="badge">7/10</span></div>
+<h3 class="shead">4-0 and on to Seattle — but without Juszczyk</h3>
+<p class="why"><strong>Why it matters:</strong> The undefeated 49ers visit the Seahawks Sunday (1:25pm PT) with first place in the NFC West on the line; fullback <b>Kyle Juszczyk</b> is out 2–3 weeks with a bone bruise, while rookie DE <b>Mykel Williams</b> is expected to play.</p>
+<div class="sfoot"><a class="src" href="https://www.ninersnation.com/san-francisco-49ers-news/163810/49ers-news-regular-season-week-5-seattle-seahawks-injuries-juszczyk-stout" target="_blank" rel="noopener">Niners Nation</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.ninersnation.com%2Fsan-francisco-49ers-news%2F163810%2F49ers-news-regular-season-week-5-seattle-seahawks-injuries-juszczyk-stout%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%224-0%20and%20on%20to%20Seattle%20%E2%80%94%20but%20without%20Juszczyk%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20do%20the%2049ers%20cover%20for%20Kyle%20Juszczyk%27s%20absence%20in%20the%20run%20game%2C%20and%20what%20matters%20most%20in%20the%20Week%205%20matchup%20in%20Seattle%20with%20first%20place%20in%20the%20NFC%20West%20on%20the%20line%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="grid">
+<article class="story">
+<div class="chip"><span class="slabel" style="color:#006D75">SHARKS</span><span class="badge">6/10</span></div>
+<h3 class="shead">First stumble: Stars blank a Celebrini-less Sharks 5-0</h3>
+<p class="why"><strong>Why it matters:</strong> Jake Oettinger needed only <b>13 saves</b> for the shutout Monday as Dallas handed San Jose — playing without Macklin Celebrini — its first loss of the season; the 2-0 start is now 2-1-0, with the offense held to 13 shots.</p>
+<div class="sfoot"><a class="src" href="https://nhl.com/sharks/news/san-jose-sharks-dallas-stars-game-recap-october-5-2026-x3549" target="_blank" rel="noopener">NHL.com</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fnhl.com%2Fsharks%2Fnews%2Fsan-jose-sharks-dallas-stars-game-recap-october-5-2026-x3549%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22First%20stumble%3A%20Stars%20blank%20a%20Celebrini-less%20Sharks%205-0%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20went%20wrong%20for%20the%20Sharks%20against%20Dallas%2C%20why%20was%20Macklin%20Celebrini%20out%20of%20the%20lineup%2C%20and%20how%20concerning%20is%20a%2013-shot%20shutout%20three%20games%20into%20the%20season%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="slabel" style="color:#1D428A">WARRIORS</span><span class="badge">6/10</span></div>
+<h3 class="shead">Warriors drop preseason opener to the Clippers in the final seconds</h3>
+<p class="why"><strong>Why it matters:</strong> Golden State fell <b>104-101</b> with Steph Curry efficient in a cameo (10 points on 3-of-4, two threes); the real watch items were rookie <b>Yaxel Lendeborg</b>'s learning curve and a turnover problem that lingered all night.</p>
+<div class="sfoot"><a class="src" href="https://www.nbcsportsbayarea.com/nba/golden-state-warriors/observations-preseason-steph-curry-clippers-yaxel-lendeborg/1968858/" target="_blank" rel="noopener">NBC Sports Bay Area</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nbcsportsbayarea.com%2Fnba%2Fgolden-state-warriors%2Fobservations-preseason-steph-curry-clippers-yaxel-lendeborg%2F1968858%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Warriors%20drop%20preseason%20opener%20to%20the%20Clippers%20in%20the%20final%20seconds%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20did%20the%20Warriors%27%20preseason%20opener%20against%20the%20Clippers%20show%20about%20the%20rotation%2C%20and%20which%20young%20players%20%E2%80%94%20including%20Yaxel%20Lendeborg%20%E2%80%94%20are%20pushing%20for%20regular-season%20minutes%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+<h2 class="bhead" style="color:var(--text);border-bottom:1px solid var(--border);margin-top:28px">LAST NIGHT / TONIGHT</h2>
+<div class="league"><div class="lg-label">NFL <span class="ctx">Week 4 — Monday night</span></div><div class="cards"><div class="card"><div class="row"><span>ATL</span><span class="win">45</span></div><div class="row"><span>NO</span><span>24</span></div><div class="status">Final</div></div></div></div>
+<div class="league"><div class="lg-label">NBA <span class="ctx">Preseason</span></div><div class="cards"><div class="card" style="border-left:3px solid #1D428A"><div class="row"><span>LAC</span><span class="win">104</span></div><div class="row"><span>GSW</span><span>101</span></div><div class="status">Final</div></div></div></div>
+<div class="league"><div class="lg-label">MLB <span class="ctx">Division Series</span></div><div class="cards"><div class="card"><div class="row"><span>CWS</span><span class="win">4</span></div><div class="row"><span>CLE</span><span>3</span></div><div class="status">Final — CWS lead 2-0</div></div><div class="card"><div class="row"><span>TB</span><span class="win">5</span></div><div class="row"><span>NYY</span><span>2</span></div><div class="status">Final — TB lead 2-0</div></div><div class="card"><div class="row"><span>LAD</span><span></span></div><div class="row"><span>ATL</span><span></span></div><div class="status">Tonight — G3, 1-1 · 3pm PT</div></div><div class="card"><div class="row"><span>MIL</span><span></span></div><div class="row"><span>SD</span><span></span></div><div class="status">Tonight — G3, MIL 2-0 · 6:30pm PT</div></div></div></div>
+<div class="league"><div class="lg-label">NHL <span class="ctx">Early regular season</span></div><div class="cards"><div class="card" style="border-left:3px solid #006D75"><div class="row"><span>DAL</span><span class="win">5</span></div><div class="row"><span>SJS</span><span>0</span></div><div class="status">Final</div></div><div class="card"><div class="row"><span>ANA</span><span class="win">3</span></div><div class="row"><span>FLA</span><span>2</span></div><div class="status">Final/OT</div></div><div class="card"><div class="row"><span>WPG</span><span class="win">3</span></div><div class="row"><span>DET</span><span>2</span></div><div class="status">Final</div></div><div class="card"><div class="row"><span>VGK</span><span class="win">3</span></div><div class="row"><span>VAN</span><span>2</span></div><div class="status">Final</div></div></div></div>
+
+</section>
+
+<section class="ending">
+<h2>That&rsquo;s your briefing. You&rsquo;re caught up.</h2>
+<p>22 stories this morning — every headline, source and dotted link goes deeper.</p>
+<p><a href="archive/">Browse the archive →</a></p>
+</section>
+
+<details class="sources">
+<summary>Sources (22)</summary>
+<p class="vnote">Verification note: this run&rsquo;s sandbox network policy blocked direct page fetches, so every source below was verified through search-index excerpts (headlines, figures and quotes cross-checked across results) rather than a live fetch. Figures that could not be confirmed were omitted.</p>
+<ul>
+<li><span class="mh">Dell, Apollo and JERA launch a $140 billion bid to make Japan an AI powe…</span> — <a href="https://www.techradar.com/pro/the-keyword-is-speed-to-power-dell-apollo-and-jera-launch-a-usd140b-plan-to-build-up-to-4gw-of-ai-data-centers-across-japan-and-asia" target="_blank" rel="noopener">TechRadar Pro</a> — search-verified: $140B/4GW plan, $15B 400MW Chiba phase one, 2028–29 timeline (direct fetch blocked by sandbox network policy)</li>
+<li><span class="mh">OpenAI starts putting visual ads inside ChatGPT, beginning with image ge…</span> — <a href="https://techcrunch.com/2026/10/05/openai-launches-visual-ads-that-appear-alongside-image-generation-results/" target="_blank" rel="noopener">TechCrunch</a> — search-verified: Oct 5 announcement, US test, paid tiers exempt, quoted rationale (fetch blocked)</li>
+<li><span class="mh">At a NYC Council hearing, an ex-DeepMind researcher warns the industry i…</span> — <a href="https://www.cnbc.com/2026/10/05/anthropic-openai-google-meta-execs-testify-nyc-council-ai-hearing.html" target="_blank" rel="noopener">CNBC</a> — search-verified: hearing date, named witnesses and quotes (cnbc.com fetch blocked)</li>
+<li><span class="mh">Nearly 40,000 phishing campaigns hit US financial firms in six months — …</span> — <a href="https://www.techradar.com/pro/nearly-40-000-phishing-attacks-hit-us-financial-firms-in-h1-2026-automated-ai-agents-and-a-new-seychelles-bulletproof-host-fuel-aggressive-new-campaigns" target="_blank" rel="noopener">TechRadar Pro</a> — search-verified: Netcraft H1 2026 figures — 40K URLs, 645 hosts, 12.6% free hosting, Omegatech 3% (fetch blocked)</li>
+<li><span class="mh">The 10-year touches 5.35% — the bond market&#x27;s loudest level since 2002</span> — <a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-05-2026" target="_blank" rel="noopener">TheStreet</a> — search-verified: 5.349% intraday / 5.28% close, FedWatch 20%/70%/84% odds (fetch blocked)</li>
+<li><span class="mh">Nasdaq sets a record and Nvidia closes at an all-time high — tech shrugs…</span> — <a href="https://finance.yahoo.com/markets/live/stock-market-today-monday-october-5-dow-sp-500-nasdaq-081220790.html" target="_blank" rel="noopener">Yahoo Finance</a> — search-verified: record close 27,477.31 (+1.05%), Nvidia all-time high (fetch blocked)</li>
+<li><span class="mh">Crude slips as Europe&#x27;s 100-million-barrel diesel release starts to land</span> — <a href="https://www.schwab.com/learn/story/stock-market-update-open" target="_blank" rel="noopener">Charles Schwab</a> — search-verified: falling crude tied to Europe&#x27;s ~100M-barrel diesel release and rising Mideast exports; settlements from Investing.com series (fetch blocked)</li>
+<li><span class="mh">Point72 and Citadel staff targeted by AI voice-cloning attacks</span> — <a href="https://www.investmentnews.com/fintech/point72-citadel-among-hedge-funds-hit-by-ai-vishing-attacks/267708" target="_blank" rel="noopener">InvestmentNews</a> — headline and targets verified via search; article body not independently confirmed (fetch blocked) — claims kept minimal</li>
+<li><span class="mh">Q3 earnings season opens into a 5% world</span> — <a href="https://www.kiplinger.com/investing/stocks/17494/next-week-earnings-calendar-stocks" target="_blank" rel="noopener">Kiplinger</a> — search-verified: Oct 6 reporters (STZ, RPM, Lamb Weston, Apogee) from the week&#x27;s earnings calendar (fetch blocked)</li>
+<li><span class="mh">Tehran floats reopening Hormuz — with strings attached</span> — <a href="https://www.cbsnews.com/live-updates/iran-war-us-strait-of-hormuz-sanctions/" target="_blank" rel="noopener">CBS News</a> — search-verified: diplomatic push, Araqchi framing, Strait Authority sanctions, depressed shipping (cbsnews.com fetch blocked)</li>
+<li><span class="mh">Russia, China and Iran run surprise naval drills at the mouth of Hormuz</span> — <a href="https://gulfnews.com/world/mena/russian-chinese-iran-warships-conduct-surprise-hormuz-strait-exercises-amid-massive-us-military-mideast-buildup-1.500448199" target="_blank" rel="noopener">Gulf News</a> — search-verified: trilateral surprise drills under Maritime Security Belt 2026 framework (fetch blocked)</li>
+<li><span class="mh">Merz takes the night train to Kyiv with €1.35 billion</span> — <a href="https://www.bloomberg.com/news/articles/2026-10-04/germany-s-merz-in-kyiv-reiterates-support-for-ukraine-warns-on-russia" target="_blank" rel="noopener">Bloomberg</a> — search-verified: Sunday rail visit, €1.35B split (~€1B military / €350M energy), Kremlin warning timing (bloomberg.com fetch blocked)</li>
+<li><span class="mh">Sánchez dissolves parliament and bets his government on housing</span> — <a href="https://www.aljazeera.com/news/2026/10/5/spanish-prime-minister-pedro-sanchez-announces-snap-election" target="_blank" rel="noopener">Al Jazeera</a> — search-verified: Nov 29 date, rejected decrees&#x27; contents, protest backdrop, re-imposition plan (fetch blocked)</li>
+<li><span class="mh">A cubic kilometer of ice wins the physics Nobel: Francis Halzen honored …</span> — <a href="https://www.nobelprize.org/prizes/physics/2026/press-release/" target="_blank" rel="noopener">NobelPrize.org</a> — primary: Royal Swedish Academy press release, confirmed via search excerpts incl. citation text and 12M SEK prize (fetch blocked)</li>
+<li><span class="mh">Optogenetics takes the medicine Nobel</span> — <a href="https://aljazeera.com/news/2026/10/5/nobel-medicine-prize-honours-us-and-german-scientists-for-optogenetics-work" target="_blank" rel="noopener">Al Jazeera</a> — search-verified: laureates and citation for the Oct 5 medicine prize (fetch blocked)</li>
+<li><span class="mh">A &#x27;phoenix planet&#x27;: astronomers find a world seemingly reborn from its d…</span> — <a href="https://science.nasa.gov/missions/hubble/suspected-second-generation-planet-solves-nasa-hubble-cold-case/" target="_blank" rel="noopener">NASA</a> — primary: NASA Hubble news release, cross-confirmed by Phys.org coverage via search (fetch blocked)</li>
+<li><span class="mh">NASA will sound the Moon&#x27;s depths at the Marius Hills pit</span> — <a href="https://www.eurekalert.org/news-releases/1146374" target="_blank" rel="noopener">EurekAlert (PSI)</a> — search-verified: PSI institutional release — PRISM selection, PI Than Putzig, instrument suite (fetch blocked)</li>
+<li><span class="mh">The monk and the machine: Anthropic&#x27;s consciousness summits keep ripplin…</span> — <a href="https://www.businesstoday.in/technology/news/story/anthropic-brought-a-hindu-monk-to-san-francisco-to-help-claude-tackle-ai-ethics-and-consciousness-559618-2026-10-06" target="_blank" rel="noopener">Business Today</a> — Oct 6 interview coverage, building on NYT Sept 29 investigation (Elizabeth Dias); key facts cross-confirmed across outlets via search (fetch blocked)</li>
+<li><span class="mh">Anthropic asks Claude users to share voice data for training — off by de…</span> — <a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-asks-claude-users-to-share-voice-data-for-ai-model-training/" target="_blank" rel="noopener">BleepingComputer</a> — search-verified: opt-in default-off toggle, settings path, independence from chat consent (fetch blocked)</li>
+<li><span class="mh">4-0 and on to Seattle — but without Juszczyk</span> — <a href="https://www.ninersnation.com/san-francisco-49ers-news/163810/49ers-news-regular-season-week-5-seattle-seahawks-injuries-juszczyk-stout" target="_blank" rel="noopener">Niners Nation</a> — search-verified: 4-0 record, Week 5 at Seattle, Juszczyk 2–3 weeks, Williams expected to play (fetch blocked)</li>
+<li><span class="mh">First stumble: Stars blank a Celebrini-less Sharks 5-0</span> — <a href="https://nhl.com/sharks/news/san-jose-sharks-dallas-stars-game-recap-october-5-2026-x3549" target="_blank" rel="noopener">NHL.com</a> — search-verified: 5-0 final, Oettinger 13 saves, Celebrini out (nhl.com fetch blocked)</li>
+<li><span class="mh">Warriors drop preseason opener to the Clippers in the final seconds</span> — <a href="https://www.nbcsportsbayarea.com/nba/golden-state-warriors/observations-preseason-steph-curry-clippers-yaxel-lendeborg/1968858/" target="_blank" rel="noopener">NBC Sports Bay Area</a> — search-verified: 104-101 loss, Curry 10 pts on 3-of-4, Lendeborg storyline (fetch blocked)</li>
+</ul>
+</details>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function(){
+  var dark = !window.matchMedia('(prefers-color-scheme: light)').matches;
+  var tick = dark ? '#9aa0a6' : '#666666';
+  var grid = dark ? '#2a2f3a' : '#e3e3de';
+  var cBlue = dark ? '#7aa2f7' : '#2b5fc7';
+  var cAmber = dark ? '#d4a27f' : '#9a6a42';
+  var cDown = dark ? '#f7768e' : '#c43c54';
+  var cUp = dark ? '#9ece6a' : '#4a7a1e';
+  var SP = {"labels": ["Sep 29", "Sep 30", "Oct 1", "Oct 2", "Oct 5"], "data": [7670.84, 7651.54, 7666.45, 7722.72, 7773.99]};
+  var BR = {"labels": ["Sep 29", "Sep 30", "Oct 1", "Oct 2", "Oct 5"], "data": [97.09, 98.03, 102.31, 102.25, 100.32]};
+  var FED = {"labels": ["Oct hike \u2014 a week ago", "Oct hike \u2014 Monday", "Any hike by year-end"], "data": [70, 20, 84]};
+  function fb(id, text){
+    var el = document.getElementById(id);
+    if (el) el.parentNode.innerHTML = '<p style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:'+tick+'">'+text+'</p>';
+  }
+  if (typeof Chart === 'undefined'){
+    fb('spChart','S&P 500: 7,773.99 Monday close — up 1.3% over five sessions');
+    fb('brentChart','Brent: $100.32 Monday settlement — off last week\'s $102 spike');
+    fb('fedChart','CME FedWatch: October hike odds 20% (vs 70% a week ago); 84% odds of a hike by year-end');
+    return;
+  }
+  function line(id, labels, data, color, min, max){
+    new Chart(document.getElementById(id), {
+      type:'line',
+      data:{labels:labels, datasets:[{data:data, borderColor:color, backgroundColor:'transparent',
+        pointRadius:2.5, pointBackgroundColor:color, borderWidth:2, tension:0.25}]},
+      options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+        scales:{x:{ticks:{color:tick,font:{size:11}},grid:{color:grid,display:false}},
+                y:{min:min, max:max, ticks:{color:tick,font:{size:11}},grid:{color:grid}}}}
+    });
+  }
+  line('spChart', SP.labels, SP.data, cBlue, 7600, 7820);
+  line('brentChart', BR.labels, BR.data, cAmber, 94, 106);
+  new Chart(document.getElementById('fedChart'), {
+    type:'bar',
+    data:{labels:FED.labels, datasets:[{data:FED.data,
+      backgroundColor:[tick, cDown, cUp], borderWidth:0, barThickness:34}]},
+    options:{responsive:true, maintainAspectRatio:false, indexAxis:'y',
+      plugins:{legend:{display:false}},
+      scales:{x:{min:0, max:100, ticks:{color:tick,font:{size:11}, callback:function(v){return v+'%';}},grid:{color:grid}},
+              y:{ticks:{color:tick,font:{size:11}},grid:{display:false}}}}
+  });
+})();
+</script>
+</body>
+</html>

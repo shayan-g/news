@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — September 17, 2026</title>
+<style>
+  :root {
+    --bg: #0f1115; --surface: #171a21; --border: #2a2f3a;
+    --text: #e8e8e8; --muted: #9aa0a6;
+    --up: #9ece6a; --down: #f7768e;
+    --tech: #7aa2f7; --world: #f7768e; --business: #9ece6a;
+    --science: #bb9af7; --anthropic: #d4a27f;
+    --niners: #AA0000; --giants-t: #F4793E; --sharks: #006D75;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fafaf8; --surface: #ffffff; --border: #e3e3de;
+      --text: #1f1f1f; --muted: #666666;
+      --up: #4a7a1e; --down: #c23a52;
+      --tech: #2b5fc7; --world: #c23a52; --business: #4a7a1e;
+      --science: #7c4dbe; --anthropic: #96622f;
+      --sharks: #00565c;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 20px 16px 56px; }
+  .serif { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 500; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  a { color: inherit; }
+
+  /* Wire strip */
+  .wire { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.9; color: var(--muted); }
+  .wire b { font-weight: 400; color: var(--text); }
+  .wire .u { color: var(--up); } .wire .d { color: var(--down); }
+  .wire .sep { color: var(--border); padding: 0 4px; }
+  .wire-label { font-size: 12px; color: var(--muted); margin: 2px 0 0; }
+
+  /* Lede */
+  .dateline { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 28px 0 10px; }
+  h1.thesis { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 500; font-size: 23px; line-height: 1.3; margin: 0 0 12px; }
+  .narrative { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 17px; line-height: 1.65; margin: 0 0 14px; }
+  .readtime { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--muted); }
+
+  /* Entity links */
+  a.ent { color: var(--tech); text-decoration: none; border-bottom: 1px dotted var(--tech); }
+  a.ent.w { color: var(--world); border-bottom-color: var(--world); }
+  a.ent.b { color: var(--business); border-bottom-color: var(--business); }
+  a.ent.s { color: var(--science); border-bottom-color: var(--science); }
+  a.ent.a { color: var(--anthropic); border-bottom-color: var(--anthropic); }
+
+  /* State of play */
+  .sop { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 26px 0; }
+  @media (min-width: 560px) { .sop { grid-template-columns: repeat(5, 1fr); } }
+  .sop > div { background: var(--surface); padding: 12px 10px; }
+  .sop .v { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 18px; }
+  .sop .v.u { color: var(--up); } .sop .v.d { color: var(--down); }
+  .sop .l { font-size: 12px; margin-top: 2px; }
+  .sop .c { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+  /* Sections */
+  section { margin: 34px 0 0; }
+  .sec-head { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; padding-bottom: 6px; border-bottom: 2px solid var(--border); margin: 0 0 16px; }
+  .sec-head.tech { color: var(--tech); border-color: var(--tech); }
+  .sec-head.world { color: var(--world); border-color: var(--world); }
+  .sec-head.business { color: var(--business); border-color: var(--business); }
+  .sec-head.science { color: var(--science); border-color: var(--science); }
+  .sec-head.anthropic { color: var(--anthropic); border-color: var(--anthropic); }
+
+  /* Stories */
+  .story { padding: 14px 0 16px; }
+  .grid { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 560px) {
+    .grid { grid-template-columns: 1fr 1fr; column-gap: 33px; position: relative; }
+    .grid::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  }
+  .story + .story, .grid { border-top: 1px solid var(--border); }
+  .lead-story { border-top: none; padding-top: 4px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); padding: 2px 8px; font-size: 12px; }
+  .chip .beat { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+  .chip .score { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--muted); }
+  .story h3 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 500; font-size: 18px; line-height: 1.35; margin: 8px 0 6px; }
+  .lead-story h3 { font-size: 21px; }
+  .story p { font-size: 14.5px; margin: 0 0 6px; }
+  .story .next { font-style: italic; color: var(--muted); font-size: 13.5px; margin: 0 0 6px; }
+  .story .foot { display: flex; align-items: center; gap: 12px; margin-top: 8px; font-size: 13px; }
+  .story .foot .src { color: var(--muted); }
+  .story .foot .src a { color: var(--muted); }
+  a.deeper { display: inline-block; border: 1px solid var(--border); background: var(--surface); color: var(--text); text-decoration: none; font-size: 12.5px; padding: 3px 10px; }
+  a.deeper:hover { border-color: var(--muted); }
+
+  /* Charts */
+  .charts2 { display: grid; grid-template-columns: 1fr; gap: 22px; }
+  @media (min-width: 560px) { .charts2 { grid-template-columns: 1fr 1fr; } }
+  .chartbox { background: var(--surface); border: 1px solid var(--border); padding: 12px; }
+  .chartbox .t { font-size: 13px; margin: 0 0 8px; }
+  .chartbox .note { font-size: 12.5px; color: var(--muted); margin: 8px 0 0; line-height: 1.45; }
+  .chartbox canvas { max-width: 100%; }
+  .cwrap { position: relative; height: 180px; }
+  .chart-day .cwrap { height: 170px; }
+  .chart-day { margin-top: 22px; }
+
+  /* Sports */
+  .team-head { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; padding-bottom: 4px; border-bottom: 2px solid var(--border); margin: 18px 0 6px; }
+  .team-head.niners { color: var(--niners); border-color: var(--niners); }
+  .team-head.giants { color: var(--giants-t); border-color: var(--giants-t); }
+  .team-head.sharks { color: var(--sharks); border-color: var(--sharks); }
+  .league-row { margin-top: 16px; }
+  .league-label { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .cards { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 4px; }
+  .cards::-webkit-scrollbar { display: none; }
+  .card { flex: 0 0 auto; min-width: 128px; background: var(--surface); border: 1px solid var(--border); padding: 8px 10px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; }
+  .card.fav-giants { border-left: 3px solid var(--giants-t); }
+  .card .row { display: flex; justify-content: space-between; gap: 12px; }
+  .card .w { color: var(--up); }
+  .card .st { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .card .st.live { color: var(--down); }
+
+  /* Ending */
+  .ending { text-align: center; margin: 48px 0 8px; }
+  .ending h2 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 500; font-size: 22px; margin: 0 0 6px; }
+  .ending p { color: var(--muted); font-size: 14px; margin: 0; }
+  .ending a { color: var(--muted); }
+
+  /* Sources */
+  details { margin-top: 36px; border-top: 1px solid var(--border); padding-top: 12px; }
+  summary { cursor: pointer; font-size: 14px; color: var(--muted); }
+  .srcs { font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 10px; }
+  .srcs a { color: var(--muted); }
+  .srcs .vn { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- 1. Wire strip -->
+  <div class="wire" aria-label="Market wire">
+    S&amp;P 500 <b>7,551.81</b> <span class="d">−0.45%</span><span class="sep">·</span>Dow <b>51,461.90</b> <span class="d">−1.21%</span><span class="sep">·</span>Nasdaq <b>25,978.42</b> <span class="d">−0.01%</span><span class="sep">·</span>Russell 2000 <b>2,906.20</b> <span class="u">+0.82%</span><span class="sep">·</span>VIX <b>16.04</b> <span class="u">−9.44%</span><span class="sep">·</span>10Y <b>5.016%</b> <span class="d">+2bp</span><span class="sep">·</span>Brent <b>$105.83</b> <span class="u">−2.7%</span><span class="sep">·</span>WTI <b>$102.43</b> <span class="u">−3.2%</span><span class="sep">·</span>Gold <b>$4,240</b> <span class="d">−1.2%</span><span class="sep">·</span>Bitcoin <b>~$75.9K</b> flat
+  </div>
+  <p class="wire-label">Wednesday close — Fed day. Markets reopen this morning; futures pointed higher pre-open.</p>
+
+  <!-- 2. Lede -->
+  <p class="dateline">Thursday, September 17, 2026 — generated 6:39am PT</p>
+  <h1 class="thesis">The Fed finally moved — because the war made it, and the consumer let it.</h1>
+  <p class="narrative">
+    For the first time since July 2023, the Federal Reserve raised interest rates — a unanimous quarter point to 3.75–4.00%, with
+    <a class="ent" data-q="Profile Kevin Warsh — his path to the Fed chairmanship, his monetary philosophy, and how his September 2026 rate hike compares to the Volcker and Powell playbooks" href="https://claude.ai/new">Kevin Warsh</a>
+    telling markets inflation is "still too high" and the
+    <a class="ent" data-q="Explain the Fed's dot plot — what it is, how to read the September 2026 version showing a 4.1% median for end-2026, and why markets treat it as forward guidance" href="https://claude.ai/new">dot plot</a>
+    penciling in one more hike this year. The pressure came from a war: crude is up roughly 16% this month with the
+    <a class="ent w" data-q="What is Saudi Arabia's East-West pipeline, why does it matter as an alternative to the Strait of Hormuz, and what would its extended outage mean for oil markets in late 2026?" href="https://claude.ai/new">East–West pipeline</a>
+    damaged and both Gulf chokepoints contested — even as Trump says he has heard from Iran "directly" and hopes the end is near. The permission came from the consumer, who spent through all of it: August retail sales rose triple the expected pace. And the sector the Fed cannot slow kept compounding anyway — Factory tripled its valuation in five months, while Canada and Germany wrote
+    <a class="ent" data-q="Profile Yoshua Bengio and LawZero — why a Turing Award winner is building deliberately non-agentic 'Scientist AI', and what $300M in state funding means for the AI-guardrails field" href="https://claude.ai/new">Yoshua Bengio</a>
+    a ~$300M check to build guardrails for it.
+  </p>
+  <p class="readtime">~5 min read — 20 stories across 4 beats, plus Anthropic and sports</p>
+
+  <!-- 3. State of play -->
+  <div class="sop">
+    <div><div class="v">3.75–4.00%</div><div class="l">New Fed target range</div><div class="c">First hike since July 2023; the dots say one more this year</div></div>
+    <div><div class="v u">+1.2%</div><div class="l">August retail sales</div><div class="c">Triple the expected pace — the consumer is financing the Fed's resolve</div></div>
+    <div><div class="v d">$105.83</div><div class="l">Brent, Wednesday settle</div><div class="c">−2.7% on pipeline-restart hopes; still ~+16% this month</div></div>
+    <div><div class="v d">168</div><div class="l">Dead in the Minab school strike</div><div class="c">Now formal "reasonable grounds" for a US war crime, per UN experts</div></div>
+    <div><div class="v u">$5B</div><div class="l">Factory's new valuation</div><div class="c">Tripled in five months — AI capital ignores the rate cycle</div></div>
+  </div>
+
+  <!-- Dominant story -->
+  <section>
+    <h2 class="sec-head business">The hike</h2>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--business)">Markets</span><span class="score">9/10</span></span>
+      <h3 class="serif">3.75–4.00%, unanimous — and one more penciled in</h3>
+      <p><b>Why it matters:</b> The FOMC voted 12–0 to raise its target range a quarter point — the first increase since July 2023 — and lifted its median end-2026 rate projection to 4.1% from 3.8%, signaling another hike this year. The Dow lost 631 points (−1.21%) to 51,461.90, the 10-year yield closed above 5% at 5.016%, and gold fell 1.2% as Warsh's press conference erased an intraday rally. The one-word rationale: with oil up 16% in a month and the consumer still spending, the committee judged inflation risk worse than growth risk.</p>
+      <p class="next">What's next: Futures rebounded Thursday morning as oil and yields eased; the remaining 2026 meetings are the window for the second hike the dots imply.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.cnbc.com/2026/09/16/fed-meeting-today-live-updates.html" target="_blank" rel="noopener">CNBC</a></span>
+        <a class="deeper" data-q="Read this article: https://www.cnbc.com/2026/09/16/fed-meeting-today-live-updates.html — if the URL is unavailable, search for &quot;Fed meeting recap Warsh says inflation is still too high as Fed hikes for the first time since 2023&quot; and find the original reporting — then explain why the Fed hiked into a war-driven oil shock rather than looking through it, and what a 4.1% end-2026 median implies for mortgages, credit and the 2027 growth outlook" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- 4. Charts -->
+  <section>
+    <div class="charts2">
+      <div class="chartbox">
+        <p class="t mono">S&amp;P 500 — last five closes</p>
+        <div class="cwrap"><canvas id="spChart" height="170"></canvas></div>
+        <p class="note">Three straight declines into and through the hike; −0.5% over five sessions.</p>
+      </div>
+      <div class="chartbox">
+        <p class="t mono">10-year Treasury yield (%) — since Friday</p>
+        <div class="cwrap"><canvas id="tyChart" height="170"></canvas></div>
+        <p class="note">The bond market repriced before the Fed moved — and stayed above 5% after.</p>
+      </div>
+    </div>
+    <div class="chartbox chart-day">
+      <p class="t mono">Chart of the day — AI coding valuations vs. the rate cycle ($B)</p>
+      <div class="cwrap"><canvas id="codChart" height="150"></canvas></div>
+      <p class="note">Factory tripled to $5B in five months; Cognition raised at $48B days before the first hike since 2023.
+        <a class="ent" data-q="Compare Factory and Cognition — products, customers, and why AI coding-agent valuations are compounding through a rising-rate environment in 2026" href="https://claude.ai/new">Compare the two</a>.</p>
+    </div>
+  </section>
+
+  <!-- 5. Beats: Business -->
+  <section>
+    <h2 class="sec-head business">Business &amp; Markets</h2>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--business)">Business</span><span class="score">7/10</span></span>
+      <h3 class="serif">The consumer didn't get the memo: retail sales jump 1.2%</h3>
+      <p><b>Why it matters:</b> August retail and food-services sales hit $773.9 billion, up 1.2% against a 0.8% consensus and reversing July's pullback; ex-autos sales rose 1.4%, the largest gain in five months. A consumer spending through $100 oil is exactly why the Fed felt safe hiking the next day — the
+        <a class="ent b" data-q="Explain the retail sales control group — what it measures, why economists watch it over the headline number, and what its 1.4% August 2026 jump says about US GDP" href="https://claude.ai/new">control group</a> jumped 1.4%.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.washingtonpost.com/business/2026/09/16/retail-sales-rebound-strongly-august-even-people-feel-wary-over-economy/" target="_blank" rel="noopener">The Washington Post</a></span>
+        <a class="deeper" data-q="Read this article: https://www.washingtonpost.com/business/2026/09/16/retail-sales-rebound-strongly-august-even-people-feel-wary-over-economy/ — if the URL is unavailable, search for &quot;Retail sales rebound strongly in August even as people are wary over economy&quot; and find the original reporting — then reconcile the gap between weak consumer sentiment and strong spending: who is doing the spending, and how long can it outrun 4% rates and $100 oil?" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--business)">Energy</span><span class="score">7/10</span></span>
+        <h3 class="serif">Oil exhales: Brent settles at $105.83 on pipeline-restart promises</h3>
+        <p><b>Why it matters:</b> Brent fell 2.7% and WTI 3.2% to $102.43 after the administration said Saudi Arabia's damaged East–West pipeline — the main route around Hormuz — restarts within days. Crude remains up ~16% this month.</p>
+        <p class="next">What's next: if "days" slips, the war premium comes straight back — and with it the case for hike number two.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.cnbc.com/2026/09/16/oil-prices-today-brent-wti-hormuz-iran-war.html" target="_blank" rel="noopener">CNBC</a></span>
+          <a class="deeper" data-q="Read this article: https://www.cnbc.com/2026/09/16/oil-prices-today-brent-wti-hormuz-iran-war.html — if the URL is unavailable, search for &quot;Oil prices fall after US says damaged Saudi pipeline will restart operations in days&quot; and find the original reporting — then assess how credible the restart timeline is, what repair of a pipeline that scale actually involves, and where Brent goes if the outage extends" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--business)">Chips</span><span class="score">7/10</span></span>
+        <h3 class="serif">SK Hynix talks to Intel about making memory in America</h3>
+        <p><b>Why it matters:</b> The world's No. 2 memory maker is exploring leasing part of Intel's planned Ohio fab — or a joint venture with cloud buyers — for its first-ever US memory production. Intel rose more than 3% premarket; Seoul could still review any
+          <a class="ent b" data-q="What is HBM (high-bandwidth memory), who makes it, and why would South Korea treat moving its production to the US as a national-security question?" href="https://claude.ai/new">HBM</a> transfer as protected technology.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.cnbc.com/2026/09/16/intel-sk-hynix-us-memory-chips.html" target="_blank" rel="noopener">CNBC</a></span>
+          <a class="deeper" data-q="Read this article: https://www.cnbc.com/2026/09/16/intel-sk-hynix-us-memory-chips.html — if the URL is unavailable, search for &quot;Intel SK Hynix shares jump on report US memory chip manufacturing&quot; and find the original reporting — then analyze what SK Hynix leasing Intel's Ohio fab would mean for Intel's foundry turnaround, US memory-supply security, and Samsung and Micron" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--business)">Crypto</span><span class="score">6/10</span></span>
+        <h3 class="serif">Two Robinhood engineers charged with front-running their own listings</h3>
+        <p><b>Why it matters:</b> The DOJ charged Hefu Chai, 36, and Huaisong Xiang, 30, with commodities and wire fraud for allegedly buying perpetual futures on Hyperliquid ahead of at least 10 and 11 Robinhood listings respectively, clearing $50,000+ each — while formally designated as barred "Coin Aware Individuals."</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.bloomberg.com/news/articles/2026-09-15/robinhood-staffers-charged-with-crypto-related-trading-fraud" target="_blank" rel="noopener">Bloomberg</a></span>
+          <a class="deeper" data-q="Read this article: https://www.bloomberg.com/news/articles/2026-09-15/robinhood-staffers-charged-with-crypto-related-trading-fraud — if the URL is unavailable, search for &quot;Robinhood employees charged with fraud crypto trading Hyperliquid&quot; and find the original reporting — then explain why this was charged as commodities fraud rather than securities insider trading, and what precedent that sets for DeFi surveillance" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- World -->
+  <section>
+    <h2 class="sec-head world">World &amp; Geopolitics</h2>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--world)">World</span><span class="score">8/10</span></span>
+      <h3 class="serif">Trump: 'hopefully' the end of the Iran war is near</h3>
+      <p><b>Why it matters:</b> Trump told reporters Iran wants a deal and that he has heard from Tehran "directly" — the first hint of restored direct contact since the June memorandum collapsed in July. It comes as Saudi Arabia and the Houthis trade strikes around the
+        <a class="ent w" data-q="What is the Bab el-Mandeb Strait, how did the Houthis come to control both of its channels in September 2026, and what does a second closed chokepoint mean for oil flows and naval strategy?" href="https://claude.ai/new">Bab el-Mandeb Strait</a>
+        and the UN Secretary-General repeats calls to restore navigation through Hormuz.</p>
+      <p class="next">What's next: analysts caution Tehran may prefer to wait out the US midterms before serious talks resume.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.cnbc.com/2026/09/17/us-iran-war-trump-hormuz.html" target="_blank" rel="noopener">CNBC</a></span>
+        <a class="deeper" data-q="Read this article: https://www.cnbc.com/2026/09/17/us-iran-war-trump-hormuz.html — if the URL is unavailable, search for &quot;Trump says US hopefully nearing end of Iran war Saudi Arabia Houthis trade strikes&quot; and find the original reporting — then assess whether direct US-Iran contact is a genuine opening or leverage-building: what each side needs before the midterms, and what a durable ceasefire would require that the failed April and June deals lacked" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--world)">Accountability</span><span class="score">8/10</span></span>
+        <h3 class="serif">UN experts: two US strikes in Iran were war crimes</h3>
+        <p><b>Why it matters:</b> The UN fact-finding mission found reasonable grounds to believe US missile strikes on the Shajareh Tayyebeh school in Minab — 168 dead, most of them children, per Iranian state media — and a Lamerd sports complex on Feb. 28 were indiscriminate, and therefore war crimes. The same report finds Iran committed crimes against humanity in its protest crackdown.</p>
+        <p class="next">What's next: the report goes before the Human Rights Council in Geneva this week.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.npr.org/2026/09/17/nx-s1-5972934/us-iran-war-un-report-alleged-war-crimes" target="_blank" rel="noopener">NPR</a></span>
+          <a class="deeper" data-q="Read this article: https://www.npr.org/2026/09/17/nx-s1-5972934/us-iran-war-un-report-alleged-war-crimes — if the URL is unavailable, search for &quot;UN-backed experts cite possible US war crimes in Iran including a school attack&quot; and find the original reporting — then explain what legal force a fact-finding mission's 'reasonable grounds' finding carries, and what paths exist for accountability when the accused state is a Security Council permanent member" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--world)">Europe</span><span class="score">7/10</span></span>
+        <h3 class="serif">Norway raids Telenor over Myanmar — complicity in crimes against humanity</h3>
+        <p><b>Why it matters:</b> Police raided Telenor's Oslo headquarters Tuesday, probing whether the majority-state-owned telecom aided crimes against humanity by handing customer traffic data to
+          <a class="ent w" data-q="What has Myanmar's junta done with telecom surveillance since the February 2021 coup, and why are traffic-data handovers by carriers considered potential complicity in crimes against humanity?" href="https://claude.ai/new">Myanmar's junta</a>
+          from the 2021 coup to its 2022 exit — plus whether its subsidiary sale included sanctioned surveillance gear sold without permission.</p>
+        <div class="foot">
+          <span class="src"><a href="https://therecord.media/norway-investigations-telenor-telecom-myanmar-regime" target="_blank" rel="noopener">The Record</a></span>
+          <a class="deeper" data-q="Read this article: https://therecord.media/norway-investigations-telenor-telecom-myanmar-regime — if the URL is unavailable, search for &quot;Norway announces investigations into telecom Telenor's work with Myanmar junta&quot; and find the original reporting — then analyze the precedent: if a state-owned European carrier can face crimes-against-humanity complicity charges for complying with a host regime, how does that change the calculus for telecoms operating under authoritarian governments?" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Tech -->
+  <section>
+    <h2 class="sec-head tech">Tech &amp; AI</h2>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--tech)">Tech</span><span class="score">7/10</span></span>
+      <h3 class="serif">Musk settled with Apple in secret. A judge wants the terms by noon.</h3>
+      <p><b>Why it matters:</b> X and SpaceXAI abruptly dropped their antitrust claims against Apple without explanation, and US District Judge
+        <a class="ent" data-q="Profile Judge Mark Pittman — his court, notable rulings, and his role in the X/SpaceXAI v. Apple and OpenAI antitrust litigation" href="https://claude.ai/new">Mark Pittman</a>
+        ordered both companies to disclose any settlement by noon today. OpenAI — still a defendant in the same suit over the ChatGPT–Apple Intelligence integration — argues the hidden terms bear directly on its defense.</p>
+      <p class="next">What's next: today's filing either becomes public or triggers a sealing fight OpenAI has promised to contest.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.benzinga.com/markets/tech/26/09/61810380/elon-musks-x-and-spacexai-dropped-apple-from-their-antitrust-fight-without-explaining-why-now-a-federal-judge-wants-to-see-the-deal" target="_blank" rel="noopener">Benzinga</a></span>
+        <a class="deeper" data-q="Read this article: https://www.benzinga.com/markets/tech/26/09/61810380/elon-musks-x-and-spacexai-dropped-apple-from-their-antitrust-fight-without-explaining-why-now-a-federal-judge-wants-to-see-the-deal — if the URL is unavailable, search for &quot;judge orders Musk companies disclose Apple settlement antitrust&quot; and find the original reporting — then explain what Apple could have offered Musk to make the claims disappear, and how disclosure of those terms could reshape OpenAI's defense and Apple's AI partnerships" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--tech)">AI</span><span class="score">7/10</span></span>
+        <h3 class="serif">Factory triples to $5B in five months</h3>
+        <p><b>Why it matters:</b> The enterprise coding-agent startup raised $200M from Blackstone, Khosla and Sequoia, up from $1.5B in April; customers include Nvidia, Adobe and T-Mobile. With Cognition at $48B this month, capital is compounding into AI coding faster than the Fed can tighten.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.investing.com/news/stock-market-news/ai-coding-agent-startup-factory-triples-valuation-to-5-billion-in-latest-funding-round-4902392" target="_blank" rel="noopener">Reuters (via Investing.com)</a></span>
+          <a class="deeper" data-q="Read this article: https://www.investing.com/news/stock-market-news/ai-coding-agent-startup-factory-triples-valuation-to-5-billion-in-latest-funding-round-4902392 — if the URL is unavailable, search for &quot;AI coding agent startup Factory triples valuation to 5 billion&quot; and find the original reporting — then assess whether enterprise coding-agent revenue can support these multiples: what Factory's customer list implies about real usage, and what a correction in this segment would look like" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--tech)">AI Policy</span><span class="score">7/10</span></span>
+        <h3 class="serif">Canada and Germany put ~$300M behind Bengio's non-agentic AI</h3>
+        <p><b>Why it matters:</b> Ottawa committed CAD $150M and Berlin €100M to LawZero, Yoshua Bengio's 50-person Montreal non-profit, to build
+          <a class="ent" data-q="Explain LawZero's 'Scientist AI' concept — what a deliberately non-agentic AI system is, how it would monitor and guardrail agentic AI, and the technical objections to the approach" href="https://claude.ai/new">Scientist AI</a>
+          — deliberately non-agentic, built to watch the agents that act. It's the largest state bet yet on guardrails over capability.</p>
+        <p class="next">What's next: a Berlin office, plus compute from a new Hypertec/5C cluster.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/09/canada-and-germany-invest-in-lawzero-to-build-a-new-approach-to-safe-sovereign-ai.html" target="_blank" rel="noopener">Government of Canada</a></span>
+          <a class="deeper" data-q="Read this article: https://www.canada.ca/en/innovation-science-economic-development/news/2026/09/canada-and-germany-invest-in-lawzero-to-build-a-new-approach-to-safe-sovereign-ai.html — if the URL is unavailable, search for &quot;Canada Germany invest LawZero safe sovereign AI&quot; and find the original release — then evaluate whether state-funded non-agentic monitor AI can actually constrain frontier agents built with 100x the compute, and how this fits the pacing-the-frontier debate" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--tech)">Cyber</span><span class="score">8/10</span></span>
+        <h3 class="serif">Root through the mail slot: Cisco email-gateway zero-day under attack</h3>
+        <p><b>Why it matters:</b> CVE-2026-76461, a CVSS 9.8 SQL injection in Cisco Secure Email Gateway, lets an unauthenticated attacker run commands as root through the same path the appliance uses to inspect mail. It's exploited in the wild; CISA's remediation deadline for federal agencies is today.</p>
+        <div class="foot">
+          <span class="src"><a href="https://cyberscoop.com/cisco-secure-email-gateway-zero-day-exploited/" target="_blank" rel="noopener">CyberScoop</a></span>
+          <a class="deeper" data-q="Read this article: https://cyberscoop.com/cisco-secure-email-gateway-zero-day-exploited/ — if the URL is unavailable, search for &quot;Cisco Secure Email Gateway zero-day CVE-2026-76461 exploited&quot; and find the original reporting — then explain how a SQL injection in a mail-inspection path escalates to root, who is likely behind exploitation at this scale, and what defenders should hunt for beyond patching" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Science -->
+  <section>
+    <h2 class="sec-head science">Science &amp; Space</h2>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--science)">Medicine</span><span class="score">7/10</span></span>
+      <h3 class="serif">A cancer drug that works by disarming the tumor's antioxidant shield</h3>
+      <p><b>Why it matters:</b> RSO-021, built on the antibiotic thiostrepton, disables
+        <a class="ent s" data-q="Explain PRX3 (peroxiredoxin 3) — its role in mitochondrial redox balance, why tumors depend on it, and why disabling it selectively kills mesothelioma cells" href="https://claude.ai/new">PRX3</a>
+        — the mitochondrial enzyme mesothelioma cells need to survive their own oxidative stress — letting peroxide build up until the cancer dies. In a phase 1 trial published in Nature Communications, it controlled disease in 67% of evaluable patients with no treatment-related deaths.</p>
+      <p class="next">What's next: the 90mg dose met safety requirements, clearing the path to larger efficacy trials.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.nature.com/articles/s41467-026-75153-y" target="_blank" rel="noopener">Nature Communications</a></span>
+        <a class="deeper" data-q="Read this article: https://www.nature.com/articles/s41467-026-75153-y — if the URL is unavailable, search for &quot;phase 1 clinical testing targeting mitochondrial peroxiredoxin 3 in cancer Nature Communications&quot; and find the paper — then put the 67% disease-control rate in context of existing mesothelioma outcomes, and assess how promising redox-targeting is as a broader oncology strategy" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--science)">Planetary</span><span class="score">6/10</span></span>
+        <h3 class="serif">Something wet on Pluto: liquid nitrogen may seep through the heart glacier</h3>
+        <p><b>Why it matters:</b> A SwRI-led analysis of New Horizons imagery, now published in the Planetary Science Journal, finds dark lines on
+          <a class="ent s" data-q="Explain Sputnik Planitia — Pluto's nitrogen-ice glacier, its convection cells, and why evidence of recent liquid there rewrites assumptions about small-body geology" href="https://claude.ai/new">Sputnik Planitia's</a>
+          convection cells consistent with liquid nitrogen rising through cracks — the first evidence of recent liquid on Pluto, where rain is physically impossible.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.sciencedaily.com/releases/2026/09/260916232525.htm" target="_blank" rel="noopener">ScienceDaily</a></span>
+          <a class="deeper" data-q="Read this article: https://www.sciencedaily.com/releases/2026/09/260916232525.htm — if the URL is unavailable, search for &quot;New Horizons signs of liquid nitrogen flowing on Pluto&quot; and find the original reporting — then explain the mechanism that could keep nitrogen liquid beneath Sputnik Planitia and what it implies about Pluto's internal heat" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <span class="chip"><span class="beat" style="color:var(--science)">Space</span><span class="score">6/10</span></span>
+        <h3 class="serif">The Moon took a once-in-a-century hit — and LRO caught it</h3>
+        <p><b>Why it matters:</b> A building-sized impactor blasted the 728-foot-wide, 141-foot-deep McGetchin crater into the Moon's eastern limb between April 11 and May 22, 2024. A Science Advances study published Wednesday calls it the largest newly formed crater ever found in the solar system — spotted by an image specialist comparing LRO maps.</p>
+        <div class="foot">
+          <span class="src"><a href="https://science.nasa.gov/solar-system/moon/nasas-moon-orbiter-spots-new-once-in-century-moon-crater/" target="_blank" rel="noopener">NASA</a></span>
+          <a class="deeper" data-q="Read this article: https://science.nasa.gov/solar-system/moon/nasas-moon-orbiter-spots-new-once-in-century-moon-crater/ — if the URL is unavailable, search for &quot;NASA moon orbiter once-in-century McGetchin crater&quot; and find the original release — then explain what a fresh 220-meter crater teaches about impact rates, and what a similar strike would mean for planned lunar bases" href="https://claude.ai/new">Go deeper</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Anthropic -->
+  <section>
+    <h2 class="sec-head anthropic">Anthropic</h2>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--anthropic)">Product</span><span class="score">6/10</span></span>
+      <h3 class="serif">One Claude: Cowork folds into chat, and an office suite appears</h3>
+      <p><b>Why it matters:</b> Starting September 16, Anthropic is merging
+        <a class="ent a" data-q="What was Claude Cowork, why did Anthropic build it as a separate surface, and what does folding it back into chat say about how people actually delegate work to AI?" href="https://claude.ai/new">Claude Cowork</a>
+        into the main chat interface for Pro and Max plans — Claude now judges how much machinery a request needs — and shipped Claude Docs, Slides and integrated Design in beta with PowerPoint and PDF export. The stated reason: users' chief frustration was "deciding where a task belonged."</p>
+      <p class="next">What's next: Team and Free plans follow; Enterprise admins get 30 days' notice.</p>
+      <div class="foot">
+        <span class="src"><a href="https://techcrunch.com/2026/09/16/anthropic-merges-claude-chat-and-cowork-in-one-interface/" target="_blank" rel="noopener">TechCrunch</a></span>
+        <a class="deeper" data-q="Read this article: https://techcrunch.com/2026/09/16/anthropic-merges-claude-chat-and-cowork-in-one-interface/ — if the URL is unavailable, search for &quot;Anthropic merges Claude chat and Cowork in one interface&quot; and find the original reporting — then analyze what Docs and Slides in Claude means for Microsoft 365 and Google Workspace, and whether routing-by-intent is the right abstraction for agentic work" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+    <article class="story">
+      <span class="chip"><span class="beat" style="color:var(--anthropic)">Debate</span><span class="score">7/10</span></span>
+      <h3 class="serif">Suleyman vs. the constitution: 'an epistemic hall of mirrors'</h3>
+      <p><b>Why it matters:</b> Microsoft AI chief
+        <a class="ent a" data-q="Profile Mustafa Suleyman — DeepMind co-founder to Microsoft AI CEO — and how his 'AIs are not conscious' position differs from Anthropic's model-welfare research program" href="https://claude.ai/new">Mustafa Suleyman</a>
+        published a September 16 essay, "A warning about model welfare," arguing Anthropic's choice to describe Claude in human concepts is circular: the company supplies the concepts, Claude reflects them back, and the output gets read as evidence of an inner life. "AIs are not conscious. They do not feel, experience, or suffer," he writes.</p>
+      <p class="next">What's next: the essay sharpens a philosophical rift weeks after both labs endorsed pacing the frontier.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.axios.com/2026/09/16/microsoft-ai-chief-anthropic-consciousness" target="_blank" rel="noopener">Axios</a></span>
+        <a class="deeper" data-q="Read this article: https://www.axios.com/2026/09/16/microsoft-ai-chief-anthropic-consciousness — if the URL is unavailable, search for &quot;Microsoft AI chief blasts Anthropic notion of AI consciousness&quot; and find the original reporting — then steelman both sides: Suleyman's circularity critique versus Anthropic's precautionary model-welfare case, and what each position implies for how labs should train and describe their models" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- Sports -->
+  <section>
+    <h2 class="sec-head" style="color:var(--muted)">Your teams</h2>
+
+    <h3 class="team-head sharks">San Jose Sharks</h3>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--sharks)">NHL</span><span class="score">6/10</span></span>
+      <h3 class="serif">Camp day: 48 Sharks hit the ice this morning</h3>
+      <p><b>Why it matters:</b> Training camp opens today in San Jose — 28 forwards, 15 defensemen, five goalies — with
+        <a class="ent" data-q="Profile Macklin Celebrini's trajectory entering the 2026-27 NHL season — his first two seasons' numbers, and what the Sharks need from him to end their rebuild" href="https://claude.ai/new">Macklin Celebrini</a>,
+        Will Smith and Tyler Toffoli headlining as Ryan Warsofsky opens year three behind the bench.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.nhl.com/sharks/news/san-jose-sharks-set-to-open-training-camp-on-thursday-sept-17" target="_blank" rel="noopener">NHL.com</a></span>
+        <a class="deeper" data-q="Read this article: https://www.nhl.com/sharks/news/san-jose-sharks-set-to-open-training-camp-on-thursday-sept-17 — if the URL is unavailable, search for &quot;San Jose Sharks open training camp September 17 2026&quot; and find the original reporting — then lay out the Sharks' roster battles to watch in camp and a realistic ceiling for their 2026-27 season" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+
+    <h3 class="team-head giants">San Francisco Giants</h3>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--giants-t)">MLB</span><span class="score">6/10</span></span>
+      <h3 class="serif">Two straight in St. Louis: Giants edge the Cardinals 6–5</h3>
+      <p><b>Why it matters:</b> Playing out the string since their September 6 elimination, the Giants took a one-run game at Busch Stadium a night after winning 10–3 — pride games now, with roster evaluation the real stakes.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.mlb.com/gameday/giants-vs-cardinals/2026/09/16/823004/live" target="_blank" rel="noopener">MLB.com</a></span>
+        <a class="deeper" data-q="Read this page: https://www.mlb.com/gameday/giants-vs-cardinals/2026/09/16/823004/live — if the URL is unavailable, search for &quot;Giants Cardinals September 16 2026 final score&quot; and find the box score — then evaluate which young Giants have actually helped their 2027 roster case during this final stretch" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+
+    <h3 class="team-head niners">San Francisco 49ers</h3>
+    <article class="story lead-story">
+      <span class="chip"><span class="beat" style="color:var(--niners)">NFL</span><span class="score">6/10</span></span>
+      <h3 class="serif">Home opener week: 1-0 Niners prep for Miami</h3>
+      <p><b>Why it matters:</b> The 49ers practice today ahead of Sunday's 1:25pm PT home opener against the Dolphins at Levi's Stadium, with Brock Purdy set to speak after Thursday's session.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.ninersnation.com/san-francisco-49ers-news/162632/49ers-news-regular-season-week-2-miami-dolphins-practice-dezhaun-stribling-anklei" target="_blank" rel="noopener">Niners Nation</a></span>
+        <a class="deeper" data-q="Read this article: https://www.ninersnation.com/san-francisco-49ers-news/162632/49ers-news-regular-season-week-2-miami-dolphins-practice-dezhaun-stribling-anklei — if the URL is unavailable, search for &quot;49ers week 2 Dolphins practice news&quot; and find the original reporting — then break down the matchup keys for 49ers-Dolphins in Week 2 and the injury situations that matter most" href="https://claude.ai/new">Go deeper</a>
+      </div>
+    </article>
+
+    <h2 class="sec-head" style="color:var(--muted); margin-top:28px;">Last night / tonight</h2>
+    <div class="league-row">
+      <p class="league-label">MLB — regular season, final three weeks</p>
+      <div class="cards">
+        <div class="card fav-giants"><div class="row"><span class="w">SF 6</span></div><div class="row"><span>STL 5</span></div><div class="st">Final</div></div>
+        <div class="card"><div class="row"><span class="w">CLE 6</span></div><div class="row"><span>CHW 3</span></div><div class="st">Final</div></div>
+        <div class="card"><div class="row"><span>DET 1</span></div><div class="row"><span class="w">TOR 5</span></div><div class="st">Final</div></div>
+        <div class="card"><div class="row"><span>BOS 3</span></div><div class="row"><span class="w">TEX 7</span></div><div class="st">Final</div></div>
+      </div>
+    </div>
+    <div class="league-row">
+      <p class="league-label">NFL — Week 2</p>
+      <div class="cards">
+        <div class="card"><div class="row"><span>DET</span></div><div class="row"><span>BUF</span></div><div class="st live">Tonight 5:15pm PT · Prime Video</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ending -->
+  <div class="ending">
+    <h2>That's your briefing. You're caught up.</h2>
+    <p>20 stories this morning — every link above goes deeper. <a href="archive/">Browse the archive</a></p>
+  </div>
+
+  <!-- Sources -->
+  <details>
+    <summary>Sources (20)</summary>
+    <div class="srcs">
+      <p class="vn"><i>Note: this environment's network policy blocks direct page fetches, so each source URL and its claims were verified through multiple independent web-search results rather than a direct fetch.</i></p>
+      The hike lands: 3.75–4.00% — <a href="https://www.cnbc.com/2026/09/16/fed-meeting-today-live-updates.html" target="_blank" rel="noopener">CNBC</a> — rate, 12–0 vote and 4.1% median cross-confirmed by Yahoo Finance and Motley Fool closes<br>
+      Retail sales jump 1.2% — <a href="https://www.washingtonpost.com/business/2026/09/16/retail-sales-rebound-strongly-august-even-people-feel-wary-over-economy/" target="_blank" rel="noopener">The Washington Post</a> — $773.9B/+1.2% cross-confirmed by KPMG, TD Economics, FXStreet<br>
+      Brent settles at $105.83 — <a href="https://www.cnbc.com/2026/09/16/oil-prices-today-brent-wti-hormuz-iran-war.html" target="_blank" rel="noopener">CNBC</a> — settlements quoted in search summary<br>
+      Robinhood engineers charged — <a href="https://www.bloomberg.com/news/articles/2026-09-15/robinhood-staffers-charged-with-crypto-related-trading-fraud" target="_blank" rel="noopener">Bloomberg</a> — names and counts cross-confirmed by The Block, CoinDesk, Decrypt<br>
+      SK Hynix–Intel US memory talks — <a href="https://www.cnbc.com/2026/09/16/intel-sk-hynix-us-memory-chips.html" target="_blank" rel="noopener">CNBC</a> — Ohio-lease and JV options cross-confirmed by TechCrunch, Seoul Economic Daily<br>
+      Trump: Iran war end near — <a href="https://www.cnbc.com/2026/09/17/us-iran-war-trump-hormuz.html" target="_blank" rel="noopener">CNBC</a> — "directly" quote cross-confirmed by Just Security early edition<br>
+      UN: US strikes were war crimes — <a href="https://www.npr.org/2026/09/17/nx-s1-5972934/us-iran-war-un-report-alleged-war-crimes" target="_blank" rel="noopener">NPR</a> — 168 deaths, Feb. 28 Lamerd strike cross-confirmed by Globe and Mail, CBS<br>
+      Norway raids Telenor — <a href="https://therecord.media/norway-investigations-telenor-telecom-myanmar-regime" target="_blank" rel="noopener">The Record</a> — raid and dual probes cross-confirmed by Euronext wire, TRT<br>
+      Judge orders Musk–Apple terms — <a href="https://www.benzinga.com/markets/tech/26/09/61810380/elon-musks-x-and-spacexai-dropped-apple-from-their-antitrust-fight-without-explaining-why-now-a-federal-judge-wants-to-see-the-deal" target="_blank" rel="noopener">Benzinga</a> — Judge Pittman, noon deadline cross-confirmed by PYMNTS<br>
+      Factory triples to $5B — <a href="https://www.investing.com/news/stock-market-news/ai-coding-agent-startup-factory-triples-valuation-to-5-billion-in-latest-funding-round-4902392" target="_blank" rel="noopener">Reuters (via Investing.com)</a> — figures cross-confirmed by TradingView Reuters feed<br>
+      Canada/Germany fund LawZero — <a href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/09/canada-and-germany-invest-in-lawzero-to-build-a-new-approach-to-safe-sovereign-ai.html" target="_blank" rel="noopener">Government of Canada</a> — primary release; cross-confirmed by Globe and Mail, CBC, The Logic<br>
+      Cisco email-gateway zero-day — <a href="https://cyberscoop.com/cisco-secure-email-gateway-zero-day-exploited/" target="_blank" rel="noopener">CyberScoop</a> — CVE-2026-76461, CVSS 9.8, KEV deadline cross-confirmed by Help Net Security, BleepingComputer, Qualys<br>
+      Mesothelioma drug (RSO-021) — <a href="https://www.nature.com/articles/s41467-026-75153-y" target="_blank" rel="noopener">Nature Communications</a> — primary journal article; 67% disease control cross-confirmed by ScienceDaily, UVM<br>
+      Liquid nitrogen on Pluto — <a href="https://www.sciencedaily.com/releases/2026/09/260916232525.htm" target="_blank" rel="noopener">ScienceDaily</a> — SwRI/PSJ findings cross-confirmed by Sci.News, NASA blog; finding first announced in August, journal publication is the peg<br>
+      Once-in-century Moon crater — <a href="https://science.nasa.gov/solar-system/moon/nasas-moon-orbiter-spots-new-once-in-century-moon-crater/" target="_blank" rel="noopener">NASA</a> — primary release; Science Advances study cross-confirmed by Forbes<br>
+      Cowork folds into chat — <a href="https://techcrunch.com/2026/09/16/anthropic-merges-claude-chat-and-cowork-in-one-interface/" target="_blank" rel="noopener">TechCrunch</a> — rollout details cross-confirmed by VentureBeat, 9to5Mac; Anthropic newsroom unreachable from this environment<br>
+      Suleyman on model welfare — <a href="https://www.axios.com/2026/09/16/microsoft-ai-chief-anthropic-consciousness" target="_blank" rel="noopener">Axios</a> — essay title and quotes cross-confirmed by The Register, Quartz, TNW<br>
+      Sharks camp opens — <a href="https://www.nhl.com/sharks/news/san-jose-sharks-set-to-open-training-camp-on-thursday-sept-17" target="_blank" rel="noopener">NHL.com</a> — primary team release; roster numbers cross-confirmed by The Hockey News<br>
+      Giants 6–5 Cardinals — <a href="https://www.mlb.com/gameday/giants-vs-cardinals/2026/09/16/823004/live" target="_blank" rel="noopener">MLB.com</a> — primary; cross-confirmed by ESPN, FOX Sports box scores<br>
+      49ers home-opener week — <a href="https://www.ninersnation.com/san-francisco-49ers-news/162632/49ers-news-regular-season-week-2-miami-dolphins-practice-dezhaun-stribling-anklei" target="_blank" rel="noopener">Niners Nation</a> — Sunday 1:25pm vs Miami cross-confirmed by 49ers.com schedule
+    </div>
+  </details>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  // Build claude.ai conversation links from data-q prompts
+  document.querySelectorAll("a[data-q]").forEach(function (a) {
+    a.href = "https://claude.ai/new?q=" + encodeURIComponent(a.getAttribute("data-q"));
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+
+  var spData = { labels: ["Sep 10", "Sep 11", "Sep 14", "Sep 15", "Sep 16"], values: [7591.70, 7656.00, 7619.98, 7585.73, 7551.81] };
+  var tyData = { labels: ["Sep 11", "Sep 14", "Sep 15", "Sep 16"], values: [4.96, 4.98, 5.02, 5.02] };
+  var codData = { labels: ["Factory (Apr)", "Factory (now)", "Cognition (Sep)"], values: [1.5, 5, 48] };
+
+  if (typeof Chart === "undefined") {
+    // CDN fallback: replace canvases with text summaries so the data survives
+    var fb = [
+      ["spChart", "S&P 500: 7,591.70 → 7,551.81 over five sessions (−0.5%), Wednesday close 7,551.81."],
+      ["tyChart", "10-year Treasury yield: 4.96% (Sep 11) → 5.02% (Sep 16 close, 5.016%)."],
+      ["codChart", "AI coding valuations: Factory $1.5B (April) → $5B (now); Cognition $48B (September)."]
+    ];
+    fb.forEach(function (f) {
+      var c = document.getElementById(f[0]);
+      if (c) { var p = document.createElement("p"); p.style.fontSize = "13px"; p.textContent = f[1]; c.replaceWith(p); }
+    });
+    return;
+  }
+
+  var css = getComputedStyle(document.documentElement);
+  var v = function (n) { return css.getPropertyValue(n).trim(); };
+  var tick = v("--muted"), grid = v("--border"), blue = v("--tech"), down = v("--down"), up = v("--business");
+  var base = {
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: tick, font: { size: 11 } }, grid: { color: grid } },
+      y: { ticks: { color: tick, font: { size: 11 } }, grid: { color: grid } }
+    },
+    responsive: true, maintainAspectRatio: false, animation: false
+  };
+  function lineCfg(d, color) {
+    return { type: "line", data: { labels: d.labels, datasets: [{ data: d.values, borderColor: color, backgroundColor: "transparent", pointBackgroundColor: color, pointRadius: 3, borderWidth: 2, tension: 0.15 }] }, options: base };
+  }
+  new Chart(document.getElementById("spChart"), lineCfg(spData, blue));
+  new Chart(document.getElementById("tyChart"), lineCfg(tyData, down));
+  new Chart(document.getElementById("codChart"), {
+    type: "bar",
+    data: { labels: codData.labels, datasets: [{ data: codData.values, backgroundColor: [tick, up, blue] }] },
+    options: base
+  });
+})();
+</script>
+</body>
+</html>
