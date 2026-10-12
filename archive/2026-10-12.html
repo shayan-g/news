@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — October 12, 2026</title>
+<style>
+  :root {
+    --bg: #0f1115; --surface: #171a21; --border: #2a2f3a;
+    --text: #e8e8e8; --muted: #9aa0a6;
+    --up: #9ece6a; --down: #f7768e;
+    --tech: #7aa2f7; --world: #f7768e; --business: #9ece6a;
+    --science: #bb9af7; --anthropic: #d4a27f;
+    --serif: "Iowan Old Style", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fafaf8; --surface: #ffffff; --border: #e3e3de;
+      --text: #1f1f1f; --muted: #666666;
+      --up: #4a7c1f; --down: #c22f4d;
+      --tech: #2b5fc7; --world: #c22f4d; --business: #3d6b1a;
+      --science: #6a3fb5; --anthropic: #8f5f3a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 var(--sans);
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+  a { color: inherit; }
+
+  /* Wire strip */
+  .wire { font-family: var(--mono); font-size: 13px; line-height: 2; letter-spacing: 0.01em; }
+  .wire .nm { color: var(--muted); }
+  .wire .vl { color: var(--text); }
+  .wire .up { color: var(--up); }
+  .wire .dn { color: var(--down); }
+  .wire .sep { color: var(--border); padding: 0 4px; }
+  .wire-label { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* Lede */
+  .lede { margin: 36px 0 8px; }
+  .dateline { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .thesis { font-family: var(--serif); font-size: 23px; line-height: 1.35; font-weight: 500; margin: 0 0 14px; }
+  .narrative { font-family: var(--serif); font-size: 17px; line-height: 1.65; margin: 0 0 16px; }
+  .readtime { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* Entity + go-deeper links */
+  .ent { text-decoration: none; border-bottom: 1px dotted; padding-bottom: 1px; }
+  .ent:hover { border-bottom-style: solid; }
+  .ent-tech { color: var(--tech); } .ent-world { color: var(--world); }
+  .ent-biz { color: var(--business); } .ent-sci { color: var(--science); }
+
+  /* State of play */
+  .sop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 28px 0; }
+  .sop > div { padding: 14px 10px; border-left: 1px solid var(--border); }
+  .sop > div:first-child { border-left: none; }
+  .sop .v { font-family: var(--mono); font-size: 18px; font-weight: 500; }
+  .sop .l { font-size: 12px; color: var(--text); margin-top: 2px; }
+  .sop .c { font-size: 12px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+  @media (max-width: 560px) {
+    .sop { grid-template-columns: repeat(2, 1fr); }
+    .sop > div { border-left: none; border-top: 1px solid var(--border); }
+    .sop > div:nth-child(-n+2) { border-top: none; }
+  }
+
+  /* Charts */
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; }
+  @media (max-width: 560px) { .charts { grid-template-columns: 1fr; } }
+  .chartbox { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .chartbox h3 { font-size: 13px; font-weight: 500; margin: 0 0 10px; color: var(--text); }
+  .chartbox .ann { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+  .chartwrap { position: relative; height: 150px; }
+  .cod .chartwrap { height: 190px; }
+  .cod { margin: 0 0 28px; }
+
+  /* Sections */
+  section { margin-top: 44px; }
+  .sechead { font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding-bottom: 8px; border-bottom: 2px solid; margin: 0 0 20px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+  .grid2 > article { border-top: 1px solid var(--border); }
+  @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* Story anatomy */
+  article.story { padding: 18px 0 20px; }
+  article.lead-story { padding-top: 0; }
+  .kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .kicker .tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+  .badge { font-family: var(--mono); font-size: 11px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 1px 7px; }
+  .story h3 { font-family: var(--serif); font-size: 19px; line-height: 1.35; font-weight: 500; margin: 0 0 8px; }
+  .lead-story h3 { font-size: 23px; }
+  .wim { font-size: 15px; line-height: 1.6; margin: 0 0 6px; }
+  .wim b { font-weight: 500; }
+  .wn { font-size: 14px; font-style: italic; color: var(--muted); margin: 0 0 6px; }
+  .foot { display: flex; align-items: center; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
+  .src { font-size: 13px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .src:hover { color: var(--text); }
+  .gd { font-family: var(--mono); font-size: 12px; color: var(--text); text-decoration: none; border: 1px solid var(--border); background: var(--surface); padding: 4px 12px; }
+  .gd:hover { border-color: var(--muted); }
+
+  /* Sports */
+  .team-49ers { color: #AA0000; border-color: #AA0000; }
+  .team-warriors { color: #1D428A; border-color: #1D428A; }
+  .team-sharks { color: #006D75; border-color: #006D75; }
+  @media (prefers-color-scheme: dark) {
+    .team-49ers { color: #e05555; border-color: #e05555; }
+    .team-warriors { color: #6f9be8; border-color: #6f9be8; }
+    .team-sharks { color: #3ea8b0; border-color: #3ea8b0; }
+  }
+  .league { margin-top: 18px; }
+  .league-label { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .scorerow { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 4px; }
+  .scorerow::-webkit-scrollbar { display: none; }
+  .card { flex: 0 0 auto; min-width: 128px; background: var(--surface); border: 1px solid var(--border); padding: 8px 12px; font-family: var(--mono); font-size: 13px; line-height: 1.7; }
+  .card .st { font-size: 11px; color: var(--muted); }
+  .card .w { color: var(--up); }
+  .card .live { color: var(--down); }
+  .card.fav-49ers { border-left: 3px solid #AA0000; }
+  .card.fav-warriors { border-left: 3px solid #1D428A; }
+  .card.fav-sharks { border-left: 3px solid #006D75; }
+
+  /* Ending */
+  .ending { text-align: center; margin: 64px 0 40px; }
+  .ending h2 { font-family: var(--serif); font-size: 22px; font-weight: 500; margin: 0 0 8px; }
+  .ending p { font-size: 13px; color: var(--muted); margin: 0; }
+  .ending a { color: var(--muted); }
+
+  /* Sources */
+  details.sources { border-top: 1px solid var(--border); padding-top: 16px; }
+  details.sources summary { font-size: 13px; color: var(--muted); cursor: pointer; }
+  details.sources ul { list-style: none; margin: 12px 0 0; padding: 0; }
+  details.sources li { font-size: 12px; color: var(--muted); line-height: 1.6; padding: 3px 0; }
+  details.sources a { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- 1. Wire strip -->
+  <div class="wire">
+    <span class="nm">S&amp;P 500</span> <span class="vl">7,811.54</span> <span class="up">+0.59%</span><span class="sep">·</span>
+    <span class="nm">Dow</span> <span class="vl">51,654.95</span> <span class="up">+0.83%</span><span class="sep">·</span>
+    <span class="nm">Nasdaq</span> <span class="vl">27,366.17</span> <span class="up">+0.64%</span><span class="sep">·</span>
+    <span class="nm">VIX</span> <span class="vl">14.84</span> <span class="up">−3.7%</span><span class="sep">·</span>
+    <span class="nm">10-yr</span> <span class="vl">5.24%</span> <span class="dn">+1bp</span><span class="sep">·</span>
+    <span class="nm">Brent</span> <span class="vl">$104.72</span> <span class="dn">+0.42%</span><span class="sep">·</span>
+    <span class="nm">WTI</span> <span class="vl">$91.85</span> <span class="dn">+0.39%</span><span class="sep">·</span>
+    <span class="nm">Gold</span> <span class="vl">$4,216</span> <span class="up">+1.4%</span><span class="sep">·</span>
+    <span class="nm">BTC</span> <span class="vl">$82,123</span> <span class="dn">−2.8% wk</span>
+  </div>
+  <div class="wire-label">Friday close (Oct 9) — stocks reopen today; bond market closed for Columbus Day</div>
+
+  <!-- 2. Lede -->
+  <div class="lede">
+    <div class="dateline">Monday, October 12, 2026 — generated 6:49am PT</div>
+    <h1 class="thesis">Paper ceasefires, real premiums.</h1>
+    <p class="narrative">The weekend produced two declared de-escalations and zero confirmed ones. Tehran floated reopening the <a class="ent ent-world" data-prompt="Explain the Strait of Hormuz — why roughly a fifth of the world's oil transits it, how Iran's 2026 tanker-strike campaign works tactically, and what a sustained closure would do to global energy prices and to Iran itself." target="_blank" rel="noopener">Strait of Hormuz</a> and called Washington's answer insufficient; Trump announced a Russia-Ukraine "energy ceasefire" that <a class="ent ent-world" data-prompt="Profile Volodymyr Zelenskyy's position in October 2026 — how he is navigating US-brokered ceasefire announcements he learns about from the media, and what leverage Ukraine retains heading into winter." target="_blank" rel="noopener">Zelenskyy</a> learned about from the press while Kharkiv was being hit. The measurable world kept moving the other way: Brent up 4.4% in five sessions, the ten-year at 5.24%, the Pentagon's war toll raised to 21. And still the tape rallied — a winning week for every major index with the <a class="ent ent-biz" data-prompt="Explain the VIX — what a reading of 14.84 implies about expected volatility, and why it might sit that low while oil trades above $100 during an active US-Iran conflict. Is this complacency or rational pricing?" target="_blank" rel="noopener">VIX</a> under 15, because the market has picked its story and the story is AI capex: <a class="ent ent-biz" data-prompt="What is TSMC's role in the AI supply chain, who are its largest customers, and what does its record Q3 2026 revenue (+50.9% year over year) say about whether AI infrastructure demand is still accelerating?" target="_blank" rel="noopener">TSMC</a> just printed a record quarter and SpaceX wants to borrow $40 billion to buy GPUs. Keep one eye on the strait and the other on Tuesday's bank earnings; between them sits everything this market believes.</p>
+    <div class="readtime">~5 min read — 17 stories, 4 beats + the war</div>
+  </div>
+
+  <!-- 3. State of play -->
+  <div class="sop">
+    <div><div class="v" style="color:var(--down)">$104.72</div><div class="l">Brent crude</div><div class="c">+4.4% in five sessions; a dozen-plus tanker strikes since late September</div></div>
+    <div><div class="v" style="color:var(--down)">5.24%</div><div class="l">10-year Treasury</div><div class="c">near cycle highs; the Treasury market is closed today</div></div>
+    <div><div class="v" style="color:var(--down)">21</div><div class="l">US troops killed</div><div class="c">the Pentagon's official Iran-war toll; the Post counts more</div></div>
+    <div><div class="v" style="color:var(--up)">NT$1.49T</div><div class="l">TSMC Q3 revenue</div><div class="c">a record, +50.9% y/y — the AI buildout in one number</div></div>
+    <div><div class="v">7.7</div><div class="l">Panama quake</div><div class="c">Friday's magnitude; buildings fell, the canal held</div></div>
+  </div>
+
+  <!-- 4. Charts -->
+  <div class="charts">
+    <div class="chartbox">
+      <h3>S&amp;P 500 — last five closes</h3>
+      <div class="chartwrap"><canvas id="spx"></canvas></div>
+      <div class="ann">A midweek wobble, then Friday's +0.59% sealed a +1.15% week. Source: FRED / Investing.com.</div>
+    </div>
+    <div class="chartbox">
+      <h3>Brent crude — last five settlements</h3>
+      <div class="chartwrap"><canvas id="brent"></canvas></div>
+      <div class="ann">Thursday's +4.1% jump — the session after the Riyadh airport attack — did the week's work. Source: Investing.com front-month futures.</div>
+    </div>
+  </div>
+  <div class="chartbox cod">
+    <h3>Chart of the day — TSMC's third quarter, three years running (NT$ billions)</h3>
+    <div class="chartwrap"><canvas id="cod"></canvas></div>
+    <div class="ann">From NT$760B to NT$1,494B in two years: the AI buildout's purest demand signal, and it is still steepening. Q3 2024 derived from TSMC's reported +30.3% in its Q3 2025 release; later bars from <a class="ent ent-biz" data-prompt="Analyze TSMC's revenue trajectory from 2024 through Q3 2026 — which customers and process nodes (N3, N2) drive the acceleration, what the 2nm ramp means for margins, and what could break the trend." target="_blank" rel="noopener">TSMC releases</a>.</div>
+  </div>
+
+  <!-- Dominant story section -->
+  <section>
+    <h2 class="sechead" style="color:var(--world); border-color:var(--world)">The Iran war — week eight of the strait campaign</h2>
+    <article class="story lead-story">
+      <div class="kicker"><span class="tag" style="color:var(--world)">The war</span><span class="badge">9/10</span></div>
+      <h3>Iran turns the strait into a toll road it can no longer collect</h3>
+      <p class="wim"><b>Why it matters:</b> More than a dozen strikes on shipping since late September have kept Brent above $100 — yet oil volumes through Hormuz are rising again as Iran's grip loosens, which is exactly why Tehran is escalating against tankers as far away as Fujairah. Iran calls Washington's response to its strait-reopening proposal "insufficient"; Trump said Thursday he has no plans for new strikes, leaving the <a class="ent ent-world" data-prompt="What is the IRGC Navy — how does it differ from Iran's regular navy, what small-boat and missile tactics does it use against commercial shipping, and how has it adapted since US strikes began in 2026?" target="_blank" rel="noopener">IRGC</a> campaign and the salvage tugs to fight it out.</p>
+      <p class="wn">What's next: Israel's prime minister convened security officials Sunday amid concerns of a fresh escalation.</p>
+      <div class="foot">
+        <a class="src" href="https://www.cnn.com/2026/10/11/middleeast/iran-hormuz-oil-analysis-intl" target="_blank" rel="noopener">CNN</a>
+        <a class="gd" data-prompt="Read this article: https://www.cnn.com/2026/10/11/middleeast/iran-hormuz-oil-analysis-intl — if the URL is unavailable, search for &quot;Iran tries to regain its stranglehold on shipping Hormuz&quot; and find the original reporting — then: how is Iran's tanker-strike campaign actually failing to stop oil flows, which routing and escort workarounds are shippers using, and what would force the strait fully closed?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </article>
+    <article class="story" style="border-top:1px solid var(--border)">
+      <div class="kicker"><span class="tag" style="color:var(--world)">The war</span><span class="badge">7/10</span></div>
+      <h3>The official cost of the war rises to 21</h3>
+      <p class="wim"><b>Why it matters:</b> The Pentagon added two noncombat deaths to its count — now 15 under <a class="ent ent-world" data-prompt="What is Operation Epic Fury — when did it begin, what is its scope in the US war with Iran, and how does the Pentagon categorize casualties across it and the newer 'overseas operations' label?" target="_blank" rel="noopener">Operation Epic Fury</a> since February 28 and six since July 7 — alongside 865 wounded. The Washington Post reports the database still undercounts; Defense Secretary Hegseth calls that "a complete lie."</p>
+      <div class="foot">
+        <a class="src" href="https://www.stripes.com/theaters/middle_east/2026-10-10/pentagon-death-toll-iran-war-23114546.html" target="_blank" rel="noopener">Stars and Stripes</a>
+        <a class="gd" data-prompt="Read this article: https://www.stripes.com/theaters/middle_east/2026-10-10/pentagon-death-toll-iran-war-23114546.html — if the URL is unavailable, search for &quot;Pentagon raises official death toll from Iran war to 21&quot; and find the original reporting — then: which deaths were added and why now, how does the Pentagon's operation-based accounting produce undercounts, and what is the discrepancy with the Washington Post's tally?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- World -->
+  <section>
+    <h2 class="sechead" style="color:var(--world); border-color:var(--world)">World &amp; Geopolitics</h2>
+    <article class="story lead-story">
+      <div class="kicker"><span class="tag" style="color:var(--world)">World</span><span class="badge">8/10</span></div>
+      <h3>A ceasefire only Washington can see</h3>
+      <p class="wim"><b>Why it matters:</b> Trump posted Sunday that a Russia-Ukraine "energy ceasefire" took effect immediately — but Zelenskyy said he learned of it from the media, the Kremlin would only say "contacts are ongoing," and Ukraine's presidential office confirmed a strike on Kharkiv hours after the post. The claim landed a day after a US deal lifting sanctions on Russian diesel, and after Miami talks between US, Ukrainian and European negotiators ended early Friday.</p>
+      <p class="wn">What's next: <a class="ent ent-world" data-prompt="Profile Steve Witkoff — his background, his role as Trump's envoy in the Russia-Ukraine and Middle East tracks through 2026, and his negotiating record so far." target="_blank" rel="noopener">Witkoff</a> says the Miami round mapped "areas of work" ahead of the next US-Russia contacts, with winter energy resilience at the top.</p>
+      <div class="foot">
+        <a class="src" href="https://www.nbcnews.com/world/ukraine/trump-russia-ukraine-agree-energy-ceasefire-zelenskyy-diesel-rcna602766" target="_blank" rel="noopener">NBC News</a>
+        <a class="gd" data-prompt="Read this article: https://www.nbcnews.com/world/ukraine/trump-russia-ukraine-agree-energy-ceasefire-zelenskyy-diesel-rcna602766 — if the URL is unavailable, search for &quot;Trump claims energy ceasefire but Ukraine says Russia keeps striking&quot; and find the original reporting — then: what exactly did Trump claim, how does the Russian diesel sanctions relief fit into it, and what happened to the similar energy ceasefire announced in September?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </article>
+    <div class="grid2">
+      <article class="story">
+        <div class="kicker"><span class="tag" style="color:var(--world)">World</span><span class="badge">7/10</span></div>
+        <h3>A 7.7 shakes Panama; the canal holds</h3>
+        <p class="wim"><b>Why it matters:</b> Twin quakes of magnitude 7.7 and 6.6 near Pitaloza Arriba in Herrera province collapsed buildings near the epicenter Friday and sent Panama City residents into the streets. Tsunami warnings went out for nine Pacific coastlines before being lifted; early reports confirmed no deaths and no damage to the <a class="ent ent-world" data-prompt="What is the Panama Canal's exposure to seismic risk — how is it engineered against earthquakes, and what would a disruption mean for global shipping already strained by the Hormuz crisis in 2026?" target="_blank" rel="noopener">Panama Canal</a>.</p>
+        <div class="foot">
+          <a class="src" href="https://abc7news.com/story/panama-earthquake-76-shakes-region/19925359/" target="_blank" rel="noopener">AP (via ABC7)</a>
+          <a class="gd" data-prompt="Read this article: https://abc7news.com/story/panama-earthquake-76-shakes-region/19925359/ — if the URL is unavailable, search for &quot;Two powerful earthquakes and multiple aftershocks rock Panama&quot; and find the original reporting — then: what fault system produced the 7.7, why were magnitude estimates revised from 8.0 downward, and how did Panama escape with so little damage?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag" style="color:var(--world)">World</span><span class="badge">6/10</span></div>
+        <h3>Simon soaks Jalisco without quite landing</h3>
+        <p class="wim"><b>Why it matters:</b> The hurricane skirted Mexico's Pacific coast through Sunday rather than making a clean landfall — flooding homes in Manzanillo, closing Puerto Vallarta's airport and boardwalk, and drawing more than 4,600 navy personnel into the response, with forecasts of 8-15 inches of rain across the southwest.</p>
+        <div class="foot">
+          <a class="src" href="https://www.pbs.org/newshour/world/hurricane-simon-hits-mexicos-pacific-coast" target="_blank" rel="noopener">PBS NewsHour (AP)</a>
+          <a class="gd" data-prompt="Read this article: https://www.pbs.org/newshour/world/hurricane-simon-hits-mexicos-pacific-coast — if the URL is unavailable, search for &quot;Hurricane Simon hits Mexico's Pacific coast&quot; and find the original reporting — then: what was Simon's final track and peak intensity, how bad is the flooding in Jalisco and Colima, and why do coast-skirting hurricanes often do more rain damage than landfalling ones?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag" style="color:var(--world)">World</span><span class="badge">7/10</span></div>
+        <h3>The Peace Prize goes to the prosecution</h3>
+        <p class="wim"><b>Why it matters:</b> <a class="ent ent-world" data-prompt="Profile Navi Pillay — her path from apartheid-era defense lawyer in Durban to Rwanda tribunal judge to UN High Commissioner for Human Rights, and why her 2026 Nobel Peace Prize is both celebrated and contested." target="_blank" rel="noopener">Navi Pillay</a>, 85 — apartheid-era defense lawyer, Rwanda tribunal judge, former UN human rights chief — won Friday for work ensuring war crimes and genocide get prosecuted. The committee chair called international law "under tremendous pressure"; Pillay, who chaired the UN's contested Gaza genocide inquiry, dedicated the prize to survivors.</p>
+        <p class="wn">What's next: the ceremony is December 10 in Oslo; the prize is 12 million Swedish kronor (~$1.2M).</p>
+        <div class="foot">
+          <a class="src" href="https://www.aljazeera.com/news/2026/10/9/2026-nobel-peace-prize-awarded-to-navi-pillay" target="_blank" rel="noopener">Al Jazeera</a>
+          <a class="gd" data-prompt="Read this article: https://www.aljazeera.com/news/2026/10/9/2026-nobel-peace-prize-awarded-to-navi-pillay — if the URL is unavailable, search for &quot;2026 Nobel Peace Prize awarded to Navi Pillay&quot; and find the original reporting — then: what is the committee signaling by honoring international criminal law in 2026, and how have governments critical of the ICC and UN inquiries responded?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Business -->
+  <section>
+    <h2 class="sechead" style="color:var(--business); border-color:var(--business)">Business &amp; Markets</h2>
+    <article class="story lead-story">
+      <div class="kicker"><span class="tag" style="color:var(--business)">Business</span><span class="badge">7/10</span></div>
+      <h3>The tape pays the war no mind</h3>
+      <p class="wim"><b>Why it matters:</b> The S&amp;P 500 closed a winning week at 7,811.54 (+1.15% from the prior Friday), the Dow added 423 points to 51,654.95, and the VIX sat at 14.84 — volatility priced for calm against $104 Brent and a 5.24% ten-year. Stocks trade normally today; the bond market is closed for Columbus Day.</p>
+      <p class="wn">What's next: <a class="ent ent-biz" data-prompt="What is Goldman Sachs — how do its trading and investment-banking segments drive quarterly results, and what should investors watch in its Q3 2026 report (consensus ~$12.90 EPS on ~$16.9B revenue)?" target="_blank" rel="noopener">Goldman Sachs</a> opens Q3 bank earnings before Tuesday's bell — consensus sees $12.90 EPS on roughly $16.9B of revenue.</p>
+      <div class="foot">
+        <a class="src" href="https://www.cnbc.com/2026/10/08/stock-market-today-live-updates.html" target="_blank" rel="noopener">CNBC</a>
+        <a class="gd" data-prompt="Read this article: https://www.cnbc.com/2026/10/08/stock-market-today-live-updates.html — if the URL is unavailable, search for &quot;Dow rises 400 points on Friday as Wall Street scores winning week&quot; and find the original reporting — then: what drove Friday's rally, how are equities justifying sub-15 VIX with oil above $100 and yields above 5%, and what would crack that complacency?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </article>
+    <div class="grid2">
+      <article class="story">
+        <div class="kicker"><span class="tag" style="color:var(--business)">Business</span><span class="badge">7/10</span></div>
+        <h3>A NT$1.49 trillion quarter</h3>
+        <p class="wim"><b>Why it matters:</b> TSMC's September revenue of NT$511.9B (+54.6% y/y) closed a record Q3 of NT$1.494 trillion — up 50.9% from a year ago and above the company's own $44.6-45.8B guidance range. It is the cleanest single number for whether the AI buildout is still accelerating. It is.</p>
+        <p class="wn">What's next: full Q3 earnings come at this week's results call, with the <a class="ent ent-biz" data-prompt="Explain TSMC's 2nm (N2) process ramp — which products use it first, why ramping it dents gross margin near-term, and how it compares to Intel's and Samsung's competing nodes." target="_blank" rel="noopener">2nm ramp</a> expected to dent gross margin.</p>
+        <div class="foot">
+          <a class="src" href="https://pr.tsmc.com/english/news/3343" target="_blank" rel="noopener">TSMC</a>
+          <a class="gd" data-prompt="Read this article: https://pr.tsmc.com/english/news/3343 — if the URL is unavailable, search for &quot;TSMC September 2026 revenue report NT$511.86 billion&quot; and find the original reporting — then: break down what's driving 50.9% year-over-year growth, how much is AI accelerators versus smartphones, and what the monthly cadence says about Q4." target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag" style="color:var(--business)">Business</span><span class="badge">6/10</span></div>
+        <h3>Gold and bitcoin stop agreeing</h3>
+        <p class="wim"><b>Why it matters:</b> Gold futures rose 1.4% Friday to about $4,216 as a strong 30-year auction pulled long yields down, while bitcoin finished the week 2.8% lower near $82,100 — the two "havens" now telling opposite stories about what investors actually fear.</p>
+        <div class="foot">
+          <a class="src" href="https://www.riotimesonline.com/gold-silver-precious-metals-friday-october-9-2026/" target="_blank" rel="noopener">Rio Times</a>
+          <a class="gd" data-prompt="Read this article: https://www.riotimesonline.com/gold-silver-precious-metals-friday-october-9-2026/ — if the URL is unavailable, search for &quot;gold Treasury yields ease Friday October 9 2026&quot; and find the original reporting — then: why is gold above $4,000 while bitcoin falls — what does that divergence say about who is buying each, and about inflation versus liquidity fears?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Tech -->
+  <section>
+    <h2 class="sechead" style="color:var(--tech); border-color:var(--tech)">Tech &amp; AI</h2>
+    <article class="story lead-story">
+      <div class="kicker"><span class="tag" style="color:var(--tech)">Tech</span><span class="badge">7/10</span></div>
+      <h3>Musk mortgages Starlink for 360,000 GPUs</h3>
+      <p class="wim"><b>Why it matters:</b> SpaceX is reportedly seeking a $40 billion debt package — roughly $10B in bank loans plus $30B in investment-grade bonds, led by <a class="ent ent-tech" data-prompt="What is Apollo Global Management, and why is a private-credit giant leading a $40 billion debt package for SpaceX's AI hardware? What does private credit's role in AI financing mean for systemic risk?" target="_blank" rel="noopener">Apollo</a> — to buy about 5,000 Nvidia <a class="ent ent-tech" data-prompt="Explain Nvidia's Vera Rubin platform — the NVL72 rack architecture, how it differs from Blackwell, its cost (~$8M per rack), and which buyers are locking up 2027 supply." target="_blank" rel="noopener">Vera Rubin</a> NVL72 racks, or ~360,000 GPUs. SpaceX credit-default swaps hit a record after the FT report; the financing would close in 2027 and remains unconfirmed by the company.</p>
+      <div class="foot">
+        <a class="src" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/spacex-reportedly-seeking-usd40-billion-debt-package-for-nvidia-ai-hardware-massive-raise-could-fund-roughly-360-000-vera-rubin-gpus-across-5-000-nvl72-racks" target="_blank" rel="noopener">Tom's Hardware (citing FT)</a>
+        <a class="gd" data-prompt="Read this article: https://www.tomshardware.com/tech-industry/artificial-intelligence/spacex-reportedly-seeking-usd40-billion-debt-package-for-nvidia-ai-hardware-massive-raise-could-fund-roughly-360-000-vera-rubin-gpus-across-5-000-nvl72-racks — if the URL is unavailable, search for &quot;SpaceX $40 billion debt package Nvidia Vera Rubin&quot; and find the original reporting — then: can Starlink cash flow service $40B of debt, why are SpaceX credit-default swaps at a record, and is debt-financed GPU buying a sign of AI-capex froth?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </article>
+    <div class="grid2">
+      <article class="story">
+        <div class="kicker"><span class="tag" style="color:var(--tech)">Tech</span><span class="badge">6/10</span></div>
+        <h3>Apple's October comes in two waves</h3>
+        <p class="wim"><b>Why it matters:</b> Per Bloomberg's <a class="ent ent-tech" data-prompt="Who is Mark Gurman and why do his Apple reports move markets? Assess his track record on launch-timing predictions." target="_blank" rel="noopener">Mark Gurman</a>, Apple unveils a smart-home push tomorrow — an all-new home hub with a 6-inch display, a new HomePod mini and Apple TV 4K — then a Mac wave around October 27: touchscreen OLED MacBook Pros, an M6 14-inch MacBook Pro, M6 iMac and OLED iPad mini. Seven products in two weeks, none yet confirmed by Apple.</p>
+        <div class="foot">
+          <a class="src" href="https://www.macrumors.com/2026/10/09/apple-seven-new-products-october-13-october-27/" target="_blank" rel="noopener">MacRumors</a>
+          <a class="gd" data-prompt="Read this article: https://www.macrumors.com/2026/10/09/apple-seven-new-products-october-13-october-27/ — if the URL is unavailable, search for &quot;Apple seven new products October 13 October 27&quot; and find the original reporting — then: why is Apple splitting October into a home event and a Mac wave, what does the home hub signal about its smart-home strategy against Amazon and Google, and what's credible versus speculative here?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag" style="color:var(--tech)">Tech</span><span class="badge">6/10</span></div>
+        <h3>Eight months later, Advantest admits what left</h3>
+        <p class="wim"><b>Why it matters:</b> The chip-test giant's October 6 breach notices confirm its February 15 ransomware intrusion stole names, Social Security numbers, passport and license numbers, and medical and financial data — more than 500 California residents affected, and no group has ever claimed the attack on a company at the heart of the semiconductor supply chain.</p>
+        <div class="foot">
+          <a class="src" href="https://www.securityweek.com/advantest-discloses-data-breach-months-after-ransomware-attack/" target="_blank" rel="noopener">SecurityWeek</a>
+          <a class="gd" data-prompt="Read this article: https://www.securityweek.com/advantest-discloses-data-breach-months-after-ransomware-attack/ — if the URL is unavailable, search for &quot;Advantest discloses data breach months after ransomware attack&quot; and find the original reporting — then: why did disclosure take eight months, what does an unclaimed ransomware attack on a chip-test monopolist suggest about the attacker, and what are the supply-chain security implications?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Science -->
+  <section>
+    <h2 class="sechead" style="color:var(--science); border-color:var(--science)">Science &amp; Space</h2>
+    <article class="story lead-story">
+      <div class="kicker"><span class="tag" style="color:var(--science)">Science</span><span class="badge">7/10</span></div>
+      <h3>A clock that disciplines its own laser</h3>
+      <p class="wim"><b>Why it matters:</b> TU Wien and Germany's PTB ran the first <a class="ent ent-sci" data-prompt="Explain thorium-229 and why its uniquely low-energy nuclear transition makes a 'nuclear clock' possible — how it differs from atomic clocks, and what new physics (dark matter searches, constant-variation tests) it could unlock." target="_blank" rel="noopener">thorium-229</a> nuclear clock with a feedback loop — the nuclei themselves correct the laser's drift — for more than 24 hours unattended, published in Nature with instability near 10⁻¹⁵ over a day. The same week, a Tsinghua-led team reported a thorium clock roughly six times more stable, turning nuclear timekeeping into a two-lab race.</p>
+      <div class="foot">
+        <a class="src" href="https://interestingengineering.com/innovation/world-first-self-stabilizing-nuclear-clock-thorium" target="_blank" rel="noopener">Interesting Engineering</a>
+        <a class="gd" data-prompt="Read this article: https://interestingengineering.com/innovation/world-first-self-stabilizing-nuclear-clock-thorium — if the URL is unavailable, search for &quot;self-stabilizing nuclear clock thorium TU Wien Nature&quot; and find the original reporting — then: how does the feedback loop work, how far is this from beating the best optical atomic clocks, and what does the Vienna-Tsinghua rivalry mean for who defines the next second?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </article>
+    <article class="story" style="border-top:1px solid var(--border)">
+      <div class="kicker"><span class="tag" style="color:var(--science)">Science</span><span class="badge">6/10</span></div>
+      <h3>Chimps steal less from their friends</h3>
+      <p class="wim"><b>Why it matters:</b> Across 800+ observation hours of 26 chimpanzees at Uganda's <a class="ent ent-sci" data-prompt="What is the Ngamba Island Chimpanzee Sanctuary in Uganda — its history, research program, and why sanctuary populations are useful (and limited) for studying chimpanzee social behavior?" target="_blank" rel="noopener">Ngamba Island</a> sanctuary, chimps took food from non-friends 70% of the time but from friends only 61% — evidence, published in Evolution and Human Behavior, that chimp friendship carries behavioral expectations, not just proximity.</p>
+      <div class="foot">
+        <a class="src" href="https://www.popsci.com/environment/chimpanzees-steal-less-from-friends/" target="_blank" rel="noopener">Popular Science</a>
+        <a class="gd" data-prompt="Read this article: https://www.popsci.com/environment/chimpanzees-steal-less-from-friends/ — if the URL is unavailable, search for &quot;chimpanzees steal less from their friends Evolution and Human Behavior&quot; and find the original reporting — then: how did researchers define friendship operationally, is a 70% vs 61% gap robust, and what does this say about the evolutionary roots of human trust norms?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- Sports -->
+  <section>
+    <h2 class="sechead" style="color:var(--muted); border-color:var(--border)">Your teams</h2>
+    <article class="story lead-story">
+      <div class="kicker"><span class="tag team-49ers">49ers</span><span class="badge">7/10</span></div>
+      <h3>5-0, and this time they survived Seattle</h3>
+      <p class="wim"><b>Why it matters:</b> Down 26-21 entering the fourth at Lumen Field, the 49ers forced four takeaways and five sacks and won 32-29 on a fourth-down stop of Cooper Kupp that replay upheld. Purdy went 19-of-29 for 189 yards with two touchdowns in a six-turnover brawl, and Seattle falls two back in the NFC West.</p>
+      <p class="wn">What's next: Deebo Samuel left with a hamstring injury — his status leads the week.</p>
+      <div class="foot">
+        <a class="src" href="https://www.49ers.com/news/49ers-are-5-0-with-a-32-29-win-in-week-5-matchup-vs-seahawks-takeaways-from-sfvssea" target="_blank" rel="noopener">49ers.com</a>
+        <a class="gd" data-prompt="Read this article: https://www.49ers.com/news/49ers-are-5-0-with-a-32-29-win-in-week-5-matchup-vs-seahawks-takeaways-from-sfvssea — if the URL is unavailable, search for &quot;49ers 5-0 32-29 win week 5 Seahawks&quot; and find the original reporting — then: how sustainable is a 5-0 start built on takeaways, what do the injuries mean for the next month, and where do the 49ers rank among NFC contenders?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </article>
+    <div class="grid2">
+      <article class="story">
+        <div class="kicker"><span class="tag team-sharks">Sharks</span><span class="badge">6/10</span></div>
+        <h3>Celebrini returns, scores, and it isn't enough</h3>
+        <p class="wim"><b>Why it matters:</b> Back from a two-game lower-body absence, <a class="ent ent-sci" style="color:var(--text)" data-prompt="Profile Macklin Celebrini — his trajectory from 2024 No. 1 pick to Sharks captain, his 2026-27 start, and where he ranks among the NHL's young franchise centers." target="_blank" rel="noopener">Celebrini</a> logged a team-high 21:59 and scored his first of the season, but Edmonton won 3-1 at SAP Center Saturday — Podkolzin, Ekholm and Formenton scored, and McDavid took over the league points lead with his five-game streak.</p>
+        <p class="wn">What's next: Boston visits SAP Center Tuesday night.</p>
+        <div class="foot">
+          <a class="src" href="https://www.nhl.com/news/edmonton-oilers-san-jose-sharks-game-recap-october-10-2026" target="_blank" rel="noopener">NHL.com</a>
+          <a class="gd" data-prompt="Read this article: https://www.nhl.com/news/edmonton-oilers-san-jose-sharks-game-recap-october-10-2026 — if the URL is unavailable, search for &quot;Oilers defeat Sharks Celebrini goal in return October 10 2026&quot; and find the original reporting — then: how did the Sharks generate (or fail to generate) offense around Celebrini's return, and what line combinations should they try next?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag team-warriors">Warriors</span><span class="badge">6/10</span></div>
+        <h3>Lendeborg makes a case; Podziemski gets paid</h3>
+        <p class="wim"><b>Why it matters:</b> <a class="ent ent-tech" style="color:var(--text)" data-prompt="Profile Yaxel Lendeborg — his path to the Warriors, his preseason production, and what role he could earn in the 2026-27 rotation." target="_blank" rel="noopener">Yaxel Lendeborg</a> went for 23 points, 10 boards and six assists in Saturday's 111-106 preseason win over the Kings, with Curry limited to 14 first-half minutes — hours after Brandin Podziemski signed a five-year, $110 million extension.</p>
+        <p class="wn">What's next: preseason finale October 16 vs. Portland at Chase Center.</p>
+        <div class="foot">
+          <a class="src" href="https://www.nba.com/warriors/news/gameday-recap-20261010" target="_blank" rel="noopener">Warriors / NBA.com</a>
+          <a class="gd" data-prompt="Read this article: https://www.nba.com/warriors/news/gameday-recap-20261010 — if the URL is unavailable, search for &quot;Lendeborg Warriors preseason win over Kings October 10 2026&quot; and find the original reporting — then: is Podziemski's five-year $110M extension good value, and what does Lendeborg's emergence mean for the Warriors' rotation entering the season?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="league">
+      <div class="league-label">NFL — Week 5 · last night + tonight</div>
+      <div class="scorerow">
+        <div class="card fav-49ers"><span class="w">SF 32</span><br>SEA 29<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">BAL 30</span><br>ATL 23<br><span class="st">Final/OT</span></div>
+        <div class="card">NYG 27<br>WSH 27<br><span class="st">Final/OT — tie</span></div>
+        <div class="card"><span class="w">JAX 19</span><br>PHI 17<br><span class="st">Final · London</span></div>
+        <div class="card"><span class="w">GB 31</span><br>CHI 7<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">DET 45</span><br>ARI 21<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">NE 45</span><br>LV 17<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">PIT 34</span><br>IND 22<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">CIN 31</span><br>MIA 24<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">DEN 23</span><br>LAC 17<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">MIN 23</span><br>NO 13<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">NYJ 17</span><br>CLE 12<br><span class="st">Final</span></div>
+        <div class="card"><span class="w">HOU 26</span><br>TEN 3<br><span class="st">Final</span></div>
+        <div class="card">BUF<br>LAR<br><span class="st live">Tonight 5:15 PT</span></div>
+      </div>
+    </div>
+    <div class="league">
+      <div class="league-label">NBA — Preseason</div>
+      <div class="scorerow">
+        <div class="card fav-warriors"><span class="w">GSW 111</span><br>SAC 106<br><span class="st">Final · Sat</span></div>
+      </div>
+    </div>
+    <div class="league">
+      <div class="league-label">NHL — Early season</div>
+      <div class="scorerow">
+        <div class="card fav-sharks"><span class="w">EDM 3</span><br>SJS 1<br><span class="st">Final · Sat</span></div>
+        <div class="card fav-sharks">BOS<br>SJS<br><span class="st live">Tue 7:30 PT</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ending -->
+  <div class="ending">
+    <h2>That's your briefing. You're caught up.</h2>
+    <p>17 stories this morning — every headline links out, and every "Go deeper" opens a working session.<br><a href="archive/">Browse the archive</a></p>
+  </div>
+
+  <!-- Sources -->
+  <details class="sources">
+    <summary>Sources (17)</summary>
+    <ul>
+      <li>Iran turns the strait into a toll road… — <a href="https://www.cnn.com/2026/10/11/middleeast/iran-hormuz-oil-analysis-intl" target="_blank" rel="noopener">CNN</a> — Oct 11 analysis; direct fetch blocked in this environment, facts corroborated via CNN excerpts, Euronews (Oct 8) and Maritime Executive</li>
+      <li>The official cost of the war rises to 21 — <a href="https://www.stripes.com/theaters/middle_east/2026-10-10/pentagon-death-toll-iran-war-23114546.html" target="_blank" rel="noopener">Stars and Stripes</a> — figures corroborated by UPI and The Hill</li>
+      <li>A ceasefire only Washington can see — <a href="https://www.nbcnews.com/world/ukraine/trump-russia-ukraine-agree-energy-ceasefire-zelenskyy-diesel-rcna602766" target="_blank" rel="noopener">NBC News</a> — corroborated by NPR, CNBC, France 24, PBS; Miami-talks detail via Ukrainska Pravda (Oct 10)</li>
+      <li>A 7.7 shakes Panama — <a href="https://abc7news.com/story/panama-earthquake-76-shakes-region/19925359/" target="_blank" rel="noopener">AP via ABC7</a> — AP syndication across six ABC stations plus Newsweek agree on magnitudes and canal status</li>
+      <li>Simon soaks Jalisco — <a href="https://www.pbs.org/newshour/world/hurricane-simon-hits-mexicos-pacific-coast" target="_blank" rel="noopener">PBS NewsHour (AP)</a> — corroborated by CNN (Oct 11) and Mexican outlets on closures and evacuations</li>
+      <li>The Peace Prize goes to the prosecution — <a href="https://www.aljazeera.com/news/2026/10/9/2026-nobel-peace-prize-awarded-to-navi-pillay" target="_blank" rel="noopener">Al Jazeera</a> — citation, age, reaction and prize amount corroborated by AP syndication</li>
+      <li>Musk mortgages Starlink for 360,000 GPUs — <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/spacex-reportedly-seeking-usd40-billion-debt-package-for-nvidia-ai-hardware-massive-raise-could-fund-roughly-360-000-vera-rubin-gpus-across-5-000-nvl72-racks" target="_blank" rel="noopener">Tom's Hardware (citing FT)</a> — FT original paywalled; unconfirmed by SpaceX, labeled "reportedly"</li>
+      <li>Apple's October comes in two waves — <a href="https://www.macrumors.com/2026/10/09/apple-seven-new-products-october-13-october-27/" target="_blank" rel="noopener">MacRumors</a> — Gurman reporting; events not officially announced, framed as reported</li>
+      <li>Advantest admits what left — <a href="https://www.securityweek.com/advantest-discloses-data-breach-months-after-ransomware-attack/" target="_blank" rel="noopener">SecurityWeek</a> — Oct 6 notification date and data categories corroborated by BleepingComputer</li>
+      <li>The tape pays the war no mind — <a href="https://www.cnbc.com/2026/10/08/stock-market-today-live-updates.html" target="_blank" rel="noopener">CNBC</a> — closes cross-checked against FRED and Investing.com; weekly % computed from Oct 2 close 7,722.72</li>
+      <li>A NT$1.49 trillion quarter — <a href="https://pr.tsmc.com/english/news/3343" target="_blank" rel="noopener">TSMC press release</a> — company primary source; corroborated by SEC Form 6-K</li>
+      <li>Gold and bitcoin stop agreeing — <a href="https://www.riotimesonline.com/gold-silver-precious-metals-friday-october-9-2026/" target="_blank" rel="noopener">Rio Times</a> — gold matches Yahoo futures (~$4,216); Yahoo showed BTC $82,970 intraday vs $82,123 weekly close — divergence noted</li>
+      <li>A clock that disciplines its own laser — <a href="https://interestingengineering.com/innovation/world-first-self-stabilizing-nuclear-clock-thorium" target="_blank" rel="noopener">Interesting Engineering</a> — Nature paper (Toscani de Col et al.) confirmed via arXiv listing, idw release, ingenieur.de (Oct 8)</li>
+      <li>Chimps steal less from their friends — <a href="https://www.popsci.com/environment/chimpanzees-steal-less-from-friends/" target="_blank" rel="noopener">Popular Science</a> — study details corroborated via journal DOI 10.1016/j.evolhumbehav.2026.106948</li>
+      <li>5-0, and this time they survived Seattle — <a href="https://www.49ers.com/news/49ers-are-5-0-with-a-32-29-win-in-week-5-matchup-vs-seahawks-takeaways-from-sfvssea" target="_blank" rel="noopener">49ers.com</a> — team primary source; corroborated by CBS Sports, NBC Bay Area, Fox Sports</li>
+      <li>Celebrini returns, scores… — <a href="https://www.nhl.com/news/edmonton-oilers-san-jose-sharks-game-recap-october-10-2026" target="_blank" rel="noopener">NHL.com</a> — league primary source; corroborated by ESPN and ABC7</li>
+      <li>Lendeborg makes a case… — <a href="https://www.nba.com/warriors/news/gameday-recap-20261010" target="_blank" rel="noopener">Warriors / NBA.com</a> — team primary source; corroborated by SF Chronicle and Yahoo Sports</li>
+    </ul>
+    <p style="font-size:12px;color:var(--muted);margin:12px 0 0">Note: this environment blocks direct fetches of most news domains; every story above was verified against multiple independent search excerpts quoting the article text. Russell 2000 omitted from the wire — no sourceable Friday close. MLB scoreboard omitted — NLCS Game 1 result was not sourceable at generation time. No new Anthropic announcements since Oct 8 (covered in prior briefings), so that section is omitted today.</p>
+  </details>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  // Conversation-layer links
+  document.querySelectorAll('[data-prompt]').forEach(function (a) {
+    a.href = 'https://claude.ai/new?q=' + encodeURIComponent(a.getAttribute('data-prompt'));
+  });
+
+  var spx = { labels: ['Mon 10/5','Tue 10/6','Wed 10/7','Thu 10/8','Fri 10/9'], values: [7773.95, 7818.93, 7801.77, 7765.36, 7811.54] };
+  var brent = { labels: ['Mon 10/5','Tue 10/6','Wed 10/7','Thu 10/8','Fri 10/9'], values: [100.32, 100.58, 100.20, 104.28, 104.72] };
+  var cod = { labels: ['Q3 2024','Q3 2025','Q3 2026'], values: [759.7, 989.9, 1494.0] };
+
+  function fallback(id, text) {
+    var c = document.getElementById(id);
+    if (!c) return;
+    var d = document.createElement('div');
+    d.style.cssText = 'font:13px/1.6 ui-monospace,Menlo,Consolas,monospace;color:inherit;padding:8px 0';
+    d.textContent = text;
+    c.parentNode.replaceChild(d, c);
+  }
+
+  if (typeof Chart === 'undefined') {
+    fallback('spx', 'S&P 500: 7,773.95 → 7,811.54 over five sessions (+0.48%); Friday +0.59%.');
+    fallback('brent', 'Brent: $100.32 → $104.72 over five sessions (+4.4%); Thursday +4.1%.');
+    fallback('cod', 'TSMC Q3 revenue: NT$759.7B (2024) → NT$989.9B (2025) → NT$1,494B (2026).');
+    return;
+  }
+
+  var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var tick = dark ? '#9aa0a6' : '#666666';
+  var grid = dark ? '#2a2f3a' : '#e3e3de';
+  var lineUp = dark ? '#9ece6a' : '#4a7c1f';
+  var lineOil = dark ? '#f7768e' : '#c22f4d';
+  var barBiz = dark ? '#9ece6a' : '#3d6b1a';
+
+  function lineChart(id, data, color) {
+    new Chart(document.getElementById(id), {
+      type: 'line',
+      data: { labels: data.labels, datasets: [{ data: data.values, borderColor: color, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 2.5, pointBackgroundColor: color, tension: 0.15 }] },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: tick, font: { size: 10, family: 'ui-monospace, Menlo, monospace' }, maxRotation: 0 }, grid: { color: grid, drawTicks: false } },
+          y: { ticks: { color: tick, font: { size: 10, family: 'ui-monospace, Menlo, monospace' } }, grid: { color: grid, drawTicks: false } }
+        }
+      }
+    });
+  }
+
+  lineChart('spx', spx, lineUp);
+  lineChart('brent', brent, lineOil);
+
+  new Chart(document.getElementById('cod'), {
+    type: 'bar',
+    data: { labels: cod.labels, datasets: [{ data: cod.values, backgroundColor: barBiz, borderWidth: 0, barPercentage: 0.55 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: tick, font: { size: 11, family: 'ui-monospace, Menlo, monospace' } }, grid: { display: false } },
+        y: { beginAtZero: true, ticks: { color: tick, font: { size: 10, family: 'ui-monospace, Menlo, monospace' } }, grid: { color: grid, drawTicks: false } }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
