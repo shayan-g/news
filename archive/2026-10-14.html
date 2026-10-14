@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — October 14, 2026</title>
+<style>
+  :root {
+    --bg: #0f1115; --surface: #171a21; --border: #2a2f3a;
+    --text: #e8e8e8; --muted: #9aa0a6;
+    --up: #9ece6a; --down: #f7768e;
+    --tech: #7aa2f7; --world: #f7768e; --business: #9ece6a;
+    --science: #bb9af7; --anthropic: #d4a27f;
+    --niners: #AA0000; --sharks: #006D75;
+    --serif: "Iowan Old Style", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fafaf8; --surface: #ffffff; --border: #e3e3de;
+      --text: #1f1f1f; --muted: #666666;
+      --up: #3f7d20; --down: #c4304f;
+      --tech: #2b5fc7; --world: #c4304f; --business: #3f7d20;
+      --science: #7847c4; --anthropic: #8f5f3f;
+      --niners: #AA0000; --sharks: #006D75;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 400 16px/1.55 var(--sans);
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 20px 20px 56px; }
+  a { color: inherit; }
+  .wire { font-family: var(--mono); font-size: 13px; line-height: 2; color: var(--muted); }
+  .wire b { font-weight: 500; color: var(--text); }
+  .wire .u { color: var(--up); } .wire .d { color: var(--down); }
+  .wire .sep { margin: 0 6px; color: var(--border); }
+  .wire-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .datebar {
+    margin-top: 28px; font-size: 12px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--muted);
+  }
+  h1.lede-head {
+    font-family: var(--serif); font-weight: 500; font-size: 23px;
+    line-height: 1.3; margin: 10px 0 12px;
+  }
+  .lede-body {
+    font-family: var(--serif); font-size: 17px; line-height: 1.65; margin: 0 0 14px;
+  }
+  .readtime {
+    display: inline-block; font-family: var(--mono); font-size: 12px;
+    color: var(--muted); border: 1px solid var(--border); padding: 3px 8px;
+  }
+  a.ent {
+    color: inherit; text-decoration: none;
+    border-bottom: 1px dotted var(--muted);
+  }
+  a.ent:hover { border-bottom-style: solid; }
+  .lede-body a.ent { border-bottom-color: var(--tech); }
+  .sop {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin: 30px 0 0; padding: 14px 0;
+  }
+  .sop > div { padding: 0 12px; border-left: 1px solid var(--border); }
+  .sop > div:first-child { border-left: none; padding-left: 0; }
+  .sop .v { font-family: var(--mono); font-size: 18px; font-weight: 500; }
+  .sop .v.bad { color: var(--down); } .sop .v.good { color: var(--up); }
+  .sop .l { font-size: 12px; font-weight: 500; margin-top: 2px; }
+  .sop .c { font-size: 12px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .sop { grid-template-columns: repeat(2, 1fr); row-gap: 14px; }
+    .sop > div:first-child { padding-left: 12px; border-left: 1px solid var(--border); }
+    .sop > div:nth-child(odd) { border-left: none; padding-left: 0; }
+  }
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 30px; }
+  @media (max-width: 640px) { .charts { grid-template-columns: 1fr; } }
+  .chartbox h3 {
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 500; color: var(--muted); margin: 0 0 8px;
+  }
+  .chartbox .cwrap { background: var(--surface); border: 1px solid var(--border); padding: 10px; }
+  .chartbox canvas { width: 100%; height: 160px; }
+  .chartbox .anno { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+  .chartbox .anno a.ent { border-bottom-color: var(--business); }
+  .cotd { margin-top: 26px; }
+  .cotd canvas { height: 190px; }
+  .fallback { font-family: var(--mono); font-size: 13px; color: var(--text); margin: 8px 0; line-height: 1.6; }
+  section.beat { margin-top: 44px; }
+  .beathead {
+    font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 500; margin: 0 0 4px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  .beathead.dom { color: var(--world); border-color: var(--world); }
+  .beathead.w { color: var(--world); border-color: var(--world); }
+  .beathead.b { color: var(--business); border-color: var(--business); }
+  .beathead.t { color: var(--tech); border-color: var(--tech); }
+  .beathead.s { color: var(--science); border-color: var(--science); }
+  .beathead.a { color: var(--anthropic); border-color: var(--anthropic); }
+  .beathead.sport { color: var(--muted); border-color: var(--border); }
+  .beatsub { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+  article.story { padding: 20px 0 22px; border-bottom: 1px solid var(--border); }
+  article.story:last-child { border-bottom: none; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 2px 8px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .chip .score { font-family: var(--mono); color: var(--muted); letter-spacing: 0; }
+  .chip.cw { color: var(--world); } .chip.cb { color: var(--business); }
+  .chip.ct { color: var(--tech); } .chip.cs { color: var(--science); }
+  .chip.ca { color: var(--anthropic); }
+  .chip.c49 { color: var(--niners); } .chip.csj { color: var(--sharks); }
+  article.story h2 {
+    font-family: var(--serif); font-weight: 500; font-size: 19px;
+    line-height: 1.35; margin: 10px 0 8px;
+  }
+  article.story.lead h2 { font-size: 22px; }
+  .wim { font-size: 15px; line-height: 1.55; margin: 0 0 6px; }
+  .wim b { font-weight: 500; }
+  .wim a.ent { border-bottom-color: currentColor; }
+  .wn { font-size: 14px; font-style: italic; color: var(--muted); margin: 0 0 6px; }
+  .sfoot { display: flex; align-items: center; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
+  .sfoot .src { font-size: 13px; color: var(--muted); }
+  .sfoot .src a { color: var(--muted); }
+  .godeep {
+    font-size: 13px; font-weight: 500; text-decoration: none;
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 4px 12px; color: var(--text);
+  }
+  .godeep:hover { border-color: var(--muted); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; }
+  .grid2 > article { padding: 20px 0 22px; }
+  .grid2 > article:nth-child(even) { border-left: 1px solid var(--border); padding-left: 20px; }
+  .grid2 > article:nth-child(odd) { padding-right: 20px; }
+  .grid2 > article { border-bottom: 1px solid var(--border); }
+  .grid2 > article:last-child, .grid2 > article:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+  @media (max-width: 640px) {
+    .grid2 { grid-template-columns: 1fr; }
+    .grid2 > article:nth-child(even) { border-left: none; padding-left: 0; }
+    .grid2 > article:nth-child(odd) { padding-right: 0; }
+    .grid2 > article:nth-last-child(2):nth-child(odd) { border-bottom: 1px solid var(--border); }
+  }
+  .entrow { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.8; }
+  .entrow a.ent { margin-right: 14px; }
+  .teamhead {
+    font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    margin: 22px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  .scorerow-label {
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
+    margin: 18px 0 8px; font-weight: 500;
+  }
+  .scorerow-label span.ctx { font-family: var(--mono); letter-spacing: 0; text-transform: none; }
+  .scorescroll { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  .scorescroll::-webkit-scrollbar { display: none; }
+  .scard {
+    flex: 0 0 auto; min-width: 190px; background: var(--surface);
+    border: 1px solid var(--border); padding: 10px 12px;
+    font-family: var(--mono); font-size: 13px; line-height: 1.7;
+  }
+  .scard.sj { border-left: 3px solid var(--sharks); }
+  .scard .tm { display: flex; justify-content: space-between; gap: 16px; }
+  .scard .win { color: var(--up); font-weight: 500; }
+  .scard .st { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .ending { text-align: center; margin-top: 56px; }
+  .ending .big { font-family: var(--serif); font-size: 21px; font-weight: 500; }
+  .ending .sub { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+  .ending a { color: var(--muted); }
+  details.sources { margin-top: 44px; border-top: 1px solid var(--border); padding-top: 14px; }
+  details.sources summary {
+    cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  details.sources .note { font-size: 12px; color: var(--muted); margin: 12px 0; line-height: 1.6; }
+  details.sources ul { list-style: none; margin: 10px 0 0; padding: 0; }
+  details.sources li {
+    font-size: 12px; color: var(--muted); padding: 5px 0;
+    border-bottom: 1px solid var(--border); line-height: 1.5;
+  }
+  details.sources li a { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+<!-- 1. WIRE STRIP -->
+<div class="wire">
+  <span>S&amp;P 500 <b>7,805.45</b> <span class="d">-0.02%</span></span><span class="sep">·</span>
+  <span>Dow <b>51,670.10</b> <span class="d">-0.35%</span></span><span class="sep">·</span>
+  <span>Nasdaq <b>27,204.38</b> <span class="d">-0.15%</span></span><span class="sep">·</span>
+  <span>Russell 2K <b>2,783.37</b> <span class="d">-0.40%</span></span><span class="sep">·</span>
+  <span>VIX <b>15.21</b> <span class="d">+2.5%</span></span><span class="sep">·</span>
+  <span>10Y <b>5.22%</b> <span class="u">-3bp</span></span><span class="sep">·</span>
+  <span>Brent <b>$105.69</b> <span class="d">-0.9%</span></span><span class="sep">·</span>
+  <span>WTI <b>$94.14</b> <span class="u">+0.4%</span></span><span class="sep">·</span>
+  <span>Gold <b>$4,177.30</b> <span class="d">-0.3%</span></span><span class="sep">·</span>
+  <span>Bitcoin <b>$83,314</b> <span class="u">+1.9%</span></span>
+</div>
+<div class="wire-label">Tuesday close, Oct 13 — US markets reopened this morning to a hot CPI print.</div>
+
+<!-- 2. LEDE -->
+<div class="datebar">Wednesday, October 14, 2026 — generated 6:52am PT</div>
+<h1 class="lede-head">The war has reached the pump</h1>
+<p class="lede-body">For months the US–Iran war was a shipping story; this morning it is a household one. A Houthi ballistic missile set fire to <a class="ent" href="https://claude.ai/new?q=What%20is%20Saudi%20Aramco%20%E2%80%94%20how%20much%20of%20the%20world%27s%20oil%20does%20it%20produce%2C%20how%20are%20its%20facilities%20defended%2C%20and%20why%20is%20a%20strike%20on%20its%20Dhahran%20headquarters%20a%20different%20category%20of%20event%20from%20hitting%20a%20pipeline%3F" target="_blank" rel="noopener">Saudi Aramco</a>'s headquarters tower, Trump is weighing joining the Saudi campaign while Tehran talks openly about attacking American warships near the <a class="ent" href="https://claude.ai/new?q=Explain%20the%20Strait%20of%20Hormuz%20%E2%80%94%20why%20roughly%20a%20fifth%20of%20the%20world%27s%20oil%20transits%20it%2C%20what%20a%20closure%20would%20do%20to%20prices%2C%20and%20whether%20Iran%20could%20actually%20close%20it%20against%20US%20naval%20power." target="_blank" rel="noopener">Strait of Hormuz</a> — and two hours before this briefing, September CPI printed hot at 3.7%, with gasoline alone supplying half the monthly gain. The <a class="ent" href="https://claude.ai/new?q=Explain%20how%20the%20Federal%20Reserve%20weighs%20an%20energy-driven%20inflation%20spike%20%E2%80%94%20why%20central%20banks%20usually%20%27look%20through%27%20oil%20shocks%2C%20and%20why%20October%202026%20might%20be%20the%20exception." target="_blank" rel="noopener">Federal Reserve</a> must now price a war it cannot forecast. The same infrastructure-as-target logic runs through the rest of the day: Russia put 600,000 Ukrainians in the dark days after <a class="ent" href="https://claude.ai/new?q=Profile%20Volodymyr%20Zelenskyy%27s%20current%20position%20%E2%80%94%20battlefield%2C%20energy%20grid%2C%20and%20relations%20with%20Washington%20%E2%80%94%20and%20what%20leverage%20he%20holds%20going%20into%20the%20winter%20of%202026." target="_blank" rel="noopener">Zelenskyy</a> thought he had an energy ceasefire, and hackers cooked the refrigerators of French supermarkets from the internet. Oil, grids, cold chains — this is a week about energy as a weapon.</p>
+<span class="readtime">~5 min read — 17 stories · 4 beats + Anthropic &amp; sports</span>
+
+<!-- 3. STATE OF PLAY -->
+<div class="sop">
+  <div><div class="v bad">3.7%</div><div class="l">September CPI</div><div class="c">Up from 3.4% — hotter than forecast, out this morning</div></div>
+  <div><div class="v bad">600,000</div><div class="l">Ukrainians without power</div><div class="c">After 120+ drones and 39 ballistic missiles overnight</div></div>
+  <div><div class="v bad">800,000</div><div class="l">Yemenis cut off from aid</div><div class="c">WFP warning as the Saudi–Houthi front escalates</div></div>
+  <div><div class="v bad">+94%</div><div class="l">US diesel vs pre-war</div><div class="c">Crossed $200/bbl in early September — IEA</div></div>
+  <div><div class="v good">$5.8B</div><div class="l">Morgan Stanley equities</div><div class="c">Trading revenue up 41% — the war's quiet winners</div></div>
+</div>
+
+<!-- 4. CHARTS -->
+<div class="charts">
+  <div class="chartbox">
+    <h3>S&amp;P 500 — five sessions</h3>
+    <div class="cwrap"><canvas id="spx"></canvas></div>
+    <p class="anno">Flat on the surface: a record close Thursday, then two sessions of drift as earnings and war headlines offset each other.</p>
+  </div>
+  <div class="chartbox">
+    <h3>Brent crude — four sessions</h3>
+    <div class="cwrap"><canvas id="brent"></canvas></div>
+    <p class="anno">Settled at $105.69 Tuesday after Monday's two-week high; every session now trades the Gulf headlines first. (Oct 7 settlement unavailable — four sessions shown.)</p>
+  </div>
+</div>
+<div class="chartbox cotd">
+  <h3>Chart of the day — September CPI, % change in the month</h3>
+  <div class="cwrap"><canvas id="cpi"></canvas></div>
+  <p class="anno">Gasoline rose 9.1% in a single month — roughly half the entire headline gain — while core ran at 0.3%. This is what an <a class="ent" href="https://claude.ai/new?q=Compare%20how%20the%20Fed%20handled%20the%201973%20and%201979%20oil%20shocks%20%E2%80%94%20what%20worked%2C%20what%20failed%2C%20and%20the%20lessons%20for%20a%20rate%20decision%20during%20the%20October%202026%20energy%20spike." target="_blank" rel="noopener">oil shock arriving in consumer prices</a> looks like in its first month.</p>
+</div>
+
+<!-- 5. DOMINANT STORY -->
+<section class="beat">
+  <h2 class="beathead dom">The Oil War</h2>
+  <p class="beatsub">One story is shaping everything today — the strikes, the barrel, and now the US price level.</p>
+
+  <article class="story lead">
+    <span class="chip cw">World <span class="score">9/10</span></span>
+    <h2>A ballistic missile hits Saudi Aramco's headquarters as the Houthis take the war to Riyadh</h2>
+    <p class="wim"><b>Why it matters:</b> A missile struck an administrative tower at Aramco's Dhahran complex Tuesday, starting a fire that Reuters sources say spread across several floors; debris from intercepted cruise missiles wounded four people and damaged 15 homes in Riyadh. The world's largest oil company is now itself a target set — not just its tankers.</p>
+    <p class="wn">What's next: the Houthis vow to keep striking Saudi airports and oil facilities until Riyadh exits the Yemen war.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://edition.cnn.com/2026/10/13/middleeast/saudi-strikes-houthi-fuel-depot-latam-intl" target="_blank" rel="noopener">CNN</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fedition.cnn.com%2F2026%2F10%2F13%2Fmiddleeast%2Fsaudi-strikes-houthi-fuel-depot-latam-intl%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Saudi%20Aramco%20headquarters%20hit%20by%20Houthi%20missile%20Dhahran%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20how%20exposed%20Saudi%20oil%20export%20capacity%20actually%20is%3A%20what%20did%20this%20strike%20damage%2C%20which%20defenses%20failed%2C%20and%20what%20would%20it%20take%20for%20the%20Houthis%20to%20meaningfully%20cut%20Saudi%20exports%3F" target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+
+  <div class="grid2">
+    <article class="story">
+      <span class="chip cw">World <span class="score">8/10</span></span>
+      <h2>Trump weighs joining Saudi strikes; Iran says it is "counting the moments" to hit US warships</h2>
+      <p class="wim"><b>Why it matters:</b> Trump says the Houthis are acting "likely at Iran's urging" and is openly weighing direct US participation; an IRGC commander answered that Tehran is waiting to attack US warships, and <a class="ent" href="https://claude.ai/new?q=What%20is%20US%20Central%20Command%20%E2%80%94%20its%20current%20assets%20in%20the%20Gulf%2C%20and%20its%20realistic%20options%20if%20ordered%20to%20strike%20Iran%20or%20escort%20tankers%20through%20the%20Strait%20of%20Hormuz%3F" target="_blank" rel="noopener">CENTCOM</a> rejected Iran's claim to control Hormuz — the strait a fifth of the world's oil transits.</p>
+      <p class="wn">What's next: Trump has reportedly told aides US forces would not strike Iran before the early-November midterms.</p>
+      <div class="sfoot"><span class="src">Source: <a href="https://www.cnbc.com/2026/10/14/us-iran-war-trump-hormuz-saudi.html" target="_blank" rel="noopener">CNBC</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F10%2F14%2Fus-iran-war-trump-hormuz-saudi.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Iran%20counting%20the%20moments%20to%20attack%20US%20warships%20Hormuz%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20lay%20out%20the%20realistic%20escalation%20paths%20if%20the%20US%20joins%20Saudi%20strikes%3A%20what%20can%20Iran%20actually%20do%20to%20US%20naval%20assets%20and%20Gulf%20shipping%2C%20and%20what%20are%20the%20off-ramps%3F" target="_blank" rel="noopener">Go deeper</a></div>
+    </article>
+    <article class="story">
+      <span class="chip cw">World <span class="score">7/10</span></span>
+      <h2>The same war is starving Yemen: 800,000 people cut off from food aid</h2>
+      <p class="wim"><b>Why it matters:</b> The <a class="ent" href="https://claude.ai/new?q=What%20is%20the%20World%20Food%20Programme%20%E2%80%94%20how%20it%20funds%20and%20moves%20food%20into%20war%20zones%20like%20Yemen%2C%20and%20what%20happens%20to%20famine%20risk%20when%20a%20corridor%20closes%3F" target="_blank" rel="noopener">World Food Programme</a> warns the escalation has severed life-saving assistance to 800,000 Yemenis, while Saudi-led strikes around Sanaa leave hospitals reporting they are overwhelmed. The humanitarian bill of the oil war compounds daily, out of the market's view.</p>
+      <div class="sfoot"><span class="src">Source: <a href="https://www.aljazeera.com/news/liveblog/2026/10/14/iran-war-live-saudi-coalition-hits-houthi-sites-aramco-office-hit-in-east" target="_blank" rel="noopener">Al Jazeera</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.aljazeera.com%2Fnews%2Fliveblog%2F2026%2F10%2F14%2Firan-war-live-saudi-coalition-hits-houthi-sites-aramco-office-hit-in-east%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22WFP%20Yemen%20800%2C000%20food%20assistance%20cut%20off%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20how%20the%20current%20escalation%20is%20disrupting%20aid%20corridors%20into%20Yemen%2C%20which%20ports%20and%20routes%20matter%20most%2C%20and%20what%20past%20aid%20suspensions%20did%20to%20famine%20risk." target="_blank" rel="noopener">Go deeper</a></div>
+    </article>
+  </div>
+  <div class="entrow">Go deeper on the players:
+    <a class="ent" href="https://claude.ai/new?q=What%20is%20the%20Houthi%20movement%20%28Ansar%20Allah%29%20%E2%80%94%20who%20leads%20it%2C%20how%20is%20it%20armed%20and%20financed%2C%20and%20how%20did%20a%20Yemeni%20militia%20end%20up%20striking%20the%20headquarters%20of%20the%20world%27s%20largest%20oil%20company%3F" target="_blank" rel="noopener">The Houthis</a>
+    <a class="ent" href="https://claude.ai/new?q=What%20is%20Saudi%20Aramco%20%E2%80%94%20how%20much%20of%20the%20world%27s%20oil%20does%20it%20produce%2C%20how%20are%20its%20facilities%20defended%2C%20and%20why%20is%20a%20strike%20on%20its%20Dhahran%20headquarters%20a%20different%20category%20of%20event%20from%20hitting%20a%20pipeline%3F" target="_blank" rel="noopener">Saudi Aramco</a>
+    <a class="ent" href="https://claude.ai/new?q=Explain%20the%20Strait%20of%20Hormuz%20%E2%80%94%20why%20roughly%20a%20fifth%20of%20the%20world%27s%20oil%20transits%20it%2C%20what%20a%20closure%20would%20do%20to%20prices%2C%20and%20whether%20Iran%20could%20actually%20close%20it%20against%20US%20naval%20power." target="_blank" rel="noopener">Strait of Hormuz</a>
+  </div>
+</section>
+
+<!-- 6. WORLD -->
+<section class="beat">
+  <h2 class="beathead w">World &amp; Geopolitics</h2>
+
+  <article class="story lead">
+    <span class="chip cw">World <span class="score">8/10</span></span>
+    <h2>Russia knocks out power to 600,000 Ukrainians — days after agreeing to an energy ceasefire</h2>
+    <p class="wim"><b>Why it matters:</b> More than 120 drones and 39 ballistic missiles hit energy infrastructure in Kyiv and Kharkiv overnight, cutting power to at least 600,000 people. Zelenskyy says the strike hit exactly the facilities covered by the <a class="ent" href="https://claude.ai/new?q=Explain%20the%20US-brokered%20Russia-Ukraine%20energy%20ceasefire%20announced%20in%20October%202026%20%E2%80%94%20what%20it%20covers%2C%20how%20it%20is%20verified%2C%20and%20whether%20this%20week%27s%20strikes%20on%20Kyiv%27s%20grid%20void%20it." target="_blank" rel="noopener">energy ceasefire</a> Trump announced last weekend — and that Kyiv got no early warning from its partners before the missiles closed on a city power plant.</p>
+    <p class="wn">What's next: Zelenskyy warns the outages could widen as repairs begin, with winter weeks away.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://abcnews.go.com/International/600000-power-ukraine-russia-launches-missile-drone-attack/story?id=137248732" target="_blank" rel="noopener">ABC News</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fabcnews.go.com%2FInternational%2F600000-power-ukraine-russia-launches-missile-drone-attack%2Fstory%3Fid%3D137248732%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22600%2C000%20without%20power%20Ukraine%20Russia%20missile%20drone%20attack%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20what%20this%20strike%20means%20for%20the%20energy%20ceasefire%3A%20is%20it%20dead%2C%20what%20does%20Ukraine%27s%20grid%20look%20like%20going%20into%20winter%2C%20and%20what%20leverage%20does%20Kyiv%20actually%20hold%3F" target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+
+  <article class="story">
+    <span class="chip cw">World <span class="score">7/10</span></span>
+    <h2>Pope Leo XIV enters Gemelli Hospital for surgery to remove a lung nodule</h2>
+    <p class="wim"><b>Why it matters:</b> <a class="ent" href="https://claude.ai/new?q=Profile%20Pope%20Leo%20XIV%20%E2%80%94%20his%20background%20as%20the%20first%20American%20pope%2C%20his%20papacy%20so%20far%2C%20and%20what%20happens%20procedurally%20if%20a%20pope%20becomes%20incapacitated." target="_blank" rel="noopener">The pope</a> was hospitalized Tuesday to remove what he called "a small, localized nodule" found at a very early stage in a routine exam; the Vatican expects about a week's stay. Whether it is cancerous awaits tissue analysis — and his November South America trip now hangs on the recovery.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://www.adn.com/nation-world/2026/10/11/pope-leo-xiv-will-undergo-surgery-to-remove-a-nodule-on-his-lung/" target="_blank" rel="noopener">AP</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.adn.com%2Fnation-world%2F2026%2F10%2F11%2Fpope-leo-xiv-will-undergo-surgery-to-remove-a-nodule-on-his-lung%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Pope%20Leo%20XIV%20lung%20nodule%20surgery%20Gemelli%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20an%20early-stage%20localized%20lung%20nodule%20typically%20means%20medically%2C%20and%20how%20the%20Vatican%20handles%20governance%20while%20a%20pope%20is%20in%20surgery%20and%20recovery." target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+</section>
+
+<!-- 7. BUSINESS -->
+<section class="beat">
+  <h2 class="beathead b">Business &amp; Markets</h2>
+
+  <article class="story lead">
+    <span class="chip cb">Business <span class="score">8/10</span></span>
+    <h2>September inflation comes in hot: 3.7%, with gasoline doing half the damage</h2>
+    <p class="wim"><b>Why it matters:</b> CPI rose 0.6% in the month — 3.7% year over year against 3.6% expected, up from August's 3.4%. Gasoline alone jumped 9.1% and supplied about half the headline gain; core ran 2.6%. The war premium in crude is now, officially, a line on every American's budget.</p>
+    <p class="wn">What's next: the print hardens the case for a hike at the October 27–28 FOMC meeting.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html" target="_blank" rel="noopener">CNBC</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F10%2F14%2Fcpi-inflation-report-september-2026.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22September%20CPI%20inflation%203.7%20percent%20gasoline%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20break%20down%20how%20much%20of%20this%20inflation%20is%20war-driven%20energy%20versus%20underlying%3A%20what%20do%20core%20services%20and%20shelter%20say%2C%20and%20what%20should%20the%20Fed%20do%20at%20the%20October%2027-28%20meeting%3F" target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+
+  <div class="grid2">
+    <article class="story">
+      <span class="chip cb">Business <span class="score">7/10</span></span>
+      <h2>A $1.2B penalty sinks Bank of America's quarter while Morgan Stanley's traders feast</h2>
+      <p class="wim"><b>Why it matters:</b> BofA earned 91¢ a share against $1.10 expected — the gap mostly a $1.2 billion federal penalty, levied a day earlier, for failing to report suspicious transactions — and the stock fell about 7%. Morgan Stanley beat at $3.03 as equities trading surged 41% to $5.8 billion: volatility is a business model.</p>
+      <div class="sfoot"><span class="src">Source: <a href="https://www.cnbc.com/2026/10/14/bank-of-america-bac-q3-2026-earnings.html" target="_blank" rel="noopener">CNBC</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F10%2F14%2Fbank-of-america-bac-q3-2026-earnings.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Bank%20of%20America%201.2%20billion%20penalty%20earnings%20miss%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20the%20%241.2%20billion%20penalty%20was%20for%2C%20whether%20it%20signals%20a%20wider%20anti-money-laundering%20crackdown%2C%20and%20what%20BofA%27s%207.9%25%20net%20interest%20income%20growth%20says%20about%20the%20US%20consumer." target="_blank" rel="noopener">Go deeper</a></div>
+    </article>
+    <article class="story">
+      <span class="chip cb">Business <span class="score">7/10</span></span>
+      <h2>The IEA slashes forecasts again: supply won't normalize until 2027, and diesel is the choke point</h2>
+      <p class="wim"><b>Why it matters:</b> The <a class="ent" href="https://claude.ai/new?q=What%20is%20the%20International%20Energy%20Agency%20%E2%80%94%20who%20funds%20it%2C%20how%20its%20monthly%20Oil%20Market%20Report%20moves%20markets%2C%20and%20its%20track%20record%20in%20past%20supply%20crises%3F" target="_blank" rel="noopener">IEA</a> now sees 2026 oil consumption falling 2.5 million barrels a day — steeper than August's estimate — and says US diesel crossed $200 a barrel in early September, 94% above pre-war levels. Diesel moves food and freight; its squeeze lands on every price tag.</p>
+      <div class="sfoot"><span class="src">Source: <a href="https://www.irishnews.com/news/uk/iea-slashes-global-oil-demand-and-supply-forecast-again-as-iran-war-intensifies-Q64PWEIF4FPRHHXLP2RCYOH7N4/" target="_blank" rel="noopener">PA via Irish News</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.irishnews.com%2Fnews%2Fuk%2Fiea-slashes-global-oil-demand-and-supply-forecast-again-as-iran-war-intensifies-Q64PWEIF4FPRHHXLP2RCYOH7N4%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22IEA%20slashes%20oil%20demand%20forecast%20Iran%20war%20diesel%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20why%20diesel%20specifically%20is%20the%20pressure%20point%20%E2%80%94%20refinery%20geography%2C%20lost%20Russian%20exports%2C%20shipping%20routes%20%E2%80%94%20and%20who%20gets%20hurt%20first%20if%20it%20stays%20near%20%24200%20a%20barrel%20into%202027." target="_blank" rel="noopener">Go deeper</a></div>
+    </article>
+    <article class="story">
+      <span class="chip cb">Business <span class="score">6/10</span></span>
+      <h2>The economics Nobel goes to the theorists central banks lean on in exactly this moment</h2>
+      <p class="wim"><b>Why it matters:</b> Robert Hall (Stanford, 83) and <a class="ent" href="https://claude.ai/new?q=Profile%20Michael%20Woodford%20and%20his%20influence%20on%20modern%20central%20banking%20%E2%80%94%20what%20%27Woodfordian%27%20interest-rate%20policy%20means%20in%20practice%20and%20why%20central%20banks%20adopted%20it." target="_blank" rel="noopener">Michael Woodford</a> (Columbia, 70) share the 12-million-kronor prize for the microeconomic foundations of macroeconomic stabilization — the modeling tradition the Fed will lean on when it decides whether a 3.7% CPI demands another hike.</p>
+      <div class="sfoot"><span class="src">Source: <a href="https://www.nobelprize.org/prizes/economic-sciences/2026/" target="_blank" rel="noopener">NobelPrize.org</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nobelprize.org%2Fprizes%2Feconomic-sciences%2F2026%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Nobel%20economics%20prize%202026%20Hall%20Woodford%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20Hall%27s%20and%20Woodford%27s%20key%20contributions%20in%20plain%20terms%2C%20and%20how%20Woodford-style%20interest-rate%20rules%20shape%20what%20the%20Fed%20does%20about%20an%20energy-driven%20inflation%20spike%20like%20this%20month%27s." target="_blank" rel="noopener">Go deeper</a></div>
+    </article>
+  </div>
+</section>
+
+<!-- 8. TECH -->
+<section class="beat">
+  <h2 class="beathead t">Tech &amp; AI</h2>
+
+  <article class="story lead">
+    <span class="chip ct">Cyber <span class="score">7/10</span></span>
+    <h2>Hackers heated the fridges: a cyberattack set fires in French supermarkets</h2>
+    <p class="wim"><b>Why it matters:</b> Attackers drove internet-connected refrigeration at hundreds of French stores to about 50°C overnight Sunday — 80 Carrefour stores, roughly 150 Intermarché, 5% of Monoprix — spoiling food and sparking fires. <a class="ent" href="https://claude.ai/new?q=What%20is%20ANSSI%2C%20France%27s%20national%20cybersecurity%20agency%20%E2%80%94%20its%20powers%20during%20an%20incident%20like%20the%20supermarket%20refrigeration%20attack%2C%20and%20how%20it%20compares%20to%20CISA%20in%20the%20US%3F" target="_blank" rel="noopener">ANSSI</a> traced it to outdated firmware in Danfoss control panels; analysts count five more European countries hit. Sabotage through IoT just left the proof-of-concept stage.</p>
+    <p class="wn">What's next: the Paris prosecutor has opened an investigation; attribution remains open.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://www.timeslive.co.za/news/world/2026-10-12-hackers-heat-french-supermarket-fridges-sparking-fires-and-food-losses/" target="_blank" rel="noopener">Reuters via TimesLIVE</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.timeslive.co.za%2Fnews%2Fworld%2F2026-10-12-hackers-heat-french-supermarket-fridges-sparking-fires-and-food-losses%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22hackers%20heat%20French%20supermarket%20fridges%20Danfoss%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20the%20broader%20risk%3A%20how%20many%20internet-exposed%20industrial%20control%20systems%20like%20these%20refrigeration%20panels%20exist%2C%20why%20patching%20lags%20for%20years%2C%20and%20what%20this%20incident%20says%20about%20physical%20sabotage%20through%20IoT." target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+
+  <div class="grid2">
+    <article class="story">
+      <span class="chip ct">Chips <span class="score">7/10</span></span>
+      <h2>ASML guides to a record quarter — the AI buildout is still buying every machine it can</h2>
+      <p class="wim"><b>Why it matters:</b> The <a class="ent" href="https://claude.ai/new?q=Explain%20EUV%20lithography%20%E2%80%94%20why%20ASML%20is%20the%20only%20company%20on%20earth%20that%20can%20build%20these%20machines%2C%20and%20what%20that%20monopoly%20means%20for%20the%20AI%20buildout%20and%20for%20export%20controls." target="_blank" rel="noopener">lithography monopolist</a> posted €11.7 billion in Q3 sales at a 57.5% gross margin and guided Q4 to €14.2–15.2 billion — its biggest quarter ever if it lands. The asterisk: ASML itself flags a significant China demand drop ahead.</p>
+      <div class="sfoot"><span class="src">Source: <a href="https://www.sec.gov/Archives/edgar/data/0000937966/000162828026065813/pressreleasefinancialresul.htm" target="_blank" rel="noopener">ASML 6-K (SEC)</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.sec.gov%2FArchives%2Fedgar%2Fdata%2F0000937966%2F000162828026065813%2Fpressreleasefinancialresul.htm%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22ASML%20Q3%202026%20results%20Q4%20guidance%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20what%20ASML%27s%20record%20Q4%20guidance%20says%20about%202027%20AI%20capex%20plans%20at%20TSMC%2C%20Samsung%20and%20Intel%2C%20and%20how%20big%20a%20risk%20the%20flagged%20China%20demand%20drop%20is%20to%20its%20order%20book." target="_blank" rel="noopener">Go deeper</a></div>
+    </article>
+    <article class="story">
+      <span class="chip ct">Policy <span class="score">7/10</span></span>
+      <h2>Washington suspends Microsoft, Adobe and six IT giants from the green-card pipeline</h2>
+      <p class="wim"><b>Why it matters:</b> The Labor Department stopped accepting and processing <a class="ent" href="https://claude.ai/new?q=Explain%20the%20PERM%20labor%20certification%20process%20%E2%80%94%20how%20employment-based%20green%20cards%20work%2C%20and%20what%20a%20suspension%20does%20to%20a%20worker%20already%20years%20into%20the%20queue." target="_blank" rel="noopener">PERM</a> applications — step one toward most employment-based green cards — for eight firms including Microsoft, Adobe, Infosys and TCS. Vance's stated case: Microsoft cut 6,000 US jobs last year while receiving 6,300 H-1Bs. Thousands already working in the US are left mid-queue.</p>
+      <div class="sfoot"><span class="src">Source: <a href="https://www.aljazeera.com/news/2026/10/9/indentured-servants-us-green-card-move-will-hit-thousands-of-it-workers" target="_blank" rel="noopener">Al Jazeera</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.aljazeera.com%2Fnews%2F2026%2F10%2F9%2Findentured-servants-us-green-card-move-will-hit-thousands-of-it-workers%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22US%20suspends%20Microsoft%20Adobe%20PERM%20green%20card%20program%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20the%20PERM%20suspension%20means%20for%20workers%20already%20in%20the%20queue%2C%20whether%20it%20is%20likely%20to%20survive%20legal%20challenge%2C%20and%20how%20it%20interacts%20with%20the%20new%20%24100%2C000%20H-1B%20fee." target="_blank" rel="noopener">Go deeper</a></div>
+    </article>
+  </div>
+</section>
+
+<!-- 9. SCIENCE -->
+<section class="beat">
+  <h2 class="beathead s">Science &amp; Space</h2>
+
+  <article class="story lead">
+    <span class="chip cs">Science <span class="score">7/10</span></span>
+    <h2>A DNA "typewriter" records a mouse's entire developmental history, cell by cell</h2>
+    <p class="wim"><b>Why it matters:</b> Published in Science Oct 8: a recorder that writes sequential edits into the genome let <a class="ent" href="https://claude.ai/new?q=Profile%20Jay%20Shendure%20%E2%80%94%20his%20lab%27s%20role%20in%20genome%20technology%20from%20exome%20sequencing%20to%20DNA%20typewriters%2C%20and%20his%20significance%20to%20this%20mouse%20lineage-tracing%20result." target="_blank" rel="noopener">Jay Shendure</a>'s team reconstruct a mouse's cell family tree from the first division through organ formation at day 13.5 — the closest biology has come to a flight recorder for development.</p>
+    <p class="wn">What's next: companion work in Cell suggests <a class="ent" href="https://claude.ai/new?q=Explain%20cell%20lineage%20tracing%20%E2%80%94%20from%20Sulston%27s%20hand-drawn%20worm%20maps%20to%20CRISPR%20recorders%20and%20DNA%20typewriters%20%E2%80%94%20and%20why%20a%20complete%20mouse%20cell%20family%20tree%20is%20a%20milestone." target="_blank" rel="noopener">lineage recording</a> is becoming a standard tool, with cancer and disease models the obvious next targets.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://www.genengnews.com/topics/omics/dna-typewriter-petracer-map-mouse-development-through-organogenesis/" target="_blank" rel="noopener">GEN</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.genengnews.com%2Ftopics%2Fomics%2Fdna-typewriter-petracer-map-mouse-development-through-organogenesis%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22DNA%20Typewriter%20mouse%20lineage%20Science%20Shendure%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20how%20sequential%20DNA%20recording%20works%2C%20what%20the%20complete%20mouse%20cell%20family%20tree%20revealed%20that%20snapshot%20methods%20miss%2C%20and%20the%20nearest-term%20applications%20in%20cancer%20and%20developmental%20disease." target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+
+  <article class="story">
+    <span class="chip cs">Paleontology <span class="score">6/10</span></span>
+    <h2>An otter-like predator from the age of dinosaurs rewrites where early mammals could live</h2>
+    <p class="wim"><b>Why it matters:</b> Megacauda sungei — 165 million years old, from Inner Mongolia, described in Nature — is the oldest known semiaquatic mammal relative: platypus-like behind, predator-toothed in front, with prey bones still in its stomach. Mammals were colonizing rivers and lakes 100 million years earlier than the textbook picture.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://www.timeslive.co.za/news/sci-tech/2026-10-08-otter-like-critter-swam-lakes-and-rivers-in-the-age-of-dinosaurs/" target="_blank" rel="noopener">Reuters via TimesLIVE</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.timeslive.co.za%2Fnews%2Fsci-tech%2F2026-10-08-otter-like-critter-swam-lakes-and-rivers-in-the-age-of-dinosaurs%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Megacauda%20sungei%20semiaquatic%20Jurassic%20mammal%20Nature%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20where%20Megacauda%20sits%20on%20the%20mammal%20family%20tree%20and%20why%20a%20semiaquatic%20predator%20165%20million%20years%20ago%20changes%20the%20story%20of%20early%20mammal%20ecology." target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+</section>
+
+<!-- 10. ANTHROPIC -->
+<section class="beat">
+  <h2 class="beathead a">Anthropic</h2>
+
+  <article class="story lead">
+    <span class="chip ca">Anthropic <span class="score">6/10</span></span>
+    <h2>Anthropic opens in Singapore and signs an AI-safety MOU with the government</h2>
+    <p class="wim"><b>Why it matters:</b> The fifth APAC office comes with a memorandum, signed by co-founder <a class="ent" href="https://claude.ai/new?q=Profile%20Ben%20Mann%20%E2%80%94%20Anthropic%20co-founder%2C%20his%20role%20at%20the%20company%2C%20and%20what%20it%20signals%20when%20AI-lab%20co-founders%20start%20signing%20memoranda%20with%20governments." target="_blank" rel="noopener">Ben Mann</a> at Singapore International Cyber Week, covering AI safety testing, incident response and public-sector adoption. The stat behind the bet: Singapore ranks second of 121 countries in Claude usage relative to population, and more than 1,500 GovTech engineers already use Claude Code.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://www.anthropic.com/news/singapore-office-opening" target="_blank" rel="noopener">Anthropic</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.anthropic.com%2Fnews%2Fsingapore-office-opening%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Anthropic%20Singapore%20office%20MOU%20government%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20what%20Anthropic%20gains%20from%20a%20government%20MOU%20like%20Singapore%27s%20%E2%80%94%20regulatory%20standing%2C%20enterprise%20distribution%2C%20talent%20%E2%80%94%20what%20Singapore%20gets%2C%20and%20how%20this%20playbook%20compares%20with%20OpenAI%27s%20and%20Google%27s%20approach%20to%20Southeast%20Asia." target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+</section>
+
+<!-- 11. SPORTS -->
+<section class="beat">
+  <h2 class="beathead sport">Your Teams</h2>
+
+  <div class="teamhead" style="color: var(--niners); border-color: var(--niners);">San Francisco 49ers</div>
+  <article class="story">
+    <span class="chip c49">49ers <span class="score">6/10</span></span>
+    <h2>Purdy sits out practice as the 49ers limp toward a date with the 4-1 Buccaneers</h2>
+    <p class="wim"><b>Why it matters:</b> Brock Purdy (toe) didn't practice Tuesday and Ricky Pearsall is unlikely to play in Week 6 — with Deebo Samuel already out "at least a couple of weeks," the receiver room is down to the studs just as Tampa Bay arrives playing like a contender.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/brock-purdy-sits-out-of-49ers-practice-ricky-pearsall-unlikely-to-play-week-6/1880116/" target="_blank" rel="noopener">NBC Sports Bay Area</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nbcsportsbayarea.com%2Fnfl%2Fsan-francisco-49ers%2Fbrock-purdy-sits-out-of-49ers-practice-ricky-pearsall-unlikely-to-play-week-6%2F1880116%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Brock%20Purdy%20sits%20out%20practice%20Pearsall%20unlikely%20week%206%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20the%2049ers%27%20realistic%20options%20at%20receiver%20this%20week%2C%20and%20how%20they%20should%20attack%20a%204-1%20Buccaneers%20defense%20if%20Purdy%20plays%20on%20a%20bad%20toe." target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+
+  <div class="teamhead" style="color: var(--sharks); border-color: var(--sharks);">San Jose Sharks</div>
+  <article class="story">
+    <span class="chip csj">Sharks <span class="score">6/10</span></span>
+    <h2>Celebrini returns with a goal and an assist, but the Sharks fall 6-3 to Boston</h2>
+    <p class="wim"><b>Why it matters:</b> The captain came back from his lower-body injury and produced immediately, and rookie Ivar Stenberg matched him — but Jeremy Swayman stopped 35 and Charlie McAvoy scored in his season debut as the Bruins took their third straight. San Jose is 3-3-0, with three losses in four.</p>
+    <div class="sfoot"><span class="src">Source: <a href="https://www.nhl.com/sharks/news/boston-bruins-san-jose-sharks-game-recap-october-13-2026-x0519" target="_blank" rel="noopener">NHL.com</a></span><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nhl.com%2Fsharks%2Fnews%2Fboston-bruins-san-jose-sharks-game-recap-october-13-2026-x0519%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Bruins%206-3%20Sharks%20McAvoy%20Celebrini%20recap%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20evaluate%20the%20Sharks%27%20start%20honestly%3A%20what%20do%20Celebrini%27s%20return%2C%20Stenberg%27s%20production%20and%20the%20goaltending%20numbers%20say%20about%20whether%20this%20rebuild%20is%20ahead%20of%20or%20behind%20schedule%3F" target="_blank" rel="noopener">Go deeper</a></div>
+  </article>
+
+  <div class="scorerow-label">MLB <span class="ctx">— League Championship Series</span></div>
+  <div class="scorescroll">
+    <div class="scard">
+      <div class="tm"><span class="win">Rays 3</span></div>
+      <div class="tm"><span>Guardians 1</span></div>
+      <div class="st">Final — ALCS G2, series 1-1</div>
+    </div>
+    <div class="scard">
+      <div class="tm"><span>Brewers at Dodgers</span></div>
+      <div class="st">Tonight 8pm ET, Fox — NLCS G3, MIL leads 2-0</div>
+    </div>
+  </div>
+
+  <div class="scorerow-label">NHL <span class="ctx">— Week 2 of the season</span></div>
+  <div class="scorescroll">
+    <div class="scard sj">
+      <div class="tm"><span class="win">Bruins 6</span></div>
+      <div class="tm"><span>Sharks 3</span></div>
+      <div class="st">Final — SAP Center</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. ENDING -->
+<div class="ending">
+  <div class="big">That's your briefing. You're caught up.</div>
+  <div class="sub">17 stories this morning. Every headline links to its source; every "Go deeper" opens a conversation.<br>
+  <a href="archive/">Browse the archive</a></div>
+</div>
+
+<!-- 13. SOURCES -->
+<details class="sources">
+  <summary>Sources (17)</summary>
+  <p class="note">Verification note: this environment's network policy blocks direct fetches to most external sites, so stories were verified through multi-outlet corroboration in search results quoting each source URL's content rather than by loading each page. The Anthropic announcement was fetched directly. Figures that could not be sourced were omitted (including Brent's Oct 7 settlement and the S&amp;P 200-day moving average).</p>
+  <ul>
+    <li>Aramco HQ missile strike — <a href="https://edition.cnn.com/2026/10/13/middleeast/saudi-strikes-houthi-fuel-depot-latam-intl" target="_blank" rel="noopener">CNN</a> — corroborated by Gulf News, Globe and Mail, France 24; fire extent per Reuters sources</li>
+    <li>Trump / Iran warships — <a href="https://www.cnbc.com/2026/10/14/us-iran-war-trump-hormuz-saudi.html" target="_blank" rel="noopener">CNBC</a> — IRGC and CENTCOM statements matched by ABC &amp; Fox live blogs</li>
+    <li>WFP Yemen 800,000 — <a href="https://www.aljazeera.com/news/liveblog/2026/10/14/iran-war-live-saudi-coalition-hits-houthi-sites-aramco-office-hit-in-east" target="_blank" rel="noopener">Al Jazeera</a> — figure from Oct 14 live coverage; not yet on WFP newsroom</li>
+    <li>Ukraine 600,000 without power — <a href="https://abcnews.go.com/International/600000-power-ukraine-russia-launches-missile-drone-attack/story?id=137248732" target="_blank" rel="noopener">ABC News</a> — drone/missile counts and ceasefire context corroborated by CNN</li>
+    <li>Pope Leo XIV lung surgery — <a href="https://www.adn.com/nation-world/2026/10/11/pope-leo-xiv-will-undergo-surgery-to-remove-a-nodule-on-his-lung/" target="_blank" rel="noopener">AP</a> — hospitalization Tuesday per Keystone-SDA; a nodule, not a confirmed cancer</li>
+    <li>September CPI 3.7% — <a href="https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html" target="_blank" rel="noopener">CNBC</a> — figures matched across CBS, FXStreet, CoinDesk; BLS is the originating agency</li>
+    <li>BofA miss / Morgan Stanley beat — <a href="https://www.cnbc.com/2026/10/14/bank-of-america-bac-q3-2026-earnings.html" target="_blank" rel="noopener">CNBC</a> — penalty and EPS figures matched by two other outlets</li>
+    <li>IEA oil &amp; diesel forecast — <a href="https://www.irishnews.com/news/uk/iea-slashes-global-oil-demand-and-supply-forecast-again-as-iran-war-intensifies-Q64PWEIF4FPRHHXLP2RCYOH7N4/" target="_blank" rel="noopener">PA via Irish News</a> — diesel $200/94% figures from the IEA monthly report as quoted by PA/LBC</li>
+    <li>Economics Nobel — <a href="https://www.nobelprize.org/prizes/economic-sciences/2026/" target="_blank" rel="noopener">NobelPrize.org</a> — primary; corroborated by SCMP, Al Jazeera, NBER</li>
+    <li>French fridge cyberattack — <a href="https://www.timeslive.co.za/news/world/2026-10-12-hackers-heat-french-supermarket-fridges-sparking-fires-and-food-losses/" target="_blank" rel="noopener">Reuters via TimesLIVE</a> — Reuters original; chain figures consistent across five syndications</li>
+    <li>ASML Q3 — <a href="https://www.sec.gov/Archives/edgar/data/0000937966/000162828026065813/pressreleasefinancialresul.htm" target="_blank" rel="noopener">ASML 6-K (SEC)</a> — primary filing</li>
+    <li>PERM suspension — <a href="https://www.aljazeera.com/news/2026/10/9/indentured-servants-us-green-card-move-will-hit-thousands-of-it-workers" target="_blank" rel="noopener">Al Jazeera</a> — company list matched by SCMP &amp; TechRadar Pro; action dated Oct 9</li>
+    <li>DNA Typewriter — <a href="https://www.genengnews.com/topics/omics/dna-typewriter-petracer-map-mouse-development-through-organogenesis/" target="_blank" rel="noopener">GEN</a> — paper in Science, Oct 8 (Shendure/Qiu); companion paper in Cell</li>
+    <li>Megacauda sungei — <a href="https://www.timeslive.co.za/news/sci-tech/2026-10-08-otter-like-critter-swam-lakes-and-rivers-in-the-age-of-dinosaurs/" target="_blank" rel="noopener">Reuters via TimesLIVE</a> — Nature paper; details matched by NPR &amp; Live Science</li>
+    <li>Anthropic Singapore — <a href="https://www.anthropic.com/news/singapore-office-opening" target="_blank" rel="noopener">Anthropic</a> — fetched directly; primary announcement, dated today</li>
+    <li>49ers injuries — <a href="https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/brock-purdy-sits-out-of-49ers-practice-ricky-pearsall-unlikely-to-play-week-6/1880116/" target="_blank" rel="noopener">NBC Sports Bay Area</a> — beat coverage; Week 6 opponent confirmed by matchup preview</li>
+    <li>Sharks 3-6 Bruins — <a href="https://www.nhl.com/sharks/news/boston-bruins-san-jose-sharks-game-recap-october-13-2026-x0519" target="_blank" rel="noopener">NHL.com</a> — official recap; final matched by NESN &amp; Yahoo; MLB scores per ESPN/CBS postseason coverage; market closes per CNBC, Investing.com, FRED, investingLive</li>
+  </ul>
+</details>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  var spxData = { labels: ["Oct 7", "Oct 8", "Oct 9", "Oct 12", "Oct 13"], values: [7801.77, 7765.36, 7811.54, 7807.24, 7805.45] };
+  var brentData = { labels: ["Oct 8", "Oct 9", "Oct 12", "Oct 13"], values: [104.28, 104.72, 106.65, 105.69] };
+  var cpiData = { labels: ["Gasoline", "Headline", "Used vehicles", "Shelter", "Core"], values: [9.1, 0.6, 0.7, 0.4, 0.3] };
+
+  if (typeof Chart === "undefined") {
+    var fb = function (id, text) {
+      var c = document.getElementById(id);
+      if (!c) return;
+      var p = document.createElement("p");
+      p.className = "fallback";
+      p.textContent = text;
+      c.parentNode.replaceChild(p, c);
+    };
+    fb("spx", "S&P 500 closes: 7,801.77 → 7,765.36 → 7,811.54 (record) → 7,807.24 → 7,805.45");
+    fb("brent", "Brent settlements: $104.28 → $104.72 → $106.65 → $105.69");
+    fb("cpi", "September m/m: gasoline +9.1%, headline +0.6%, used vehicles +0.7%, shelter +0.4%, core +0.3%");
+    return;
+  }
+
+  var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  var gridC = dark ? "#2a2f3a" : "#e3e3de";
+  var tickC = dark ? "#9aa0a6" : "#666666";
+  var lineBlue = dark ? "#7aa2f7" : "#2b5fc7";
+  var lineOil = dark ? "#d4a27f" : "#8f5f3f";
+  var barDown = dark ? "#f7768e" : "#c4304f";
+  var barMuted = dark ? "#565f6e" : "#c9c9c2";
+
+  function lineChart(id, data, color, yPad) {
+    new Chart(document.getElementById(id), {
+      type: "line",
+      data: { labels: data.labels, datasets: [{ data: data.values, borderColor: color, backgroundColor: "transparent", borderWidth: 2, pointRadius: 2.5, pointBackgroundColor: color, tension: 0 }] },
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: false,
+        plugins: { legend: { display: false }, tooltip: { enabled: true } },
+        scales: {
+          x: { grid: { color: gridC }, ticks: { color: tickC, font: { size: 11 } } },
+          y: { grid: { color: gridC }, ticks: { color: tickC, font: { size: 11 } },
+               suggestedMin: Math.min.apply(null, data.values) - yPad,
+               suggestedMax: Math.max.apply(null, data.values) + yPad }
+        }
+      }
+    });
+  }
+  lineChart("spx", spxData, lineBlue, 12);
+  lineChart("brent", brentData, lineOil, 0.8);
+
+  new Chart(document.getElementById("cpi"), {
+    type: "bar",
+    data: { labels: cpiData.labels, datasets: [{ data: cpiData.values, backgroundColor: [barDown, barMuted, barMuted, barMuted, barMuted], borderWidth: 0 }] },
+    options: {
+      indexAxis: "y", responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: gridC }, ticks: { color: tickC, font: { size: 11 }, callback: function (v) { return v + "%"; } } },
+        y: { grid: { display: false }, ticks: { color: tickC, font: { size: 12 } } }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
