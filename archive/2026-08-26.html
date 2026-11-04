@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — Wednesday, August 26, 2026</title>
+<style>
+  :root {
+    --bg: #0f1115; --surface: #171a21; --border: #2a2f3a;
+    --text: #e8e8e8; --muted: #9aa0a6;
+    --up: #9ece6a; --down: #f7768e;
+    --tech: #7aa2f7; --world: #f7768e; --business: #9ece6a;
+    --science: #bb9af7; --anthropic: #d4a27f;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fafaf8; --surface: #ffffff; --border: #e3e3de;
+      --text: #1f1f1f; --muted: #666666;
+      --up: #3d7a1e; --down: #c22f4d;
+      --tech: #2b5fc7; --world: #c22f4d; --business: #3d7a1e;
+      --science: #6f42c1; --anthropic: #9c6b3f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 56px; }
+  a { color: inherit; }
+  .serif { font-family: "Iowan Old Style", Palatino, Georgia, serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+  /* wire strip */
+  .wire {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px; line-height: 2; margin: 0;
+  }
+  .wire .n { color: var(--muted); }
+  .wire .v { color: var(--text); }
+  .wire .up { color: var(--up); }
+  .wire .down { color: var(--down); }
+  .wire .sep { color: var(--border); margin: 0 4px; }
+  .session { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
+
+  /* lede */
+  .lede { margin-top: 36px; }
+  .dateline {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--muted); margin: 0 0 14px;
+  }
+  .thesis {
+    font-family: "Iowan Old Style", Palatino, Georgia, serif;
+    font-size: 23px; font-weight: 500; line-height: 1.35; margin: 0 0 14px;
+  }
+  .narrative {
+    font-family: "Iowan Old Style", Palatino, Georgia, serif;
+    font-size: 17px; line-height: 1.65; margin: 0 0 16px;
+  }
+  .readtime {
+    display: inline-block; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px 10px;
+  }
+
+  /* state of play */
+  .sop {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    margin: 36px 0 0; row-gap: 18px;
+  }
+  .sop > div { padding: 0 12px; border-left: 1px solid var(--border); min-width: 0; }
+  .sop > div:first-child { border-left: none; padding-left: 0; }
+  .sop .val {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 18px; display: block; margin-bottom: 2px;
+  }
+  .sop .val.down { color: var(--down); }
+  .sop .lbl { font-size: 13px; display: block; line-height: 1.4; }
+  .sop .ctx { font-size: 12px; color: var(--muted); display: block; line-height: 1.45; margin-top: 2px; }
+  @media (max-width: 639px) {
+    .sop { grid-template-columns: repeat(3, 1fr); }
+    .sop > div:nth-child(4) { border-left: none; padding-left: 0; }
+  }
+
+  /* charts */
+  .charts { margin-top: 36px; }
+  .charts2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 640px) { .charts2 { grid-template-columns: 1fr 1fr; } }
+  .chartbox {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 14px 12px; margin-top: 16px;
+  }
+  .charts2 .chartbox { margin-top: 0; }
+  .chartbox h3 {
+    margin: 0 0 10px; font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted);
+  }
+  .chartwrap { position: relative; height: 170px; }
+  .chartbox .ann { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 10px 0 0; }
+  .fallback { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; color: var(--text); margin: 0; }
+
+  /* beat sections */
+  section.beat { margin-top: 44px; }
+  section.beat h2 {
+    font-size: 14px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--accent);
+    border-bottom: 1px solid var(--border); padding-bottom: 8px; margin: 0;
+  }
+  .story { padding: 18px 0 16px; border-top: 1px solid var(--border); }
+  .story.lead { border-top: none; padding-top: 20px; }
+  .kicker { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .kicker .tag {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--accent);
+  }
+  .badge {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1px 6px;
+  }
+  .story h3.hl {
+    font-family: "Iowan Old Style", Palatino, Georgia, serif;
+    font-size: 17px; font-weight: 500; line-height: 1.4; margin: 0 0 8px;
+  }
+  .story.lead h3.hl { font-size: 20px; }
+  .why { font-size: 14px; line-height: 1.6; margin: 0 0 6px; }
+  .why b { font-weight: 500; }
+  .next { font-size: 13px; font-style: italic; color: var(--muted); line-height: 1.55; margin: 0 0 6px; }
+  .foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; }
+  .src { font-size: 13px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .deeper {
+    flex-shrink: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; color: var(--accent); text-decoration: none;
+    border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px;
+    background: var(--surface);
+  }
+  .e { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 3px; }
+  .grid { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 640px) {
+    .grid { grid-template-columns: 1fr 1fr; column-gap: 33px; position: relative; }
+    .grid::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--border); }
+  }
+
+  /* sports */
+  .sbrow { display: flex; gap: 10px; overflow-x: auto; padding: 12px 0 6px; scrollbar-width: none; }
+  .sbrow::-webkit-scrollbar { display: none; }
+  .sbhead { display: flex; align-items: baseline; gap: 10px; margin-top: 18px; }
+  .sbhead .lg { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; color: var(--text); }
+  .sbhead .ctx { font-size: 12px; color: var(--muted); }
+  .card {
+    flex: 0 0 auto; min-width: 148px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px;
+  }
+  .card .row { display: flex; justify-content: space-between; gap: 14px; line-height: 1.7; }
+  .card .w { color: var(--up); }
+  .card .st { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .card.fav { border-left: 3px solid var(--teamcolor); }
+
+  /* ending */
+  .ending { text-align: center; margin-top: 56px; }
+  .ending p.big {
+    font-family: "Iowan Old Style", Palatino, Georgia, serif;
+    font-size: 21px; margin: 0 0 8px;
+  }
+  .ending p.sub { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.6; }
+  .ending a { color: var(--muted); }
+
+  /* sources */
+  details.sources { margin-top: 44px; border-top: 1px solid var(--border); padding-top: 14px; }
+  details.sources summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+  details.sources .note { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 12px 0; }
+  details.sources ul { list-style: none; margin: 10px 0 0; padding: 0; }
+  details.sources li { font-size: 12px; color: var(--muted); line-height: 1.7; padding: 2px 0; }
+  details.sources li a { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- 1. wire strip -->
+  <p class="wire">
+    <span class="n">S&amp;P&nbsp;500</span> <span class="v">7,677.28</span> <span class="up">+0.3%</span><span class="sep">·</span>
+    <span class="n">DOW</span> <span class="v">53,577.40</span> <span class="up">+0.3%</span><span class="sep">·</span>
+    <span class="n">NASDAQ</span> <span class="v">26,151.30</span> <span class="up">+0.7%</span><span class="sep">·</span>
+    <span class="n">RUT&nbsp;2000</span> <span class="v">3,010.02</span> <span class="up">+0.5%</span><span class="sep">·</span>
+    <span class="n">VIX</span> <span class="v">15.45</span> <span class="down">-2.5%</span><span class="sep">·</span>
+    <span class="n">10Y</span> <span class="v">4.66%</span> <span class="down">-4bp</span><span class="sep">·</span>
+    <span class="n">BRENT</span> <span class="v">≈$87.1</span> <span class="down">-5.9%</span><span class="sep">·</span>
+    <span class="n">WTI</span> <span class="v">$82.36</span> <span class="down">-3.1%</span><span class="sep">·</span>
+    <span class="n">GOLD</span> <span class="v">$4,677</span> <span class="up">+0.6%</span><span class="sep">·</span>
+    <span class="n">BTC</span> <span class="v">≈$78,900</span> <span class="down">-2.0%</span>
+  </p>
+  <p class="session">Tuesday, Aug 25 close — Wednesday's session opens 6:30am PT; Nvidia reports after today's close · bitcoin trades continuously</p>
+
+  <!-- 2. lede -->
+  <header class="lede" style="--accent: var(--tech)">
+    <p class="dateline">Wednesday, August 26, 2026 — generated 6:35am PT (morning edition)</p>
+    <h1 class="thesis">The war premium deflates; the AI premium inflates.</h1>
+    <p class="narrative">Six months into the US–Iran conflict, the pressure has moved from missiles to money: Washington's <a class="e" href="https://claude.ai/new?q=Explain%20%27Operation%20Economic%20Outcast%27%2C%20the%20US%20Treasury%27s%20August%202026%20sanctions%20campaign%20against%20Iran%20%E2%80%94%20what%20it%20covers%2C%20how%20secondary%20sanctions%20work%2C%20and%20why%20third%20countries%20comply%20with%20them." target="_blank" rel="noopener">"Operation Economic Outcast"</a> sanctions landed softer than oil traders feared, and Brent gave back roughly nine percent of its war premium in two sessions. That relief rippled into a bond market that <a class="e" href="https://claude.ai/new?q=Profile%20Scott%20Bessent%20%E2%80%94%20his%20background%2C%20how%20he%20has%20run%20the%20US%20Treasury%20in%202026%2C%20and%20the%20significance%20of%20his%20doubled%20bond-buyback%20operations%20targeting%20long-dated%20yields%20in%20August%202026." target="_blank" rel="noopener">Scott Bessent</a>'s Treasury is now steadying by hand, its doubled buybacks capping a 30-year yield that touched a 19-year high last week. Equities drifted higher into the real test: <a class="e" href="https://claude.ai/new?q=What%20is%20Nvidia%27s%20position%20in%20the%20AI%20accelerator%20market%20as%20of%202026%2C%20and%20why%20is%20its%20quarterly%20earnings%20report%20treated%20as%20a%20referendum%20on%20the%20entire%20AI%20trade%3F" target="_blank" rel="noopener">Nvidia</a> reports Wednesday with roughly $94 billion in expected quarterly revenue, hours before fresh inflation data and two days before <a class="e" href="https://claude.ai/new?q=Profile%20Kevin%20Warsh%20%E2%80%94%20his%20path%20to%20Fed%20chair%2C%20his%20monetary-policy%20philosophy%2C%20and%20what%20to%20expect%20from%20his%20first%20Jackson%20Hole%20keynote%20as%20chair%20on%20August%2028%2C%202026." target="_blank" rel="noopener">Kevin Warsh</a>'s first Jackson Hole keynote as Fed chair. And while public markets hold their breath, <a class="e" href="https://claude.ai/new?q=What%20is%20Anthropic%27s%20reported%20IPO%20plan%20as%20of%20August%202026%20%E2%80%94%20the%20valuation%20target%2C%20the%20%2430%20trillion%20TAM%20pitch%2C%20and%20its%20revenue%20trajectory%20%E2%80%94%20and%20how%20does%20it%20compare%20with%20history%27s%20largest%20listings%3F" target="_blank" rel="noopener">Anthropic</a> is preparing to tell IPO investors that its addressable market tops $30 trillion. The common thread: capital is repricing both war and intelligence, in real time. And away from the tape, America woke to quieter news: Dolly Parton is gone at 80.</p>
+    <span class="readtime">~7 min read — 28 stories · 4 beats + Anthropic + your teams</span>
+  </header>
+
+  <!-- 3. state of play -->
+  <div class="sop">
+    <div><span class="val">≈$87</span><span class="lbl">Brent crude</span><span class="ctx">Down from ~$95 last week as the war premium unwinds</span></div>
+    <div><span class="val down">C$27.6B</span><span class="lbl">US goods hit by Canada's tariffs</span><span class="ctx">15–50% duties on 700+ products from Sept 8</span></div>
+    <div><span class="val">~$94B</span><span class="lbl">Nvidia's expected Q2 revenue</span><span class="ctx">Reported after Wednesday's close — a referendum on AI capex</span></div>
+    <div><span class="val down">2,680</span><span class="lbl">Ebola deaths in DR Congo</span><span class="ctx">Deadliest outbreak in DRC history; 302 in the last week</span></div>
+    <div><span class="val">$30T</span><span class="lbl">Anthropic's claimed market</span><span class="ctx">The IPO pitch tops SpaceX's $28.5T</span></div>
+  </div>
+
+  <!-- 4. charts -->
+  <div class="charts">
+    <div class="charts2">
+      <div class="chartbox">
+        <h3>S&amp;P 500 — last five closes</h3>
+        <div class="chartwrap" id="w-sp"><canvas id="c-sp"></canvas></div>
+        <p class="ann">Two-day recovery after the Aug 20 bond scare; the index has held above its ≈7,096 200-day average since April.</p>
+      </div>
+      <div class="chartbox">
+        <h3>Brent crude — last five sessions</h3>
+        <div class="chartwrap" id="w-br"><canvas id="c-br"></canvas></div>
+        <p class="ann">War premium unwinding: down ~9% from Thursday's peak. Reported levels, not official settlements.</p>
+      </div>
+    </div>
+    <div class="chartbox" style="--accent: var(--anthropic)">
+      <h3>Chart of the day — the IPO pitch, in trillions</h3>
+      <div class="chartwrap" id="w-tam"><canvas id="c-tam"></canvas></div>
+      <p class="ann">Claimed total addressable market: Anthropic will pitch IPO investors a market bigger than SpaceX's — on $11.6B of Q2 revenue today. <a class="e" href="https://claude.ai/new?q=How%20do%20companies%20construct%20total%20addressable%20market%20estimates%20for%20IPO%20pitches%2C%20and%20what%20would%20make%20Anthropic%27s%20%2430%20trillion%20claim%20credible%20or%20not%3F" target="_blank" rel="noopener">How do IPO TAM claims actually get built?</a></p>
+    </div>
+  </div>
+
+  <!-- 5. world -->
+  <section class="beat" style="--accent: var(--world)">
+    <h2>World &amp; Geopolitics</h2>
+    <article class="story lead">
+      <div class="kicker"><span class="tag">Lead · Sanctions</span><span class="badge">9/10</span></div>
+      <h3 class="hl">Washington opens "economic D-Day" on Iran, threatening anyone still trading with Tehran</h3>
+      <p class="why"><b>Why it matters:</b> The Treasury's Aug 24 "Operation Economic Outcast" hit five sectors of Iran's economy — digital assets, technology, gold, aviation and shipping — and designated nearly 60 entities and vessels across Hong Kong, China, Malaysia, the UAE and Singapore, with an explicit <a class="e" href="https://claude.ai/new?q=Explain%20%27Operation%20Economic%20Outcast%27%2C%20the%20US%20Treasury%27s%20August%202026%20sanctions%20campaign%20against%20Iran%20%E2%80%94%20what%20it%20covers%2C%20how%20secondary%20sanctions%20work%2C%20and%20why%20third%20countries%20comply%20with%20them." target="_blank" rel="noopener">secondary-sanctions</a> threat that puts third-country firms worldwide on notice. Six months into the US–Iran conflict, Secretary Scott Bessent vowed to "sever every economic lifeline," and Tehran says it is "fully prepared" to retaliate.</p>
+      <p class="next">What's next: Qatar is mediating talks on a temporary shipping channel through the <a class="e" href="https://claude.ai/new?q=Explain%20the%20Strait%20of%20Hormuz%27s%20role%20in%20the%202026%20US-Iran%20conflict%20%E2%80%94%20how%20much%20oil%20transits%20it%2C%20and%20what%20a%20Qatar-mediated%20temporary%20shipping%20channel%20would%20change." target="_blank" rel="noopener">Strait of Hormuz</a> as third countries decide whether to comply or defy.</p>
+      <div class="foot"><a class="src" href="https://home.treasury.gov/news/press-releases/sb0613" target="_blank" rel="noopener">U.S. Department of the Treasury</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fhome.treasury.gov%2Fnews%2Fpress-releases%2Fsb0613%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Operation%20Economic%20Outcast%20Treasury%20Iran%20sanctions%20August%202026%22%20and%20find%20the%20original%20release%20%E2%80%94%20then%20explain%20which%20five%20sectors%20of%20Iran%27s%20economy%20were%20targeted%2C%20how%20the%20secondary-sanctions%20threat%20works%2C%20and%20which%20third%20countries%20face%20the%20hardest%20compliance%20choices." target="_blank" rel="noopener">Go deeper →</a></div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <div class="kicker"><span class="tag">Public health</span><span class="badge">8/10</span></div>
+        <h3 class="hl">Congo's Ebola outbreak logs 302 deaths in a week as the toll passes 2,600 — with no approved vaccine</h3>
+        <p class="why"><b>Why it matters:</b> WHO's latest report counts 563 new cases and 302 deaths in a single week, bringing the <a class="e" href="https://claude.ai/new?q=Explain%20Bundibugyo%20ebolavirus%20%E2%80%94%20how%20it%20differs%20from%20Zaire%20ebolavirus%2C%20why%20there%20is%20no%20approved%20vaccine%20for%20it%2C%20and%20where%20candidate%20vaccines%20stand%20as%20of%202026." target="_blank" rel="noopener">Bundibugyo-strain</a> outbreak to 5,584 cases and 2,680 deaths since May — already the deadliest in DRC history and the fastest-growing on record. No approved vaccine or treatment exists for this strain, and insecurity in Ituri keeps disrupting the response.</p>
+        <p class="next">What's next: candidate-vaccine trial results are months away; the next WHO situation report lands around September 1.</p>
+        <div class="foot"><a class="src" href="https://www.afro.who.int/countries/democratic-republic-of-congo/publication/ebola-bundibugyo-virus-disease-outbreak-7" target="_blank" rel="noopener">WHO Regional Office for Africa</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.afro.who.int%2Fcountries%2Fdemocratic-republic-of-congo%2Fpublication%2Febola-bundibugyo-virus-disease-outbreak-7%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22WHO%20DRC%20Ebola%20Bundibugyo%20situation%20report%20August%202026%22%20and%20find%20the%20original%20report%20%E2%80%94%20then%20explain%20why%20the%20Bundibugyo%20strain%20is%20harder%20to%20fight%20than%20Zaire%20ebolavirus%2C%20and%20what%20the%20realistic%20timeline%20is%20for%20the%20candidate%20vaccines%20in%20trials." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Ukraine</span><span class="badge">7/10</span></div>
+        <h3 class="hl">On Ukraine's Independence Day, UK unlocks classified SCALP missile tech for assembly lines inside Ukraine</h3>
+        <p class="why"><b>Why it matters:</b> New UK Prime Minister Andy Burnham used his first foreign trip, on Aug 24, to announce that <a class="e" href="https://claude.ai/new?q=What%20is%20MBDA%2C%20who%20owns%20it%2C%20and%20why%20does%20its%20release%20of%20classified%20SCALP%20missile%20component%20data%20to%20Ukraine%20and%20France%20matter%20for%20European%20defense%20industry%3F" target="_blank" rel="noopener">MBDA</a> may release classified data on British components of the SCALP long-range missile — clearing the way for France and Ukraine to build local assembly lines and shifting Kyiv from recipient to producer of long-range strike weapons. He also signed a UK–Ukraine AI defense partnership alongside Macron and Merz in Kyiv.</p>
+        <div class="foot"><a class="src" href="https://www.gov.uk/government/news/britain-is-100-behind-you-prime-minister-andy-burnham-visits-kyiv-on-ukrainian-independence-day-for-first-international-trip" target="_blank" rel="noopener">UK Government</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Fnews%2Fbritain-is-100-behind-you-prime-minister-andy-burnham-visits-kyiv-on-ukrainian-independence-day-for-first-international-trip%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Burnham%20Kyiv%20SCALP%20MBDA%20classified%20release%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20releasing%20classified%20SCALP%20component%20data%20actually%20lets%20Ukraine%20and%20France%20build%2C%20and%20on%20what%20timeline." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">United States</span><span class="badge">7/10</span></div>
+        <h3 class="hl">Dolly Parton dies at 80, and the flags come down: a rare unifying loss in a divided year</h3>
+        <p class="why"><b>Why it matters:</b> The country icon died Tuesday at Nashville's Vanderbilt-Ingram Cancer Center after a brief cancer battle, her death announced overnight in a prerecorded video by her nephew and head of security, Bryan Seaver. President Trump ordered US flags to half-staff nationwide — an honor rarely extended to entertainers — for a songwriter with 11 Grammys and more than 100 million records sold whose appeal cut cleanly across America's political divide.</p>
+        <p class="next">What's next: tributes are pouring in from Nashville to Washington; memorial plans had not been announced as of this morning.</p>
+        <div class="foot"><a class="src" href="https://www.nbcnews.com/news/us-news/dolly-parton-county-music-icon-dies-80-rcna236277" target="_blank" rel="noopener">NBC News</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nbcnews.com%2Fnews%2Fus-news%2Fdolly-parton-county-music-icon-dies-80-rcna236277%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Dolly%20Parton%20dies%20age%2080%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20happens%20to%20her%20empire%20now%3A%20who%20controls%20her%20song%20catalog%2C%20Dollywood%20and%20the%20Imagination%20Library%2C%20and%20why%20flag%20honors%20for%20an%20entertainer%20are%20so%20rare." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Southeast Asia</span><span class="badge">6/10</span></div>
+        <h3 class="hl">Indonesia's peatland fires send hazardous haze into Malaysia and Brunei as 36,000 hectares burn</h3>
+        <p class="why"><b>Why it matters:</b> El Niño-driven fires have burned more than 36,000 hectares across 10 provinces in August — after nearly 94,000 in July — in the region's worst haze episode in years. Jakarta has deployed 24,000+ firefighters, authorized 35 foreign aircraft, and on Aug 24 let Malaysian planes cross into its airspace for joint cloud-seeding; police have arrested 72 people and are investigating four companies.</p>
+        <p class="next">What's next: Jakarta is weighing a national emergency declaration if the haze worsens before seasonal rains.</p>
+        <div class="foot"><a class="src" href="https://abcnews.com/International/wireStory/indonesia-intensifies-aerial-firefighting-wildfire-haze-spreads-malaysia-135896493" target="_blank" rel="noopener">AP (via ABC News)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fabcnews.com%2FInternational%2FwireStory%2Findonesia-intensifies-aerial-firefighting-wildfire-haze-spreads-malaysia-135896493%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Indonesia%20haze%20Malaysia%20cloud%20seeding%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20the%20mechanics%20of%20transboundary%20haze%20liability%3A%20can%20Malaysia%20or%20Brunei%20hold%20Indonesian%20companies%20legally%20accountable%2C%20and%20has%20ASEAN%27s%20haze%20agreement%20ever%20worked%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5b. business -->
+  <section class="beat" style="--accent: var(--business)">
+    <h2>Business &amp; Markets</h2>
+    <article class="story lead">
+      <div class="kicker"><span class="tag">Lead · Bonds</span><span class="badge">8/10</span></div>
+      <h3 class="hl">Bessent's bond-market intervention: Treasury doubles debt buybacks to tame a 19-year-high 30-year yield</h3>
+      <p class="why"><b>Why it matters:</b> In an extraordinary step, the Treasury more than doubled its debt buybacks to at least $4 billion per operation, running Sept 9–Nov 4 and targeting 10-to-30-year maturities, after the 30-year yield hit a 19-year high near 5.22%. It is yield management the Fed won't do — initial relief faded (the Dow fell 700 points Aug 20), but by Tuesday's close the 10-year had eased to about 4.66% as falling oil calmed the bond market.</p>
+      <p class="next">What's next: Bessent says operations "could be more than $4 billion"; Friday's <a class="e" href="https://claude.ai/new?q=Explain%20the%20Jackson%20Hole%20economic%20symposium%20%E2%80%94%20why%20Fed%20chair%20keynotes%20there%20move%20markets%2C%20with%20notable%20historical%20examples%2C%20and%20what%20makes%20the%20August%202026%20edition%20unusual." target="_blank" rel="noopener">Jackson Hole</a> keynote from Fed Chair Warsh is the next test for yields.</p>
+      <div class="foot"><a class="src" href="https://www.cnbc.com/2026/08/19/treasury-announces-upscaled-buyback-operation-for-longer-term-debt-sending-yields-lower.html" target="_blank" rel="noopener">CNBC</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F08%2F19%2Ftreasury-announces-upscaled-buyback-operation-for-longer-term-debt-sending-yields-lower.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Treasury%20doubles%20buyback%20operations%20Bessent%2030-year%20yield%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20whether%20this%20amounts%20to%20quasi-yield-curve%20control%2C%20how%20it%20differs%20from%20Fed%20QE%2C%20and%20what%20happens%20if%20the%20bond%20market%20tests%20Treasury%27s%20resolve." target="_blank" rel="noopener">Go deeper →</a></div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <div class="kicker"><span class="tag">Trade war</span><span class="badge">8/10</span></div>
+        <h3 class="hl">Canada slaps 15–50% counter-tariffs on C$27.6 billion of US goods, effective September 8</h3>
+        <p class="why"><b>Why it matters:</b> Ottawa is matching Washington's newest duties dollar-for-dollar: a 99-page list of 700+ products — 50% on steel, aluminum, furniture and clothing, 25% on cheese, appliances and seafood, 15% on electronics — plus a C$7.5 billion support package. Prime Minister <a class="e" href="https://claude.ai/new?q=Profile%20Mark%20Carney%20%E2%80%94%20his%20path%20from%20central%20banker%20to%20Canadian%20prime%20minister%2C%20and%20his%20leverage%20in%20the%202026%20US-Canada%20trade%20war." target="_blank" rel="noopener">Mark Carney</a> has described the two economies as effectively "at war" over trade — the sharpest rupture yet between the largest bilateral trading partners.</p>
+        <p class="next">What's next: duties bite September 8 unless a de-escalation deal lands first.</p>
+        <div class="foot"><a class="src" href="https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html" target="_blank" rel="noopener">Government of Canada, Dept. of Finance</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.canada.ca%2Fen%2Fdepartment-finance%2Fnews%2F2026%2F08%2Flist-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Canada%20counter-tariffs%20September%208%202026%20list%20of%20products%22%20and%20find%20the%20official%20release%20%E2%80%94%20then%20identify%20which%20US%20industries%20and%20states%20are%20hit%20hardest%20by%20the%20700-product%20list%2C%20and%20what%20dollar-for-dollar%20escalation%20means%20for%20what%20remains%20of%20USMCA." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Energy</span><span class="badge">7/10</span></div>
+        <h3 class="hl">Oil's war premium deflates: Brent drops toward $87 as US–Iran tensions show signs of cooling</h3>
+        <p class="why"><b>Why it matters:</b> Brent slid roughly 6% Tuesday to end near $87 (WTI settled at $82.36, down ~3%), extending the retreat from last week's ~$95 highs after the new Iran sanctions spared Chinese banks and set no compliance deadline, and Pakistan's army chief carried a sanctions-relief proposal to Tehran. Cheaper oil eased bond-market inflation worries and helped lift stocks for a second day.</p>
+        <p class="next">What's next: whether Brent holds the $85–87 range into Friday's Jackson Hole speech.</p>
+        <div class="foot"><a class="src" href="https://fortune.com/article/price-of-oil-08-25-2026/" target="_blank" rel="noopener">Fortune</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ffortune.com%2Farticle%2Fprice-of-oil-08-25-2026%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Brent%20crude%20falls%20Iran%20sanctions%20war%20premium%20August%2025%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20estimate%20how%20much%20war%20premium%20is%20left%20in%20Brent%20at%20%2487%2C%20and%20what%20a%20Qatar-mediated%20Strait%20of%20Hormuz%20shipping%20channel%20would%20do%20to%20prices." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Earnings eve</span><span class="badge">7/10</span></div>
+        <h3 class="hl">Nvidia reports Wednesday: a ~$94 billion quarter that decides whether the AI rally rolls on</h3>
+        <p class="why"><b>Why it matters:</b> Wall Street expects roughly $93–95 billion in revenue and $2.09 in adjusted EPS from fiscal Q2 results after Wednesday's close — a print that doubles as a referendum on AI capex, with the stock up ~18% YTD and roughly 80% of the AI-accelerator market. Tuesday's Nasdaq gain (+0.7%) was largely positioning ahead of it.</p>
+        <p class="next">What's next: results land ~4:20pm ET Wednesday, hours before July PCE and two days before Warsh's Jackson Hole debut.</p>
+        <div class="foot"><a class="src" href="https://www.kiplinger.com/investing/live/nvidia-earnings-live-updates-and-commentary-august-2026" target="_blank" rel="noopener">Kiplinger</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.kiplinger.com%2Finvesting%2Flive%2Fnvidia-earnings-live-updates-and-commentary-august-2026%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Nvidia%20fiscal%20Q2%202027%20earnings%20preview%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20identify%20the%20three%20numbers%20in%20this%20report%20that%20matter%20more%20than%20headline%20revenue%2C%20and%20what%20would%20make%20the%20market%20sell%20even%20a%20beat." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Retail</span><span class="badge">6/10</span></div>
+        <h3 class="hl">Dick's Sporting Goods craters 30% as the Foot Locker deal sours and athleticwear demand wobbles</h3>
+        <p class="why"><b>Why it matters:</b> Q2 adjusted EPS of $3.53 missed the $3.78 consensus on $5.59 billion in revenue, and the retailer cut its full-year outlook — its worst one-day drop since 2023. The drag came almost entirely from the Foot Locker business acquired in 2025 (legacy Dick's comps still grew 4.9%), making this both a merger stumble and a fresh read on a softening US consumer.</p>
+        <p class="next">What's next: watch Nike and On for read-through, plus Friday's PCE for the broader consumer picture.</p>
+        <div class="foot"><a class="src" href="https://www.cnbc.com/2026/08/25/dicks-sporting-goods-dks-earnings-q2-2026.html" target="_blank" rel="noopener">CNBC</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F08%2F25%2Fdicks-sporting-goods-dks-earnings-q2-2026.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Dick%27s%20Sporting%20Goods%20Q2%202026%20earnings%20Foot%20Locker%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20separate%20the%20Foot%20Locker%20integration%20problem%20from%20the%20consumer-demand%20problem%3A%20which%20is%20doing%20the%20damage%2C%20and%20what%20is%20the%20read-through%20for%20Nike%20and%20On%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5c. tech -->
+  <section class="beat" style="--accent: var(--tech)">
+    <h2>Tech &amp; AI</h2>
+    <article class="story lead">
+      <div class="kicker"><span class="tag">Lead · Silicon</span><span class="badge">8/10</span></div>
+      <h3 class="hl">Nvidia puts its Groq-derived inference chip into full production as its earnings loom</h3>
+      <p class="why"><b>Why it matters:</b> Groq 3 LPX — the dedicated inference accelerator born of Nvidia's reported $20B Groq acqui-hire — entered full production Aug 24 as an extension of the <a class="e" href="https://claude.ai/new?q=Explain%20Nvidia%27s%20Vera%20Rubin%20platform%20%E2%80%94%20the%20architecture%2C%20the%20standalone%20Vera%20CPU%2C%20and%20how%20the%20Groq-derived%20LPX%20inference%20accelerator%20fits%20into%20it." target="_blank" rel="noopener">Vera Rubin platform</a>: up to 256 accelerators per rack, benchmarked at 3,400 output tokens/sec on a 31B-parameter model with 100K context, with Nebius deploying first. Nvidia is moving to own low-latency agentic inference, the fastest-growing slice of AI compute.</p>
+      <p class="next">What's next: Nvidia reports earnings after Wednesday's close, with ~$91B guided revenue that assumes zero China data-center sales.</p>
+      <div class="foot"><a class="src" href="https://nvidianews.nvidia.com/news/nvidia-groq-3-lpx-now-in-full-production-with-world-class-speed-for-agentic-ai" target="_blank" rel="noopener">NVIDIA Newsroom</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fnvidianews.nvidia.com%2Fnews%2Fnvidia-groq-3-lpx-now-in-full-production-with-world-class-speed-for-agentic-ai%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Nvidia%20Groq%203%20LPX%20full%20production%20announcement%22%20and%20find%20the%20original%20release%20%E2%80%94%20then%20explain%20how%20the%20LPX%20inference%20architecture%20differs%20from%20Nvidia%27s%20own%20Rubin%20GPUs%2C%20and%20whether%20the%20contested%20benchmark%20comparisons%20against%20Cerebras%20hold%20up." target="_blank" rel="noopener">Go deeper →</a></div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <div class="kicker"><span class="tag">AI &amp; influence</span><span class="badge">7/10</span></div>
+        <h3 class="hl">OpenAI dismantles a Kremlin-aligned influence operation built around a fake think tank</h3>
+        <p class="why"><b>Why it matters:</b> OpenAI banned Russia-based accounts that evaded its country block via VPNs and manufactured a fictitious "International Burke Institute" — 34 of 36 reviewed articles were plagiarized — pushing a pro-Moscow "sovereignty index" across Substack, Telegram, X, Facebook and LinkedIn. The fake-expertise infrastructure marks an escalation in how state-aligned actors weaponize consumer AI, even though reach stayed small.</p>
+        <div class="foot"><a class="src" href="https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia/" target="_blank" rel="noopener">OpenAI</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fopenai.com%2Findex%2Fdisrupting-malicious-uses-of-ai-influence-campaign-russia%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22OpenAI%20Russia%20influence%20operation%20Burke%20Institute%20August%202026%22%20and%20find%20the%20original%20report%20%E2%80%94%20then%20explain%20how%20the%20operation%20manufactured%20fake%20expertise%2C%20why%20its%20reach%20stayed%20small%2C%20and%20what%20this%20says%20about%20detecting%20state-aligned%20AI%20influence%20campaigns." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Cybersecurity</span><span class="badge">7/10</span></div>
+        <h3 class="hl">CISA gives agencies 72 hours to patch a perfect-10 Oracle flaw under active attack</h3>
+        <p class="why"><b>Why it matters:</b> CVE-2026-21962 (CVSS 10.0), an unauthenticated remote flaw in Oracle HTTP Server and the WebLogic proxy plug-in, joined the <a class="e" href="https://claude.ai/new?q=What%20is%20CISA%27s%20Known%20Exploited%20Vulnerabilities%20catalog%2C%20and%20how%20do%20its%20remediation%20deadlines%20drive%20patching%20across%20the%20US%20federal%20government%20and%20private%20sector%3F" target="_blank" rel="noopener">Known Exploited Vulnerabilities catalog</a> Aug 24 with an unusually short Aug 27 federal deadline. Honeypots saw exploitation since Jan 22 — right after a public PoC — meaning widely deployed middleware was quietly attackable for seven months despite a January patch.</p>
+        <p class="next">What's next: federal civilian agencies must remediate by August 27.</p>
+        <div class="foot"><a class="src" href="https://www.cisa.gov/news-events/alerts/2026/08/24/cisa-adds-one-known-exploited-vulnerability-catalog" target="_blank" rel="noopener">CISA</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cisa.gov%2Fnews-events%2Falerts%2F2026%2F08%2F24%2Fcisa-adds-one-known-exploited-vulnerability-catalog%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22CISA%20KEV%20CVE-2026-21962%20Oracle%20HTTP%20Server%20August%202026%22%20and%20find%20the%20original%20alert%20%E2%80%94%20then%20explain%20who%20is%20exposed%20to%20CVE-2026-21962%2C%20how%20the%20exploit%20works%2C%20and%20why%20exploitation%20stayed%20quiet%20for%20seven%20months%20after%20a%20public%20proof%20of%20concept." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Cybersecurity</span><span class="badge">7/10</span></div>
+        <h3 class="hl">Three days in, Norway's digital government is still under the largest DDoS attack in its history</h3>
+        <p class="why"><b>Why it matters:</b> The attack on the Norwegian Digitalisation Agency (Digdir) and its provider Vivicta began at 3:38am Monday and has intermittently knocked out ten shared public services — including ID-porten, the login used by 4.5+ million Norwegians to reach healthcare and government systems. Officials call it two to three times larger than any prior attack on state systems, the third since June; a pro-Russian group claimed responsibility Wednesday, and no data breach has been found.</p>
+        <p class="next">What's next: Digdir is filtering traffic with its provider; attribution beyond the claim remains unconfirmed.</p>
+        <div class="foot"><a class="src" href="https://therecord.media/norway-cyberattack-ddos-government" target="_blank" rel="noopener">The Record (Recorded Future News)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ftherecord.media%2Fnorway-cyberattack-ddos-government%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Norway%20Digdir%20DDoS%20ID-porten%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20why%20a%20country%20that%20centralizes%20its%20digital%20identity%20in%20one%20platform%20is%20so%20exposed%20to%20DDoS%2C%20and%20how%20credible%20pro-Russian%20hacktivist%20claims%20of%20responsibility%20usually%20are." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">AI infrastructure</span><span class="badge">7/10</span></div>
+        <h3 class="hl">SpaceXAI standardizes Grok on Nvidia's Vera CPU — and plans to fly a Rubin rack to orbit</h3>
+        <p class="why"><b>Why it matters:</b> SpaceXAI became the second hyperscaler after Meta to adopt Nvidia's standalone 88-core Vera CPU, orchestrating Grok's agentic workloads on Earth and in a space-hardened NVL72 rack (72 Rubin GPUs, 36 Vera CPUs) aboard the first Starmind AI satellite. It is the most concrete step yet toward orbital AI data centers, backed by an FCC filing for up to 1 million satellites.</p>
+        <p class="next">What's next: first Starmind launch targeted for Q4 2027, scale deployments in 2028.</p>
+        <div class="foot"><a class="src" href="https://nvidianews.nvidia.com/news/spacexai-adopts-nvidia-vera-cpu-to-accelerate-agentic-ai-at-massive-scale" target="_blank" rel="noopener">NVIDIA Newsroom</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fnvidianews.nvidia.com%2Fnews%2Fspacexai-adopts-nvidia-vera-cpu-to-accelerate-agentic-ai-at-massive-scale%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22SpaceXAI%20Nvidia%20Vera%20CPU%20Starmind%20satellite%20announcement%22%20and%20find%20the%20original%20release%20%E2%80%94%20then%20assess%20the%20engineering%20obstacles%20to%20running%20a%20Vera%20Rubin%20NVL72%20rack%20in%20orbit%20%E2%80%94%20power%2C%20cooling%2C%20radiation%20%E2%80%94%20and%20whether%20the%20Q4%202027%20launch%20target%20is%20plausible." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">AI &amp; culture</span><span class="badge">6/10</span></div>
+        <h3 class="hl">Australia's official music charts become the first to bar fully AI-generated songs</h3>
+        <p class="why"><b>Why it matters:</b> ARIA ruled Aug 25 that wholly AI-generated tracks are ineligible for its charts and awards — after an AI-made song became the most-played track on Australian radio and hit No. 4 on two charts in July. It is the first major-market attempt to define "substantially human-made" music, a line every chart body and streaming platform now has to consider.</p>
+        <p class="next">What's next: the rules take effect with the chart dated August 31.</p>
+        <div class="foot"><a class="src" href="https://www.abc.net.au/news/2026-08-25/ai-generated-music-to-be-banned-from-aria-charts/107072642" target="_blank" rel="noopener">ABC News (Australia)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.abc.net.au%2Fnews%2F2026-08-25%2Fai-generated-music-to-be-banned-from-aria-charts%2F107072642%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22ARIA%20bans%20AI-generated%20songs%20charts%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20how%20ARIA%20can%20actually%20define%20and%20detect%20%27substantially%20human-made%27%20music%2C%20and%20what%20precedent%20this%20sets%20for%20Billboard%20and%20the%20streaming%20platforms." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Automation</span><span class="badge">6/10</span></div>
+        <h3 class="hl">Leaked Amazon plan targets full automation of last-mile delivery stations</h3>
+        <p class="why"><b>Why it matters:</b> Internal documents describe "Project Tetromino": fully automated package sorting and van loading using Boxbot robotics, a $103M pilot in 2028, $530M+ in funding by 2029, and stations running ~2.5x faster than manual ones. It would extend Amazon's automation push into the last major human-staffed link of its delivery chain; Amazon calls it an "early-stage concept" and disputes the leaked financials.</p>
+        <div class="foot"><a class="src" href="https://www.geekwire.com/2026/amazon-eyes-fully-automated-delivery-stations-to-bring-robotics-to-the-last-mile/" target="_blank" rel="noopener">GeekWire</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.geekwire.com%2F2026%2Famazon-eyes-fully-automated-delivery-stations-to-bring-robotics-to-the-last-mile%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Amazon%20Project%20Tetromino%20delivery%20station%20automation%20GeekWire%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20what%20the%20leaked%20roadmap%20implies%20for%20Amazon%27s%20delivery-station%20workforce%2C%20and%20how%20credible%20the%202028%20pilot%20timeline%20is%20given%20Amazon%20calls%20it%20an%20early-stage%20concept." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5d. science -->
+  <section class="beat" style="--accent: var(--science)">
+    <h2>Science &amp; Space</h2>
+    <article class="story lead">
+      <div class="kicker"><span class="tag">Lead · Climate</span><span class="badge">8/10</span></div>
+      <h3 class="hl">Manhattan-sized ice island snaps off Greenland's Petermann Glacier — the Arctic's biggest calving since 2020</h3>
+      <p class="why"><b>Why it matters:</b> A 76-square-kilometer slab, up to 150 meters thick, broke off Petermann's floating ice tongue on Aug 4 — the glacier's largest loss since 2012 — with <a class="e" href="https://claude.ai/new?q=What%20is%20Copernicus%20Sentinel-1%2C%20and%20how%20does%20synthetic-aperture%20radar%20let%20it%20track%20glacier%20calving%20through%20polar%20darkness%20and%20cloud%20cover%3F" target="_blank" rel="noopener">Copernicus Sentinel-1</a> radar tracking the fractures day by day. The tongue buttresses a glacier draining a significant share of northwest Greenland's ice sheet, so its disintegration bears directly on sea-level projections.</p>
+      <p class="next">What's next: developing rifts could soon release two more ice islands of roughly 94 and 84 square kilometers.</p>
+      <div class="foot"><a class="src" href="https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Sentinel-1_captures_major_ice_loss_from_Greenland_glacier" target="_blank" rel="noopener">ESA (Copernicus Sentinel-1)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.esa.int%2FApplications%2FObserving_the_Earth%2FCopernicus%2FSentinel-1%2FSentinel-1_captures_major_ice_loss_from_Greenland_glacier%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Petermann%20Glacier%20ice%20island%20Sentinel-1%20August%202026%22%20and%20find%20the%20original%20ESA%20release%20%E2%80%94%20then%20explain%20how%20losing%20part%20of%20its%20floating%20ice%20tongue%20changes%20Petermann%27s%20flow%20speed%2C%20and%20what%20this%20calving%20means%20for%20sea-level%20projections." target="_blank" rel="noopener">Go deeper →</a></div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <div class="kicker"><span class="tag">Genomics</span><span class="badge">7/10</span></div>
+        <h3 class="hl">Largest-ever genome comparison finds animal chromosomes evolve along one-way "evolutionary highways"</h3>
+        <p class="why"><b>Why it matters:</b> University of Vienna researchers compared 5,800+ chromosome-scale genomes across 4,454 species and 19 phyla — the biggest such analysis ever — and found that irreversible "fusion-with-mixing" events funnel genome architecture down a limited set of one-way paths. Humans, octopuses and corals still carry recognizable chromosome blocks from a common ancestor over 600 million years old.</p>
+        <div class="foot"><a class="src" href="https://www.science.org/doi/10.1126/sciadv.adz5561" target="_blank" rel="noopener">Science Advances</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.science.org%2Fdoi%2F10.1126%2Fsciadv.adz5561%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22evolutionary%20highways%20chromosome%20fusion-with-mixing%20Science%20Advances%202026%22%20and%20find%20the%20paper%20%E2%80%94%20then%20explain%20what%20fusion-with-mixing%20is%2C%20why%20it%20is%20irreversible%2C%20and%20how%20one-way%20genome%20evolution%20constrains%20what%20animal%20lineages%20can%20become." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Launch</span><span class="badge">7/10</span></div>
+        <h3 class="hl">SpaceX hits 100 orbital launches in a single year faster than ever — with four months to spare</h3>
+        <p class="why"><b>Why it matters:</b> The Falcon fleet reached its 100th mission of 2026 in just 231 days — about two months faster than 2024 — on pace for ~160 launches this year. The same flight pushed <a class="e" href="https://claude.ai/new?q=How%20dominant%20is%20Starlink%20in%202026%20%E2%80%94%20satellite%20count%2C%20market%20share%2C%20and%20what%2011%2C000%2B%20operational%20satellites%20mean%20for%20astronomy%20and%20orbital%20traffic%3F" target="_blank" rel="noopener">Starlink</a> past 11,000 operational satellites, and booster B1067 flew a record 37th time, closing on the Space Shuttle's reuse mark.</p>
+        <div class="foot"><a class="src" href="https://spaceflightnow.com/2026/08/21/live-coverage-spacex-to-launch-100th-orbital-mission-of-2026/" target="_blank" rel="noopener">Spaceflight Now</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fspaceflightnow.com%2F2026%2F08%2F21%2Flive-coverage-spacex-to-launch-100th-orbital-mission-of-2026%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22SpaceX%20100th%20launch%202026%20record%20pace%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20what%20a%20160-launch%20year%20means%20for%20orbital%20congestion%2C%20Starlink%27s%20dominance%2C%20and%20the%20competitive%20structure%20of%20the%20launch%20market." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Spaceflight</span><span class="badge">6/10</span></div>
+        <h3 class="hl">NASA's Menon and France's Adenot wrap a 6.5-hour spacewalk to restore the ISS high-speed comms link</h3>
+        <p class="why"><b>Why it matters:</b> On Aug 25, Anil Menon and ESA's Sophie Adenot completed a 6-hour-30-minute spacewalk installing a spare Space-to-Ground antenna — the link carrying high-rate data to Mission Control. It was Menon's third straight EVA of the expedition; on the Aug 18 outing, Adenot became the first Frenchwoman to walk in space.</p>
+        <div class="foot"><a class="src" href="https://www.nasa.gov/blogs/spacestation/2026/08/25/nasa-esa-spacewalkers-finish-installing-high-speed-antenna/" target="_blank" rel="noopener">NASA (Space Station blog)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nasa.gov%2Fblogs%2Fspacestation%2F2026%2F08%2F25%2Fnasa-esa-spacewalkers-finish-installing-high-speed-antenna%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Menon%20Adenot%20spacewalk%20antenna%20ISS%20August%2025%202026%22%20and%20find%20NASA%27s%20blog%20post%20%E2%80%94%20then%20explain%20what%20the%20Space-to-Ground%20antenna%20does%2C%20why%20it%20took%20a%20multi-spacewalk%20sequence%20to%20replace%2C%20and%20what%20was%20notable%20about%20this%20EVA%20crew." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 6. anthropic -->
+  <section class="beat" style="--accent: var(--anthropic)">
+    <h2>Anthropic</h2>
+    <article class="story lead">
+      <div class="kicker"><span class="tag">Lead · IPO</span><span class="badge">9/10</span></div>
+      <h3 class="hl">Anthropic to pitch IPO investors a $30 trillion addressable market, topping SpaceX's</h3>
+      <p class="why"><b>Why it matters:</b> Per a WSJ report picked up by Reuters on Aug 25, Anthropic will tell investors its <a class="e" href="https://claude.ai/new?q=How%20do%20companies%20construct%20total%20addressable%20market%20estimates%20for%20IPO%20pitches%2C%20and%20what%20would%20make%20Anthropic%27s%20%2430%20trillion%20claim%20credible%20or%20not%3F" target="_blank" rel="noopener">total addressable market</a> exceeds $30 trillion — above SpaceX's $28.5 trillion — framing the TAM as the full scope of work AI models could perform. The company is reportedly targeting a ~$2 trillion valuation and up to $100 billion raised, after more than doubling revenue to $11.6 billion in Q2.</p>
+      <p class="next">What's next: prospectus documents are expected shortly, leaving room for a <a class="e" href="https://claude.ai/new?q=What%20is%20Anthropic%27s%20reported%20IPO%20plan%20as%20of%20August%202026%20%E2%80%94%20the%20valuation%20target%2C%20the%20%2430%20trillion%20TAM%20pitch%2C%20and%20its%20revenue%20trajectory%20%E2%80%94%20and%20how%20does%20it%20compare%20with%20history%27s%20largest%20listings%3F" target="_blank" rel="noopener">market debut</a> as early as September or October.</p>
+      <div class="foot"><a class="src" href="https://finance.yahoo.com/technology/ai/articles/anthropic-expected-tell-investors-sees-165618194.html" target="_blank" rel="noopener">Reuters (via Yahoo Finance)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ffinance.yahoo.com%2Ftechnology%2Fai%2Farticles%2Fanthropic-expected-tell-investors-sees-165618194.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Anthropic%20IPO%2030%20trillion%20addressable%20market%20WSJ%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20how%20defensible%20a%20%2430%20trillion%20TAM%20methodology%20is%2C%20and%20how%20Anthropic%27s%20pitch%20compares%20with%20what%20SpaceX%20told%20its%20investors." target="_blank" rel="noopener">Go deeper →</a></div>
+    </article>
+    <div class="grid">
+      <article class="story">
+        <div class="kicker"><span class="tag">Product</span><span class="badge">7/10</span></div>
+        <h3 class="hl">Claude's memory now spans chat and Cowork, with topic-by-topic editing and sensitive-topic opt-in</h3>
+        <p class="why"><b>Why it matters:</b> As of Aug 25, memories formed in Claude chat carry into Cowork's cloud tasks and vice versa, created on the fly during conversations rather than summarized afterward. Memory is on by default for Free, Pro and Max users — but health, religion, politics and gender identity are excluded unless users opt in, a notable privacy default as assistants get more persistent.</p>
+        <div class="foot"><a class="src" href="https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/" target="_blank" rel="noopener">TechCrunch</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ftechcrunch.com%2F2026%2F08%2F25%2Fclaude-cowork-finally-remembers-what-you-told-the-app-in-chat%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Claude%20memory%20chat%20Cowork%20unified%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20the%20privacy%20trade-offs%20of%20cross-surface%20AI%20memory%2C%20and%20how%20Anthropic%27s%20sensitive-topics%20opt-in%20default%20compares%20with%20rival%20assistants." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Platform</span><span class="badge">7/10</span></div>
+        <h3 class="hl">Anthropic moves its agent stack out of beta: computer use, browser use, Skills API and Files API hit GA</h3>
+        <p class="why"><b>Why it matters:</b> On Aug 19, computer use (in beta since October 2024), a new browser-use tool, the Skills API and the Files API all became generally available in one release. The browser tool navigates via the page's accessibility tree rather than pixel coordinates — a bet that structured browsing beats screenshot-driven agents for reliability.</p>
+        <p class="next">What's next: GA typically precedes enterprise procurement; agent-platform competition with OpenAI and Google sharpens around production guarantees.</p>
+        <div class="foot"><a class="src" href="https://claude.com/blog/computer-use-skills-api-files-api" target="_blank" rel="noopener">Anthropic (Claude blog)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fclaude.com%2Fblog%2Fcomputer-use-skills-api-files-api%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Anthropic%20computer%20use%20browser%20use%20Skills%20API%20generally%20available%22%20and%20find%20the%20original%20post%20%E2%80%94%20then%20explain%20what%20accessibility-tree%20browsing%20changes%20versus%20pixel-based%20agents%20for%20reliability%20and%20safety%2C%20and%20what%20GA%20status%20means%20for%20enterprise%20adoption." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+      <article class="story">
+        <div class="kicker"><span class="tag">Education</span><span class="badge">6/10</span></div>
+        <h3 class="hl">Claude Academy launches as a free, no-login learning hub for AI fluency</h3>
+        <p class="why"><b>Why it matters:</b> Launched Aug 20, the Academy offers free multilingual courses from AI fundamentals through product-specific paths, anchored by a four-hour AI Fluency course built on Anthropic's 4D framework (Delegation, Description, Discernment, Diligence). It is a distribution play: teaching the workflow is now part of selling the model.</p>
+        <div class="foot"><a class="src" href="https://www.edtechinnovationhub.com/news/anthropic-opens-claude-academy-with-free-ai-courses-and-workplace-rollout-guides" target="_blank" rel="noopener">EdTech Innovation Hub</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.edtechinnovationhub.com%2Fnews%2Fanthropic-opens-claude-academy-with-free-ai-courses-and-workplace-rollout-guides%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Claude%20Academy%20launch%20free%20AI%20courses%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20whether%20vendor-led%20AI%20training%20actually%20shifts%20enterprise%20adoption%2C%20and%20what%20is%20in%20Anthropic%27s%204D%20AI%20Fluency%20framework." target="_blank" rel="noopener">Go deeper →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 7. sports -->
+  <section class="beat" style="--accent: var(--muted)">
+    <h2 style="color: var(--text); letter-spacing: 2px;">Your Teams</h2>
+    <article class="story lead" style="--accent: #F4793E">
+      <div class="kicker"><span class="tag">Giants · MLB</span><span class="badge">7/10</span></div>
+      <h3 class="hl">Giants top Reds 3-1 on Devers' Splash Hit — but lose another starter to an elbow injury</h3>
+      <p class="why"><b>Why it matters:</b> <a class="e" href="https://claude.ai/new?q=Profile%20Rafael%20Devers%20%E2%80%94%20how%20his%20trade%20to%20the%20Giants%20happened%2C%20his%202026%20season%2C%20and%20what%20a%20Splash%20Hit%20is%20at%20Oracle%20Park." target="_blank" rel="noopener">Rafael Devers</a> bounced his 28th homer into McCovey Cove, but starter Adrian Houser walked off in pain two outs into the second — one night after Carson Whisenhunt's start ended with a torn UCL. The bullpen covered 6⅓ innings of two-hit ball for a 54-78 club now playing for development, not October.</p>
+      <p class="next">What's next: series finale vs Cincinnati today at 12:45pm PT — Landen Roupp opposes Nick Lodolo.</p>
+      <div class="foot"><a class="src" href="https://sitkasentinel.com/stories/rafael-devers-bounces-a-homer-into-mccovey-cove-as-giants-beat-reds-3-1,166453" target="_blank" rel="noopener">AP (via Daily Sitka Sentinel)</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fsitkasentinel.com%2Fstories%2Frafael-devers-bounces-a-homer-into-mccovey-cove-as-giants-beat-reds-3-1%2C166453%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Giants%20beat%20Reds%203-1%20Devers%20McCovey%20Cove%20Houser%20injury%22%20and%20find%20the%20original%20recap%20%E2%80%94%20then%20assess%20what%20the%20back-to-back%20Whisenhunt%20and%20Houser%20elbow%20injuries%20mean%20for%20the%20Giants%27%202027%20rotation%20plans%20and%20this%20winter%27s%20pitching%20market." target="_blank" rel="noopener">Go deeper →</a></div>
+    </article>
+    <article class="story" style="--accent: #AA0000">
+      <div class="kicker"><span class="tag">49ers · NFL</span><span class="badge">7/10</span></div>
+      <h3 class="hl">Cutdown week arrives: 49ers close preseason Thursday with 53-man bubble battles unsettled</h3>
+      <p class="why"><b>Why it matters:</b> After a 41-17 rout of the Chargers, the hardest room to call is running back — <a class="e" href="https://claude.ai/new?q=What%20is%20Christian%20McCaffrey%27s%20injury%20history%20and%20current%20status%20entering%20the%202026%20NFL%20season%2C%20and%20how%20load-dependent%20is%20the%2049ers%20offense%20on%20him%3F" target="_blank" rel="noopener">Christian McCaffrey</a>, James, Black and Guerendo are all banged up — plus a QB3 fight between Kurtis Rourke (fractured ribs in the opener) and Adrian Martinez behind Purdy and Jones.</p>
+      <p class="next">What's next: preseason finale vs the Raiders Thursday 5pm PT; rosters cut to 53 by Sunday, with the season opener roughly two weeks out.</p>
+      <div class="foot"><a class="src" href="https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/matt-maiocco-53-man-49ers-roster-projection/1957934/" target="_blank" rel="noopener">NBC Sports Bay Area</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nbcsportsbayarea.com%2Fnfl%2Fsan-francisco-49ers%2Fmatt-maiocco-53-man-49ers-roster-projection%2F1957934%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Maiocco%2049ers%2053-man%20roster%20projection%20August%202026%22%20and%20find%20the%20original%20article%20%E2%80%94%20then%20identify%20the%20last%20bubble%20players%20worth%20watching%20in%20Thursday%27s%20finale%20against%20the%20Raiders%2C%20and%20how%20the%2049ers%20are%20likely%20to%20resolve%20the%20QB3%20battle%20between%20Kurtis%20Rourke%20and%20Adrian%20Martinez." target="_blank" rel="noopener">Go deeper →</a></div>
+    </article>
+    <article class="story" style="--accent: #1D428A">
+      <div class="kicker"><span class="tag">Warriors · NBA</span><span class="badge">6/10</span></div>
+      <h3 class="hl">Warriors finally spend: Niang and Brandon Williams signings complete the 15-man roster</h3>
+      <p class="why"><b>Why it matters:</b> Golden State ended a two-month stretch without an outside addition, agreeing with Georges Niang (1 year, $3.9M) and Brandon Williams (1 year, $2.6M). Niang — a career 39.9% three-point shooter coming off a foot fracture — slots behind Green, Porzingis and Horford; Williams averaged 13.0 ppg for Dallas last season.</p>
+      <p class="next">What's next: the Warriors open 2026-27 on Oct 21 against the Lakers, their second straight opening night vs LA.</p>
+      <div class="foot"><a class="src" href="https://www.espn.com/nba/story/_/id/49726223/sources-warriors-sign-georges-niang-completing-roster" target="_blank" rel="noopener">ESPN</a><a class="deeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.espn.com%2Fnba%2Fstory%2F_%2Fid%2F49726223%2Fsources-warriors-sign-georges-niang-completing-roster%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Warriors%20sign%20Georges%20Niang%20Brandon%20Williams%20August%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20how%20Niang%20and%20Williams%20fit%20the%20Warriors%27%20rotation%2C%20and%20what%20the%20completed%2015-man%20roster%20says%20about%20their%20realistic%20ceiling%20in%202026-27." target="_blank" rel="noopener">Go deeper →</a></div>
+    </article>
+
+    <div class="sbhead"><span class="lg">MLB — last night</span><span class="ctx">Game 132 of 162 · Giants 54-78</span></div>
+    <div class="sbrow">
+      <div class="card fav" style="--teamcolor: #F4793E">
+        <div class="row"><span>CIN</span><span>1</span></div>
+        <div class="row"><span>SF</span><span class="w">3</span></div>
+        <div class="st">Final · Devers' Splash Hit</div>
+      </div>
+      <div class="card">
+        <div class="row"><span>MIL</span><span>2</span></div>
+        <div class="row"><span>NYM</span><span class="w">3</span></div>
+        <div class="st">Final/10 · Mets walk off</div>
+      </div>
+      <div class="card">
+        <div class="row"><span>HOU</span><span class="w">9</span></div>
+        <div class="row"><span>NYY</span><span>7</span></div>
+        <div class="st">Final · Alvarez go-ahead triple</div>
+      </div>
+      <div class="card">
+        <div class="row"><span>TB</span><span>1</span></div>
+        <div class="row"><span>DET</span><span class="w">4</span></div>
+        <div class="st">Final</div>
+      </div>
+      <div class="card">
+        <div class="row"><span>CLE</span><span class="w">8</span></div>
+        <div class="row"><span>LAA</span><span>6</span></div>
+        <div class="st">Final</div>
+      </div>
+      <div class="card">
+        <div class="row"><span>COL</span><span class="w">3</span></div>
+        <div class="row"><span>WSH</span><span>1</span></div>
+        <div class="st">Final · Rockies snap 7-game skid</div>
+      </div>
+      <div class="card fav" style="--teamcolor: #F4793E">
+        <div class="row"><span>CIN</span><span>—</span></div>
+        <div class="row"><span>SF</span><span>—</span></div>
+        <div class="st">Today 12:45pm PT · Roupp vs Lodolo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ending -->
+  <div class="ending">
+    <p class="big serif">That's your briefing. You're caught up.</p>
+    <p class="sub">28 stories across 4 beats, Anthropic and your teams — every source verified, every link opens a deeper conversation.<br><a href="archive/">Browse the archive →</a></p>
+  </div>
+
+  <!-- 9. sources -->
+  <details class="sources">
+    <summary>Sources (28)</summary>
+    <p class="note">Verification note: this environment's network proxy blocked direct page fetches during research, so every source URL below was verified through multiple independent search-indexed excerpts (3+ outlets per story) rather than a confirmed page load. Stories lacking multi-source corroboration were dropped; approximate figures are marked ≈ in the page. Market closes (S&amp;P, Dow, Nasdaq, Russell) are from AP's Tuesday market wrap and chain-check arithmetically across five sessions; VIX, Brent settles and the 200-day average carry wider uncertainty.</p>
+    <ul>
+      <li>Iran "Operation Economic Outcast" sanctions — <a href="https://home.treasury.gov/news/press-releases/sb0613" target="_blank" rel="noopener">U.S. Treasury</a> — official release; date, sectors and designations corroborated via Axios, Atlantic Council, Time</li>
+      <li>DRC Ebola situation report — <a href="https://www.afro.who.int/countries/democratic-republic-of-congo/publication/ebola-bundibugyo-virus-disease-outbreak-7" target="_blank" rel="noopener">WHO AFRO</a> — official sitrep 15 (data to Aug 23); figures corroborated via UN News</li>
+      <li>UK SCALP tech release in Kyiv — <a href="https://www.gov.uk/government/news/britain-is-100-behind-you-prime-minister-andy-burnham-visits-kyiv-on-ukrainian-independence-day-for-first-international-trip" target="_blank" rel="noopener">GOV.UK</a> — official release; corroborated via AP wire</li>
+      <li>Indonesia haze crisis — <a href="https://abcnews.com/International/wireStory/indonesia-intensifies-aerial-firefighting-wildfire-haze-spreads-malaysia-135896493" target="_blank" rel="noopener">AP via ABC News</a> — wire story; corroborated via multiple AP syndications</li>
+      <li>Dolly Parton dies at 80 — <a href="https://www.nbcnews.com/news/us-news/dolly-parton-county-music-icon-dies-80-rcna236277" target="_blank" rel="noopener">NBC News</a> — added 6:35am edition; corroborated via CBS News, ABC News, CBC; flag proclamation via WORLD/Minnesota News Network reports</li>
+      <li>Norway government DDoS — <a href="https://therecord.media/norway-cyberattack-ddos-government" target="_blank" rel="noopener">The Record</a> — added 6:35am edition; corroborated via BleepingComputer, AP via ABC News, The Local Norway, newsinenglish.no</li>
+      <li>Treasury doubles bond buybacks — <a href="https://www.cnbc.com/2026/08/19/treasury-announces-upscaled-buyback-operation-for-longer-term-debt-sending-yields-lower.html" target="_blank" rel="noopener">CNBC</a> — Aug 19 announcement, still the week's dominant macro force; corroborated via Bloomberg, Quartz</li>
+      <li>Canada counter-tariff list — <a href="https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html" target="_blank" rel="noopener">Finance Canada</a> — official release; figures corroborated via Reuters syndication, Al Jazeera</li>
+      <li>Brent war-premium unwind — <a href="https://fortune.com/article/price-of-oil-08-25-2026/" target="_blank" rel="noopener">Fortune</a> — Tuesday levels varied by source ($86.3–87.1); direction and drivers corroborated via TradingEconomics, AP</li>
+      <li>Nvidia earnings preview — <a href="https://www.kiplinger.com/investing/live/nvidia-earnings-live-updates-and-commentary-august-2026" target="_blank" rel="noopener">Kiplinger</a> — consensus figures corroborated across multiple previews</li>
+      <li>Dick's Q2 miss — <a href="https://www.cnbc.com/2026/08/25/dicks-sporting-goods-dks-earnings-q2-2026.html" target="_blank" rel="noopener">CNBC</a> — EPS/revenue/drop corroborated via Fox Business, Investing.com, PR Newswire release</li>
+      <li>Groq 3 LPX full production — <a href="https://nvidianews.nvidia.com/news/nvidia-groq-3-lpx-now-in-full-production-with-world-class-speed-for-agentic-ai" target="_blank" rel="noopener">NVIDIA Newsroom</a> — company release (primary); The Decoder notes contested benchmark math</li>
+      <li>OpenAI Russia influence op — <a href="https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia/" target="_blank" rel="noopener">OpenAI</a> — company threat report (primary); corroborated via CNBC, The Register</li>
+      <li>CISA KEV: CVE-2026-21962 — <a href="https://www.cisa.gov/news-events/alerts/2026/08/24/cisa-adds-one-known-exploited-vulnerability-catalog" target="_blank" rel="noopener">CISA</a> — agency alert (primary); corroborated via SecurityWeek, The Hacker News</li>
+      <li>SpaceXAI Vera CPU / Starmind — <a href="https://nvidianews.nvidia.com/news/spacexai-adopts-nvidia-vera-cpu-to-accelerate-agentic-ai-at-massive-scale" target="_blank" rel="noopener">NVIDIA Newsroom</a> — company release (primary); corroborated via Tom's Hardware, StorageReview</li>
+      <li>ARIA bars AI songs — <a href="https://www.abc.net.au/news/2026-08-25/ai-generated-music-to-be-banned-from-aria-charts/107072642" target="_blank" rel="noopener">ABC News (Australia)</a> — national broadcaster's original coverage; corroborated via Billboard, Variety</li>
+      <li>Amazon "Project Tetromino" — <a href="https://www.geekwire.com/2026/amazon-eyes-fully-automated-delivery-stations-to-bring-robotics-to-the-last-mile/" target="_blank" rel="noopener">GeekWire</a> — original document-based reporting; Amazon disputes the leaked financials</li>
+      <li>Petermann ice island — <a href="https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Sentinel-1_captures_major_ice_loss_from_Greenland_glacier" target="_blank" rel="noopener">ESA</a> — agency release (primary); corroborated via phys.org, weather.com</li>
+      <li>Chromosome "evolutionary highways" — <a href="https://www.science.org/doi/10.1126/sciadv.adz5561" target="_blank" rel="noopener">Science Advances</a> — journal DOI (primary), published Aug 19; corroborated via EurekAlert, ScienceDaily</li>
+      <li>SpaceX 100th launch of 2026 — <a href="https://spaceflightnow.com/2026/08/21/live-coverage-spacex-to-launch-100th-orbital-mission-of-2026/" target="_blank" rel="noopener">Spaceflight Now</a> — original launch coverage; milestone corroborated via multiple outlets</li>
+      <li>ISS antenna spacewalk — <a href="https://www.nasa.gov/blogs/spacestation/2026/08/25/nasa-esa-spacewalkers-finish-installing-high-speed-antenna/" target="_blank" rel="noopener">NASA</a> — agency blog (primary); corroborated via UPI</li>
+      <li>Anthropic $30T TAM pitch — <a href="https://finance.yahoo.com/technology/ai/articles/anthropic-expected-tell-investors-sees-165618194.html" target="_blank" rel="noopener">Reuters via Yahoo Finance</a> — WSJ original reporting; corroborated via Investing.com, PYMNTS, Quartz</li>
+      <li>Claude unified memory — <a href="https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/" target="_blank" rel="noopener">TechCrunch</a> — Aug 25 coverage; corroborated via The Register, 9to5Mac, SiliconANGLE</li>
+      <li>Agent stack GA — <a href="https://claude.com/blog/computer-use-skills-api-files-api" target="_blank" rel="noopener">Anthropic (Claude blog)</a> — first-party post; corroborated via The New Stack</li>
+      <li>Claude Academy — <a href="https://www.edtechinnovationhub.com/news/anthropic-opens-claude-academy-with-free-ai-courses-and-workplace-rollout-guides" target="_blank" rel="noopener">EdTech Innovation Hub</a> — third-party coverage; corroborated via WION, Techgenyz</li>
+      <li>Giants 3-1 win / Houser injury — <a href="https://sitkasentinel.com/stories/rafael-devers-bounces-a-homer-into-mccovey-cove-as-giants-beat-reds-3-1,166453" target="_blank" rel="noopener">AP</a> — wire recap; score corroborated via Field Level Media, ESPN box score</li>
+      <li>49ers cutdown week — <a href="https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/matt-maiocco-53-man-49ers-roster-projection/1957934/" target="_blank" rel="noopener">NBC Sports Bay Area</a> — beat reporting (Maiocco); corroborated via 49ers Webzone, FOX Sports listings</li>
+      <li>Warriors complete roster — <a href="https://www.espn.com/nba/story/_/id/49726223/sources-warriors-sign-georges-niang-completing-roster" target="_blank" rel="noopener">ESPN</a> — original reporting; corroborated via NBA.com, NBC Sports Bay Area, SI</li>
+      <li>Market closes &amp; series — <a href="https://www.kvue.com/article/syndication/associatedpress/how-major-us-stock-indexes-fared-tuesday-8252026/616-35cac524-69ae-4a72-ad81-a53028e6cca3" target="_blank" rel="noopener">AP market wrap</a> — index closes and changes; gold via Reuters-sourced report, WTI via market reports, bitcoin ≈ level from continuous trading</li>
+    </ul>
+  </details>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  var spWrap = document.getElementById('w-sp');
+  var brWrap = document.getElementById('w-br');
+  var tamWrap = document.getElementById('w-tam');
+  if (typeof Chart === 'undefined') {
+    spWrap.innerHTML = '<p class="fallback">S&amp;P 500 closes: Aug 19: 7,707.98 → Aug 25: 7,677.28 (−0.4% over five sessions)</p>';
+    brWrap.innerHTML = '<p class="fallback">Brent: Aug 19: ~$93.60 → Aug 25: ~$87.12 (−7% over five sessions, reported levels)</p>';
+    tamWrap.innerHTML = '<p class="fallback">Claimed TAM: Anthropic $30T vs SpaceX $28.5T</p>';
+    return;
+  }
+  var light = window.matchMedia('(prefers-color-scheme: light)').matches;
+  var tick = light ? '#666666' : '#9aa0a6';
+  var grid = light ? '#e3e3de' : '#2a2f3a';
+  var mono = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+  Chart.defaults.font.family = mono;
+  Chart.defaults.font.size = 12;
+
+  function lineOpts(prefix) {
+    return {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { enabled: true } },
+      scales: {
+        x: { ticks: { color: tick }, grid: { color: grid, drawTicks: false } },
+        y: { ticks: { color: tick, callback: function (v) { return prefix + v.toLocaleString(); } }, grid: { color: grid, drawTicks: false } }
+      }
+    };
+  }
+
+  new Chart(document.getElementById('c-sp'), {
+    type: 'line',
+    data: {
+      labels: ['Aug 19', 'Aug 20', 'Aug 21', 'Aug 24', 'Aug 25'],
+      datasets: [{
+        data: [7707.98, 7641.16, 7674.37, 7652.86, 7677.28],
+        borderColor: light ? '#2b5fc7' : '#7aa2f7',
+        backgroundColor: 'transparent',
+        borderWidth: 2, pointRadius: 3,
+        pointBackgroundColor: light ? '#2b5fc7' : '#7aa2f7',
+        tension: 0.25
+      }]
+    },
+    options: lineOpts('')
+  });
+
+  new Chart(document.getElementById('c-br'), {
+    type: 'line',
+    data: {
+      labels: ['Aug 19', 'Aug 20', 'Aug 21', 'Aug 24', 'Aug 25'],
+      datasets: [{
+        data: [93.60, 95.40, 93.82, 92.60, 87.12],
+        borderColor: light ? '#3d7a1e' : '#9ece6a',
+        backgroundColor: 'transparent',
+        borderWidth: 2, pointRadius: 3,
+        pointBackgroundColor: light ? '#3d7a1e' : '#9ece6a',
+        tension: 0.25
+      }]
+    },
+    options: lineOpts('$')
+  });
+
+  new Chart(document.getElementById('c-tam'), {
+    type: 'bar',
+    data: {
+      labels: ['Anthropic (2026 pitch)', 'SpaceX (2025 pitch)'],
+      datasets: [{
+        data: [30, 28.5],
+        backgroundColor: [light ? '#9c6b3f' : '#d4a27f', light ? '#666666' : '#9aa0a6'],
+        borderWidth: 0, barThickness: 34
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { min: 0, max: 32, ticks: { color: tick, callback: function (v) { return '$' + v + 'T'; } }, grid: { color: grid, drawTicks: false } },
+        y: { ticks: { color: tick }, grid: { display: false } }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

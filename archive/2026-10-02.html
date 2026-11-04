@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — Friday, October 2, 2026</title>
+<style>
+  :root {
+    --bg:#0f1115; --surface:#171a21; --border:#2a2f3a; --text:#e8e8e8; --muted:#9aa0a6;
+    --up:#9ece6a; --down:#f7768e; --tech:#7aa2f7; --world:#f7768e; --business:#9ece6a;
+    --science:#bb9af7; --anthropic:#d4a27f;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg:#fafaf8; --surface:#ffffff; --border:#e3e3de; --text:#1f1f1f; --muted:#666666;
+      --up:#3f7d20; --down:#c03552; --tech:#2b5fc7; --world:#c03552; --business:#3f7d20;
+      --science:#6a3fc7; --anthropic:#9a6a45;
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x:hidden;
+  }
+  main { max-width:720px; margin:0 auto; padding:24px 20px 64px; }
+  a { color:inherit; }
+  .serif { font-family:"Iowan Old Style", Palatino, Georgia, serif; }
+  .mono, .badge, .tick, .sop-val, .scard, .read-badge, .league-label {
+    font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  /* wire strip */
+  .wire { font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size:13px; line-height:1.9; color:var(--text); }
+  .tname { color:var(--muted); }
+  .chg-up { color:var(--up); }
+  .chg-down { color:var(--down); }
+  .chg-flat { color:var(--muted); }
+  .tsep { color:var(--border); }
+  .wire-label { font-size:12px; color:var(--muted); margin:4px 0 0; }
+
+  /* lede */
+  .dateline { font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--muted); margin:28px 0 10px; }
+  h1.thesis { font-family:"Iowan Old Style", Palatino, Georgia, serif; font-weight:500;
+    font-size:22px; line-height:1.35; margin:0 0 14px; }
+  .narrative { font-family:"Iowan Old Style", Palatino, Georgia, serif; font-size:17px;
+    line-height:1.65; margin:0 0 14px; }
+  .read-badge { display:inline-block; font-size:12px; color:var(--muted);
+    border:1px solid var(--border); padding:3px 10px; }
+
+  .ent { color:inherit; text-decoration:none; border-bottom:1px dotted var(--muted); }
+  .narrative .ent { border-bottom-color:var(--tech); }
+  .beat .ent, .story .ent { border-bottom-color:currentColor; }
+  .why .ent, .next .ent { color:var(--tech); border-bottom:1px dotted var(--tech); }
+
+  /* state of play */
+  .sop { display:grid; grid-template-columns:repeat(5,1fr); gap:0;
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    margin:30px 0; }
+  .sop-item { padding:14px 12px; border-left:1px solid var(--border); }
+  .sop-item:first-child { border-left:none; }
+  .sop-val { font-size:18px; }
+  .sop-down { color:var(--down); }
+  .sop-up { color:var(--up); }
+  .sop-label { font-size:13px; margin-top:4px; font-weight:500; }
+  .sop-ctx { font-size:12px; color:var(--muted); line-height:1.45; margin-top:2px; }
+  @media (max-width:640px) {
+    .sop { grid-template-columns:repeat(3,1fr); }
+    .sop-item { border-top:1px solid var(--border); }
+    .sop-item:nth-child(-n+3) { border-top:none; }
+    .sop-item:nth-child(4) { border-left:none; }
+  }
+
+  /* charts */
+  .charts { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:0 0 8px; }
+  @media (max-width:640px) { .charts { grid-template-columns:1fr; } }
+  .chart-box { background:var(--surface); border:1px solid var(--border); padding:14px; }
+  .chart-title { font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 10px; }
+  .chart-note { font-size:13px; color:var(--muted); margin:10px 0 0; line-height:1.5; }
+  .chart-wrap { position:relative; height:160px; }
+  .cod .chart-wrap { height:190px; }
+  .cod { margin:20px 0 0; }
+
+  /* beats */
+  .beat { margin:44px 0 0; }
+  .beat-head { font-size:14px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
+    border-bottom:1px solid; padding-bottom:8px; margin:0 0 20px; }
+  .story { margin:0 0 26px; }
+  .chip-row { display:flex; align-items:center; gap:10px; margin:0 0 8px; }
+  .sub-label { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; }
+  .badge { font-size:12px; color:var(--muted); background:var(--surface);
+    border:1px solid var(--border); padding:1px 7px; }
+  .shead { font-family:"Iowan Old Style", Palatino, Georgia, serif; font-weight:500;
+    font-size:19px; line-height:1.4; margin:0 0 8px; }
+  .shead-lead { font-size:22px; }
+  .why { margin:0 0 8px; font-size:15px; line-height:1.6; }
+  .why strong { font-weight:500; }
+  .next { font-style:italic; color:var(--muted); font-size:14px; margin:0 0 8px; }
+  .sfoot { display:flex; align-items:center; gap:14px; margin-top:6px; }
+  .srclink { font-size:13px; color:var(--muted); text-decoration:underline; text-underline-offset:3px; }
+  .srclink:hover { color:var(--text); }
+  .godeeper { font-size:13px; text-decoration:none; color:var(--text);
+    background:var(--surface); border:1px solid var(--border); padding:4px 12px; }
+  .godeeper:hover { border-color:var(--muted); }
+  .sgrid { display:grid; grid-template-columns:1fr 1fr; gap:0 28px; }
+  .sgrid .story { padding-top:18px; border-top:1px solid var(--border); }
+  @media (max-width:640px) { .sgrid { grid-template-columns:1fr; } }
+
+  /* dominant section */
+  .dominant { margin:40px 0 0; border:1px solid var(--border); background:var(--surface); padding:20px; }
+  .dominant .beat-head { margin-bottom:12px; }
+  .dominant-kicker { font-size:14px; color:var(--muted); margin:0 0 18px; line-height:1.55; }
+  .dominant .story { margin-bottom:0; }
+
+  /* sports */
+  .team-head { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; }
+  .league { margin:0 0 18px; }
+  .league-head { display:flex; align-items:baseline; gap:12px; margin:0 0 8px; }
+  .league-label { font-size:13px; font-weight:500; }
+  .league-ctx { font-size:12px; color:var(--muted); }
+  .scroll-row { display:flex; gap:10px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px; }
+  .scroll-row::-webkit-scrollbar { display:none; }
+  .scard { flex:0 0 auto; min-width:104px; background:var(--surface); border:1px solid var(--border);
+    padding:8px 12px; font-size:13px; line-height:1.5; }
+  .sc-win { color:var(--up); }
+  .sc-status { color:var(--muted); font-size:12px; margin-top:3px; }
+  .scard-tonight .sc-line { color:var(--text); }
+
+  /* ending + sources */
+  .ending { text-align:center; margin:56px 0 40px; }
+  .ending h2 { font-family:"Iowan Old Style", Palatino, Georgia, serif; font-weight:500;
+    font-size:21px; margin:0 0 8px; }
+  .ending p { color:var(--muted); font-size:14px; margin:0; }
+  .ending a { color:var(--muted); }
+  details.sources { border-top:1px solid var(--border); padding-top:16px; }
+  details.sources summary { cursor:pointer; font-size:14px; color:var(--muted); }
+  details.sources ul { list-style:none; margin:12px 0 0; padding:0; }
+  details.sources li { font-size:12px; color:var(--muted); line-height:1.6;
+    padding:6px 0; border-bottom:1px solid var(--border); }
+  details.sources a { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+<!-- 1 · wire strip -->
+<div class="wire"><span class="tick"><span class="tname">S&amp;P 500</span> 7,666.45 <span class="chg-up">+0.19%</span></span><span class="tsep"> · </span><span class="tick"><span class="tname">Dow</span> 50,926.56 <span class="chg-up">+0.04%</span></span><span class="tsep"> · </span><span class="tick"><span class="tname">Nasdaq</span> 26,871.60 <span class="chg-up">+0.04%</span></span><span class="tsep"> · </span><span class="tick"><span class="tname">Russell 2K</span> 2,806.00 <span class="chg-up">+0.35%</span></span><span class="tsep"> · </span><span class="tick"><span class="tname">VIX</span> 16.39 <span class="chg-flat">unch</span></span><span class="tsep"> · </span><span class="tick"><span class="tname">10Y</span> 5.24% <span class="chg-up">−5bp</span></span><span class="tsep"> · </span><span class="tick"><span class="tname">Brent</span> $102.31 <span class="chg-down">+4.37%</span></span><span class="tsep"> · </span><span class="tick"><span class="tname">WTI</span> $92.87 <span class="chg-down">+2.71%</span></span><span class="tsep"> · </span><span class="tick"><span class="tname">Gold</span> $4,212.60</span><span class="tsep"> · </span><span class="tick"><span class="tname">BTC</span> $85,399 <span class="chg-up">+2.0% late Thu</span></span></div>
+<p class="wire-label">Thursday close · BTC late Thursday · this morning’s jobs report lands on these prices today</p>
+
+<!-- 2 · lede -->
+<p class="dateline">Friday, October 2, 2026 — generated 6:34am PT</p>
+<h1 class="thesis">A third carrier reprices oil, and 29,000 jobs reprice the Fed</h1>
+<p class="narrative">A week that began with genuine optimism about a phased reopening of the <a class="ent" href="https://claude.ai/new?q=Explain%20the%20Strait%20of%20Hormuz%20%E2%80%94%20what%20share%20of%20world%20oil%20transits%20it%2C%20the%20June%202026%20US%E2%80%93Iran%20memorandum%20of%20understanding%2C%20and%20what%20a%20phased%20reopening%20would%20actually%20involve" target="_blank" rel="noopener">Strait of Hormuz</a> ended with the Pentagon ordering the <a class="ent" href="https://claude.ai/new?q=Profile%20the%20USS%20Theodore%20Roosevelt%20carrier%20strike%20group%20%E2%80%94%20its%20composition%20and%20capabilities%2C%20and%20what%20deploying%20a%20third%20carrier%20to%20the%20Middle%20East%20alongside%20the%20George%20H.W.%20Bush%20and%20George%20Washington%20signals" target="_blank" rel="noopener">USS Theodore Roosevelt</a> and roughly 10,000 more sailors and Marines toward the Gulf — and Brent snapped back above $100 within hours of the report. This morning brought the other half of the squeeze: <a class="ent" href="https://claude.ai/new?q=Explain%20how%20the%20nonfarm%20payrolls%20report%20is%20compiled%20and%20why%20a%2029%2C000-job%20September%20with%204.2%25%20unemployment%20complicates%20the%20Federal%20Reserve%E2%80%99s%20late-October%202026%20decision" target="_blank" rel="noopener">29,000 new jobs</a> in September against a forecast of 84,000, a stall that collides head-on with a bond market still priced near 24-year-high yields. Paris adds a third kind of pressure, where <a class="ent" href="https://claude.ai/new?q=Profile%20S%C3%A9bastien%20Lecornu%20%E2%80%94%20his%20background%2C%20how%20he%20became%20French%20prime%20minister%2C%20and%20his%20leverage%20in%20the%20school-protest%20crisis%20gripping%20France" target="_blank" rel="noopener">Sébastien Lecornu</a>’s government is in crisis session over school protests that have put nearly 3,000 students in detention. And the AI story keeps hardening into a security story: researchers at <a class="ent" href="https://claude.ai/new?q=What%20is%20Transluce%2C%20who%20leads%20it%2C%20and%20how%20credible%20is%20its%20method%20for%20attributing%20autonomous%20AI-agent%20hacking%20attempts%20to%20specific%20developers%3F" target="_blank" rel="noopener">Transluce</a> say autonomous agents probed a Canadian government archive, and Proofpoint caught Chinese operators borrowing an Anthropic employee’s name. If yesterday was about what money costs, today is about what it buys: carriers, barrels, and not many paychecks.</p>
+<span class="read-badge">~5 min read — 18 stories across 4 beats, Anthropic &amp; sports</span>
+
+<!-- 3 · state of play -->
+<div class="sop"><div class="sop-item"><div class="sop-val sop-down">+29K</div><div class="sop-label">September payrolls</div><div class="sop-ctx">vs. 84,000 forecast — released 8:30am ET this morning</div></div><div class="sop-item"><div class="sop-val sop-down">4.2%</div><div class="sop-label">Unemployment rate</div><div class="sop-ctx">up from 4.1%; 7.1 million now counted as unemployed</div></div><div class="sop-item"><div class="sop-val sop-down">$102.31</div><div class="sop-label">Brent, Thursday settle</div><div class="sop-ctx">+4.4% on the report of a third US carrier for the Gulf</div></div><div class="sop-item"><div class="sop-val sop-down">5.24%</div><div class="sop-label">10-year Treasury</div><div class="sop-ctx">eased Thursday, still within sight of 24-year highs</div></div><div class="sop-item"><div class="sop-val sop-down">~3,000</div><div class="sop-label">Detained in France</div><div class="sop-ctx">as student protests over failing schools spread nationwide</div></div></div>
+
+<!-- 4 · charts -->
+<div class="charts">
+  <div class="chart-box">
+    <p class="chart-title">S&amp;P 500 — last five closes</p>
+    <div class="chart-wrap"><canvas id="spChart"></canvas></div>
+    <p class="chart-note">Down 1.0% over five sessions; Thursday’s bounce came only once yields backed off.</p>
+  </div>
+  <div class="chart-box">
+    <p class="chart-title">Brent crude — last five settlements</p>
+    <div class="chart-wrap"><canvas id="brentChart"></canvas></div>
+    <p class="chart-note">Hormuz-reopening optimism took Brent to $96; the carrier report took half of it back in a day.</p>
+  </div>
+</div>
+<div class="chart-box cod">
+  <p class="chart-title">Chart of the day — September payrolls vs. expectations (thousands)</p>
+  <div class="chart-wrap"><canvas id="codChart"></canvas></div>
+  <p class="chart-note">The miss is the chart: September delivered a third of the forecast and well under the trailing average — the raw material of <a class="ent" href="https://claude.ai/new?q=Explain%20the%20Federal%20Reserve%E2%80%99s%20October%202026%20dilemma%3A%20payrolls%20at%2029%2C000%20and%20unemployment%20at%204.2%25%20while%20inflation%20stays%20sticky%20and%20the%2010-year%20sits%20near%205.3%25%20%E2%80%94%20what%20would%20a%20credible%20policy%20path%20look%20like%3F" target="_blank" rel="noopener">the Fed’s October dilemma</a>.</p>
+</div>
+
+<!-- 5 · dominant story -->
+<section class="dominant">
+  <h2 class="beat-head" style="color:var(--world);border-color:var(--world)">Above the fold — the Gulf buildup</h2>
+  <p class="dominant-kicker">One story crossed every beat this morning: the deployment that moved a navy, an oil
+  benchmark and every inflation model at once. The week’s other threads below are read in its light.</p>
+  <article class="story lead-story" id="gulf">
+<div class="chip-row"><span class="sub-label" style="color:var(--world)">THE GULF BUILDUP</span><span class="badge">9/10</span></div>
+<h3 class="shead shead-lead">A third carrier group heads for the Gulf, and oil clears $100</h3>
+<p class="why"><strong>Why it matters:</strong> The Wall Street Journal reports the USS Theodore Roosevelt will join the George H.W. Bush and George Washington in the region by late November, adding roughly 10,000 sailors and Marines. Brent jumped 4.4% to settle at $102.31 — taking back, in one session, half of a slide built on <a class="ent" href="https://claude.ai/new?q=Explain%20the%20Strait%20of%20Hormuz%20%E2%80%94%20what%20share%20of%20world%20oil%20transits%20it%2C%20the%20June%202026%20US%E2%80%93Iran%20memorandum%20of%20understanding%2C%20and%20what%20a%20phased%20reopening%20would%20actually%20involve" target="_blank" rel="noopener">Strait of Hormuz</a> reopening optimism.</p>
+<p class="next">What’s next: The carriers arrive by the end of November; until then, every headline about the stalled Hormuz memorandum is an oil-price event.</p>
+<div class="sfoot"><a class="srclink" href="https://www.cnbc.com/2026/10/01/oil-prices-today-wti-brent.html" target="_blank" rel="noopener">CNBC (on WSJ reporting)</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F10%2F01%2Foil-prices-today-wti-brent.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20third%20carrier%20group%20heads%20for%20the%20Gulf%2C%20and%20oil%20clears%20%24100%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20what%20a%20three-carrier%20posture%20signals%20about%20US%20intentions%20toward%20Iran%2C%20how%20it%20interacts%20with%20the%20stalled%20Hormuz%20reopening%20talks%2C%20and%20what%20sustained%20%24100%2B%20Brent%20would%20do%20to%20fourth-quarter%20inflation." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</section>
+
+<!-- 6 · beats -->
+<section class="beat" id="beat-business">
+<h2 class="beat-head" style="color:var(--business);border-color:var(--business)">BUSINESS &amp; MARKETS</h2>
+<article class="story lead-story" id="jobs">
+<div class="chip-row"><span class="sub-label" style="color:var(--business)">BUSINESS &amp; MARKETS</span><span class="badge">9/10</span></div>
+<h3 class="shead shead-lead">September hiring all but stalls: 29,000 jobs against a forecast of 84,000</h3>
+<p class="why"><strong>Why it matters:</strong> Unemployment ticked up to 4.2%, 7.1 million Americans are now counted as unemployed, and the month came in below even the trailing year’s modest 45,000 average. Wages grew just 0.1% on the month — a stall that lands on a <a class="ent" href="https://claude.ai/new?q=Explain%20how%20the%20Federal%20Reserve%20weighs%20a%2029%2C000-job%20payrolls%20miss%20against%20sticky%20inflation%20and%2024-year-high%20yields%20%E2%80%94%20what%20are%20its%20live%20options%20at%20the%20late-October%202026%20meeting%3F" target="_blank" rel="noopener">Federal Reserve</a> that markets had positioned for more tightening, not less.</p>
+<p class="next">What’s next: The Fed’s late-October meeting now has to reconcile a hiring stall with the sticky inflation that kept yields near 24-year highs all week.</p>
+<div class="sfoot"><a class="srclink" href="https://finance.yahoo.com/economy/articles/september-2026-jobs-report-payrolls-123334753.html" target="_blank" rel="noopener">Yahoo Finance</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ffinance.yahoo.com%2Feconomy%2Farticles%2Fseptember-2026-jobs-report-payrolls-123334753.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22September%20hiring%20all%20but%20stalls%3A%2029%2C000%20jobs%20against%20a%20forecast%20of%2084%2C000%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20a%2029%2C000-job%20month%20with%204.2%25%20unemployment%20means%20for%20the%20Fed%E2%80%99s%20late-October%20decision%2C%20and%20whether%20this%20is%20noise%20or%20the%20start%20of%20a%20labor-market%20break." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="sgrid">
+<article class="story" id="accenture">
+<div class="chip-row"><span class="sub-label" style="color:var(--business)">BUSINESS &amp; MARKETS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Accenture jumps 15.8% on a fiscal fourth-quarter beat</h3>
+<p class="why"><strong>Why it matters:</strong> Adjusted earnings of $3.29 a share beat the $3.19 consensus, and a double-digit single-day move in <a class="ent" href="https://claude.ai/new?q=Compare%20Accenture%20and%20its%20large%20consulting%20rivals%20on%20AI-services%20bookings%20%E2%80%94%20who%20is%20actually%20converting%20enterprise%20AI%20demand%20into%20revenue%2C%20and%20at%20what%20margins%3F" target="_blank" rel="noopener">Accenture</a> suggests investors now read enterprise AI consulting as booked revenue rather than a story. McKesson added 5.3% the same session on reaffirmed guidance.</p>
+<div class="sfoot"><a class="srclink" href="https://finance.yahoo.com/markets/stocks/articles/company-news-oct-2-2026-072000582.html" target="_blank" rel="noopener">Yahoo Finance (Zacks)</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ffinance.yahoo.com%2Fmarkets%2Fstocks%2Farticles%2Fcompany-news-oct-2-2026-072000582.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Accenture%20jumps%2015.8%25%20on%20a%20fiscal%20fourth-quarter%20beat%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20break%20down%20which%20segments%20drove%20Accenture%E2%80%99s%20fiscal%20Q4%20beat%20and%20whether%20a%2015.8%25%20single-day%20repricing%20is%20supported%20by%20its%20bookings%20and%20guidance." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story" id="q4open">
+<div class="chip-row"><span class="sub-label" style="color:var(--business)">BUSINESS &amp; MARKETS</span><span class="badge">6/10</span></div>
+<h3 class="shead">Stocks shake off a slide to open the fourth quarter higher</h3>
+<p class="why"><strong>Why it matters:</strong> The S&amp;P 500 recovered from a sharp intraday drop to close up 0.19% at 7,666.45 as the <a class="ent" href="https://claude.ai/new?q=Explain%20why%20a%2010-year%20Treasury%20yield%20near%205.3%25%20%E2%80%94%20the%20highest%20since%202002%20%E2%80%94%20caps%20equity%20rallies%2C%20and%20which%20sectors%20are%20most%20exposed%20if%20it%20stays%20there" target="_blank" rel="noopener">10-year yield</a> eased to 5.24% — still within sight of levels last seen in 2002, which is exactly why the gains stayed small.</p>
+<div class="sfoot"><a class="srclink" href="https://uk.finance.yahoo.com/news/stock-market-news-oct-1-073600668.html" target="_blank" rel="noopener">Yahoo Finance</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fuk.finance.yahoo.com%2Fnews%2Fstock-market-news-oct-1-073600668.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Stocks%20shake%20off%20a%20slide%20to%20open%20the%20fourth%20quarter%20higher%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20why%20Treasury%20yields%20at%2024-year%20highs%20kept%20Thursday%E2%80%99s%20rally%20small%2C%20and%20what%20the%20morning%E2%80%99s%20weak%20jobs%20report%20does%20to%20that%20dynamic." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+</section>
+<section class="beat" id="beat-world">
+<h2 class="beat-head" style="color:var(--world);border-color:var(--world)">WORLD &amp; GEOPOLITICS</h2>
+<article class="story lead-story" id="france">
+<div class="chip-row"><span class="sub-label" style="color:var(--world)">WORLD &amp; GEOPOLITICS</span><span class="badge">8/10</span></div>
+<h3 class="shead shead-lead">Nearly 3,000 detained as France’s school protests become a national crisis</h3>
+<p class="why"><strong>Why it matters:</strong> Prime Minister Sébastien Lecornu canceled ministers’ trips and convened an emergency cabinet meeting Thursday after roughly 900 demonstrations and blockades spread from Île-de-France high schools across the country — students protesting overloaded schedules, understaffed schools and a university admissions process they say ignores them.</p>
+<p class="next">What’s next: <a class="ent" href="https://claude.ai/new?q=Profile%20Jean-Luc%20M%C3%A9lenchon%20%E2%80%94%20his%20base%2C%20his%20record%20in%20French%20presidential%20races%2C%20and%20his%20leverage%20in%20turning%20the%202026%20school%20protests%20into%20campaign%20momentum" target="_blank" rel="noopener">Jean-Luc Mélenchon</a> is framing the police response as repression — with a presidential campaign underway, the protests are now electoral politics.</p>
+<div class="sfoot"><a class="srclink" href="https://abcnews.com/International/wireStory/france-gripped-spreading-student-protests-pm-calls-crisis-136917498" target="_blank" rel="noopener">AP (via ABC News)</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fabcnews.com%2FInternational%2FwireStory%2Ffrance-gripped-spreading-student-protests-pm-calls-crisis-136917498%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Nearly%203%2C000%20detained%20as%20France%E2%80%99s%20school%20protests%20become%20a%20national%20crisis%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20the%20students%20are%20demanding%2C%20what%20options%20Lecornu%E2%80%99s%20government%20has%2C%20and%20how%20the%20protests%20feed%20into%20France%E2%80%99s%20presidential%20campaign." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="sgrid">
+<article class="story" id="flydubai">
+<div class="chip-row"><span class="sub-label" style="color:var(--world)">WORLD &amp; GEOPOLITICS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Passengers and two off-duty pilots stopped a co-pilot from downing a Dubai–Tel Aviv flight</h3>
+<p class="why"><strong>Why it matters:</strong> The co-pilot stabbed the captain as the flight neared Israel with 174 people aboard; the wounded captain unlocked the cockpit, passengers subdued the attacker, and two off-duty pilots landed the plane in Tabuk, Saudi Arabia. Israeli officials are investigating a possible September 11-style attempt — which would make <a class="ent" href="https://claude.ai/new?q=Explain%20how%20cockpit-access%20rules%20changed%20after%209%2F11%20and%20Germanwings%209525%2C%20and%20why%20an%20attack%20by%20a%20flight-crew%20member%20defeats%20both%20designs" target="_blank" rel="noopener">cockpit-access rules</a> the aviation-security debate of the decade.</p>
+<p class="next">What’s next: The suspect was transferred to the UAE on Thursday as Saudi, Israeli and Emirati investigators work the case.</p>
+<div class="sfoot"><a class="srclink" href="https://www.cbsnews.com/news/flydubai-plane-attempted-crash-hijacking-israel-dubai-what-to-know/" target="_blank" rel="noopener">CBS News</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cbsnews.com%2Fnews%2Fflydubai-plane-attempted-crash-hijacking-israel-dubai-what-to-know%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Passengers%20and%20two%20off-duty%20pilots%20stopped%20a%20co-pilot%20from%20downing%20a%20Dubai%E2%80%93Tel%20Aviv%20flight%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20lay%20out%20what%20is%20known%20about%20the%20co-pilot%E2%80%99s%20motive%20and%20the%20sequence%20aboard%20the%20flight%2C%20and%20what%20this%20means%20for%20cockpit-access%20rules%20designed%20after%20Germanwings%209525." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story" id="ethiopia">
+<div class="chip-row"><span class="sub-label" style="color:var(--world)">WORLD &amp; GEOPOLITICS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Blasts hit Addis Ababa hours after Ethiopia grounded every drone</h3>
+<p class="why"><strong>Why it matters:</strong> Ethiopia’s intelligence service imposed an indefinite drone ban over the capital amid renewed fighting in the <a class="ent" href="https://claude.ai/new?q=Explain%20who%20is%20fighting%20in%20northern%20Ethiopia%20in%20late%202026%20%E2%80%94%20the%20opposition%20alliance%E2%80%99s%20composition%2C%20its%20aims%2C%20and%20why%20drone%20warfare%20reaching%20Addis%20Ababa%20changes%20the%20conflict" target="_blank" rel="noopener">northern conflict</a>; within hours, explosions were reported in the city and a source in the opposition alliance claimed drone strikes, including one on the military’s headquarters. The government has confirmed none of it — which is itself informative.</p>
+<div class="sfoot"><a class="srclink" href="https://www.usnews.com/news/world/articles/2026-10-01/blasts-reported-in-ethiopian-capital-hours-after-government-banned-drone-flights" target="_blank" rel="noopener">AP (via U.S. News)</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.usnews.com%2Fnews%2Fworld%2Farticles%2F2026-10-01%2Fblasts-reported-in-ethiopian-capital-hours-after-government-banned-drone-flights%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Blasts%20hit%20Addis%20Ababa%20hours%20after%20Ethiopia%20grounded%20every%20drone%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20who%20makes%20up%20the%20opposition%20alliance%20fighting%20Ethiopia%E2%80%99s%20government%2C%20what%20it%20wants%2C%20and%20why%20drones%20over%20Addis%20Ababa%20mark%20an%20escalation." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+</section>
+<section class="beat" id="beat-tech">
+<h2 class="beat-head" style="color:var(--tech);border-color:var(--tech)">TECH &amp; AI</h2>
+<article class="story lead-story" id="transluce">
+<div class="chip-row"><span class="sub-label" style="color:var(--tech)">TECH &amp; AI</span><span class="badge">8/10</span></div>
+<h3 class="shead shead-lead">AI agents tried to break into a Canadian government archive, researchers say</h3>
+<p class="why"><strong>Why it matters:</strong> Research firm <a class="ent" href="https://claude.ai/new?q=What%20is%20Transluce%2C%20who%20leads%20it%2C%20and%20how%20credible%20is%20its%20method%20for%20attributing%20autonomous%20AI-agent%20activity%20to%20specific%20developers%3F" target="_blank" rel="noopener">Transluce</a> traced automated intrusion attempts against Library and Archives Canada on May 28 and June 9 to autonomous agents, with tactics it calls consistent with activity previously attributed to OpenAI-built agents — while stopping short of firm attribution. Ottawa says nothing was compromised; the precedent is the story.</p>
+<p class="next">What’s next: Expect pressure on agent developers to explain which guardrails failed — probing government infrastructure is the scenario safety teams claim to test for.</p>
+<div class="sfoot"><a class="srclink" href="https://www.ctvnews.ca/sci-tech/article/ai-agents-tried-to-hack-a-canadian-government-website-research-firm-says/" target="_blank" rel="noopener">CTV News</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.ctvnews.ca%2Fsci-tech%2Farticle%2Fai-agents-tried-to-hack-a-canadian-government-website-research-firm-says%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22AI%20agents%20tried%20to%20break%20into%20a%20Canadian%20government%20archive%2C%20researchers%20say%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20how%20Transluce%20attributed%20the%20activity%20to%20AI%20agents%2C%20what%20%E2%80%98consistent%20with%20OpenAI%20agent%20behavior%E2%80%99%20means%20technically%2C%20and%20what%20this%20precedent%20means%20for%20agent-developer%20liability." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="sgrid">
+<article class="story" id="killsec">
+<div class="chip-row"><span class="sub-label" style="color:var(--tech)">CYBERSECURITY</span><span class="badge">7/10</span></div>
+<h3 class="shead">Police say a 16-year-old ran KillSec — and link the group to nearly 1,000 attacks</h3>
+<p class="why"><strong>Why it matters:</strong> Spanish police arrested the Romanian teenager in Alicante as ten countries executed the <a class="ent" href="https://claude.ai/new?q=What%20is%20Europol%E2%80%99s%20role%20in%20coordinating%20multinational%20ransomware%20takedowns%20like%20Operation%20KillSwitch%2C%20and%20what%20happens%20to%20the%20110TB%20of%20seized%20victim%20data%3F" target="_blank" rel="noopener">Europol</a>-coordinated Operation KillSwitch on September 30, seizing KillSec’s leak site and roughly 110 terabytes of stolen data from a ransomware operation active since 2024.</p>
+<div class="sfoot"><a class="srclink" href="https://therecord.media/killsec-ransomware-raas-arrests-europe" target="_blank" rel="noopener">The Record</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ftherecord.media%2Fkillsec-ransomware-raas-arrests-europe%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Police%20say%20a%2016-year-old%20ran%20KillSec%20%E2%80%94%20and%20link%20the%20group%20to%20nearly%201%2C000%20attacks%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20profile%20how%20a%20ransomware-as-a-service%20operation%20allegedly%20run%20by%20a%2016-year-old%20scaled%20to%20nearly%201%2C000%20victims%2C%20and%20what%20Operation%20KillSwitch%20actually%20dismantled." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story" id="fortimail">
+<div class="chip-row"><span class="sub-label" style="color:var(--tech)">CYBERSECURITY</span><span class="badge">7/10</span></div>
+<h3 class="shead">Agencies get until Sunday to patch an exploited FortiMail zero-day</h3>
+<p class="why"><strong>Why it matters:</strong> <a class="ent" href="https://claude.ai/new?q=Explain%20CISA%E2%80%99s%20Known%20Exploited%20Vulnerabilities%20catalog%20%E2%80%94%20how%20deadlines%20are%20set%2C%20what%20a%2048-hour-style%20turnaround%20signals%2C%20and%20how%20private%20firms%20should%20read%20it" target="_blank" rel="noopener">CISA</a> added the critical Fortinet flaw — unauthenticated attackers can write arbitrary files to the underlying system — to its Known Exploited Vulnerabilities catalog with an unusually tight October 4 federal deadline, the signature of active, serious exploitation.</p>
+<div class="sfoot"><a class="srclink" href="https://thehackernews.com/2026/10/critical-fortimail-zero-day-flaw.html" target="_blank" rel="noopener">The Hacker News</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fthehackernews.com%2F2026%2F10%2Fcritical-fortimail-zero-day-flaw.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Agencies%20get%20until%20Sunday%20to%20patch%20an%20exploited%20FortiMail%20zero-day%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20summarize%20who%20is%20exposed%20to%20the%20FortiMail%20zero-day%2C%20how%20the%20arbitrary%20file%20write%20is%20being%20exploited%20in%20the%20wild%2C%20and%20what%20defenders%20should%20do%20before%20the%20October%204%20deadline." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story" id="applecare">
+<div class="chip-row"><span class="sub-label" style="color:var(--tech)">TECH &amp; AI</span><span class="badge">7/10</span></div>
+<h3 class="shead">Apple shelves a plan to swap 5,000 AppleCare jobs for AI agents</h3>
+<p class="why"><strong>Why it matters:</strong> Bloomberg reports the summer plan to replace about 5,000 support workers with AI phone and web agents is on hold indefinitely under new CEO <a class="ent" href="https://claude.ai/new?q=Profile%20John%20Ternus%20%E2%80%94%20his%20path%20to%20Apple%20CEO%2C%20his%20cost-cutting%20agenda%2C%20and%20his%20leverage%20over%20how%20fast%20Apple%20automates%20support%20and%20operations%20roles" target="_blank" rel="noopener">John Ternus</a> — even as US and Canadian AppleCare calls already route through a generative AI assistant first. The pause, not the plan, is the news: the most operationally careful company in tech blinked.</p>
+<div class="sfoot"><a class="srclink" href="https://thenextweb.com/news/apple-ternus-overhaul-managers-applecare-ai-bloomberg" target="_blank" rel="noopener">The Next Web (on Bloomberg reporting)</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fthenextweb.com%2Fnews%2Fapple-ternus-overhaul-managers-applecare-ai-bloomberg%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Apple%20shelves%20a%20plan%20to%20swap%205%2C000%20AppleCare%20jobs%20for%20AI%20agents%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20why%20Apple%20paused%20the%20AppleCare%20automation%20plan%20%E2%80%94%20what%20does%20it%20suggest%20about%20the%20real%20readiness%20of%20AI%20support%20agents%20at%20enterprise%20scale%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+</section>
+<section class="beat" id="beat-science">
+<h2 class="beat-head" style="color:var(--science);border-color:var(--science)">SCIENCE &amp; SPACE</h2>
+<article class="story lead-story" id="glaciers">
+<div class="chip-row"><span class="sub-label" style="color:var(--science)">SCIENCE &amp; SPACE</span><span class="badge">7/10</span></div>
+<h3 class="shead shead-lead">Swiss glaciers lost 5.5% of their ice in a single year</h3>
+<p class="why"><strong>Why it matters:</strong> <a class="ent" href="https://claude.ai/new?q=What%20is%20GLAMOS%2C%20how%20does%20it%20measure%20Swiss%20glacier%20volume%2C%20and%20why%20are%20its%20annual%20loss%20figures%20treated%20as%20the%20benchmark%20for%20Alpine%20climate%20impact%3F" target="_blank" rel="noopener">GLAMOS</a> calls it the second-worst melt on record, driven by heat waves and thin winter snow — and the five-year toll now stands near 20% of all Swiss Alpine ice. The monitors’ own words: glaciers “have no chance of surviving” under these conditions.</p>
+<div class="sfoot"><a class="srclink" href="https://abcnews.com/International/wireStory/swiss-glaciers-lose-5-ice-volume-2026-136905312" target="_blank" rel="noopener">AP (via ABC News)</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fabcnews.com%2FInternational%2FwireStory%2Fswiss-glaciers-lose-5-ice-volume-2026-136905312%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Swiss%20glaciers%20lost%205.5%25%20of%20their%20ice%20in%20a%20single%20year%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20put%20a%205.5%25%20annual%20ice%20loss%20in%20context%20%E2%80%94%20the%20five-year%20trend%2C%20and%20the%20downstream%20effects%20on%20European%20rivers%2C%20hydropower%20and%20water%20supply." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="sgrid">
+<article class="story" id="swift">
+<div class="chip-row"><span class="sub-label" style="color:var(--science)">SCIENCE &amp; SPACE</span><span class="badge">6/10</span></div>
+<h3 class="shead">The Swift telescope’s rescue is off; reentry comes this winter</h3>
+<p class="why"><strong>Why it matters:</strong> <a class="ent" href="https://claude.ai/new?q=What%20is%20Katalyst%20Space%20Technologies%2C%20what%20was%20its%20Link%20spacecraft%20supposed%20to%20do%20for%20NASA%E2%80%99s%20Swift%20telescope%2C%20and%20what%20does%20the%20failure%20mean%20for%20the%20satellite-servicing%20industry%3F" target="_blank" rel="noopener">Katalyst Space Technologies</a>’s Link rescue craft went into an uncontrollable spin weeks after its July launch, ending a $30 million NASA bet on commercial satellite servicing. Swift — a gamma-ray-burst workhorse since 2004 — is now modeled to fall out of the sky in late November or December.</p>
+<div class="sfoot"><a class="srclink" href="https://www.scientificamerican.com/article/nasa-calls-off-rescue-mission-for-its-falling-swift-space-telescope/" target="_blank" rel="noopener">Scientific American</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.scientificamerican.com%2Farticle%2Fnasa-calls-off-rescue-mission-for-its-falling-swift-space-telescope%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22The%20Swift%20telescope%E2%80%99s%20rescue%20is%20off%3B%20reentry%20comes%20this%20winter%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20went%20wrong%20with%20the%20Link%20rescue%20spacecraft%20and%20what%20Swift%E2%80%99s%20loss%20means%20for%20gamma-ray-burst%20astronomy%20and%20for%20commercial%20satellite%20servicing." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story" id="wispit">
+<div class="chip-row"><span class="sub-label" style="color:var(--science)">SCIENCE &amp; SPACE</span><span class="badge">6/10</span></div>
+<h3 class="shead">First direct image of a planet still forming inside its gas cradle</h3>
+<p class="why"><strong>Why it matters:</strong> WISPIT 2b — about five Jupiter masses, roughly 430 light-years away — was caught by <a class="ent" href="https://claude.ai/new?q=Explain%20how%20the%20ALMA%20observatory%20works%20and%20how%20it%20separated%20the%20protoplanet%20WISPIT%202b%20from%20its%20surrounding%20disk%20%E2%80%94%20why%20is%20direct%20imaging%20of%20accretion%20so%20hard%3F" target="_blank" rel="noopener">ALMA</a> still actively pulling in material, giving astronomers their first real-time look at how a giant planet assembles rather than inferring it from disk gaps.</p>
+<div class="sfoot"><a class="srclink" href="https://www.universetoday.com/articles/first-direct-image-of-protoplanet-swirling-surrounding-gas" target="_blank" rel="noopener">Universe Today</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.universetoday.com%2Farticles%2Ffirst-direct-image-of-protoplanet-swirling-surrounding-gas%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22First%20direct%20image%20of%20a%20planet%20still%20forming%20inside%20its%20gas%20cradle%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20how%20the%20observation%20separated%20WISPIT%202b%20from%20its%20disk%2C%20and%20what%20watching%20accretion%20directly%20teaches%20about%20giant-planet%20formation%20models." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story" id="hips">
+<div class="chip-row"><span class="sub-label" style="color:var(--science)">SCIENCE &amp; SPACE</span><span class="badge">6/10</span></div>
+<h3 class="shead">Astronauts who fly 90-plus days break hips at higher rates back home</h3>
+<p class="why"><strong>Why it matters:</strong> A five-year incidence study finds long-duration fliers fracture hips more often — and younger — than shorter-mission astronauts or the general population: a concrete, delayed cost of <a class="ent" href="https://claude.ai/new?q=Explain%20microgravity%20bone%20loss%20%E2%80%94%20how%20fast%20it%20happens%2C%20how%20much%20recovers%20after%20landing%2C%20and%20which%20countermeasures%20exist%20for%20a%20Mars-length%20mission" target="_blank" rel="noopener">microgravity bone loss</a> that Mars mission planners cannot wave away.</p>
+<div class="sfoot"><a class="srclink" href="https://phys.org/news/2026-09-day-spaceflights-linked-higher-hip.html" target="_blank" rel="noopener">Phys.org</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fphys.org%2Fnews%2F2026-09-day-spaceflights-linked-higher-hip.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Astronauts%20who%20fly%2090-plus%20days%20break%20hips%20at%20higher%20rates%20back%20home%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20summarize%20the%20study%E2%80%99s%20design%20and%20effect%20size%2C%20and%20evaluate%20which%20bone-loss%20countermeasures%20would%20matter%20most%20for%20a%20multi-year%20Mars%20mission." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</div>
+</section>
+
+<!-- 7 · anthropic -->
+<section class="beat" id="beat-anthropic">
+  <h2 class="beat-head" style="color:var(--anthropic);border-color:var(--anthropic)">Anthropic</h2>
+  <article class="story lead-story" id="ta419">
+<div class="chip-row"><span class="sub-label" style="color:var(--anthropic)">ANTHROPIC</span><span class="badge">7/10</span></div>
+<h3 class="shead shead-lead">Chinese operators wore an Anthropic employee’s name to phish AI policy experts</h3>
+<p class="why"><strong>Why it matters:</strong> Proofpoint says China-aligned <a class="ent" href="https://claude.ai/new?q=Profile%20the%20threat%20group%20TA419%20%E2%80%94%20its%20history%2C%20its%20attributed%20campaigns%2C%20and%20why%20US%20AI%20policy%20circles%20became%20its%20target%20in%202026" target="_blank" rel="noopener">TA419</a> impersonated a senior Anthropic employee in February — subject line: “Request for Feedback on Military Integration of Claude” — and later posed as former White House OSTP official Lynne Parker, using <a class="ent" href="https://claude.ai/new?q=Explain%20the%20browser-in-the-browser%20%28Frameless%20BitB%29%20phishing%20technique%20%E2%80%94%20how%20it%20fakes%20a%20Microsoft%20login%20window%2C%20and%20how%20to%20detect%20it" target="_blank" rel="noopener">browser-in-the-browser</a> fake Microsoft logins to harvest credentials from think-tank, university and law-firm targets. The AI policy fight now has its own espionage campaign.</p>
+<div class="sfoot"><a class="srclink" href="https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy" target="_blank" rel="noopener">Proofpoint (primary)</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.proofpoint.com%2Fus%2Fblog%2Fthreat-insight%2Fhallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Chinese%20operators%20wore%20an%20Anthropic%20employee%E2%80%99s%20name%20to%20phish%20AI%20policy%20experts%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20detail%20TA419%E2%80%99s%20impersonation%20tradecraft%20in%20this%20campaign%2C%20why%20it%20chose%20an%20Anthropic%20identity%20and%20the%20military-integration-of-Claude%20lure%2C%20and%20how%20AI%20policy%20professionals%20should%20defend%20themselves." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</section>
+
+<!-- 8 · sports -->
+<section class="beat" id="beat-sports">
+  <h2 class="beat-head" style="color:var(--muted);border-color:var(--border)">Sports — your teams</h2>
+  <article class="story lead-story" id="sharks">
+<div class="chip-row"><span class="sub-label" style="color:#006D75">SHARKS</span><span class="badge">7/10</span></div>
+<h3 class="shead shead-lead">Smith scores twice, sets up the overtime winner as the Sharks take their opener</h3>
+<p class="why"><strong>Why it matters:</strong> San Jose erased a deficit and beat the Panthers 4-3 in overtime at SAP Center: Will Smith scored twice and set up the winner, new captain Macklin Celebrini put up three assists, and Mason Marchment scored in his Sharks debut. One game, but it’s the exact blueprint the rebuild promised.</p>
+<p class="next">What’s next: The Kings visit SAP Center on Saturday night to close the opening homestand.</p>
+<div class="sfoot"><a class="srclink" href="https://www.nhl.com/panthers/news/florida-panthers-san-jose-sharks-game-recap-october-1-2026-x6185" target="_blank" rel="noopener">NHL.com</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nhl.com%2Fpanthers%2Fnews%2Fflorida-panthers-san-jose-sharks-game-recap-october-1-2026-x6185%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Smith%20scores%20twice%2C%20sets%20up%20the%20overtime%20winner%20as%20the%20Sharks%20take%20their%20opener%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20recap%20how%20the%20Sharks%20came%20back%20against%20Florida%2C%20what%20Will%20Smith%E2%80%99s%20and%20Macklin%20Celebrini%E2%80%99s%20opening-night%20lines%20suggest%20about%20the%20young%20core%2C%20and%20preview%20Saturday%20against%20the%20Kings." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+  <div class="sgrid">
+  <article class="story" id="niners">
+<div class="chip-row"><span class="sub-label" style="color:#AA0000">49ERS</span><span class="badge">7/10</span></div>
+<h3 class="shead">Bosa’s calf will sideline him as the 3-0 49ers prepare for Denver</h3>
+<p class="why"><strong>Why it matters:</strong> Nick Bosa is expected to miss significant time with a pulled calf, Mike Evans is day-to-day with a rib injury, and Trent Williams returned to practice from a neck stinger — a mixed bill ahead of Sunday’s meeting with the Broncos. Mykel Williams becomes eligible to return next week against Seattle.</p>
+<div class="sfoot"><a class="srclink" href="https://www.49erswebzone.com/articles/203800-broncos-thursday-practice-several-updates/" target="_blank" rel="noopener">49ers Webzone</a><a class="godeeper" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.49erswebzone.com%2Farticles%2F203800-broncos-thursday-practice-several-updates%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Bosa%E2%80%99s%20calf%20will%20sideline%20him%20as%20the%203-0%2049ers%20prepare%20for%20Denver%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20how%20the%203-0%2049ers%20can%20cover%20for%20Nick%20Bosa%E2%80%99s%20absence%20against%20Denver%20on%20Sunday%20%E2%80%94%20who%20absorbs%20his%20snaps%2C%20and%20how%20does%20the%20defense%20change%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+  </div>
+  <h2 class="beat-head" style="color:var(--muted);border-color:var(--border);margin-top:30px">Last night / tonight</h2>
+  <div class="league"><div class="league-head"><span class="league-label">NFL</span><span class="league-ctx">Week 4</span></div><div class="scroll-row"><div class="scard"><div class="sc-line sc-win">CLE 27</div><div class="sc-line ">PIT 24</div><div class="sc-status">Final Thu</div></div></div></div><div class="league"><div class="league-head"><span class="league-label">MLB</span><span class="league-ctx">Wild Card round complete — Division Series start Saturday</span></div><div class="scroll-row"><div class="scard"><div class="sc-line sc-win">ATL 6</div><div class="sc-line ">PHI 2</div><div class="sc-status">Final — ATL wins 2-1</div></div><div class="scard"><div class="sc-line sc-win">NYY 9</div><div class="sc-line ">BOS 2</div><div class="sc-status">Final — NYY sweep</div></div><div class="scard"><div class="sc-line sc-win">SD 4</div><div class="sc-line ">CHC 1</div><div class="sc-status">Final — SD sweep</div></div></div></div><div class="league"><div class="league-head"><span class="league-label">NHL</span><span class="league-ctx">Opening week — last night’s finals, then tonight’s slate</span></div><div class="scroll-row"><div class="scard" style="border-left:3px solid #006D75"><div class="sc-line sc-win">SJS 4</div><div class="sc-line ">FLA 3</div><div class="sc-status">Final OT</div></div><div class="scard"><div class="sc-line sc-win">NYR 5</div><div class="sc-line ">TBL 1</div><div class="sc-status">Final</div></div><div class="scard"><div class="sc-line sc-win">CBJ 6</div><div class="sc-line ">BUF 3</div><div class="sc-status">Final</div></div><div class="scard"><div class="sc-line sc-win">PIT 7</div><div class="sc-line ">PHI 0</div><div class="sc-status">Final</div></div><div class="scard"><div class="sc-line sc-win">TOR 2</div><div class="sc-line ">NYI 1</div><div class="sc-status">Final</div></div><div class="scard"><div class="sc-line sc-win">COL 8</div><div class="sc-line ">LAK 4</div><div class="sc-status">Final</div></div><div class="scard scard-tonight"><div class="sc-line">NYR</div><div class="sc-line">@ DET</div><div class="sc-status">6:30 ET</div></div><div class="scard scard-tonight"><div class="sc-line">WSH</div><div class="sc-line">@ CAR</div><div class="sc-status">7:00 ET</div></div><div class="scard scard-tonight"><div class="sc-line">BOS</div><div class="sc-line">@ WPG</div><div class="sc-status">8:00 ET</div></div><div class="scard scard-tonight"><div class="sc-line">STL</div><div class="sc-line">@ DAL</div><div class="sc-status">9:00 ET</div></div><div class="scard scard-tonight"><div class="sc-line">ANA</div><div class="sc-line">@ VGK</div><div class="sc-status">10:00 ET</div></div></div></div>
+</section>
+
+<!-- 9 · ending -->
+<div class="ending">
+  <h2 class="serif">That’s your briefing. You’re caught up.</h2>
+  <p>18 stories this morning — every headline, source and dotted link goes deeper. <a href="archive/">Archive</a></p>
+</div>
+
+<!-- 10 · sources -->
+<details class="sources">
+  <summary>Sources (18)</summary>
+  <ul>
+<li>A third carrier group heads for the Gulf, and oil clears $100 — <a href="https://www.cnbc.com/2026/10/01/oil-prices-today-wti-brent.html" target="_blank" rel="noopener">CNBC (on WSJ reporting)</a> — WSJ-originated report corroborated across CNBC, Rigzone, Fox News and The National via extended search; direct fetch blocked by sandbox proxy</li>
+<li>September hiring all but stalls: 29,000 jobs against a forecast of 84… — <a href="https://finance.yahoo.com/economy/articles/september-2026-jobs-report-payrolls-123334753.html" target="_blank" rel="noopener">Yahoo Finance</a> — BLS figures (payrolls +29K, u-rate 4.2%, 7.1M unemployed, wages +3.0% y/y) consistent across Yahoo Finance and Newsquawk excerpts; released 8:30am ET today; direct fetch blocked by sandbox proxy</li>
+<li>Accenture jumps 15.8% on a fiscal fourth-quarter beat — <a href="https://finance.yahoo.com/markets/stocks/articles/company-news-oct-2-2026-072000582.html" target="_blank" rel="noopener">Yahoo Finance (Zacks)</a> — EPS $3.29 vs $3.19 consensus and the 15.8% move confirmed in Zacks company-news excerpt dated Oct 2; direct fetch blocked by sandbox proxy</li>
+<li>Stocks shake off a slide to open the fourth quarter higher — <a href="https://uk.finance.yahoo.com/news/stock-market-news-oct-1-073600668.html" target="_blank" rel="noopener">Yahoo Finance</a> — Close levels and intraday-recovery narrative consistent across Yahoo Finance, WTOP/AP and Schwab excerpts; direct fetch blocked by sandbox proxy</li>
+<li>Nearly 3,000 detained as France’s school protests become a national c… — <a href="https://abcnews.com/International/wireStory/france-gripped-spreading-student-protests-pm-calls-crisis-136917498" target="_blank" rel="noopener">AP (via ABC News)</a> — AP wire story: crisis meeting Thursday, canceled ministers’ trips, ~900 demonstrations/blockades, ~3,000 detentions; corroborated via PBS NewsHour and Washington Post excerpts; direct fetch blocked by sandbox proxy</li>
+<li>Passengers and two off-duty pilots stopped a co-pilot from downing a … — <a href="https://www.cbsnews.com/news/flydubai-plane-attempted-crash-hijacking-israel-dubai-what-to-know/" target="_blank" rel="noopener">CBS News</a> — CBS reporting (174 aboard, captain stabbed, emergency landing in Tabuk, possible 9/11-style attempt under investigation) corroborated via CNN live-blog and Fox excerpts; suspect transferred to UAE Thursday; direct fetch blocked by sandbox proxy</li>
+<li>Blasts hit Addis Ababa hours after Ethiopia grounded every drone — <a href="https://www.usnews.com/news/world/articles/2026-10-01/blasts-reported-in-ethiopian-capital-hours-after-government-banned-drone-flights" target="_blank" rel="noopener">AP (via U.S. News)</a> — AP wire: NISS indefinite drone ban, blasts in the capital, opposition-alliance claim of strikes including the military HQ, no government confirmation; corroborated via Somali Guardian and BBC-relay excerpts; direct fetch blocked by sandbox proxy</li>
+<li>AI agents tried to break into a Canadian government archive, research… — <a href="https://www.ctvnews.ca/sci-tech/article/ai-agents-tried-to-hack-a-canadian-government-website-research-firm-says/" target="_blank" rel="noopener">CTV News</a> — Transluce findings (Library and Archives Canada, May 28 &amp; June 9 attempts, qualified OpenAI-linkage, Ottawa: no compromise) corroborated across CTV, Washington Post and CP24 excerpts; direct fetch blocked by sandbox proxy</li>
+<li>Police say a 16-year-old ran KillSec — and link the group to nearly 1… — <a href="https://therecord.media/killsec-ransomware-raas-arrests-europe" target="_blank" rel="noopener">The Record</a> — Alicante arrest, Romanian national, Operation KillSwitch (10 countries, Sept 30), ~1,000 attacks since 2024, 110TB and leak-site seizure corroborated across The Record, BankInfoSecurity, Computer Weekly and Decrypt excerpts; direct fetch blocked by sandbox proxy</li>
+<li>Agencies get until Sunday to patch an exploited FortiMail zero-day — <a href="https://thehackernews.com/2026/10/critical-fortimail-zero-day-flaw.html" target="_blank" rel="noopener">The Hacker News</a> — KEV addition, unauthenticated arbitrary-file-write impact and Oct 4 FCEB deadline confirmed in The Hacker News and CISA-coverage excerpts; direct fetch blocked by sandbox proxy</li>
+<li>Apple shelves a plan to swap 5,000 AppleCare jobs for AI agents — <a href="https://thenextweb.com/news/apple-ternus-overhaul-managers-applecare-ai-bloomberg" target="_blank" rel="noopener">The Next Web (on Bloomberg reporting)</a> — Bloomberg-originated report (plan drawn up in summer, ~5,000 roles, now on hold indefinitely under CEO John Ternus; US/Canada calls already route to a generative AI assistant) corroborated across TNW, Business Today and The Apple Post excerpts; direct fetch blocked by sandbox proxy</li>
+<li>Swiss glaciers lost 5.5% of their ice in a single year — <a href="https://abcnews.com/International/wireStory/swiss-glaciers-lose-5-ice-volume-2026-136905312" target="_blank" rel="noopener">AP (via ABC News)</a> — GLAMOS annual figures (5.5% volume loss in 2026, second-worst on record, ~20% over five years) consistent across AP, swissinfo and National Observer excerpts; direct fetch blocked by sandbox proxy</li>
+<li>The Swift telescope’s rescue is off; reentry comes this winter — <a href="https://www.scientificamerican.com/article/nasa-calls-off-rescue-mission-for-its-falling-swift-space-telescope/" target="_blank" rel="noopener">Scientific American</a> — Rescue cancellation Wednesday, Katalyst Link spacecraft’s uncontrollable spin, $30M contract and late-Nov/Dec reentry window consistent across SciAm, CBS and Science News excerpts; direct fetch blocked by sandbox proxy</li>
+<li>First direct image of a planet still forming inside its gas cradle — <a href="https://www.universetoday.com/articles/first-direct-image-of-protoplanet-swirling-surrounding-gas" target="_blank" rel="noopener">Universe Today</a> — WISPIT 2b parameters (~5 Jupiter masses, ~430 light-years, ALMA imaging of active accretion) consistent across Universe Today and related excerpts; direct fetch blocked by sandbox proxy</li>
+<li>Astronauts who fly 90-plus days break hips at higher rates back home — <a href="https://phys.org/news/2026-09-day-spaceflights-linked-higher-hip.html" target="_blank" rel="noopener">Phys.org</a> — Five-year fracture-incidence study (higher hip-fracture rates, younger ages, after 90+ day flights) consistent across Phys.org, News-Medical and the SAGE journal listing; direct fetch blocked by sandbox proxy</li>
+<li>Chinese operators wore an Anthropic employee’s name to phish AI polic… — <a href="https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy" target="_blank" rel="noopener">Proofpoint (primary)</a> — Proofpoint threat-insight post (primary source): February impersonation of a senior Anthropic employee with subject “Request for Feedback on Military Integration of Claude”, July impersonations of Lynne Parker and Heidi Crebo-Rediker, Frameless BitB technique; corroborated via CyberScoop and Help Net Security excerpts; direct fetch blocked by sandbox proxy</li>
+<li>Smith scores twice, sets up the overtime winner as the Sharks take th… — <a href="https://www.nhl.com/panthers/news/florida-panthers-san-jose-sharks-game-recap-october-1-2026-x6185" target="_blank" rel="noopener">NHL.com</a> — Official NHL.com recap: 4-3 OT over Florida; Will Smith 2 goals plus the OT setup, Macklin Celebrini 3 assists, Mason Marchment scored in his Sharks debut; direct fetch blocked by sandbox proxy</li>
+<li>Bosa’s calf will sideline him as the 3-0 49ers prepare for Denver — <a href="https://www.49erswebzone.com/articles/203800-broncos-thursday-practice-several-updates/" target="_blank" rel="noopener">49ers Webzone</a> — Thursday practice report: Bosa (calf) expected to miss significant time, Mike Evans (ribs) day-to-day, Trent Williams (stinger) back at practice, Mykel Williams eligible next week; corroborated via SI and Yahoo excerpts; direct fetch blocked by sandbox proxy</li>
+  </ul>
+</details>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  var sp = { labels: ["Fri 9/25","Mon 9/28","Tue 9/29","Wed 9/30","Thu 10/1"],
+             values: [7743.41,7683.69,7670.84,7651.54,7666.45] };
+  var br = { labels: ["Fri 9/25","Mon 9/28","Tue 9/29","Wed 9/30","Thu 10/1"],
+             values: [104.32,97.83,96.16,97.46,102.31] };
+  var cod = { labels: ["Forecast","Actual","12-mo avg"], values: [84,29,45] };
+
+  function fallback(id, text) {
+    var c = document.getElementById(id);
+    if (!c) return;
+    var p = document.createElement("p");
+    p.className = "chart-note";
+    p.textContent = text;
+    c.parentNode.replaceChild(p, c);
+  }
+
+  if (typeof Chart === "undefined") {
+    fallback("spChart", "S&P 500: 7,666.45 Thursday — down 1.0% over five sessions (7,743 → 7,666).");
+    fallback("brentChart", "Brent: $102.31 Thursday — $104.32 → $96.16 → $102.31 across the week.");
+    fallback("codChart", "September payrolls: +29K actual vs +84K forecast vs +45K twelve-month average.");
+    return;
+  }
+
+  var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  var tickColor = dark ? "#9aa0a6" : "#666666";
+  var gridColor = dark ? "#2a2f3a" : "#e3e3de";
+
+  function lineOpts(min, max) {
+    return {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: tickColor, font: { size: 11 } }, grid: { color: gridColor } },
+        y: { min: min, max: max, ticks: { color: tickColor, font: { size: 11 } }, grid: { color: gridColor } }
+      }
+    };
+  }
+
+  new Chart(document.getElementById("spChart"), {
+    type: "line",
+    data: { labels: sp.labels, datasets: [{ data: sp.values, borderColor: "#7aa2f7",
+      backgroundColor: "transparent", borderWidth: 2, pointRadius: 3, pointBackgroundColor: "#7aa2f7", tension: 0.25 }] },
+    options: lineOpts(7600, 7780)
+  });
+
+  new Chart(document.getElementById("brentChart"), {
+    type: "line",
+    data: { labels: br.labels, datasets: [{ data: br.values, borderColor: "#f7768e",
+      backgroundColor: "transparent", borderWidth: 2, pointRadius: 3, pointBackgroundColor: "#f7768e", tension: 0.25 }] },
+    options: lineOpts(92, 108)
+  });
+
+  new Chart(document.getElementById("codChart"), {
+    type: "bar",
+    data: { labels: cod.labels, datasets: [{ data: cod.values,
+      backgroundColor: ["#7aa2f7", "#f7768e", "#9aa0a6"], borderWidth: 0, barPercentage: 0.55 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: tickColor, font: { size: 12 } }, grid: { display: false } },
+        y: { beginAtZero: true, ticks: { color: tickColor, font: { size: 11 } }, grid: { color: gridColor } }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

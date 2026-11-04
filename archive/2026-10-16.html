@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — October 16, 2026</title>
+<style>
+:root {
+  --bg:#0f1115; --surface:#171a21; --border:#2a2f3a; --text:#e8e8e8; --muted:#9aa0a6;
+  --up:#9ece6a; --down:#f7768e; --tech:#7aa2f7; --world:#f7768e; --business:#9ece6a;
+  --science:#bb9af7; --anthropic:#d4a27f;
+  --serif:"Iowan Old Style",Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:#fafaf8; --surface:#ffffff; --border:#e3e3de; --text:#1f1f1f; --muted:#666666;
+    --up:#3f7d22; --down:#c43a55; --tech:#2f5cc0; --world:#c43a55; --business:#3f7d22;
+    --science:#7a4fc0; --anthropic:#9c6b45;
+  }
+}
+* { box-sizing:border-box; }
+body { margin:0 auto; max-width:720px; padding:20px 16px 48px; background:var(--bg); color:var(--text);
+  font:400 16px/1.55 var(--sans); }
+a { color:inherit; }
+h1,h2,h3 { font-weight:500; margin:0; }
+.wire { font:400 13px/1.9 var(--mono); }
+.wire .wl { color:var(--muted); font-size:12px; }
+.wire .dot { color:var(--border); }
+.wi { white-space:nowrap; }
+.up { color:var(--up); } .down { color:var(--down); }
+.wirelabel { font:400 12px var(--mono); color:var(--muted); margin-top:4px; }
+.lede { margin:34px 0 8px; }
+.dateline { font:400 12px var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.lede h1 { font:500 22px/1.3 var(--serif); margin:10px 0 12px; }
+.narrative { font:400 17px/1.65 var(--serif); margin:0 0 14px; }
+.readtime { font:400 12px var(--mono); color:var(--muted); }
+.ent { text-decoration:underline dotted; text-underline-offset:3px; color:var(--tech); }
+.sop { display:grid; grid-template-columns:repeat(5,1fr); gap:0; margin:30px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:14px 0; }
+.sopi { padding:0 12px; border-left:1px solid var(--border); }
+.sopi:first-child { border-left:none; padding-left:0; }
+.sopv { font:500 18px var(--mono); }
+.sopl { font-size:12px; color:var(--text); margin-top:2px; }
+.sopc { font-size:12px; color:var(--muted); margin-top:2px; }
+@media (max-width:640px) {
+  .sop { grid-template-columns:repeat(2,1fr); row-gap:16px; }
+  .sopi { border-left:none; padding:0; }
+}
+.charts { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:8px 0 26px; }
+@media (max-width:640px) { .charts { grid-template-columns:1fr; } }
+.chartbox { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:12px; }
+.chartbox.wide { grid-column:1 / -1; }
+.ct { font:500 12px var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cwrap { position:relative; height:170px; }
+.cnote { font-size:12px; color:var(--muted); margin-top:8px; }
+.beat { margin:38px 0 0; }
+.beat h2 { font:500 13px var(--sans); letter-spacing:.18em; border-bottom:1px solid; padding-bottom:6px; }
+.story { padding:18px 0 4px; }
+.story.lead h3 { font-size:21px; }
+.chip { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.sub { font:500 11.5px var(--sans); letter-spacing:.14em; text-transform:uppercase; }
+.badge { font:400 11.5px var(--mono); color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:1px 7px; }
+.story h3 { font:500 17.5px/1.35 var(--serif); margin-bottom:6px; }
+.wim { margin:0 0 6px; font-size:15px; }
+.wim b { font-weight:500; }
+.wn { margin:0 0 6px; font-size:14px; font-style:italic; color:var(--muted); }
+.foot { display:flex; justify-content:space-between; align-items:center; margin-top:8px; }
+.src { font-size:13px; color:var(--muted); text-decoration:underline; text-underline-offset:3px; }
+.gd { font:400 12px var(--mono); border:1px solid var(--border); border-radius:4px; padding:4px 11px; text-decoration:none; color:var(--text); background:var(--surface); }
+.grid { display:grid; grid-template-columns:1fr 1fr; column-gap:29px; position:relative; }
+.grid::before { content:""; position:absolute; top:18px; bottom:4px; left:50%; width:1px; background:var(--border); }
+@media (max-width:640px) { .grid { grid-template-columns:1fr; } .grid::before { display:none; } }
+.sb { margin-top:18px; }
+.sb-league { margin-top:14px; }
+.sb-label { font:500 11.5px var(--sans); letter-spacing:.14em; color:var(--muted); }
+.sb-ctx { font:400 11.5px var(--mono); color:var(--muted); margin-left:10px; }
+.sb-row { display:flex; gap:12px; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; margin-top:8px; }
+.sb-row::-webkit-scrollbar { display:none; }
+.sb-card { min-width:190px; background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:10px 12px; font:400 13px var(--mono); flex-shrink:0; }
+.sb-card.teamline { border-left-width:3px; border-left-style:solid; }
+.sc-row { display:flex; justify-content:space-between; gap:12px; }
+.sc-win { color:var(--up); }
+.sc-status { color:var(--muted); font-size:12px; margin-top:4px; }
+.ending { text-align:center; margin:56px 0 30px; }
+.ending .big { font:500 20px var(--serif); }
+.ending .sub2 { font-size:13px; color:var(--muted); margin-top:8px; }
+.ending a { color:var(--muted); }
+details.sources { border-top:1px solid var(--border); padding-top:14px; }
+details.sources summary { font:500 13px var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--muted); cursor:pointer; }
+details.sources ul { padding-left:18px; margin:10px 0 0; }
+details.sources li { font-size:12px; color:var(--muted); margin-bottom:6px; }
+details.sources a { color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="wire"><span class='wi'><span class='wl'>S&amp;P 500</span> 7,744.06 <span class='up'>+0.3%</span></span> <span class='dot'>·</span> <span class='wi'><span class='wl'>DOW</span> 52,177.69 <span class='up'>+1.1%</span></span> <span class='dot'>·</span> <span class='wi'><span class='wl'>NASDAQ</span> 26,713.02 <span class='up'>+0.1%</span></span> <span class='dot'>·</span> <span class='wi'><span class='wl'>RUSSELL 2K</span> 2,767.27 <span class='up'>+1.4%</span></span> <span class='dot'>·</span> <span class='wi'><span class='wl'>VIX</span> 16.46 <span class='down'>−2.4%</span></span> <span class='dot'>·</span> <span class='wi'><span class='wl'>10-YR</span> 5.09%</span> <span class='dot'>·</span> <span class='wi'><span class='wl'>BRENT</span> $105.92 <span class='down'>−0.1%</span></span> <span class='dot'>·</span> <span class='wi'><span class='wl'>WTI</span> $97.97 <span class='up'>+3.0%</span></span> <span class='dot'>·</span> <span class='wi'><span class='wl'>GOLD</span> $4,169 <span class='up'>+1.6%</span></span> <span class='dot'>·</span> <span class='wi'><span class='wl'>BITCOIN</span> $80,745</span></div>
+<div class="wirelabel">Thursday close — Oct 15 · bitcoin: Thursday-morning snapshot · markets reopen this morning</div>
+
+<header class="lede">
+<div class="dateline">Friday, October 16, 2026 — generated 6:55am PT</div>
+<h1>The war premium reaches the checkout line</h1>
+<p class="narrative">Eight months into the Gulf war, the inflation it feeds is no longer a forecast — it's the tape. September wholesale prices rose 6.3%, the hottest since 2022, a day after consumer inflation hit 3.7%, and in both indexes gasoline did half the work — the pass-through of a <a class="ent" href="https://claude.ai/new?q=Explain%20the%20current%20status%20of%20the%20Strait%20of%20Hormuz%20in%20the%20US%E2%80%93Iran%20war%20%E2%80%94%20who%20controls%20transit%2C%20what%20shipping%20and%20war-risk%20insurance%20data%20show%2C%20and%20what%20reopening%20it%20would%20actually%20take" target="_blank">Strait of Hormuz</a> that two freshly sunken freighters this week confirmed is effectively tolled by Tehran. The bond market is doing the arithmetic: with the 10-year above 5%, <a class="ent" href="https://claude.ai/new?q=What%20is%20CoreWeave%2C%20how%20is%20its%20data-center%20buildout%20financed%2C%20and%20why%20do%20yields%20on%20its%202032%20bonds%20matter%20as%20a%20signal%20for%20AI%20infrastructure%20credit%3F" target="_blank">CoreWeave</a>'s 2032 notes now yield 15%, the first open crack in the AI buildout's debt stack. The law is moving on the industry too — <a class="ent" href="https://claude.ai/new?q=Summarize%20the%20consumer-protection%20lawsuits%20eight%20US%20states%20filed%20against%20OpenAI%20in%20October%202026%20%E2%80%94%20the%20legal%20theories%2C%20the%20remedies%20sought%2C%20and%20how%20they%20interact%20with%20the%20FTC%27s%20AI%20safety%20probe" target="_blank">eight states sued OpenAI</a> over ChatGPT safety, while Anthropic handed <a class="ent" href="https://claude.ai/new?q=What%20is%20METR%2C%20who%20funds%20it%2C%20and%20what%20does%20%27employee-like%20access%27%20to%20a%20frontier%20AI%20lab%20let%20independent%20evaluators%20actually%20verify%3F" target="_blank">METR</a> employee-like access to its systems: two opposite answers to the same accountability question. Equities shrugged, for now; the Dow rose 556 points into an <a class="ent" href="https://claude.ai/new?q=Preview%20the%20Federal%20Reserve%27s%20October%2028%2C%202026%20decision%20%E2%80%94%20what%20the%20September%20CPI%20%283.7%25%29%20and%20PPI%20%286.3%25%29%20prints%20imply%20for%20back-to-back%20rate%20hikes%2C%20and%20what%20the%20bond%20market%20is%20pricing" target="_blank">October 28 Fed decision</a> that may bring the first back-to-back hikes of this cycle.</p>
+<div class="readtime">~5 min read — 17 stories across 4 beats, plus Anthropic &amp; sports</div>
+</header>
+
+<div class="sop"><div class="sopi"><div class="sopv down">6.3%</div><div class="sopl">PPI, year over year</div><div class="sopc">Hottest wholesale inflation since Dec 2022 — gasoline did half the work</div></div><div class="sopi"><div class="sopv down">$105.92</div><div class="sopl">Brent crude, Dec settle</div><div class="sopc">Eight months of Gulf war keep the premium locked in</div></div><div class="sopi"><div class="sopv down">15.06%</div><div class="sopl">CoreWeave 2032 bond yield</div><div class="sopc">Distressed territory — the AI buildout's financing stress gauge</div></div><div class="sopi"><div class="sopv ">8</div><div class="sopl">states suing OpenAI</div><div class="sopc">Bipartisan AGs; consumer-protection and public-nuisance theories</div></div><div class="sopi"><div class="sopv up">45.22 km</div><div class="sopl">Perseverance odometer</div><div class="sopc">Farthest any vehicle has driven on a world beyond Earth</div></div></div>
+
+<div class="charts">
+<div class="chartbox"><div class="ct">S&amp;P 500 — last five closes</div><div class="cwrap"><canvas id="spx"></canvas></div>
+<div class="cnote">Wednesday's CPI print cost the index 1.1%; Thursday's buyers got a third of it back.</div></div>
+<div class="chartbox"><div class="ct">Brent crude (Dec) — last four settlements</div><div class="cwrap"><canvas id="brent"></canvas></div>
+<div class="cnote">Four straight settlements above $105 — the war premium isn't flinching.</div></div>
+<div class="chartbox wide"><div class="ct">Chart of the day — September's price engine (m/m % change)</div><div class="cwrap"><canvas id="cod"></canvas></div>
+<div class="cnote">Gasoline did half the work in both indexes. One war, two inflation reports — and <a class="ent" href="https://claude.ai/new?q=Preview%20the%20Federal%20Reserve%27s%20October%2028%2C%202026%20decision%20%E2%80%94%20what%20the%20September%20CPI%20%283.7%25%29%20and%20PPI%20%286.3%25%29%20prints%20imply%20for%20back-to-back%20rate%20hikes%2C%20and%20what%20the%20bond%20market%20is%20pricing" target="_blank">what it means for the Fed</a>.</div></div>
+</div>
+
+<section class="beat business"><h2 style="color:var(--business);border-color:var(--business)">BUSINESS &amp; MARKETS</h2><article class="story lead">
+<div class="chip"><span class="sub" style="color:var(--business)">BUSINESS</span><span class="badge">9/10</span></div>
+<h3>Wholesale inflation hits 6.3% — the hottest print since 2022</h3>
+<p class="wim"><b>Why it matters:</b> Producer prices jumped <b>1.3% in September alone</b> — the biggest monthly gain since March 2022, more than double the 0.6% forecast — and <a class="ent" href="https://claude.ai/new?q=Explain%20core%20versus%20headline%20inflation%20%E2%80%94%20why%20central%20banks%20watch%20core%2C%20and%20what%20it%20means%20that%20US%20core%20CPI%20%282.6%25%29%20and%20core%20PPI%20%285.0%25%29%20are%20diverging%20from%20energy-driven%20headline%20numbers%20in%202026" target="_blank">core inflation</a> at 5.0% says it is no longer just energy. Gasoline, up 20.3% on the month, did half the work.</p>
+<p class="wn">What’s next: The Fed decides October 28; after September's first hike in three years, a back-to-back move is now the live question.</p>
+<div class="foot"><a class="src" href="https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html" target="_blank">CNBC</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F10%2F15%2Fseptember-producer-price-index-retail-sales-data.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Wholesale%20inflation%20hits%206.3%25%20%E2%80%94%20the%20hottest%20print%20since%202022%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20break%20down%20what%20drove%20the%201.3%25%20monthly%20PPI%20jump%2C%20how%20much%20is%20war-driven%20energy%20pass-through%20versus%20tariffs%20and%20demand%2C%20and%20what%20it%20means%20for%20the%20October%2028%20Fed%20decision." target="_blank">Go deeper</a></div>
+</article><div class="grid"><article class="story">
+<div class="chip"><span class="sub" style="color:var(--business)">BUSINESS</span><span class="badge">7/10</span></div>
+<h3>CoreWeave's 2032 notes hit a 15% yield — the AI buildout's first open crack</h3>
+<p class="wim"><b>Why it matters:</b> Yields on the 9.625% notes climbed from 13.4% to <b>15.06%</b> this month, the bonds trade near 79 cents on the dollar — distressed territory — and the stock closed Wednesday at $67.52, its lowest since July. Morgan Stanley calls failed data-center debt financing a "significant valuation overhang"; <a class="ent" href="https://claude.ai/new?q=Explain%20private%20credit%27s%20exposure%20to%20AI%20data%20centers%20in%202026%20%E2%80%94%20how%20large%20it%20is%2C%20who%20the%20key%20lenders%20are%2C%20and%20what%20a%20CoreWeave-scale%20default%20would%20ripple%20through" target="_blank">private credit</a> is watching the same chart.</p>
+<p class="wn">What’s next: CEO <a class="ent" href="https://claude.ai/new?q=Profile%20Michael%20Intrator%20%E2%80%94%20his%20background%2C%20how%20he%20built%20CoreWeave%20out%20of%20a%20crypto-mining%20operation%2C%20and%20his%20leverage%20with%20Nvidia%2C%20hyperscaler%20customers%2C%20and%20bond%20investors" target="_blank">Michael Intrator</a> points to a $104B backlog; the market wants to see it financed, not booked.</p>
+<div class="foot"><a class="src" href="https://finance.yahoo.com/news/coreweave-collapse-sparks-fears-cracks-153437175.html" target="_blank">Yahoo Finance</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ffinance.yahoo.com%2Fnews%2Fcoreweave-collapse-sparks-fears-cracks-153437175.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22CoreWeave%27s%202032%20notes%20hit%20a%2015%25%20yield%20%E2%80%94%20the%20AI%20buildout%27s%20first%20open%20crack%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%2015%25%20yields%20on%20CoreWeave%27s%202032%20notes%20signal%20about%20AI%20infrastructure%20financing%2C%20and%20whether%20the%20backlog-versus-funding%20gap%20Morgan%20Stanley%20flags%20is%20solvable." target="_blank">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="sub" style="color:var(--business)">BUSINESS</span><span class="badge">6/10</span></div>
+<h3>Stocks claw back from the CPI shock; the rotation is the tell</h3>
+<p class="wim"><b>Why it matters:</b> The Dow jumped <b>556 points (+1.1%)</b> Thursday while the Nasdaq added just 0.1% — dip-buyers showed up, but in value, not in the AI names that led Wednesday's 1.1% CPI-day slide. Seoul's chip-heavy Kospi had lost over 5% in a single session earlier in the week on the same nerves.</p>
+
+<div class="foot"><a class="src" href="https://www.kare11.com/article/syndication/associatedpress/how-major-us-stock-indexes-fared-thursday-10152026/616-45863d85-4e3b-4f71-879a-08f0c61ea824" target="_blank">AP</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.kare11.com%2Farticle%2Fsyndication%2Fassociatedpress%2Fhow-major-us-stock-indexes-fared-thursday-10152026%2F616-45863d85-4e3b-4f71-879a-08f0c61ea824%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Stocks%20claw%20back%20from%20the%20CPI%20shock%3B%20the%20rotation%20is%20the%20tell%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20why%20equities%20rallied%20the%20day%20after%20hot%20CPI%20and%20PPI%20prints%2C%20and%20what%20the%20value-over-tech%20rotation%20under%20the%20surface%20says%20about%20positioning%20into%20the%20Fed%20meeting." target="_blank">Go deeper</a></div>
+</article></div></section>
+<section class="beat world"><h2 style="color:var(--world);border-color:var(--world)">WORLD &amp; GEOPOLITICS</h2><article class="story lead">
+<div class="chip"><span class="sub" style="color:var(--world)">WORLD</span><span class="badge">8/10</span></div>
+<h3>Month eight in the Gulf: a ceasefire proposal sits rejected on Trump's desk</h3>
+<p class="wim"><b>Why it matters:</b> Tehran's seven-day proposal ties reopening Hormuz shipping to the US lifting its <a class="ent" href="https://claude.ai/new?q=Explain%20the%20legal%20basis%20and%20mechanics%20of%20the%20US%20naval%20blockade%20of%20Iranian%20ports%20%E2%80%94%20historical%20precedents%2C%20how%20it%20is%20enforced%2C%20and%20why%20Iran%20calls%20it%20an%20act%20of%20war" target="_blank">naval blockade</a> and oil sanctions; Trump has rejected the terms publicly and says no further military action before the <b>November 3 midterms</b> — leaving the blockade, and $105 Brent, frozen in place.</p>
+<p class="wn">What’s next: <a class="ent" href="https://claude.ai/new?q=What%20is%20Qatar%27s%20role%20as%20a%20mediator%20between%20the%20United%20States%20and%20Iran%20%E2%80%94%20its%20track%20record%2C%20its%20incentives%2C%20and%20the%20leverage%20it%20actually%20holds" target="_blank">Qatar</a> says indirect talks continue; Iran says it is still reviewing the latest US reply relayed through mediators.</p>
+<div class="foot"><a class="src" href="https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-strait-of-hormuz/" target="_blank">CBS News</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cbsnews.com%2Flive-updates%2Firan-war-us-trump-talks-strait-of-hormuz%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Month%20eight%20in%20the%20Gulf%3A%20a%20ceasefire%20proposal%20sits%20rejected%20on%20Trump%27s%20desk%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20lay%20out%20the%20terms%20of%20Iran%27s%20seven-day%20ceasefire%20proposal%2C%20why%20Trump%20rejected%20it%2C%20and%20what%20each%20side%27s%20leverage%20looks%20like%20going%20into%20the%20US%20midterms." target="_blank">Go deeper</a></div>
+</article><div class="grid"><article class="story">
+<div class="chip"><span class="sub" style="color:var(--world)">WORLD</span><span class="badge">7/10</span></div>
+<h3>Two more ships on the bottom of the Strait of Hormuz</h3>
+<p class="wim"><b>Why it matters:</b> The Singapore-flagged container ship <b>GFS Pride</b> and the bulk carrier <b>Cape Dao</b> sank within a day of each other this week; all 21 GFS Pride crew were rescued, one Cape Dao crewman died. Iran claims a mine on an "unauthorized route"; a US official says missile. Attacks have intensified over the past ten days.</p>
+
+<div class="foot"><a class="src" href="https://www.al-monitor.com/originals/2026/10/two-ships-sink-near-hormuz-after-being-hit-projectiles-amid-surge-attacks" target="_blank">Reuters via Al-Monitor</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.al-monitor.com%2Foriginals%2F2026%2F10%2Ftwo-ships-sink-near-hormuz-after-being-hit-projectiles-amid-surge-attacks%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Two%20more%20ships%20on%20the%20bottom%20of%20the%20Strait%20of%20Hormuz%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20what%20the%20sinking%20of%20the%20GFS%20Pride%20and%20Cape%20Dao%20does%20to%20war-risk%20insurance%20and%20routing%20through%20the%20Strait%20of%20Hormuz%2C%20and%20whether%20the%20strait%20is%20now%20effectively%20closed%20to%20non-approved%20traffic." target="_blank">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="sub" style="color:var(--world)">WORLD</span><span class="badge">6/10</span></div>
+<h3>Yemen reignites: WFP says 800,000 people are now beyond reach</h3>
+<p class="wim"><b>Why it matters:</b> More than <b>600,000</b> of them are in <a class="ent" href="https://claude.ai/new?q=Why%20is%20Taiz%20the%20epicenter%20of%20Yemen%27s%20renewed%20fighting%20%E2%80%94%20its%20strategic%20position%2C%20siege%20history%2C%20and%20what%20restoring%20humanitarian%20access%20would%20require" target="_blank">Taiz</a>, where wheat-flour stocks are nearly exhausted; front-line hospitals took 700+ casualties in a single week per the ICRC, and the IOM counts 200,000 newly displaced since the Saudi-backed government and the Houthis resumed fighting.</p>
+
+<div class="foot"><a class="src" href="https://www.wfp.org/news/wfp-warns-escalating-yemen-conflict-cutting-life-saving-assistance-city-taiz" target="_blank">World Food Programme</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.wfp.org%2Fnews%2Fwfp-warns-escalating-yemen-conflict-cutting-life-saving-assistance-city-taiz%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Yemen%20reignites%3A%20WFP%20says%20800%2C000%20people%20are%20now%20beyond%20reach%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20why%20Taiz%20is%20the%20epicenter%20of%20Yemen%27s%20renewed%20fighting%2C%20what%20the%20WFP%20needs%20to%20restore%20access%2C%20and%20how%20the%20US%E2%80%93Iran%20war%20reignited%20this%20front." target="_blank">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="sub" style="color:var(--world)">WORLD</span><span class="badge">6/10</span></div>
+<h3>Istanbul takes 100mm of rain in 12 hours; a teenager dies in a flooded park</h3>
+<p class="wim"><b>Why it matters:</b> The governor's office logged <b>1,277 flooding incidents and 15 landslides</b> in a day; floodwater reached the Grand Bazaar, and a 14-year-old was electrocuted stepping into a puddle in Fatih. Residents were told to stay home Thursday.</p>
+
+<div class="foot"><a class="src" href="https://www.dailysabah.com/turkiye/istanbul/1-killed-after-torrential-rain-paralyzes-istanbul-triggers-flooding" target="_blank">Daily Sabah</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.dailysabah.com%2Fturkiye%2Fistanbul%2F1-killed-after-torrential-rain-paralyzes-istanbul-triggers-flooding%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Istanbul%20takes%20100mm%20of%20rain%20in%2012%20hours%3B%20a%20teenager%20dies%20in%20a%20flooded%20park%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20made%20this%20storm%20so%20damaging%2C%20and%20whether%20Istanbul%27s%20drainage%20infrastructure%20can%20cope%20with%20climate-intensified%20rainfall." target="_blank">Go deeper</a></div>
+</article></div></section>
+<section class="beat tech"><h2 style="color:var(--tech);border-color:var(--tech)">TECH &amp; AI</h2><article class="story lead">
+<div class="chip"><span class="sub" style="color:var(--tech)">TECH</span><span class="badge">8/10</span></div>
+<h3>Eight states sue OpenAI over ChatGPT safety — as it prepares to go public</h3>
+<p class="wim"><b>Why it matters:</b> A bipartisan bloc — Arkansas, Arizona, Idaho, Iowa, Kansas, Montana, Nebraska and West Virginia — filed October 14 alleging consumer deception and <a class="ent" href="https://claude.ai/new?q=Explain%20how%20public-nuisance%20doctrine%20is%20being%20used%20against%20technology%20companies%20%E2%80%94%20from%20opioids%20to%20social%20media%20to%20the%202026%20OpenAI%20lawsuits%20%E2%80%94%20and%20its%20win-loss%20record" target="_blank">public nuisance</a> over harm to minors and vulnerable users. One remedy would bar OpenAI from building <b>self-improving models</b> it cannot show are aligned. Florida sued first; the FTC's probe is already running.</p>
+<p class="wn">What’s next: OpenAI has not formally responded; the suits land squarely in its IPO window.</p>
+<div class="foot"><a class="src" href="https://www.pcgamer.com/software/ai/8-us-states-sue-openai/" target="_blank">PC Gamer</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.pcgamer.com%2Fsoftware%2Fai%2F8-us-states-sue-openai%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Eight%20states%20sue%20OpenAI%20over%20ChatGPT%20safety%20%E2%80%94%20as%20it%20prepares%20to%20go%20public%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20compare%20the%20eight%20states%27%20legal%20theories%20to%20Florida%27s%20earlier%20suit%2C%20and%20assess%20which%20remedies%20%E2%80%94%20especially%20the%20bar%20on%20self-improving%20models%20%E2%80%94%20could%20survive%20in%20court." target="_blank">Go deeper</a></div>
+</article><div class="grid"><article class="story">
+<div class="chip"><span class="sub" style="color:var(--tech)">TECH</span><span class="badge">7/10</span></div>
+<h3>SpaceX throttled Starlink over Ukraine mid-war, without warning</h3>
+<p class="wim"><b>Why it matters:</b> Military <a class="ent" href="https://claude.ai/new?q=What%20is%20StarShield%2C%20how%20does%20it%20differ%20from%20commercial%20Starlink%2C%20and%20what%20contractual%20obligations%20does%20SpaceX%20have%20to%20Ukraine%20and%20the%20Pentagon%20for%20battlefield%20connectivity%3F" target="_blank">StarShield</a> terminals lost connectivity above roughly <b>160 km/h</b> overnight October 14, disrupting drone missions, per Zelensky adviser Serhiy Beskrestnov. Zelensky says the cap "will result in human losses." There is no evidence of a Washington order — and no explanation from SpaceX.</p>
+<p class="wn">What’s next: Kyiv has asked for the service to be restored; the episode lands amid questions over US intelligence sharing.</p>
+<div class="foot"><a class="src" href="https://kyivindependent.com/this-cannot-be-a-coincidence-ukraines-starlink-access-restricted-without-warning-zelensky-adviser-says/" target="_blank">Kyiv Independent</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fkyivindependent.com%2Fthis-cannot-be-a-coincidence-ukraines-starlink-access-restricted-without-warning-zelensky-adviser-says%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22SpaceX%20throttled%20Starlink%20over%20Ukraine%20mid-war%2C%20without%20warning%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20the%20operational%20impact%20of%20the%20StarShield%20speed%20cap%20on%20Ukraine%27s%20drone%20war%2C%20and%20what%20alternatives%20Kyiv%20realistically%20has%20to%20SpaceX%20connectivity." target="_blank">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="sub" style="color:var(--tech)">TECH</span><span class="badge">6/10</span></div>
+<h3>Brazil's top electoral court puts Meta on a 48-hour clock</h3>
+<p class="wim"><b>Why it matters:</b> Lula's coalition says Flávio Bolsonaro's page gets <b>~3× the engagement with 17% fewer followers</b> and cites 255 AI-run accounts; the <a class="ent" href="https://claude.ai/new?q=What%20is%20Brazil%27s%20Superior%20Electoral%20Court%20%28TSE%29%2C%20what%20powers%20does%20it%20hold%20over%20online%20platforms%2C%20and%20what%20is%20its%20history%20of%20confrontation%20with%20Meta%20and%20X%3F" target="_blank">TSE</a> ordered Meta to preserve moderation logs and prove equal treatment before the October 25 presidential runoff. Meta blames a "global technical failure" for the view-count anomalies.</p>
+<p class="wn">What’s next: After Meta answers, prosecutors get 24 hours to weigh in before the court rules on an injunction.</p>
+<div class="foot"><a class="src" href="https://www.oliberal.com/eleicoes/tse-determina-que-dona-do-facebook-esclareca-em-48h-restricoes-a-posts-da-campanha-de-lula-1.1180611" target="_blank">O Liberal (Portuguese)</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.oliberal.com%2Feleicoes%2Ftse-determina-que-dona-do-facebook-esclareca-em-48h-restricoes-a-posts-da-campanha-de-lula-1.1180611%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Brazil%27s%20top%20electoral%20court%20puts%20Meta%20on%20a%2048-hour%20clock%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20Brazil%27s%20TSE%20is%20demanding%20from%20Meta%2C%20the%20evidence%20of%20algorithmic%20asymmetry%20both%20campaigns%20cite%2C%20and%20what%20penalties%20the%20court%20could%20impose%20before%20the%20runoff." target="_blank">Go deeper</a></div>
+</article></div></section>
+<section class="beat science"><h2 style="color:var(--science);border-color:var(--science)">SCIENCE &amp; SPACE</h2><article class="story lead">
+<div class="chip"><span class="sub" style="color:var(--science)">SCIENCE</span><span class="badge">7/10</span></div>
+<h3>Perseverance is now the farthest-driven vehicle on any world but Earth</h3>
+<p class="wim"><b>Why it matters:</b> Its odometer hit <b>45.22 km on October 11</b>, edging past Opportunity's 45.16 km — covered in five and a half years instead of fifteen, with <a class="ent" href="https://claude.ai/new?q=How%20does%20Perseverance%27s%20AutoNav%20self-driving%20system%20work%2C%20and%20how%20did%20it%20change%20the%20pace%20and%20risk%20profile%20of%20Mars%20surface%20exploration%3F" target="_blank">AutoNav</a> self-driving more than 90% of the distance. The original mission plan called for 20 km, total.</p>
+<p class="wn">What’s next: Funded through at least 2028, the rover keeps heading south beyond Jezero's rim toward a region called Idubi.</p>
+<div class="foot"><a class="src" href="https://www.popsci.com/science/nasa-perseverance-rover-distance-record/" target="_blank">Popular Science</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.popsci.com%2Fscience%2Fnasa-perseverance-rover-distance-record%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Perseverance%20is%20now%20the%20farthest-driven%20vehicle%20on%20any%20world%20but%20Earth%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20how%20AutoNav%20changed%20the%20pace%20of%20Mars%20surface%20exploration%2C%20and%20what%20Perseverance%27s%20route%20beyond%20Jezero%20Crater%20toward%20Idubi%20is%20targeting%20scientifically." target="_blank">Go deeper</a></div>
+</article><div class="grid"><article class="story">
+<div class="chip"><span class="sub" style="color:var(--science)">SCIENCE</span><span class="badge">6/10</span></div>
+<h3>Webb watches worlds collide — and finds Moon-making impacts are rare</h3>
+<p class="wim"><b>Why it matters:</b> Of 21 "extreme debris disks" surveyed, about a third are silica-rich — the chemical signature of <b>Mars-sized bodies vaporizing rock on impact</b>, the same class of collision as <a class="ent" href="https://claude.ai/new?q=Explain%20the%20giant-impact%20hypothesis%20%E2%80%94%20what%20Theia%20was%2C%20the%20evidence%20that%20the%20Moon%20formed%20from%20the%20collision%20debris%2C%20and%20the%20open%20questions%20Webb%27s%20debris-disk%20survey%20bears%20on" target="_blank">the Theia impact</a>, which likely made our Moon. Only ~1% of young stars show the phase at all.</p>
+
+<div class="foot"><a class="src" href="https://science.nasa.gov/webb/news/nasas-webb-provides-crash-course-on-planet-shattering-collisions/" target="_blank">NASA</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fscience.nasa.gov%2Fwebb%2Fnews%2Fnasas-webb-provides-crash-course-on-planet-shattering-collisions%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Webb%20watches%20worlds%20collide%20%E2%80%94%20and%20finds%20Moon-making%20impacts%20are%20rare%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20how%20silica%20chemistry%20in%20debris%20disks%20reveals%20collision%20energy%2C%20and%20what%20a%20~1%25%20occurrence%20rate%20implies%20about%20how%20common%20Moon-forming%20impacts%20are." target="_blank">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="sub" style="color:var(--science)">SCIENCE</span><span class="badge">6/10</span></div>
+<h3>Sentinel-3C opens its eyes: the Alps, the Arctic, and a working altimeter</h3>
+<p class="wim"><b>Why it matters:</b> First images, two weeks after the September 15 launch, caught the snow-covered Alps against the Po Valley and the Canadian Arctic near sea-ice minimum; the radar altimeter's first <b>Greenland ice-sheet tracks already match reference elevation models</b>. <a class="ent" href="https://claude.ai/new?q=What%20is%20Europe%27s%20Copernicus%20Earth-observation%20programme%20%E2%80%94%20the%20Sentinel%20fleet%2C%20what%20each%20satellite%20class%20measures%2C%20and%20why%20data%20continuity%20matters%20for%20climate%20records" target="_blank">Copernicus</a> gets its third set of ocean-and-ice eyes.</p>
+
+<div class="foot"><a class="src" href="https://www.esa.int/ESA_Multimedia/Images/2026/10/Canadian_Arctic_from_Sentinel-3C" target="_blank">ESA</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.esa.int%2FESA_Multimedia%2FImages%2F2026%2F10%2FCanadian_Arctic_from_Sentinel-3C%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Sentinel-3C%20opens%20its%20eyes%3A%20the%20Alps%2C%20the%20Arctic%2C%20and%20a%20working%20altimeter%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20Sentinel-3C%20adds%20to%20the%20Copernicus%20constellation%2C%20and%20why%20unbroken%20continuity%20in%20ocean-height%20and%20ice-elevation%20records%20matters%20for%20climate%20science." target="_blank">Go deeper</a></div>
+</article></div></section>
+
+<section class="beat anthropic"><h2 style="color:var(--anthropic);border-color:var(--anthropic)">ANTHROPIC</h2><article class="story lead">
+<div class="chip"><span class="sub" style="color:var(--anthropic)">ANTHROPIC</span><span class="badge">7/10</span></div>
+<h3>Anthropic gives METR "employee-like access" — bank-examiner oversight comes to AI</h3>
+<p class="wim"><b>Why it matters:</b> Six <a class="ent" href="https://claude.ai/new?q=What%20is%20METR%2C%20who%20funds%20it%2C%20and%20what%20does%20%27employee-like%20access%27%20to%20a%20frontier%20AI%20lab%20let%20independent%20evaluators%20actually%20verify%3F" target="_blank">METR</a> staff now get company hardware, office space and internal tooling on par with Anthropic's own risk-assessment teams — and can publish findings <b>Anthropic cannot veto</b>, only redact in narrow predefined categories. <a class="ent" href="https://claude.ai/new?q=What%20is%20SecureBio%2C%20and%20how%20does%20independent%20external%20review%20of%20an%20AI%20lab%27s%20biological-weapons%20risk%20assessments%20work%20in%20practice%3F" target="_blank">SecureBio</a> is separately reviewing the bio-weapons chapter of the August Risk Report; the move follows the <a class="ent" href="https://claude.ai/new?q=What%20is%20the%20White%20House%20Accord%20on%20Super%20Intelligence%2C%20who%20signed%20it%2C%20and%20what%20does%20it%20commit%20frontier%20AI%20labs%20to%3F" target="_blank">White House Accord on Super Intelligence</a>.</p>
+<p class="wn">What’s next: Anthropic says early talks are underway to extend access to other evaluators, including Hugging Face.</p>
+<div class="foot"><a class="src" href="https://www.anthropic.com/news/an-update-on-independent-evaluators" target="_blank">Anthropic</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.anthropic.com%2Fnews%2Fan-update-on-independent-evaluators%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Anthropic%20gives%20METR%20employee-like%20access%20%E2%80%94%20bank-examiner%20oversight%20comes%20to%20AI%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20whether%20METR%27s%20employee-like%20access%20with%20no%20publication%20veto%20constitutes%20real%20oversight%20%E2%80%94%20what%20it%20can%20and%20cannot%20verify%2C%20and%20how%20well%20the%20bank-examiner%20analogy%20holds." target="_blank">Go deeper</a></div>
+</article></section>
+
+<section class="beat sports"><h2 style="color:var(--muted);border-color:var(--border)">SPORTS — YOUR TEAMS</h2>
+<article class="story">
+<div class="chip"><span class="sub" style="color:#AA0000">49ERS</span><span class="badge">6/10</span></div>
+<h3>Unbeaten 49ers limp toward Monday night: Deebo out, Bosa in doubt</h3>
+<p class="wim"><b>Why it matters:</b> Deebo Samuel's hamstring will cost him <b>multiple weeks</b>, Mike Evans (Achilles soreness, ribs) skipped Thursday's practice, and Nick Bosa's calf has already cost him three games — all before Monday's home date with Washington.</p>
+<p class="wn">What’s next: Official designations come with Saturday's injury report.</p>
+<div class="foot"><a class="src" href="https://sports.yahoo.com/articles/49ers-vs-commanders-latest-injury-190053933.html" target="_blank">Yahoo Sports</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fsports.yahoo.com%2Farticles%2F49ers-vs-commanders-latest-injury-190053933.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Unbeaten%2049ers%20limp%20toward%20Monday%20night%3A%20Deebo%20out%2C%20Bosa%20in%20doubt%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20how%20the%2049ers%20should%20attack%20Washington%20on%20Monday%20night%20without%20Deebo%20Samuel%2C%20and%20whether%20resting%20Nick%20Bosa%27s%20calf%20another%20week%20is%20worth%20the%20risk%20to%20an%20unbeaten%20start." target="_blank">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="sub" style="color:#006D75">SHARKS</span><span class="badge">6/10</span></div>
+<h3>Celebrini's shootout winner lifts the Sharks in Nashville</h3>
+<p class="wim"><b>Why it matters:</b> Alex Nedeljkovic stopped <b>32 shots</b> and Macklin Celebrini scored the only goal of the shootout after Steven Stamkos forced overtime late — a 3-2 win that snaps a two-game skid and puts San Jose at 4-3-0.</p>
+
+<div class="foot"><a class="src" href="https://www.nhl.com/sharks/news/san-jose-sharks-nashville-predators-game-recap-october-15-2026-x7618" target="_blank">NHL.com</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nhl.com%2Fsharks%2Fnews%2Fsan-jose-sharks-nashville-predators-game-recap-october-15-2026-x7618%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Celebrini%27s%20shootout%20winner%20lifts%20the%20Sharks%20in%20Nashville%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20evaluate%20the%20Sharks%27%204-3-0%20start%20%E2%80%94%20is%20the%20Celebrini%E2%80%93Smith%20core%20ahead%20of%20its%20rebuild%20schedule%2C%20and%20is%20Nedeljkovic%27s%20early%20form%20sustainable%3F" target="_blank">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="sub" style="color:#1D428A">WARRIORS</span><span class="badge">6/10</span></div>
+<h3>Warriors tune up without Butler; Curry on a minutes diet</h3>
+<p class="wim"><b>Why it matters:</b> Jimmy Butler's knee is expected to keep him out for the <b>start of the season</b>, so Steve Kerr is capping Curry near 20 preseason minutes — 16 points in 14 against the Lakers — before Saturday's preseason finale against the Kings.</p>
+
+<div class="foot"><a class="src" href="https://www.rotoballer.com/?p=1959984" target="_blank">RotoBaller</a><a class="gd" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.rotoballer.com%2F%3Fp%3D1959984%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Warriors%20tune%20up%20without%20Butler%3B%20Curry%20on%20a%20minutes%20diet%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20how%20the%20Warriors%20should%20manage%20Stephen%20Curry%27s%20workload%20with%20Jimmy%20Butler%20sidelined%20to%20open%202026-27%2C%20and%20what%20the%20opening-week%20rotation%20should%20look%20like." target="_blank">Go deeper</a></div>
+</article>
+<h2 style="color:var(--muted);border-color:var(--border);margin-top:26px">LAST NIGHT / TONIGHT</h2>
+
+<div class="sb"><div class="sb-league"><span class="sb-label">NFL</span><span class="sb-ctx">Week 6</span>
+<div class="sb-row">
+<div class="sb-card"><div class="sc-row"><span>Denver</span><span class="sc-win">17</span></div><div class="sc-row"><span>Seattle</span><span>14</span></div><div class="sc-status">Final / OT</div></div>
+</div></div>
+<div class="sb-league"><span class="sb-label">MLB</span><span class="sb-ctx">Postseason — LCS</span>
+<div class="sb-row">
+<div class="sb-card"><div class="sc-row"><span>Milwaukee</span><span class="sc-win">6</span></div><div class="sc-row"><span>LA Dodgers</span><span>4</span></div><div class="sc-status">Final — MIL sweeps NLCS 4-0, wins pennant</div></div>
+<div class="sb-card"><div class="sc-row"><span>Cleveland</span><span class="sc-win">3</span></div><div class="sc-row"><span>Tampa Bay</span><span>2</span></div><div class="sc-status">Final — CLE leads ALCS 2-1</div></div>
+<div class="sb-card"><div class="sc-row"><span>Tampa Bay</span><span></span></div><div class="sc-row"><span>Cleveland</span><span></span></div><div class="sc-status">Tonight — ALCS G4, 6:00pm ET</div></div>
+</div></div>
+<div class="sb-league"><span class="sb-label">NHL</span><span class="sb-ctx">Early season</span>
+<div class="sb-row">
+<div class="sb-card teamline" style="border-left-color:#006D75"><div class="sc-row"><span>San Jose</span><span class="sc-win">3</span></div><div class="sc-row"><span>Nashville</span><span>2</span></div><div class="sc-status">Final / SO</div></div>
+</div></div>
+</section>
+
+<div class="ending">
+<div class="big">That's your briefing. You're caught up.</div>
+<div class="sub2">17 stories — every link above opens a deeper conversation. <a href="archive/">Archive</a></div>
+</div>
+
+<details class="sources"><summary>Sources (17)</summary><ul><li>Wholesale inflation hits 6.3% — the hottest print since 2022 — <a href="https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html" target="_blank">CNBC</a> — verified via search-indexed content (BLS figures cross-checked against CBS, CNN, Washington Times); direct fetch blocked by session network policy</li><li>CoreWeave's 2032 notes hit a 15% yield — the AI buildout's first open cr — <a href="https://finance.yahoo.com/news/coreweave-collapse-sparks-fears-cracks-153437175.html" target="_blank">Yahoo Finance</a> — verified via search-indexed content (bond yields, stock close and analyst quotes consistent across multiple outlets); direct fetch blocked by session network policy</li><li>Stocks claw back from the CPI shock; the rotation is the tell — <a href="https://www.kare11.com/article/syndication/associatedpress/how-major-us-stock-indexes-fared-thursday-10152026/616-45863d85-4e3b-4f71-879a-08f0c61ea824" target="_blank">AP</a> — AP end-of-day market recap, syndicated; verified via search-indexed content; direct fetch blocked by session network policy</li><li>Month eight in the Gulf: a ceasefire proposal sits rejected on Trump's d — <a href="https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-strait-of-hormuz/" target="_blank">CBS News</a> — CBS News live-blog verified via search-indexed content; corroborated by Arab News (Qatar mediation) and Reuters-sourced CFR tracker; direct fetch blocked by session network policy</li><li>Two more ships on the bottom of the Strait of Hormuz — <a href="https://www.al-monitor.com/originals/2026/10/two-ships-sink-near-hormuz-after-being-hit-projectiles-amid-surge-attacks" target="_blank">Reuters via Al-Monitor</a> — Reuters reporting, syndicated by Al-Monitor; verified via search-indexed content; direct fetch blocked by session network policy</li><li>Yemen reignites: WFP says 800,000 people are now beyond reach — <a href="https://www.wfp.org/news/wfp-warns-escalating-yemen-conflict-cutting-life-saving-assistance-city-taiz" target="_blank">World Food Programme</a> — WFP press release (primary); verified via search-indexed content, corroborated by Al Jazeera; direct fetch blocked by session network policy</li><li>Istanbul takes 100mm of rain in 12 hours; a teenager dies in a flooded p — <a href="https://www.dailysabah.com/turkiye/istanbul/1-killed-after-torrential-rain-paralyzes-istanbul-triggers-flooding" target="_blank">Daily Sabah</a> — Daily Sabah (Istanbul-based outlet, on-the-ground reporting); verified via search-indexed content; direct fetch blocked by session network policy</li><li>Eight states sue OpenAI over ChatGPT safety — as it prepares to go publi — <a href="https://www.pcgamer.com/software/ai/8-us-states-sue-openai/" target="_blank">PC Gamer</a> — filing details verified via search-indexed content across PC Gamer, AAP-syndicated outlets and Decrypt; direct fetch blocked by session network policy</li><li>SpaceX throttled Starlink over Ukraine mid-war, without warning — <a href="https://kyivindependent.com/this-cannot-be-a-coincidence-ukraines-starlink-access-restricted-without-warning-zelensky-adviser-says/" target="_blank">Kyiv Independent</a> — verified via search-indexed content (Kyiv Independent, Al Jazeera, Ukrainska Pravda all carry the core claims); direct fetch blocked by session network policy</li><li>Brazil's top electoral court puts Meta on a 48-hour clock — <a href="https://www.oliberal.com/eleicoes/tse-determina-que-dona-do-facebook-esclareca-em-48h-restricoes-a-posts-da-campanha-de-lula-1.1180611" target="_blank">O Liberal (Portuguese)</a> — Portuguese-language Brazilian coverage (O Liberal, Tribuna de Jundiaí agree on the order's terms); verified via search-indexed content; direct fetch blocked by session network policy</li><li>Perseverance is now the farthest-driven vehicle on any world but Earth — <a href="https://www.popsci.com/science/nasa-perseverance-rover-distance-record/" target="_blank">Popular Science</a> — verified via search-indexed content (Popular Science, Weather Network, NBC LA agree on figures); direct fetch blocked by session network policy</li><li>Webb watches worlds collide — and finds Moon-making impacts are rare — <a href="https://science.nasa.gov/webb/news/nasas-webb-provides-crash-course-on-planet-shattering-collisions/" target="_blank">NASA</a> — NASA Webb news release (primary), published Oct 7 alongside an Astrophysical Journal paper; verified via search-indexed content; direct fetch blocked by session network policy</li><li>Sentinel-3C opens its eyes: the Alps, the Arctic, and a working altimete — <a href="https://www.esa.int/ESA_Multimedia/Images/2026/10/Canadian_Arctic_from_Sentinel-3C" target="_blank">ESA</a> — ESA multimedia releases (primary); verified via search-indexed content; direct fetch blocked by session network policy</li><li>Anthropic gives METR "employee-like access" — bank-examiner oversight co — <a href="https://www.anthropic.com/news/an-update-on-independent-evaluators" target="_blank">Anthropic</a> — fetched directly — Anthropic announcement (primary), dated Oct 15</li><li>Unbeaten 49ers limp toward Monday night: Deebo out, Bosa in doubt — <a href="https://sports.yahoo.com/articles/49ers-vs-commanders-latest-injury-190053933.html" target="_blank">Yahoo Sports</a> — Yahoo Sports injury report, corroborated by 49ersWebzone and CBS Sports; verified via search-indexed content; direct fetch blocked by session network policy</li><li>Celebrini's shootout winner lifts the Sharks in Nashville — <a href="https://www.nhl.com/sharks/news/san-jose-sharks-nashville-predators-game-recap-october-15-2026-x7618" target="_blank">NHL.com</a> — NHL.com game recap (league primary); verified via search-indexed content; direct fetch blocked by session network policy</li><li>Warriors tune up without Butler; Curry on a minutes diet — <a href="https://www.rotoballer.com/?p=1959984" target="_blank">RotoBaller</a> — RotoBaller/NBC Sports Bay Area preseason reporting; verified via search-indexed content; direct fetch blocked by session network policy</li><li>Market data: US closes — AP via KARE11; S&amp;P 500 series — FRED / Investing.com; oil settlements — CNBC &amp; Investing.com (Dec Brent futures; Oct 9 settlement unavailable, chart shows four sessions); VIX — Yahoo Finance historical; 10-yr yield — Investing.com; gold — Trading Economics (Oct 15, may be late-session); bitcoin — Schwab market update, Thursday 9:22am ET snapshot (no verified close available). CPI/PPI component figures — BLS via CNBC, CBS News, Washington Times.</li></ul></details>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function() {
+  var dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  var tick = dark ? '#9aa0a6' : '#666666';
+  var grid = dark ? '#2a2f3a' : '#e3e3de';
+  if (typeof Chart === 'undefined') {
+    var msg = "S&P 500: 7,744.06 Thursday, down 0.9% over five sessions. | Brent (Dec): $105.92, fourth straight settlement above $105. | Sept m/m: CPI +0.6%, core +0.3%, gasoline +9.1%; PPI +1.3%, core +0.7%, gasoline +20.3%.";
+    document.querySelectorAll('.cwrap').forEach(function(w,i) {
+      w.innerHTML = '<p style="font-size:13px;color:'+tick+'">'+msg.split('|')[i]+'</p>';
+    });
+    return;
+  }
+  function ax(fmt) { return {
+    x: { ticks: { color: tick, font: { size: 11 } }, grid: { color: grid, display: false } },
+    y: { ticks: { color: tick, font: { size: 11 }, callback: fmt }, grid: { color: grid } }
+  }; }
+  new Chart(document.getElementById('spx'), {
+    type: 'line',
+    data: { labels: ['Oct 9','Oct 12','Oct 13','Oct 14','Oct 15'],
+      datasets: [{ data: [7811.54,7807.24,7805.45,7718.94,7744.06],
+        borderColor: dark ? '#9ece6a' : '#3f7d22', backgroundColor: 'transparent',
+        pointRadius: 3, tension: 0.15, borderWidth: 2 }] },
+    options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: ax(function(v) { return v.toLocaleString(); }) }
+  });
+  new Chart(document.getElementById('brent'), {
+    type: 'line',
+    data: { labels: ['Oct 12','Oct 13','Oct 14','Oct 15'],
+      datasets: [{ data: [106.65,105.69,106.06,105.92],
+        borderColor: dark ? '#f7768e' : '#c43a55', backgroundColor: 'transparent',
+        pointRadius: 3, tension: 0.15, borderWidth: 2 }] },
+    options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: ax(function(v) { return '$' + v; }) }
+  });
+  var codColors = ['#7aa2f7','#7aa2f7','#f7768e','#7aa2f7','#7aa2f7','#f7768e'];
+  if (!dark) codColors = ['#2f5cc0','#2f5cc0','#c43a55','#2f5cc0','#2f5cc0','#c43a55'];
+  new Chart(document.getElementById('cod'), {
+    type: 'bar',
+    data: { labels: ['CPI all items','CPI core','CPI gasoline','PPI all items','PPI core','PPI gasoline'],
+      datasets: [{ data: [0.6,0.3,9.1,1.3,0.7,20.3], backgroundColor: codColors, borderWidth: 0 }] },
+    options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: ax(function(v) { return v + '%'; }) }
+  });
+})();
+</script>
+</body>
+</html>

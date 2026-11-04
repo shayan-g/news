@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Briefing — Monday, August 31, 2026</title>
+<style>
+:root{
+  --bg:#0f1115;--surface:#171a21;--border:#2a2f3a;--text:#e8e8e8;--muted:#9aa0a6;
+  --up:#9ece6a;--down:#f7768e;--tech:#7aa2f7;--world:#f7768e;--business:#9ece6a;
+  --science:#bb9af7;--anthropic:#d4a27f;--sf49:#e05252;--sfg:#F4793E;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#fafaf8;--surface:#ffffff;--border:#e3e3de;--text:#1f1f1f;--muted:#666666;
+    --up:#4a7c1f;--down:#c22f4d;--tech:#2b5fc7;--world:#c22f4d;--business:#4a7c1f;
+    --science:#7a4fc0;--anthropic:#9c6b3f;--sf49:#AA0000;--sfg:#c05a1f;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+main{max-width:720px;margin:0 auto;padding:24px 20px 64px;}
+a{color:inherit}
+.serif{font-family:"Iowan Old Style",Palatino,Georgia,serif}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+/* wire strip */
+.wire{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.9;color:var(--muted)}
+.wire b{font-weight:500;color:var(--text)}
+.wire .u{color:var(--up)} .wire .d{color:var(--down)}
+.wire-label{font-size:12px;color:var(--muted);margin:4px 0 0}
+/* lede */
+.dateline{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px}
+h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:23px;font-weight:500;line-height:1.3;margin:0 0 12px}
+.narrative{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:17px;line-height:1.65;margin:0 0 14px}
+.readtime{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--muted)}
+/* entity links */
+.ent,.ent-w,.ent-b,.ent-s{text-decoration:none;border-bottom:1px dotted;cursor:pointer}
+.ent{color:var(--tech)} .ent-w{color:var(--world)} .ent-b{color:var(--business)} .ent-s{color:var(--science)}
+.why .ent,.why .ent-w,.why .ent-b,.why .ent-s{color:inherit;border-bottom:1px dotted var(--muted)}
+/* state of play */
+.sop{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:26px 0}
+.sop>div{padding:14px 10px;border-left:1px solid var(--border)}
+.sop>div:first-child{border-left:none}
+.sop .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:18px}
+.sop .v.dn{color:var(--down)} .sop .v.up{color:var(--up)}
+.sop .l{font-size:13px;margin-top:2px}
+.sop .c{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+@media (max-width:600px){
+  .sop{grid-template-columns:repeat(6,1fr)}
+  .sop>div{grid-column:span 2;border-left:1px solid var(--border)}
+  .sop>div:nth-child(1){grid-column:span 3;border-left:none}
+  .sop>div:nth-child(2){grid-column:span 3}
+  .sop>div:nth-child(4){border-left:none}
+  .sop>div:nth-child(3){border-left:none}
+  .sop>div:nth-child(3){grid-column:span 2}
+}
+/* charts */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:26px 0}
+@media (max-width:600px){.charts{grid-template-columns:1fr}}
+.chartbox h3{font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.chartbox .ann{font-size:12.5px;color:var(--muted);margin:8px 0 0;line-height:1.45}
+.chartwrap{background:var(--surface);border:1px solid var(--border);padding:10px;height:190px}
+.chartwrap.tall{height:220px}
+.cod{margin:0 0 26px}
+/* sections */
+.beat{margin:34px 0 0}
+.beat-h{font-size:14px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding-bottom:8px;border-bottom:2px solid;margin:0 0 4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.grid>.story:nth-child(odd){border-right:1px solid var(--border);padding-right:28px;margin-right:-14px}
+@media (max-width:600px){.grid{grid-template-columns:1fr}.grid>.story:nth-child(odd){border-right:none;padding-right:0;margin-right:0}}
+.story{padding:18px 0;border-bottom:1px solid var(--border)}
+.story:last-child{border-bottom:none}
+.story h3{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:18px;font-weight:500;line-height:1.35;margin:8px 0 8px}
+.story.lead h3{font-size:21px}
+.chip{display:flex;align-items:center;gap:10px}
+.sub{font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.badge{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:1px 7px}
+.why{font-size:14.5px;margin:0 0 6px;color:var(--text)}
+.wn{font-size:14px;font-style:italic;color:var(--muted);margin:0 0 6px}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.src{font-size:13px;color:var(--muted)}
+.deep{font-size:13px;text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);padding:5px 12px;white-space:nowrap}
+.deep:hover{border-color:var(--muted)}
+/* dominant */
+.dom .beat-h{border-color:var(--world);color:var(--world)}
+/* sports scoreboard */
+.sb-league{margin:14px 0}
+.sb-head{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--muted);margin:0 0 8px}
+.sb-row{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.sb-row::-webkit-scrollbar{display:none}
+.sb-card{flex:0 0 auto;background:var(--surface);border:1px solid var(--border);padding:8px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;min-width:130px}
+.sb-card.tm-sfg{border-left:3px solid var(--sfg)}
+.sb-card .st{display:block;font-size:11.5px;color:var(--muted);margin-top:3px}
+.sb-card .w{color:var(--up)}
+/* ending */
+.ending{text-align:center;margin:48px 0 8px}
+.ending h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:21px;font-weight:500;margin:0 0 6px}
+.ending p{font-size:13.5px;color:var(--muted);margin:0}
+.ending a{color:var(--muted)}
+/* sources */
+details{margin:36px 0 0;border-top:1px solid var(--border);padding-top:14px}
+summary{cursor:pointer;font-size:14px;color:var(--muted)}
+details ul{list-style:none;padding:0;margin:12px 0 0}
+details li{font-size:12px;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);line-height:1.5}
+details li a{color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+
+<div class="wire"><span class="wi">S&amp;P 500 <b>7,711.76</b> <span class="d">-0.25%</span></span> · <span class="wi">Dow <b>53,559.99</b> <span class="d">-0.02%</span></span> · <span class="wi">Nasdaq <b>26,402.42</b> <span class="d">-0.52%</span></span> · <span class="wi">Russell 2K <b>2,975.13</b> <span class="d">-1.30%</span></span> · <span class="wi">VIX <b>14.46</b></span> · <span class="wi">10Y <b>4.73%</b></span> · <span class="wi">Brent <b>$87.98</b> <span class="d">-1.5%</span></span> · <span class="wi">WTI <b>$83.44</b> <span class="d">-0.1%</span></span> · <span class="wi">Gold <b>$4,530</b> <span class="d">-2.5%</span></span> · <span class="wi">Bitcoin <b>$77,900</b> <span class="d">-3.1%</span></span></div>
+<p class="wire-label">Friday close (Aug 28) — oil already repricing Monday morning on the Gulf strikes.</p>
+
+<p class="dateline">Monday, August 31, 2026 — generated 6:47am PT</p>
+<h1 class="serif">The lull is over: Hormuz is once again the world’s interest-rate problem</h1>
+<p class="narrative">The weekend the war came back: US strikes on <a class="ent-w" href="https://claude.ai/new?q=Explain%20Larak%20and%20Kharg%20islands%20%E2%80%94%20their%20role%20in%20Iran%E2%80%99s%20oil%20exports%20and%20Strait%20of%20Hormuz%20defenses%2C%20and%20why%20the%20US%20struck%20rocket%20launchers%20there%20in%20August%202026" target="_blank" rel="noopener">Larak Island</a> and Iranian ballistic missiles on American bases in Jordan ended a month-long lull, and by this morning Brent had taken back above $91 everything diplomacy earned last week. That lands squarely on <a class="ent-b" href="https://claude.ai/new?q=Profile%20Kevin%20Warsh%20%E2%80%94%20his%20path%20to%20Fed%20chair%2C%20his%20monetary%20philosophy%2C%20and%20how%20his%20August%202026%20Jackson%20Hole%20speech%20moved%20markets" target="_blank" rel="noopener">Kevin Warsh</a>, whose hawkish Jackson Hole debut already had markets pricing a rate hike before oil re-spiked; Washington’s answer is part military, part barrels — a 65-billion-barrel <a class="ent-b" href="https://claude.ai/new?q=What%20we%20know%20about%20the%20August%202026%20US-Venezuela%20oil%20deal%20%E2%80%94%20the%2017%20fields%2C%20the%2055%25%20stake%2C%20the%20unnamed%20operator%20%E2%80%94%20and%20their%20significance%20to%20global%20oil%20markets" target="_blank" rel="noopener">Venezuela deal</a> announced with no text attached. The states unbothered by any of this convene today in Bishkek, where the <a class="ent-w" href="https://claude.ai/new?q=What%20is%20the%20Shanghai%20Cooperation%20Organisation%20and%20what%20does%20its%20Bishkek%202026%20anniversary%20summit%20%E2%80%94%20with%20Modi%2C%20Xi%2C%20Putin%20and%20Pezeshkian%20attending%20mid-Hormuz-crisis%20%E2%80%94%20signal%20to%20Washington%3F" target="_blank" rel="noopener">SCO</a>’s anniversary summit seats Xi, Modi, Putin and Iran’s president at one table. Far above all of it, <a class="ent-s" href="https://claude.ai/new?q=Explain%20the%20Nancy%20Grace%20Roman%20Space%20Telescope%E2%80%99s%20mission%20%E2%80%94%20dark%20energy%2C%20exoplanets%2C%20and%20how%20it%20complements%20Hubble%20and%20Webb" target="_blank" rel="noopener">Roman</a> launched flawlessly Sunday — a reminder that some flagships still leave on schedule. In Nepal, the glacial-flood toll passed 676 with thousands still missing.</p>
+<p class="readtime">~5 min read — 18 stories: the Gulf, plus 4 beats, Anthropic and your teams</p>
+
+<div class="sop">
+<div><div class="v dn">$91.10</div><div class="l">Brent, Monday am</div><div class="c">Up 3.4% overnight on the Gulf strikes — the war premium is back</div></div>
+<div><div class="v dn">4.73%</div><div class="l">10-year Treasury</div><div class="c">Friday close, after Warsh’s hawkish Jackson Hole debut</div></div>
+<div><div class="v dn">~3,000</div><div class="l">Missing in Nepal</div><div class="c">676+ confirmed dead after Wednesday’s glacial collapse</div></div>
+<div><div class="v">49.8</div><div class="l">China factory PMI</div><div class="c">Beat forecasts this morning — still contraction</div></div>
+<div><div class="v">65B</div><div class="l">Venezuelan barrels</div><div class="c">Claimed scope of the US deal; no agreement text released</div></div>
+</div>
+
+<div class="charts">
+  <div class="chartbox"><h3>S&amp;P 500 — last five closes</h3><div class="chartwrap"><canvas id="c-sp"></canvas></div><p class="ann">Nvidia’s Thursday pop, half given back Friday when Warsh talked rates up.</p></div>
+  <div class="chartbox"><h3>Brent crude — last five settlements</h3><div class="chartwrap"><canvas id="c-brent"></canvas></div><p class="ann">Last week’s de-escalation slide — erased at $91.10 this morning.</p></div>
+</div>
+<div class="chartbox cod"><h3>Chart of the day — Hormuz is already half-choked</h3><div class="chartwrap tall"><canvas id="c-day"></canvas></div><p class="ann">Crude and product flows through the strait fell almost 30% year-over-year in Q1 as Iran mined the waterway; the 2025 average was about a fifth of world supply. Sources: IEA; EIA. Dig into <a class="ent-b" href="https://claude.ai/new?q=Using%20IEA%20and%20EIA%20data%2C%20explain%20how%20oil%20and%20LNG%20flows%20through%20the%20Strait%20of%20Hormuz%20changed%20during%20the%202026%20US-Iran%20war%2C%20and%20which%20importers%20were%20hit%20hardest" target="_blank" rel="noopener">IEA’s Hormuz data</a>.</p></div>
+
+<section class="beat dom">
+  <h2 class="beat-h">The Gulf — the weekend the war came back</h2>
+  
+<article class="story lead">
+  <div class="chip"><span class="sub" style="color:var(--world)">The Gulf</span><span class="badge">10/10</span></div>
+  <h3>The US hit Larak Island; Iran answered with missiles on two US bases in Jordan</h3>
+  <p class="why"><strong>Why it matters:</strong> Washington’s first strikes since July targeted the rocket launchers Iran was using to seed the Strait of Hormuz with sea mines; the <a class="ent" href="https://claude.ai/new?q=What%20is%20Iran%E2%80%99s%20Islamic%20Revolutionary%20Guard%20Corps%2C%20who%20commands%20it%2C%20and%20why%20does%20it%20%E2%80%94%20not%20the%20regular%20army%20%E2%80%94%20control%20the%20Strait%20of%20Hormuz%20escalation%3F" target="_blank" rel="noopener">IRGC</a> says its ballistic-missile response caused “heavy damage” at two US air bases in Jordan, with attacks also reported toward the UAE. Six months into the war that began February 28, both sides re-escalated in the same week Qatari diplomats were shuttling to Tehran.</p>
+  <p class="wn">What’s next: Iran’s Revolutionary Guard says more rocket-and-mine launches into the strait are being prepared.</p>
+  <div class="foot"><a class="src" href="https://www.euronews.com/2026/08/31/iran-fires-retaliatory-strikes-following-us-attacks-on-larak-island-in-the-strait-of-hormu" target="_blank" rel="noopener">Euronews</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.euronews.com%2F2026%2F08%2F31%2Firan-fires-retaliatory-strikes-following-us-attacks-on-larak-island-in-the-strait-of-hormu%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Iran%20fires%20retaliatory%20strikes%20following%20US%20attacks%20on%20Larak%20island%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20map%20the%20escalation%20ladder%20from%20here%3A%20what%20targets%20does%20each%20side%20have%20left%20below%20all-out%20war%2C%20and%20which%20strike%20would%20actually%20close%20the%20strait%20for%20good%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+  
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--business)">Oil</span><span class="badge">8/10</span></div>
+  <h3>Oil reprices the war premium: Brent back above $91 before the US open</h3>
+  <p class="why"><strong>Why it matters:</strong> Brent jumped 3.4% to $91.10 and WTI to $86.26 Monday morning after the weekend strikes — unwinding last week’s de-escalation slide in one session. The <a class="ent" href="https://claude.ai/new?q=Explain%20how%20much%20oil%20and%20LNG%20moves%20through%20the%20Strait%20of%20Hormuz%2C%20which%20countries%20depend%20on%20it%20most%2C%20and%20what%20happens%20to%20prices%20if%20it%20closes%20fully%20%E2%80%94%20use%202025-2026%20data" target="_blank" rel="noopener">strait</a> was already moving almost 30% less crude in Q1 than a year earlier (14.6M bbl/day, per EIA data), and every dollar of war premium feeds straight into the rate-hike math the Fed laid out Friday.</p>
+  
+  <div class="foot"><a class="src" href="https://www.newschannel5.com/us-news/iran-war/us-strikes-iran-again-as-retaliation-raises-fears-over-gas-prices-strait-of-hormuz" target="_blank" rel="noopener">Scripps News</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.newschannel5.com%2Fus-news%2Firan-war%2Fus-strikes-iran-again-as-retaliation-raises-fears-over-gas-prices-strait-of-hormuz%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22US%20strikes%20Iran%20again%20as%20retaliation%20raises%20fears%20over%20gas%20prices%2C%20Strait%20of%20Hormuz%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20trace%20how%20a%20%245%20move%20in%20Brent%20propagates%20to%20US%20pump%20prices%2C%20airline%20costs%20and%20CPI%20%E2%80%94%20and%20how%20long%20each%20lag%20takes." target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+</section>
+
+<section class="beat">
+  <h2 class="beat-h" style="color:var(--world);border-color:var(--world)">World &amp; Geopolitics</h2>
+  
+<article class="story lead">
+  <div class="chip"><span class="sub" style="color:var(--world)">World</span><span class="badge">8/10</span></div>
+  <h3>Nepal’s glacial flood toll passes 676, with some 3,000 still missing</h3>
+  <p class="why"><strong>Why it matters:</strong> The USGS says a <a class="ent" href="https://claude.ai/new?q=Explain%20glacial%20lake%20outburst%20floods%20and%20high-mountain%20glacial%20collapses%20%E2%80%94%20why%20warming%20makes%20them%20more%20frequent%2C%20and%20which%20Himalayan%20valleys%20are%20most%20exposed" target="_blank" rel="noopener">glacial collapse</a> on the Tibet border sent the debris torrent that erased villages on Wednesday; at least 676 are dead in Nepal, seven in Tibet, and around 3,000 remain missing — including 261 foreigners, 18 of them US citizens, at the height of trekking season. It is already one of the deadliest Himalayan disasters ever recorded.</p>
+  <p class="wn">What’s next: Search teams say the missing count could keep the toll climbing for weeks.</p>
+  <div class="foot"><a class="src" href="https://www.cnn.com/2026/08/29/world/live-news/nepal-china-flood" target="_blank" rel="noopener">CNN</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnn.com%2F2026%2F08%2F29%2Fworld%2Flive-news%2Fnepal-china-flood%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Death%20toll%20rises%2C%20thousands%20missing%20in%20Nepal-China%20floods%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20how%20rescue%20and%20identification%20typically%20proceed%20after%20mass%20glacial-flood%20disasters%2C%20and%20what%20the%20realistic%20range%20for%20the%20final%20toll%20looks%20like." target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+  <div class="grid">
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--world)">World</span><span class="badge">7/10</span></div>
+  <h3>A Russian strike on an ammo depot near Kyiv kills 38 — the war’s deadliest attack this year</h3>
+  <p class="why"><strong>Why it matters:</strong> Two <a class="ent" href="https://claude.ai/new?q=Explain%20the%20Iskander-M%20ballistic%20missile%20%E2%80%94%20range%2C%20accuracy%2C%20how%20Ukraine%20tries%20to%20intercept%20it%2C%20and%20why%20interceptor%20shortages%20make%20that%20harder%20this%20year" target="_blank" rel="noopener">Iskander-M</a> missiles and 130 drones hit a warehouse in the village of Myla that was improperly storing ammunition next to homes; the secondary blasts killed at least 38 and injured 52. Zelenskyy ordered a negligence investigation into who put explosives beside civilians — a rare public admission of a Ukrainian failure inside a Russian attack.</p>
+  
+  <div class="foot"><a class="src" href="https://www.aljazeera.com/news/2026/8/30/death-toll-from-russian-strike-on-ukrainian-arms-depot-rises-to-38" target="_blank" rel="noopener">Al Jazeera</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.aljazeera.com%2Fnews%2F2026%2F8%2F30%2Fdeath-toll-from-russian-strike-on-ukrainian-arms-depot-rises-to-38%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Death%20toll%20from%20Russian%20strike%20on%20Ukrainian%20arms%20depot%20rises%20to%2038%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20what%20this%20strike%20says%20about%20Russia%E2%80%99s%20current%20targeting%20strategy%20and%20Ukraine%E2%80%99s%20air-defense%20state%20heading%20into%20winter." target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--world)">World</span><span class="badge">7/10</span></div>
+  <h3>Modi, Xi and Putin open the SCO’s anniversary summit with Hormuz burning</h3>
+  <p class="why"><strong>Why it matters:</strong> The <a class="ent" href="https://claude.ai/new?q=What%20is%20the%20Shanghai%20Cooperation%20Organisation%2C%20how%20has%20it%20evolved%20since%202001%2C%20and%20does%20it%20function%20as%20a%20real%20bloc%20or%20a%20photo%20op%3F%20Assess%20its%20leverage%20in%20the%20current%20US%E2%80%93Iran%20war" target="_blank" rel="noopener">Shanghai Cooperation Organisation</a>’s 25th-anniversary summit opens in Bishkek today with the leaders of China, India and Russia — plus Iran’s president — in one room while the US strikes Iranian territory. Oil, sanctions workarounds and the West Asia war top an agenda that doubles as a family photo of the states buying what Washington is trying to embargo.</p>
+  <p class="wn">What’s next: A “Bishkek Declaration” is expected when the summit closes Tuesday.</p>
+  <div class="foot"><a class="src" href="https://www.businesstoday.in/world/story/pm-modi-xi-jinping-vladimir-putin-to-meet-at-bishkek-at-the-sco-summit-trade-regional-security-west-asia-war-on-agenda-552126-2026-08-31" target="_blank" rel="noopener">Business Today (India)</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.businesstoday.in%2Fworld%2Fstory%2Fpm-modi-xi-jinping-vladimir-putin-to-meet-at-bishkek-at-the-sco-summit-trade-regional-security-west-asia-war-on-agenda-552126-2026-08-31%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22PM%20Modi%2C%20Xi%20Jinping%2C%20Vladimir%20Putin%20to%20meet%20in%20Bishkek%20at%20the%20SCO%20Summit%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20what%20each%20of%20Modi%2C%20Xi%20and%20Putin%20actually%20wants%20from%20this%20summit%2C%20and%20what%20a%20joint%20statement%20on%20the%20Hormuz%20war%20would%20signal%20to%20Washington." target="_blank" rel="noopener">Go deeper →</a></div>
+</article></div>
+</section>
+
+<section class="beat">
+  <h2 class="beat-h" style="color:var(--business);border-color:var(--business)">Business &amp; Markets</h2>
+  
+<article class="story lead">
+  <div class="chip"><span class="sub" style="color:var(--business)">Markets</span><span class="badge">8/10</span></div>
+  <h3>Warsh’s Jackson Hole debut did its job: markets now lean toward a hike</h3>
+  <p class="why"><strong>Why it matters:</strong> <a class="ent" href="https://claude.ai/new?q=Profile%20Kevin%20Warsh%20%E2%80%94%20his%20path%20to%20Fed%20chair%2C%20his%20monetary%20philosophy%2C%20and%20how%20his%20first%20Jackson%20Hole%20speech%20in%20August%202026%20changed%20rate%20expectations" target="_blank" rel="noopener">Kevin Warsh</a>’s firmer-than-expected inflation language on Friday sent rate-hike bets up and everything duration-sensitive down: the Russell 2000 lost 1.3%, gold fell about 2.5% to $4,530, bitcoin slid 3.1% to near $77,900, and the 10-year yield closed at 4.73%. With oil re-spiking on Hormuz, the “hike is live” scenario got another leg this morning.</p>
+  <p class="wn">What’s next: August payrolls land Friday — the last major print before the September 15-16 FOMC meeting.</p>
+  <div class="foot"><a class="src" href="https://finance.yahoo.com/markets/live/stock-market-today-friday-august-28-dow-sp-500-nasdaq-dip-fed-warsh-jackson-hole-speech-081514091.html" target="_blank" rel="noopener">Yahoo Finance</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Ffinance.yahoo.com%2Fmarkets%2Flive%2Fstock-market-today-friday-august-28-dow-sp-500-nasdaq-dip-fed-warsh-jackson-hole-speech-081514091.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Dow%2C%20S%26P%20500%2C%20Nasdaq%20end%20week%20on%20down%20note%20as%20rate-hike%20bets%20jump%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20exactly%20which%20phrases%20in%20Warsh%E2%80%99s%20speech%20markets%20read%20as%20hawkish%2C%20and%20what%20a%20September%20hike%20would%20do%20to%20housing%2C%20small%20caps%20and%20gold." target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+  <div class="grid">
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--business)">Energy</span><span class="badge">8/10</span></div>
+  <h3>Washington’s other oil play: a 55% stake in 65 billion Venezuelan barrels</h3>
+  <p class="why"><strong>Why it matters:</strong> The deal Trump announced covers 17 fields with a 1.5M bbl/day production target, a 55% US stake in a new operating company, rights to buy at cost, and output earmarked for the <a class="ent" href="https://claude.ai/new?q=What%20is%20the%20US%20Strategic%20Petroleum%20Reserve%20%E2%80%94%20current%20fill%20level%2C%20history%20of%20use%2C%20and%20why%20routing%20Venezuelan%20oil%20into%20it%20matters%20during%20the%20Hormuz%20crisis%3F" target="_blank" rel="noopener">Strategic Petroleum Reserve</a> and the military. No agreement text has been released — but as a hedge against a closed Hormuz, the logic is unmistakable.</p>
+  <p class="wn">What’s next: Analysts caution the fields need up to $100 billion of investment before the barrels are real.</p>
+  <div class="foot"><a class="src" href="https://www.npr.org/2026/08/28/nx-s1-5948229/trump-says-u-s-has-entered-deal-with-venezuela-to-take-control-of-65-billion-barrels-of-oil-reserves" target="_blank" rel="noopener">NPR</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.npr.org%2F2026%2F08%2F28%2Fnx-s1-5948229%2Ftrump-says-u-s-has-entered-deal-with-venezuela-to-take-control-of-65-billion-barrels-of-oil-reserves%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Trump%20says%20U.S.%20has%20entered%20deal%20with%20Venezuela%20to%20take%20control%20of%2065%20billion%20barrels%20of%20oil%20reserves%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20scrutinize%20this%20deal%E2%80%99s%20structure%3A%20who%20is%20the%20unnamed%20private%20operator%2C%20what%20did%20Caracas%20get%2C%20and%20how%20have%20similar%20resource-for-stake%20deals%20performed%20historically%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--business)">Macro</span><span class="badge">6/10</span></div>
+  <h3>China’s factories beat forecasts and still shrank</h3>
+  <p class="why"><strong>Why it matters:</strong> August’s official manufacturing <a class="ent" href="https://claude.ai/new?q=Explain%20how%20purchasing%20managers%E2%80%99%20indexes%20are%20built%20and%20read%2C%20and%20what%20China%E2%80%99s%20August%202026%20split%20%E2%80%94%20output%20expanding%2C%20employment%20contracting%20%E2%80%94%20says%20about%20its%20economy" target="_blank" rel="noopener">PMI</a> came in at 49.8 this morning — above the 49.7 expected, with output (50.4) and new orders (50.6) back in expansion — yet the headline stayed under 50 as employment kept contracting at 48.7. The world’s second-largest economy is stabilizing without growing its factory floor.</p>
+  
+  <div class="foot"><a class="src" href="https://www.scmp.com/economy/economic-indicators/article/3365785/chinas-factory-activity-stays-contraction-august-despite-improvement" target="_blank" rel="noopener">South China Morning Post</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.scmp.com%2Feconomy%2Feconomic-indicators%2Farticle%2F3365785%2Fchinas-factory-activity-stays-contraction-august-despite-improvement%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22China%E2%80%99s%20factory%20activity%20improves%20in%20August%2C%20but%20stays%20in%20contraction%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20compare%20China%E2%80%99s%20manufacturing%20trajectory%20in%202026%20with%20the%20US%20and%20EU%20%E2%80%94%20who%20is%20actually%20re-industrializing%2C%20on%20the%20data%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article></div>
+</section>
+
+<section class="beat">
+  <h2 class="beat-h" style="color:var(--tech);border-color:var(--tech)">Tech &amp; AI</h2>
+  
+<article class="story lead">
+  <div class="chip"><span class="sub" style="color:var(--tech)">AI</span><span class="badge">7/10</span></div>
+  <h3>DeepSeek closes in on $7.4 billion at a $74 billion valuation</h3>
+  <p class="why"><strong>Why it matters:</strong> The Chinese open-source lab is finalizing a ~50 billion yuan round — targeted to close by today — at a $74 billion pre-money valuation, with battery giant <a class="ent" href="https://claude.ai/new?q=What%20is%20CATL%2C%20why%20is%20the%20world%E2%80%99s%20biggest%20battery%20maker%20investing%20in%20the%20AI%20lab%20DeepSeek%2C%20and%20what%20does%20that%20say%20about%20China%E2%80%99s%20industrial%20policy%3F" target="_blank" rel="noopener">CATL</a> among the backers and proceeds earmarked for compute. An IPO filing could come by end-2026 for a 2027 Shanghai STAR Market debut: China’s answer to the US AI capital machine is going public.</p>
+  <p class="wn">What’s next: Watch for the round’s confirmation and an IPO filing before year-end.</p>
+  <div class="foot"><a class="src" href="https://www.chinamoneynetwork.com/2026/08/29/deepseek-nears-7-4-billion-funding-round-at-74-billion-valuation-ahead-of-2027-ipo" target="_blank" rel="noopener">China Money Network</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.chinamoneynetwork.com%2F2026%2F08%2F29%2Fdeepseek-nears-7-4-billion-funding-round-at-74-billion-valuation-ahead-of-2027-ipo%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22DeepSeek%20Nears%20%247.4%20Billion%20Funding%20Round%20at%20%2474%20Billion%20Valuation%20Ahead%20of%202027%20IPO%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20compare%20DeepSeek%E2%80%99s%20valuation%2C%20revenue%20model%20and%20compute%20position%20against%20OpenAI%20and%20Anthropic%20%E2%80%94%20is%20%2474B%20cheap%20or%20expensive%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+  <div class="grid">
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--tech)">Cyber</span><span class="badge">7/10</span></div>
+  <h3>Microsoft flags TerminalFix: fake CAPTCHAs that turn your PC into a network tunnel</h3>
+  <p class="why"><strong>Why it matters:</strong> The new <a class="ent" href="https://claude.ai/new?q=Explain%20ClickFix%20social-engineering%20attacks%20%E2%80%94%20how%20fake%20CAPTCHA%20and%20%E2%80%98fix%20it%E2%80%99%20prompts%20trick%20users%20into%20running%20PowerShell%2C%20and%20why%20they%20became%20the%20top%20initial-access%20method%20by%202026" target="_blank" rel="noopener">ClickFix</a> variant uses fake Cloudflare verification overlays to trick users into pasting a PowerShell command — but instead of dropping an infostealer, it plants a reverse-tunnel implant that turns the endpoint into a proxy into internal networks. ClickFix-style lures already account for 47% of attacks tracked by Microsoft Defender Experts.</p>
+  
+  <div class="foot"><a class="src" href="https://www.microsoft.com/en-us/security/blog/2026/08/28/terminalfix-campaign-deploys-reverse-tunnel-through-multistage-intrusion/" target="_blank" rel="noopener">Microsoft Security Blog</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fsecurity%2Fblog%2F2026%2F08%2F28%2Fterminalfix-campaign-deploys-reverse-tunnel-through-multistage-intrusion%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22TerminalFix%20campaign%20deploys%20a%20reverse%20tunnel%20through%20multistage%20intrusion%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20extract%20the%20concrete%20defensive%20steps%20an%20IT%20team%20should%20take%20this%20week%20against%20TerminalFix%20%E2%80%94%20detection%20rules%2C%20user%20guidance%20and%20endpoint%20policy." target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--tech)">Policy</span><span class="badge">7/10</span></div>
+  <h3>Seoul picks SKT, KT and Kakao to give 52 million people free AI</h3>
+  <p class="why"><strong>Why it matters:</strong> South Korea’s science ministry selected three carrier-led consortia to run “AI for All” — free, unlimited general-purpose chatbots for every resident, backed by 512 Nvidia B200 GPUs and a mandate that at least half the services run on Korean <a class="ent" href="https://claude.ai/new?q=Explain%20%E2%80%98sovereign%20AI%E2%80%99%20%E2%80%94%20why%20countries%20are%20funding%20domestic%20foundation%20models%2C%20what%20South%20Korea%E2%80%99s%20approach%20looks%20like%2C%20and%20whether%20national%20models%20can%20stay%20competitive%20with%20frontier%20labs" target="_blank" rel="noopener">sovereign models</a>. It’s the first country to treat frontier-style AI access as universal public infrastructure.</p>
+  <p class="wn">What’s next: Agreements sign in September; beta testing follows, with full launch targeted by year-end.</p>
+  <div class="foot"><a class="src" href="https://www.koreatimes.co.kr/business/tech-science/20260828/skt-kt-kakao-consortiums-selected-for-free-ai-service-for-public" target="_blank" rel="noopener">The Korea Times</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.koreatimes.co.kr%2Fbusiness%2Ftech-science%2F20260828%2Fskt-kt-kakao-consortiums-selected-for-free-ai-service-for-public%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22SKT%2C%20KT%2C%20Kakao%20consortiums%20selected%20for%20free%20AI%20service%20for%20public%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20evaluate%20the%20economics%3A%20what%20does%20universal%20free%20AI%20cost%20a%20government%20per%20user%2C%20and%20could%20the%20Korean%20model%20work%20in%20larger%20countries%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article></div>
+</section>
+
+<section class="beat">
+  <h2 class="beat-h" style="color:var(--science);border-color:var(--science)">Science &amp; Space</h2>
+  
+<article class="story lead">
+  <div class="chip"><span class="sub" style="color:var(--science)">Space</span><span class="badge">8/10</span></div>
+  <h3>Roman is flying: NASA’s dark-energy telescope launched Sunday morning</h3>
+  <p class="why"><strong>Why it matters:</strong> A Falcon Heavy lifted the <a class="ent" href="https://claude.ai/new?q=Explain%20the%20Nancy%20Grace%20Roman%20Space%20Telescope%20%E2%80%94%20its%20instruments%2C%20why%20its%20wide-field%20survey%20design%20complements%20Hubble%20and%20Webb%2C%20and%20what%20it%20could%20reveal%20about%20dark%20energy" target="_blank" rel="noopener">Nancy Grace Roman Space Telescope</a> from Kennedy Space Center at 7:26am ET Sunday, deploying it 31 minutes later toward the sun-Earth L2 point 930,000 miles out. Roman will survey the sky far faster than Hubble at matching resolution, hunting <a class="ent" href="https://claude.ai/new?q=Explain%20dark%20energy%20%E2%80%94%20the%20evidence%20it%20exists%2C%20the%20leading%20hypotheses%2C%20and%20how%20the%20Roman%20Space%20Telescope%E2%80%99s%20survey%20is%20designed%20to%20discriminate%20between%20them" target="_blank" rel="noopener">dark energy</a>’s signature and thousands of exoplanets.</p>
+  <p class="wn">What’s next: Commissioning runs through the fall; first images are expected in January 2027.</p>
+  <div class="foot"><a class="src" href="https://science.nasa.gov/blogs/roman/2026/08/30/nasas-roman-space-telescope-launches/" target="_blank" rel="noopener">NASA</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fscience.nasa.gov%2Fblogs%2Froman%2F2026%2F08%2F30%2Fnasas-roman-space-telescope-launches%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22NASA%E2%80%99s%20Roman%20Space%20Telescope%20Launches%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20lay%20out%20Roman%E2%80%99s%20commissioning%20milestones%20between%20now%20and%20first%20light%20in%20January%202027%2C%20and%20the%20biggest%20risks%20remaining." target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+  <div class="grid">
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--science)">Medicine</span><span class="badge">7/10</span></div>
+  <h3>A cancer therapy just put treatment-resistant rheumatoid arthritis into remission</h3>
+  <p class="why"><strong>Why it matters:</strong> In the first-ever <a class="ent" href="https://claude.ai/new?q=Explain%20CAR%20T-cell%20therapy%20%E2%80%94%20how%20reprogrammed%20immune%20cells%20work%2C%20why%20the%20approach%20is%20jumping%20from%20blood%20cancers%20to%20autoimmune%20disease%2C%20and%20the%20risks%20that%20come%20with%20it" target="_blank" rel="noopener">CAR T-cell</a> trial for rheumatoid arthritis (the COMPARE study), all six patients — people who had failed up to eight biologics over a decade — saw disease activity fall, and three reached medication-free remission lasting up to a year. Reprogrammed immune cells hunting rogue B cells deep in tissue could become a new class of one-time autoimmune treatment.</p>
+  
+  <div class="foot"><a class="src" href="https://www.genengnews.com/topics/translational-medicine/car-t-cell-therapy-puts-severe-rheumatoid-arthritis-into-remission-in-first-clinical-trial/" target="_blank" rel="noopener">GEN</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.genengnews.com%2Ftopics%2Ftranslational-medicine%2Fcar-t-cell-therapy-puts-severe-rheumatoid-arthritis-into-remission-in-first-clinical-trial%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22CAR%20T-Cell%20Therapy%20Puts%20Severe%20Rheumatoid%20Arthritis%20Into%20Remission%20in%20First%20Clinical%20Trial%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20how%20strong%20six-patient%20evidence%20really%20is%2C%20what%20larger%20trials%20are%20planned%2C%20and%20the%20cost%20barrier%20for%20CAR-T%20in%20autoimmune%20disease." target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--science)">Astronomy</span><span class="badge">6/10</span></div>
+  <h3>A thread of stars 115 million light-years away becomes a dark-matter scale</h3>
+  <p class="why"><strong>Why it matters:</strong> Astronomers found the first globular-cluster stellar stream outside the Milky Way — a ribbon of stars unspooling in the ultra-diffuse galaxy UGC9050-Dw1 — published in Nature this month. Because the stream traces its host’s gravity, it let researchers weigh the <a class="ent" href="https://claude.ai/new?q=Explain%20how%20stellar%20streams%20act%20as%20probes%20of%20dark%20matter%2C%20and%20why%20measuring%20dark%20matter%20in%20an%20ultra-diffuse%20galaxy%20beyond%20the%20Milky%20Way%20is%20a%20first" target="_blank" rel="noopener">dark matter</a> around another galaxy with a tool that until now only worked at home.</p>
+  
+  <div class="foot"><a class="src" href="https://www.nature.com/articles/s41586-026-10878-w" target="_blank" rel="noopener">Nature</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-026-10878-w%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Evidence%20for%20the%20first%20globular%20cluster%20stellar%20stream%20beyond%20the%20Milky%20Way%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20what%20ultra-diffuse%20galaxies%20are%20and%20why%20their%20dark-matter%20content%20is%20contested%20%E2%80%94%20does%20this%20measurement%20settle%20anything%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article></div>
+</section>
+
+<section class="beat">
+  <h2 class="beat-h" style="color:var(--anthropic);border-color:var(--anthropic)">Anthropic</h2>
+  
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--anthropic)">Anthropic</span><span class="badge">6/10</span></div>
+  <h3>Anthropic opens 10,000 free Claude seats for working scientists</h3>
+  <p class="why"><strong>Why it matters:</strong> Principal investigators at academic and nonprofit institutions can claim free Team seats for their labs ($15/month for premium seats with 5x usage, price fixed for a year), and the <a class="ent" href="https://claude.ai/new?q=What%20is%20Anthropic%E2%80%99s%20AI%20for%20Science%20program%20%E2%80%94%20who%20qualifies%2C%20what%20the%20credits%20cover%2C%20and%20what%20published%20research%20has%20come%20out%20of%20it%20so%20far%3F" target="_blank" rel="noopener">AI for Science</a> credit program — up to $50,000 per project — now extends beyond biology into math, physics and engineering. The seat count is slated to grow well past 10,000 in the coming months.</p>
+  
+  <div class="foot"><a class="src" href="https://www.anthropic.com/news/expanding-support-for-scientists" target="_blank" rel="noopener">Anthropic</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.anthropic.com%2Fnews%2Fexpanding-support-for-scientists%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Expanding%20our%20support%20for%20scientists%20%E2%80%94%20Anthropic%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20the%20strategy%3A%20what%20does%20a%20frontier%20lab%20gain%20from%20subsidizing%20academic%20science%2C%20and%20how%20do%20OpenAI%E2%80%99s%20and%20Google%E2%80%99s%20equivalents%20compare%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+  
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--anthropic)">Anthropic</span><span class="badge">6/10</span></div>
+  <h3>Claude’s desktop app is getting its own browser this week</h3>
+  <p class="why"><strong>Why it matters:</strong> The built-in browser is rolling out through this week to Pro, Max and Team plans on macOS, Windows and Linux: give <a class="ent" href="https://claude.ai/new?q=What%20is%20Claude%20Cowork%20%E2%80%94%20how%20does%20it%20differ%20from%20Claude%20Code%2C%20and%20what%20does%20its%20built-in%20browser%20let%20Claude%20do%20on%20a%20user%E2%80%99s%20behalf%3F" target="_blank" rel="noopener">Cowork</a> a task involving a website and Claude opens a sandboxed browser in a side panel — clicking, typing and filling forms while you watch, without ever seeing your own tabs or passwords. Agentic browsing is becoming a default, not a demo.</p>
+  
+  <div class="foot"><a class="src" href="https://claude.com/blog/cowork-built-in-browser" target="_blank" rel="noopener">Anthropic (Claude blog)</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fclaude.com%2Fblog%2Fcowork-built-in-browser%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Claude%20Cowork%20gets%20a%20built-in%20browser%3A%20nothing%20to%20install%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20compare%20the%20security%20models%20of%20agentic%20browsers%20%E2%80%94%20Claude%E2%80%99s%20sandboxed%20side%20panel%20versus%20extensions%20that%20drive%20the%20user%E2%80%99s%20own%20browser." target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+</section>
+
+<section class="beat">
+  <h2 class="beat-h" style="color:var(--muted);border-color:var(--border)">Your teams</h2>
+  
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--sf49)">49ers</span><span class="badge">6/10</span></div>
+  <h3>The 53 are set — and the opener is at the Melbourne Cricket Ground</h3>
+  <p class="why"><strong>Why it matters:</strong> The 49ers cut 33 players Sunday to reach their initial 53, traded a 2027 seventh-rounder to Houston for OL Jarrett Patterson, and stashed RB Isaac Guerendo and DL Mykel Williams on PUP (back no earlier than Week 5) with WR Christian Kirk opening on IR. Next stop: the Rams, Thursday September 10, in the NFL’s first game in Australia.</p>
+  
+  <div class="foot"><a class="src" href="https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/roster-cutdown-live-updates-initial-53-man-2026/1959532/" target="_blank" rel="noopener">NBC Sports Bay Area</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nbcsportsbayarea.com%2Fnfl%2Fsan-francisco-49ers%2Froster-cutdown-live-updates-initial-53-man-2026%2F1959532%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%2249ers%20roster%20cutdown%20recap%3A%20initial%2053-man%20squad%20for%202026%20season%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20evaluate%20the%2049ers%E2%80%99%2053-man%20roster%3A%20where%20are%20they%20thinnest%20after%20the%20Guerendo%2C%20Williams%20and%20Kirk%20injuries%2C%20and%20how%20does%20the%20Melbourne%20opener%20complicate%20Week%201%20prep%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+  
+<article class="story">
+  <div class="chip"><span class="sub" style="color:var(--sfg)">Giants</span><span class="badge">6/10</span></div>
+  <h3>A doubleheader split in the desert, then straight to Atlanta</h3>
+  <p class="why"><strong>Why it matters:</strong> The Giants dropped Saturday’s opener 7-1 but took the nightcap 7-2 to split the four-game set with Arizona, treading water at 55-81 with a Sunday off-day. The road trip continues tonight in Atlanta.</p>
+  
+  <div class="foot"><a class="src" href="https://arizonasports.com/mlb/arizona-diamondbacks/giants-rookie-pitchers-split-series" target="_blank" rel="noopener">Arizona Sports</a><a class="deep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Farizonasports.com%2Fmlb%2Farizona-diamondbacks%2Fgiants-rookie-pitchers-split-series%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Diamondbacks%20split%20series%20with%20Giants%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20the%20Giants%E2%80%99%202026%20season%20at%2055-81%3A%20which%20young%20players%20are%20worth%20watching%20in%20September%2C%20and%20what%20should%20the%20front%20office%20do%20this%20winter%3F" target="_blank" rel="noopener">Go deeper →</a></div>
+</article>
+  <div class="sb-league">
+    <p class="sb-head">MLB · Game 137 of 162 · weekend + tonight</p>
+    <div class="sb-row">
+      <div class="sb-card tm-sfg"><span class="w">ARI 7</span> — SF 1<span class="st">Sat · G1 final</span></div>
+      <div class="sb-card tm-sfg"><span class="w">SF 7</span> — ARI 2<span class="st">Sat · G2 final</span></div>
+      <div class="sb-card tm-sfg">SF @ ATL<span class="st">Tonight</span></div>
+      <div class="sb-card"><span class="w">MIN 5</span> — CHW 1<span class="st">Sun · final</span></div>
+      <div class="sb-card"><span class="w">CIN 7</span> — CHC 5<span class="st">Sun · final</span></div>
+      <div class="sb-card"><span class="w">MIA 6</span> — WSH 2<span class="st">Sun · final</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="ending">
+  <h2>That’s your briefing. You’re caught up.</h2>
+  <p>18 stories — every link above goes deeper. <a href="archive/">Past briefings →</a></p>
+</div>
+
+<details>
+  <summary>Sources (18)</summary>
+  <ul><li>The US hit Larak Island; Iran answered… — <a href="https://www.euronews.com/2026/08/31/iran-fires-retaliatory-strikes-following-us-attacks-on-larak-island-in-the-strait-of-hormu" target="_blank" rel="noopener">Euronews</a> — fetch blocked by network proxy; corroborated via Euronews, ABC News, Washington Times and Scripps search results</li>
+<li>Oil reprices the war premium… — <a href="https://www.newschannel5.com/us-news/iran-war/us-strikes-iran-again-as-retaliation-raises-fears-over-gas-prices-strait-of-hormuz" target="_blank" rel="noopener">Scripps News</a> — fetch blocked; Monday Brent/WTI figures from Scripps excerpt; Q1 Hormuz flows from EIA via IER</li>
+<li>Nepal’s glacial flood toll passes 676… — <a href="https://www.cnn.com/2026/08/29/world/live-news/nepal-china-flood" target="_blank" rel="noopener">CNN</a> — fetch blocked; toll corroborated via CNN live coverage and ABC (Australia)</li>
+<li>Russian strike on ammo depot kills 38… — <a href="https://www.aljazeera.com/news/2026/8/30/death-toll-from-russian-strike-on-ukrainian-arms-depot-rises-to-38" target="_blank" rel="noopener">Al Jazeera</a> — fetch blocked; corroborated via Al Jazeera, Euronews, Washington Examiner</li>
+<li>Modi, Xi and Putin open the SCO summit… — <a href="https://www.businesstoday.in/world/story/pm-modi-xi-jinping-vladimir-putin-to-meet-at-bishkek-at-the-sco-summit-trade-regional-security-west-asia-war-on-agenda-552126-2026-08-31" target="_blank" rel="noopener">Business Today (India)</a> — fetch blocked; dates/agenda corroborated via Business Today, anews, IBTimes</li>
+<li>Warsh’s Jackson Hole debut did its job… — <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-august-28-dow-sp-500-nasdaq-dip-fed-warsh-jackson-hole-speech-081514091.html" target="_blank" rel="noopener">Yahoo Finance</a> — fetch blocked; Friday closes cross-checked across Yahoo Finance, CNBC, Trading Economics</li>
+<li>A 55% stake in 65 billion Venezuelan barrels — <a href="https://www.npr.org/2026/08/28/nx-s1-5948229/trump-says-u-s-has-entered-deal-with-venezuela-to-take-control-of-65-billion-barrels-of-oil-reserves" target="_blank" rel="noopener">NPR</a> — fetch blocked; terms corroborated via NPR, PBS NewsHour, Time; no agreement text public</li>
+<li>China’s factories beat forecasts and still shrank — <a href="https://www.scmp.com/economy/economic-indicators/article/3365785/chinas-factory-activity-stays-contraction-august-despite-improvement" target="_blank" rel="noopener">SCMP</a> — fetch blocked; PMI figures corroborated via SCMP, Trading Economics, Global Times</li>
+<li>DeepSeek closes in on $7.4 billion… — <a href="https://www.chinamoneynetwork.com/2026/08/29/deepseek-nears-7-4-billion-funding-round-at-74-billion-valuation-ahead-of-2027-ipo" target="_blank" rel="noopener">China Money Network</a> — fetch blocked; round terms corroborated via China Money Network, Yahoo Finance, Tech Startups; close not yet confirmed</li>
+<li>Microsoft flags TerminalFix… — <a href="https://www.microsoft.com/en-us/security/blog/2026/08/28/terminalfix-campaign-deploys-reverse-tunnel-through-multistage-intrusion/" target="_blank" rel="noopener">Microsoft Security Blog</a> — company blog post (primary); fetch blocked; corroborated via The Hacker News, SecurityWeek</li>
+<li>Seoul picks SKT, KT and Kakao… — <a href="https://www.koreatimes.co.kr/business/tech-science/20260828/skt-kt-kakao-consortiums-selected-for-free-ai-service-for-public" target="_blank" rel="noopener">The Korea Times</a> — fetch blocked; corroborated via Korea Times, TechNode, TechSpot</li>
+<li>Roman is flying… — <a href="https://science.nasa.gov/blogs/roman/2026/08/30/nasas-roman-space-telescope-launches/" target="_blank" rel="noopener">NASA</a> — agency blog (primary); fetch blocked; launch confirmed via NASA, SpaceNews, Space.com</li>
+<li>CAR-T puts rheumatoid arthritis into remission — <a href="https://www.genengnews.com/topics/translational-medicine/car-t-cell-therapy-puts-severe-rheumatoid-arthritis-into-remission-in-first-clinical-trial/" target="_blank" rel="noopener">GEN</a> — fetch blocked; COMPARE study results corroborated via GEN, ScienceDaily, News-Medical</li>
+<li>A thread of stars becomes a dark-matter scale — <a href="https://www.nature.com/articles/s41586-026-10878-w" target="_blank" rel="noopener">Nature</a> — journal paper (primary); fetch blocked; corroborated via Northwestern release, CNN, Phys.org; published earlier in August</li>
+<li>10,000 free Claude seats for scientists — <a href="https://www.anthropic.com/news/expanding-support-for-scientists" target="_blank" rel="noopener">Anthropic</a> — company newsroom post (primary); fetch blocked; corroborated via Unite.AI, TechTimes</li>
+<li>Claude’s desktop app gets its own browser — <a href="https://claude.com/blog/cowork-built-in-browser" target="_blank" rel="noopener">Anthropic (Claude blog)</a> — company blog post (primary); fetch blocked; corroborated via The New Stack and Anthropic help center</li>
+<li>49ers set the 53; opener in Melbourne — <a href="https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/roster-cutdown-live-updates-initial-53-man-2026/1959532/" target="_blank" rel="noopener">NBC Sports Bay Area</a> — fetch blocked; corroborated via NBC Sports Bay Area, 49ers Webzone, Niners Nation</li>
+<li>Giants split the doubleheader — <a href="https://arizonasports.com/mlb/arizona-diamondbacks/giants-rookie-pitchers-split-series" target="_blank" rel="noopener">Arizona Sports</a> — fetch blocked; scores corroborated via ESPN box scores, FOX Sports, Arizona Sports</li></ul>
+</details>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+var light = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+var tick = light ? '#666666' : '#9aa0a6';
+var grid = light ? 'rgba(0,0,0,0.07)' : 'rgba(255,255,255,0.07)';
+var mono = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+var spData = [7652.86, 7677.28, 7675.70, 7730.99, 7711.76];
+var spLabels = ["Aug 24", "Aug 25", "Aug 26", "Aug 27", "Aug 28"];
+var brData = [92.60, 87.12, 87.84, 88.52, 87.98];
+var brLabels = ["Aug 24", "Aug 25", "Aug 26", "Aug 27", "Aug 28"];
+var codData = [20.0, 14.6];
+var codLabels = ["2025 average", "Q1 2026"];
+
+if (typeof Chart === 'undefined') {
+  var fallbacks = {
+    'c-sp': 'S&P 500 closes: 7,653 → 7,712 (Aug 24–28); peak 7,731 Thursday, faded after Warsh.',
+    'c-brent': 'Brent settlements: $92.60 → $87.98 (Aug 24–28); $91.10 Monday morning.',
+    'c-day': 'Crude + products through Hormuz: 20.0M bbl/day (2025 avg) → 14.6M bbl/day (Q1 2026), −28% y/y.'
+  };
+  for (var id in fallbacks) {
+    var el = document.getElementById(id);
+    if (el && el.parentNode) {
+      var p = document.createElement('p');
+      p.style.cssText = 'font-family:' + mono + ';font-size:12.5px;padding:8px;margin:0;';
+      p.textContent = fallbacks[id];
+      el.parentNode.replaceChild(p, el);
+    }
+  }
+} else {
+  function lineChart(id, labels, data, color) {
+    new Chart(document.getElementById(id), {
+      type: 'line',
+      data: { labels: labels, datasets: [{ data: data, borderColor: color, borderWidth: 2,
+        pointRadius: 2.5, pointBackgroundColor: color, tension: 0.25, fill: false }] },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: tick, font: { family: mono, size: 10 } }, grid: { color: grid } },
+          y: { ticks: { color: tick, font: { family: mono, size: 10 } }, grid: { color: grid } }
+        } }
+    });
+  }
+  lineChart('c-sp', spLabels, spData, light ? '#2b5fc7' : '#7aa2f7');
+  lineChart('c-brent', brLabels, brData, light ? '#c22f4d' : '#f7768e');
+  new Chart(document.getElementById('c-day'), {
+    type: 'bar',
+    data: { labels: codLabels, datasets: [{ data: codData,
+      backgroundColor: [light ? '#4a7c1f' : '#9ece6a', light ? '#c22f4d' : '#f7768e'], borderWidth: 0, barPercentage: 0.55 }] },
+    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { min: 0, ticks: { color: tick, font: { family: mono, size: 10 } }, grid: { color: grid },
+             title: { display: true, text: 'million barrels/day', color: tick, font: { family: mono, size: 10 } } },
+        y: { ticks: { color: tick, font: { family: mono, size: 11 } }, grid: { display: false } }
+      } }
+  });
+}
+</script>
+</body>
+</html>

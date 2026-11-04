@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — October 8, 2026</title>
+<style>
+  :root {
+    --bg: #0f1115; --surface: #171a21; --border: #2a2f3a;
+    --text: #e8e8e8; --muted: #9aa0a6;
+    --up: #9ece6a; --down: #f7768e;
+    --tech: #7aa2f7; --world: #f7768e; --business: #9ece6a;
+    --science: #bb9af7; --anthropic: #d4a27f;
+    --iran: #e0af68;
+    --niners: #AA0000; --sharks: #006D75;
+    --serif: "Iowan Old Style", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fafaf8; --surface: #ffffff; --border: #e3e3de;
+      --text: #1f1f1f; --muted: #666666;
+      --up: #4a7c1f; --down: #c22f4d;
+      --tech: #2b5fc7; --world: #c22f4d; --business: #3d6b1a;
+      --science: #6c40b5; --anthropic: #9c6a3c;
+      --iran: #9a6b00;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 400 16px/1.6 var(--sans);
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+
+  /* Wire strip */
+  .wire { font-family: var(--mono); font-size: 13px; line-height: 1.9; color: var(--muted); }
+  .wire .inst { white-space: nowrap; }
+  .wire .nm { color: var(--muted); }
+  .wire .val { color: var(--text); }
+  .wire .chg-up { color: var(--up); }
+  .wire .chg-down { color: var(--down); }
+  .wire .chg-flat { color: var(--muted); }
+  .wire .sep { color: var(--border); padding: 0 4px; }
+  .wire-label { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* Lede */
+  .dateline { font-family: var(--sans); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 34px 0 10px; }
+  h1.thesis { font-family: var(--serif); font-weight: 500; font-size: 23px; line-height: 1.3; margin: 0 0 14px; }
+  .narrative { font-family: var(--serif); font-size: 17px; line-height: 1.65; margin: 0 0 14px; }
+  .readtime { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* Entity links */
+  a.ent { text-decoration: none; border-bottom: 1px dotted var(--muted); }
+  a.ent:hover { border-bottom-style: solid; }
+  a.ent.t { color: var(--tech); border-bottom-color: var(--tech); }
+  a.ent.w { color: var(--world); border-bottom-color: var(--world); }
+  a.ent.b { color: var(--business); border-bottom-color: var(--business); }
+  a.ent.s { color: var(--science); border-bottom-color: var(--science); }
+  a.ent.a { color: var(--anthropic); border-bottom-color: var(--anthropic); }
+  a.ent.i { color: var(--iran); border-bottom-color: var(--iran); }
+
+  /* State of play */
+  .sop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin: 30px 0 6px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .sop > div { padding: 14px 12px; border-left: 1px solid var(--border); }
+  .sop > div:first-child { border-left: none; }
+  .sop .num { font-family: var(--mono); font-size: 18px; }
+  .sop .num.down { color: var(--down); }
+  .sop .num.up { color: var(--up); }
+  .sop .lbl { font-size: 12px; color: var(--text); margin-top: 2px; }
+  .sop .ctx { font-size: 12px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .sop { grid-template-columns: repeat(6, 1fr); }
+    .sop > div { grid-column: span 2; }
+    .sop > div:nth-child(4) { grid-column: 1 / span 3; border-left: none; border-top: 1px solid var(--border); }
+    .sop > div:nth-child(5) { grid-column: 4 / span 3; border-top: 1px solid var(--border); }
+  }
+
+  /* Charts */
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0 0; }
+  @media (max-width: 640px) { .charts { grid-template-columns: 1fr; } }
+  .chartbox { background: var(--surface); border: 1px solid var(--border); padding: 14px 14px 10px; }
+  .chartbox h3 { margin: 0 0 8px; font-family: var(--sans); font-weight: 500; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .chartbox .ann { font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 8px; }
+  .chartwrap { position: relative; height: 150px; }
+  .chartwrap.tall { height: 190px; }
+  .chart-fallback { font-family: var(--mono); font-size: 13px; color: var(--text); line-height: 1.6; }
+  .cod { margin-top: 20px; }
+
+  /* Sections */
+  section { margin-top: 44px; }
+  .sechead { font-family: var(--sans); font-weight: 500; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; padding-bottom: 8px; border-bottom: 2px solid var(--border); margin-bottom: 20px; }
+  .sechead.iran { color: var(--iran); border-color: var(--iran); }
+  .sechead.tech { color: var(--tech); border-color: var(--tech); }
+  .sechead.world { color: var(--world); border-color: var(--world); }
+  .sechead.business { color: var(--business); border-color: var(--business); }
+  .sechead.science { color: var(--science); border-color: var(--science); }
+  .sechead.anthropic { color: var(--anthropic); border-color: var(--anthropic); }
+  .sechead .kicker { display: block; letter-spacing: 0; text-transform: none; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+  .grid2 > .story { border-top: 1px solid var(--border); }
+  .grid2 > .story:nth-child(odd) { border-right: 1px solid var(--border); padding-right: 28px; margin-right: -28px; }
+  @media (max-width: 640px) {
+    .grid2 { grid-template-columns: 1fr; }
+    .grid2 > .story:nth-child(odd) { border-right: none; padding-right: 0; margin-right: 0; }
+  }
+
+  .story { padding: 16px 0 18px; }
+  .story.lead { padding-top: 0; }
+  .story .tag { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); padding: 2px 8px; margin-bottom: 8px; }
+  .story .tag .beatname { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+  .story .tag .score { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .tag .beatname.iran { color: var(--iran); } .tag .beatname.tech { color: var(--tech); }
+  .tag .beatname.world { color: var(--world); } .tag .beatname.business { color: var(--business); }
+  .tag .beatname.science { color: var(--science); } .tag .beatname.anthropic { color: var(--anthropic); }
+  .tag .beatname.niners { color: var(--niners); } .tag .beatname.sharks { color: var(--sharks); }
+  @media (prefers-color-scheme: dark) {
+    .tag .beatname.niners { color: #e05555; }
+  }
+  .story h2 { font-family: var(--serif); font-weight: 500; font-size: 18px; line-height: 1.35; margin: 0 0 8px; }
+  .story.lead h2 { font-size: 21px; }
+  .story p { font-size: 15px; line-height: 1.6; margin: 0 0 8px; }
+  .story .wim b { font-weight: 500; }
+  .story .wn { font-style: italic; color: var(--muted); font-size: 14px; }
+  .story .foot { display: flex; align-items: center; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
+  .story .src { font-size: 13px; color: var(--muted); }
+  .story .src a { color: var(--muted); }
+  .story .src a:hover { color: var(--text); }
+  .godeeper { font-family: var(--sans); font-size: 13px; color: var(--text); text-decoration: none; background: var(--surface); border: 1px solid var(--border); padding: 4px 12px; }
+  .godeeper:hover { border-color: var(--muted); }
+
+  /* Scoreboard */
+  .sb-league { margin-bottom: 16px; }
+  .sb-label { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .sb-row { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  .sb-row::-webkit-scrollbar { display: none; }
+  .sb-card { flex: 0 0 auto; min-width: 150px; background: var(--surface); border: 1px solid var(--border); padding: 8px 12px; font-family: var(--mono); font-size: 13px; line-height: 1.7; }
+  .sb-card.fav-sharks { border-left: 3px solid var(--sharks); }
+  .sb-card .teamline { display: flex; justify-content: space-between; gap: 16px; }
+  .sb-card .win { color: var(--up); }
+  .sb-card .status { color: var(--muted); font-size: 12px; }
+  .sb-card .status.live { color: var(--down); }
+
+  /* Ending */
+  .ending { text-align: center; margin-top: 56px; }
+  .ending .fin { font-family: var(--serif); font-size: 20px; }
+  .ending .sub { color: var(--muted); font-size: 13px; margin-top: 8px; line-height: 1.6; }
+  .ending a { color: var(--muted); }
+
+  /* Sources */
+  details.sources { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 14px; }
+  details.sources summary { cursor: pointer; font-size: 14px; color: var(--muted); }
+  details.sources ul { list-style: none; padding: 0; margin: 12px 0 0; }
+  details.sources li { font-size: 12px; color: var(--muted); line-height: 1.6; padding: 4px 0; border-bottom: 1px solid var(--border); }
+  details.sources li a { color: var(--muted); }
+  .vnote { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- 1 · Wire strip -->
+  <div class="wire">
+    <span class="inst"><span class="nm">S&amp;P 500</span> <span class="val">7,801.77</span> <span class="chg-down">−0.22%</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">Dow</span> <span class="val">51,179.87</span> <span class="chg-down">−0.66%</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">Nasdaq</span> <span class="val">27,538.69</span> <span class="chg-down">−0.22%</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">Russell 2K</span> <span class="val">2,793.36</span> <span class="chg-down">−1.31%</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">VIX</span> <span class="val">15.08</span> <span class="chg-flat">+0.5%</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">10-yr</span> <span class="val">5.31%</span> <span class="chg-down">▲</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">Brent</span> <span class="val">$101.90</span> <span class="chg-down">+1.31%</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">WTI</span> <span class="val">$88.28</span> <span class="chg-down">−1.30%</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">Gold</span> <span class="val">$4,109</span> <span class="chg-down">−1.32%</span></span><span class="sep">·</span>
+    <span class="inst"><span class="nm">Bitcoin</span> <span class="val">~$83.8K</span> <span class="chg-flat">Wed am</span></span>
+  </div>
+  <div class="wire-label">Wednesday close (Oct 7) — markets reopen this morning. Bitcoin and gold are Wednesday snapshots; rising oil and yields shown in red.</div>
+
+  <!-- 2 · Lede -->
+  <div class="dateline">Thursday, October 8, 2026 — generated 6:45am PT</div>
+  <h1 class="thesis">The war premium is back, and it is repricing everything but silicon.</h1>
+  <p class="narrative">
+    Markets spent Wednesday pricing a war that has not officially resumed: NBC News reports the Pentagon has been asked to prepare options
+    for restarting major combat against Iran — a decision that may wait until after the November&nbsp;3 midterms — while escalating tanker
+    attacks near the <a class="ent i" data-q="Explain the Strait of Hormuz — why roughly a fifth of global oil transits it, what Iran's declared closure means in practice, and who gets hurt first if tanker traffic keeps falling in October 2026.">Strait of Hormuz</a>
+    kept Brent above $100 for a fifth straight session. The stress is spreading through bonds: the 10-year Treasury is back at 5.31%, and a
+    French-led selloff has pushed the <a class="ent b" data-q="Explain the OAT–Bund spread — what it measures, why the France–Germany 10-year gap hitting ~134 basis points in October 2026 evokes the 2010–12 euro debt crisis, and what the ECB can and cannot legally do about it.">OAT–Bund spread</a>
+    to widths Europe last saw in the 2010–12 debt crisis. The AI economy, meanwhile, is operating in a different universe: Samsung just reported
+    the first ₩100&nbsp;trillion operating quarter in tech history on <a class="ent b" data-q="Explain high-bandwidth memory (HBM) — what it is, why AI servers need it, and how the 2026 memory shortage turned Samsung and SK hynix into the biggest profit machines in tech.">HBM</a>-driven
+    memory demand, OpenAI pushed <a class="ent t" data-q="Compare OpenAI's GPT-6 Sol and GPT-6 Luna with Anthropic's Claude Sonnet 5.5 and Haiku 5.5 as of October 2026 — capability tiers, pricing strategy, and what each company's free-tier push says about its distribution strategy.">GPT-6</a>
+    to every ChatGPT tier, and Anthropic priced <a class="ent a" data-q="What is Claude Haiku 5.5, what does its October 2026 pricing of $0.10 per million input tokens mean for the unit economics of AI agents, and which workloads shift to small models first?">Haiku&nbsp;5.5</a>
+    at ten cents per million tokens. The contrast is today's story: capital is flooding into compute while it flees everything within missile range of the Gulf.
+  </p>
+  <div class="readtime">~5 min read — 18 stories across 4 beats, plus Anthropic and sports</div>
+
+  <!-- 3 · State of play -->
+  <div class="sop">
+    <div><div class="num down">$101.90</div><div class="lbl">Brent, Wed settle</div><div class="ctx">Fifth straight close above $100 as tanker attacks escalate near Hormuz</div></div>
+    <div><div class="num down">5.31%</div><div class="lbl">10-yr Treasury</div><div class="ctx">Back near multiyear highs after Wednesday's September Fed minutes</div></div>
+    <div><div class="num down">134 bps</div><div class="lbl">France–Germany spread</div><div class="ctx">Widest since the 2010–12 euro debt crisis as the OAT selloff spreads</div></div>
+    <div><div class="num up">₩107.4T</div><div class="lbl">Samsung Q3 op. profit</div><div class="ctx">First ₩100T+ quarter by any tech company — roughly $80 billion</div></div>
+    <div><div class="num up">22 yrs</div><div class="lbl">Roman fuel ceiling</div><div class="ctx">A near-perfect launch doubled the telescope's 10-year design life</div></div>
+  </div>
+
+  <!-- 4 · Charts -->
+  <div class="charts">
+    <div class="chartbox">
+      <h3>S&amp;P 500 — last five closes</h3>
+      <div class="chartwrap"><canvas id="spxChart"></canvas></div>
+      <div class="ann">A record 7,818.93 on Tuesday, then a 0.22% pullback Wednesday as the Fed minutes landed and yields rose.</div>
+    </div>
+    <div class="chartbox">
+      <h3>Brent crude — last five settlements</h3>
+      <div class="chartwrap"><canvas id="brentChart"></canvas></div>
+      <div class="ann">Five straight settlements above $100 — the longest such run of the war — on Hormuz shipping risk.</div>
+    </div>
+  </div>
+  <div class="chartbox cod">
+    <h3>Chart of the day — what 10-year money costs now</h3>
+    <div class="chartwrap tall"><canvas id="yieldChart"></canvas></div>
+    <div class="ann">Most recent sourced readings (US Oct 7; France, Italy, Germany Oct 7–8; UK late September). The anomaly is the middle:
+      France now borrows closer to Italy than to Germany, and the 134bp
+      <a class="ent b" data-q="Why is France's 10-year yield near 4.8–5.0% in October 2026 while Germany's is 3.5%? Walk through the fiscal arithmetic, the Scope downgrade and pending Moody's review, and the scenarios by which this becomes — or avoids becoming — a euro crisis.">Franco-German gap</a>
+      is the widest since the euro crisis.</div>
+  </div>
+
+  <!-- 5 · Dominant story -->
+  <section>
+    <div class="sechead iran">The Iran War<span class="kicker">One event is shaping every beat today — oil, bonds, equities, and shipping.</span></div>
+
+    <div class="story lead">
+      <div class="tag"><span class="beatname iran">Escalation Watch</span><span class="score">9/10</span></div>
+      <h2>Washington drafts options to restart the Iran war — possibly after November 3</h2>
+      <p class="wim"><b>Why it matters:</b> NBC News reports the White House has asked the Pentagon to prepare strike options for a resumption
+        of large-scale operations against Iran, with sources telling The Atlantic a wider operation could come after the November&nbsp;3 midterms.
+        No decision has been made — but a third carrier strike group is already moving toward the region, and markets are treating the
+        question as <i>when</i>, not <i>if</i>: Brent has now settled above $100 for five consecutive sessions.</p>
+      <p class="wn">What's next: watch for a presidential decision window after the midterms; diplomacy is stalled — Iran's president has publicly called talks "meaningless" since the June memorandum collapsed.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.nbcnews.com/politics/national-security/us-military-prepares-new-iran-war-options-ahead-midterm-elections-rcna601725" target="_blank" rel="noopener">NBC News</a></span>
+        <a class="godeeper" data-q="Read this article: https://www.nbcnews.com/politics/national-security/us-military-prepares-new-iran-war-options-ahead-midterm-elections-rcna601725 — if the URL is unavailable, search for &quot;US military prepares new Iran war options ahead of midterm elections&quot; and find the original reporting — then assess: what specific strike options are described, how does the midterm timing shape the decision, and what would resumption mean for oil markets and the carrier posture in the Gulf?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="story">
+        <div class="tag"><span class="beatname iran">Shipping</span><span class="score">8/10</span></div>
+        <h2>Tanker attacks escalate in the Strait of Hormuz — even as oil keeps flowing</h2>
+        <p class="wim"><b>Why it matters:</b> Vessel traffic through the strait has fallen to its lowest level in more than two months after a
+          surge in attacks, NBC News reports — yet exports have so far held up, which is why Brent sits near $102 rather than $150. The human
+          cost is rising: Oman evacuated 12 injured crew from the Panama-flagged tanker <i>On Peace</i>, struck nine nautical miles off
+          Musandam on Monday.</p>
+        <p class="wn">What's next: insurers and charterers are the swing factor — if war-risk premiums climb further, the export resilience breaks.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.nbcnews.com/business/energy/hormuz-oil-exports-increase-ship-attacks-rcna601597" target="_blank" rel="noopener">NBC News</a></span>
+          <a class="godeeper" data-q="Read this article: https://www.nbcnews.com/business/energy/hormuz-oil-exports-increase-ship-attacks-rcna601597 — if the URL is unavailable, search for &quot;Hormuz tanker attacks escalating oil exports rise&quot; and find the original reporting — then explain the paradox: how are oil exports holding up while attacks escalate, who is absorbing the war-risk insurance cost, and at what point does shipping economics force a supply shock?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+      <div class="story">
+        <div class="tag"><span class="beatname iran">Force Posture</span><span class="score">7/10</span></div>
+        <h2>Three carriers by Thanksgiving: the buildup around Iran keeps growing</h2>
+        <p class="wim"><b>Why it matters:</b> A third aircraft carrier strike group is deploying toward waters near Iran, Al Jazeera reports —
+          by the end of November the US plans three carriers and two amphibious ready groups in the region, a concentration of naval power
+          rarely assembled since 2003. Buildups of this scale are expensive signals: they precede either strikes or settlements.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.aljazeera.com/news/2026/10/2/new-aircraft-carrier-10000-us-troops-is-the-iran-war-about-to-escalate" target="_blank" rel="noopener">Al Jazeera</a></span>
+          <a class="godeeper" data-q="Read this article: https://www.aljazeera.com/news/2026/10/2/new-aircraft-carrier-10000-us-troops-is-the-iran-war-about-to-escalate — if the URL is unavailable, search for &quot;new aircraft carrier 10,000 US troops Iran war escalate&quot; and find the original reporting — then analyze: what does a three-carrier posture enable militarily that two cannot, what are the historical precedents, and what are the logistical limits on how long it can be sustained?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Business -->
+  <section>
+    <div class="sechead business">Business &amp; Markets</div>
+
+    <div class="story lead">
+      <div class="tag"><span class="beatname business">Markets</span><span class="score">7/10</span></div>
+      <h2>Stocks back off records as the Fed minutes land and yields climb</h2>
+      <p class="wim"><b>Why it matters:</b> The S&amp;P 500 slipped 0.22% to 7,801.77 and the Dow fell 341 points Wednesday, one day after the
+        index's first-ever close above 7,800 — investors digested the
+        <a class="ent b" data-q="What did the Federal Reserve's September 2026 meeting minutes, released October 7, reveal about the committee's split on inflation versus growth risks, and how did bond markets reprice afterward?">September Fed minutes</a>
+        as the 10-year yield pushed back to roughly 5.31% and oil climbed toward $102. Small caps felt it worst: the Russell 2000 dropped 1.31%.</p>
+      <div class="foot">
+        <span class="src"><a href="https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-7-dow-sp-500-nasdaq-080241833.html" target="_blank" rel="noopener">Yahoo Finance</a></span>
+        <a class="godeeper" data-q="Read this article: https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-7-dow-sp-500-nasdaq-080241833.html — if the URL is unavailable, search for &quot;stock market Wednesday October 7 2026 Dow S&amp;P 500 Nasdaq retreat records&quot; and find the original reporting — then assess: with the 10-year at 5.3% and oil above $100, what is actually holding equities near records, and which sectors are most exposed if the war premium persists?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="story">
+        <div class="tag"><span class="beatname business">Semis</span><span class="score">8/10</span></div>
+        <h2>Samsung posts the first ₩100 trillion quarter in tech history</h2>
+        <p class="wim"><b>Why it matters:</b> Preliminary Q3 guidance shows operating profit of about ₩107.4&nbsp;trillion (~$80&nbsp;billion) —
+          roughly nine times a year earlier and the first ₩100T+ quarter by any technology company, powered by DRAM and NAND shortages and
+          surging <a class="ent b" data-q="Who are the players in the 2026 HBM market — SK hynix at ~50% share, Samsung at ~33% — and how durable is the memory shortage pricing that just produced Samsung's record quarter? What would break it?">HBM</a> orders for AI servers.
+          Not everything shines: the mobile division is estimated to have lost over $1&nbsp;billion in the same quarter.</p>
+        <p class="wn">What's next: full results later in October will show segment detail — and whether memory pricing has peaked.</p>
+        <div class="foot">
+          <span class="src"><a href="https://finance.yahoo.com/markets/stocks/articles/samsung-q3-2026-earnings-80-113016465.html" target="_blank" rel="noopener">Yahoo Finance</a></span>
+          <a class="godeeper" data-q="Read this article: https://finance.yahoo.com/markets/stocks/articles/samsung-q3-2026-earnings-80-113016465.html — if the URL is unavailable, search for &quot;Samsung Q3 2026 107.4 trillion won operating profit&quot; and find the original reporting — then analyze: how much of this record is cyclical memory pricing versus structural AI demand, why is the mobile unit losing money, and what does it signal for Micron and SK hynix earnings?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+      <div class="story">
+        <div class="tag"><span class="beatname business">Europe</span><span class="score">8/10</span></div>
+        <h2>Europe's bond market remembers how to panic</h2>
+        <p class="wim"><b>Why it matters:</b> A selloff that began in French OATs — the 10-year briefly touched 5% on October&nbsp;1, a level
+          last seen in 2002 — has spread to Italy, Belgium and Greece, Bloomberg reports, dragging the euro to a 17-month low below $1.12.
+          The <a class="ent b" data-q="Profile the ECB's crisis toolkit in 2026 — why its Transmission Protection Instrument reportedly cannot legally be used for France's fiscally driven selloff, and what unconventional options remain if contagion spreads.">ECB</a>'s
+          crisis tools were built for panics, not for genuine fiscal arithmetic — which is France's problem.</p>
+        <p class="wn">What's next: Moody's is expected to review France's Aa3 rating this month.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.bloomberg.com/news/articles/2026-10-04/whispers-of-contagion-risk-are-returning-to-europe-s-bond-market" target="_blank" rel="noopener">Bloomberg</a></span>
+          <a class="godeeper" data-q="Read this article: https://www.bloomberg.com/news/articles/2026-10-04/whispers-of-contagion-risk-are-returning-to-europe-s-bond-market — if the URL is unavailable, search for &quot;whispers of contagion risk returning Europe bond market&quot; and find the original reporting — then compare this episode to 2010–2012: which transmission channels are the same, which are different, and what would a Moody's downgrade of France actually trigger mechanically?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · World -->
+  <section>
+    <div class="sechead world">World &amp; Geopolitics</div>
+
+    <div class="story lead">
+      <div class="tag"><span class="beatname world">Public Health</span><span class="score">7/10</span></div>
+      <h2>Kenya confirms its first-ever Ebola case after a traveler from Congo dies in Nairobi</h2>
+      <p class="wim"><b>Why it matters:</b> A Kenyan man who had lived in the DRC for seven years died Monday night in a Nairobi hospital with the
+        <a class="ent w" data-q="Explain the Bundibugyo strain of Ebola — how it differs from Zaire ebolavirus in lethality and vaccine coverage, and why the 2026 DRC outbreak driven by it has grown past 8,000 cases.">Bundibugyo strain</a>
+        of Ebola — Kenya's first confirmed case ever, imported from an epidemic in eastern Congo that has grown past 8,000 cases, the
+        second-largest on record. Authorities are tracing 28 direct contacts plus 27 passengers and crew from his Kampala–Nairobi flight.</p>
+      <p class="wn">What's next: contacts stay isolated for 21 days; Nairobi's status as East Africa's air hub is what worries epidemiologists.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.africanews.com/2026/10/06/kenya-confirms-first-ebola-death-as-28-contacts-traced/" target="_blank" rel="noopener">Africanews</a></span>
+        <a class="godeeper" data-q="Read this article: https://www.africanews.com/2026/10/06/kenya-confirms-first-ebola-death-as-28-contacts-traced/ — if the URL is unavailable, search for &quot;Kenya confirms first Ebola case Nairobi DRC Bundibugyo&quot; and find the original reporting — then assess: how exposed is Nairobi as a regional air hub, what did Uganda's successful containment earlier this year get right, and is there a licensed vaccine effective against Bundibugyo?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="story">
+        <div class="tag"><span class="beatname world">Horn of Africa</span><span class="score">7/10</span></div>
+        <h2>Ethiopia accuses three neighbors of arming Tigray's rebels as the north slides back toward war</h2>
+        <p class="wim"><b>Why it matters:</b> Army chief Field Marshal Birhanu Jula has accused Eritrea, Sudan and Egypt of backing the
+          <a class="ent w" data-q="What is the TPLF (Tigray People's Liberation Front) — its history governing Ethiopia, the 2020–22 war, and why fighting reignited in 2026? Who are the factions inside Tigray now?">TPLF</a>,
+          whose forces have captured several strategic towns in renewed northern fighting, per AP. Eritrea and Sudan deny it — but the
+          2020–22 Tigray war killed hundreds of thousands, and a sequel with open Eritrean and Egyptian involvement would be a regional war,
+          not a civil one.</p>
+        <div class="foot">
+          <span class="src"><a href="https://abcnews.com/International/wireStory/ethiopias-army-chief-accuses-eritrea-sudan-egypt-supporting-136825185" target="_blank" rel="noopener">AP via ABC News</a></span>
+          <a class="godeeper" data-q="Read this article: https://abcnews.com/International/wireStory/ethiopias-army-chief-accuses-eritrea-sudan-egypt-supporting-136825185 — if the URL is unavailable, search for &quot;Ethiopia army chief accuses Eritrea Sudan Egypt supporting Tigray rebels&quot; and find the original reporting — then analyze: why would Eritrea switch sides against Addis Ababa, what is Egypt's interest via the Nile dam dispute, and what are the scenarios for escalation through the end of 2026?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+      <div class="story">
+        <div class="tag"><span class="beatname world">Economy</span><span class="score">6/10</span></div>
+        <h2>Iraq devalues its currency as the war chokes its oil lifeline</h2>
+        <p class="wim"><b>Why it matters:</b> Fortune reports Iraq devalued the dinar as the Iran war squeezes its oil exports — nearly all of
+          which must transit the Strait of Hormuz. OPEC's second-largest producer becoming a fiscal casualty shows the war's economic blast
+          radius extends well beyond the combatants, even with Brent above $100.</p>
+        <div class="foot">
+          <span class="src"><a href="https://fortune.com/article/price-of-oil-10-08-2026" target="_blank" rel="noopener">Fortune</a></span>
+          <a class="godeeper" data-q="Read this article: https://fortune.com/article/price-of-oil-10-08-2026 — if the URL is unavailable, search for &quot;Iraq devalues currency Iran war oil exports&quot; and find the original reporting — then explain: how dependent is Iraq's budget on Hormuz-transit oil revenue, what does a dinar devaluation do to its import-heavy economy, and which other Gulf producers are most exposed next?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · Tech -->
+  <section>
+    <div class="sechead tech">Tech &amp; AI</div>
+
+    <div class="story lead">
+      <div class="tag"><span class="beatname tech">AI</span><span class="score">7/10</span></div>
+      <h2>OpenAI pushes GPT-6 to every ChatGPT tier — free users included</h2>
+      <p class="wim"><b>Why it matters:</b> Starting October&nbsp;7–8, paid tiers get GPT-6 "Sol" and free users get the lighter "Luna," both with
+        "Intelligent UI" — answers that render as interactive charts, forms and buttons instead of plain text. Giving hundreds of millions of
+        free users a frontier-generation model resets the baseline the rest of the industry prices against; notably, the upgrade covers Chat
+        only, leaving Codex and Work untouched.</p>
+      <div class="foot">
+        <span class="src"><a href="https://openai.com/index/gpt-6-for-everyone/" target="_blank" rel="noopener">OpenAI</a></span>
+        <a class="godeeper" data-q="Read this article: https://openai.com/index/gpt-6-for-everyone/ — if the URL is unavailable, search for &quot;OpenAI GPT-6 and Intelligent UI for everyone&quot; and find the original announcement — then analyze: what is the capability gap between Sol and Luna, what does Intelligent UI mean for the web's answer-box economics, and why would OpenAI absorb the inference cost of a free-tier frontier model now?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="story">
+        <div class="tag"><span class="beatname tech">Cybersecurity</span><span class="score">7/10</span></div>
+        <h2>One hacker, an AI agent, and nine Korean banks: CrowdStrike maps an AI-run breach campaign</h2>
+        <p class="wim"><b>Why it matters:</b> A financially motivated, likely Chinese-speaking actor used
+          <a class="ent t" data-q="What is ARTEX, the Chinese-developed open-source agentic penetration-testing tool named in CrowdStrike's October 2026 report on the South Korean bank breaches — what can it automate, and why do open-source offensive AI tools change the economics of cybercrime?">ARTEX</a>,
+          an open-source agentic pentesting tool, alongside Claude in a late-September campaign against South Korean financial firms,
+          CrowdStrike reports — Shinhan Bank and Yegaram Savings Bank disclosed breaches affecting 25,000 and 40,000 people. One individual
+          with AI agents achieved what used to take a crew; that is the actual headline.</p>
+        <p class="wn">What's next: South Korean authorities have not named a suspect; CrowdStrike's location lead (a 26-year-old in Guangdong) is moderate-confidence only.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.infosecurity-magazine.com/news/chinese-hacker-ai-korean-banks/" target="_blank" rel="noopener">Infosecurity Magazine</a></span>
+          <a class="godeeper" data-q="Read this article: https://www.infosecurity-magazine.com/news/chinese-hacker-ai-korean-banks/ — if the URL is unavailable, search for &quot;CrowdStrike Chinese hacker AI South Korean banks ARTEX&quot; and find the original reporting — then assess: what specifically did the AI agents automate in this intrusion chain, how did CrowdStrike attribute it, and what does one-person AI-scaled cybercrime mean for bank security models?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+      <div class="story">
+        <div class="tag"><span class="beatname tech">Cybersecurity</span><span class="score">6/10</span></div>
+        <h2>32 zero-days on day one at Pwn2Own — AI tools are now prime targets</h2>
+        <p class="wim"><b>Why it matters:</b> At Pwn2Own Ireland, researchers burned 32 unique zero-days on day one. The signal is in the target
+          list: OpenAI Codex fell to a $40,000 argument-injection bug, and LiteLLM — middleware that routes traffic for thousands of AI
+          deployments — was popped twice, once for a full reverse shell. AI infrastructure has joined phones and routers as a contest staple.</p>
+        <p class="wn">What's next: vendors get ZDI's standard 90-day window to patch before details go public.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.zerodayinitiative.com/blog/2026/10/6/pwn2own-ireland-2026-day-one-results" target="_blank" rel="noopener">Zero Day Initiative</a></span>
+          <a class="godeeper" data-q="Read this article: https://www.zerodayinitiative.com/blog/2026/10/6/pwn2own-ireland-2026-day-one-results — if the URL is unavailable, search for &quot;Pwn2Own Ireland 2026 day one results 32 zero-days&quot; and find the original reporting — then explain: what classes of vulnerability showed up in the AI targets (Codex, LiteLLM), how do they differ from classic memory-corruption bugs, and what should teams running LLM middleware do before the 90-day disclosure clock runs out?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · Science -->
+  <section>
+    <div class="sechead science">Science &amp; Space<span class="kicker">A thin cycle on the science desk today — two stories that clear the bar, no padding.</span></div>
+
+    <div class="story lead">
+      <div class="tag"><span class="beatname science">Astronomy</span><span class="score">6/10</span></div>
+      <h2>NASA's newest flagship telescope just doubled its own lifespan</h2>
+      <p class="wim"><b>Why it matters:</b> The
+        <a class="ent s" data-q="Profile NASA's Nancy Grace Roman Space Telescope — its science goals in dark energy and exoplanet microlensing, how it complements Hubble and JWST, and what a 22-year fuel supply changes about its mission planning.">Roman Space Telescope</a>'s
+        first course-correction burn used about 18&nbsp;kg of propellant against a 200&nbsp;kg budget — thanks to a near-perfect Falcon Heavy
+        insertion and a lighter-than-planned spacecraft, NASA now estimates fuel for at least 22 years of science, more than double the
+        10-year design life. Fuel, not optics, usually writes a space telescope's obituary.</p>
+      <div class="foot">
+        <span class="src"><a href="https://space.com/astronomy/22-years-of-science-nasas-roman-space-telescope-doubles-its-lifetime-with-super-precise-engine-burn" target="_blank" rel="noopener">Space.com</a></span>
+        <a class="godeeper" data-q="Read this article: https://space.com/astronomy/22-years-of-science-nasas-roman-space-telescope-doubles-its-lifetime-with-super-precise-engine-burn — if the URL is unavailable, search for &quot;Roman Space Telescope 22 years fuel doubles lifetime&quot; and find the original reporting — then explain: where exactly did the fuel savings come from, what does a 22-year horizon enable for dark-energy surveys that 10 years could not, and what besides fuel could still end the mission early?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="story">
+        <div class="tag"><span class="beatname science">Sky Tonight</span><span class="score">6/10</span></div>
+        <h2>Tonight's sky: Draconids peak under dark skies, with Saturn and Pallas at their best</h2>
+        <p class="wim"><b>Why it matters:</b> The Draconid meteor shower peaks this evening with the moon near new — the dark-sky conditions
+          this shower rarely gets — while Saturn, fresh off its October&nbsp;4 opposition, and asteroid
+          <a class="ent s" data-q="What is asteroid 2 Pallas — its discovery, unusual orbital inclination, and why reaching opposition makes this week of October 2026 the best time to spot the third-largest asteroid with a small telescope?">2 Pallas</a>
+          are both ideally placed. Draconids are unpredictable: usually a trickle, occasionally a storm.</p>
+        <p class="wn">What's next: if skies cooperate, look north after dusk — Draconids are an early-evening shower, no 3am alarm required.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.astronomy.com/observing/the-sky-today-thursday-october-8-2026/" target="_blank" rel="noopener">Astronomy Magazine</a></span>
+          <a class="godeeper" data-q="Read this article: https://www.astronomy.com/observing/the-sky-today-thursday-october-8-2026/ — if the URL is unavailable, search for &quot;sky today October 8 2026 Draconids Pallas&quot; and find the original reporting — then tell me: what are the historical Draconid outburst years and their causes, and give me an observing plan for tonight from the San Francisco Bay Area with times and directions." target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · Anthropic -->
+  <section>
+    <div class="sechead anthropic">Anthropic</div>
+
+    <div class="story lead">
+      <div class="tag"><span class="beatname anthropic">Models</span><span class="score">7/10</span></div>
+      <h2>Claude Haiku 5.5: frontier-adjacent intelligence at a tenth of a dollar</h2>
+      <p class="wim"><b>Why it matters:</b> Released Wednesday at $0.10 per million input tokens for prompts under 100k — about 75% cheaper on
+        average than Haiku 4.5 — Haiku 5.5 posts a 1620 Elo on GDPval-AA, well clear of OpenAI's free-tier GPT-6 Luna at 1437, and is the
+        first Haiku with an adjustable
+        <a class="ent a" data-q="Explain the adjustable effort setting introduced with Claude Haiku 5.5 — how trading cost against capability per-request works, and how developers should decide between a small model at high effort versus a big model at low effort.">effort setting</a>.
+        Small-model economics are where AI agents live or die; this reprices that entire layer.</p>
+      <p class="wn">What's next: available now on the Claude Platform, AWS, Google Cloud and Azure; Sonnet 5.5 cache reads were also cut 50%.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.anthropic.com/claude-haiku-5-5" target="_blank" rel="noopener">Anthropic</a></span>
+        <a class="godeeper" data-q="Read this article: https://www.anthropic.com/claude-haiku-5-5 — then analyze: which production workloads should move from Sonnet-class to Haiku 5.5 given its benchmark profile, where does it still clearly trail Sonnet 5.5, and what does 10-cent input pricing do to the cost structure of multi-agent systems?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="story lead" style="border-top:1px solid var(--border); padding-top:16px;">
+      <div class="tag"><span class="beatname anthropic">Security</span><span class="score">6/10</span></div>
+      <h2>Anthropic folds Project Glasswing into a three-tier cyber access program</h2>
+      <p class="wim"><b>Why it matters:</b> The expanded Cyber Verification Program gives vetted defenders, red teams, and critical-infrastructure
+        testers tiered access to advanced cyber capabilities with fewer blocking classifiers —
+        <a class="ent a" data-q="What was Anthropic's Project Glasswing — the program that gave critical-software security teams access to Claude Mythos and reportedly surfaced 129,000 verified vulnerabilities from April to July 2026 — and how does its merger into the Cyber Verification Program change who gets access?">Glasswing</a>
+        partners found 129,000 verified vulnerabilities (33,000+ critical or high) from April to July. The same week CrowdStrike documented a
+        criminal using AI agents against Korean banks, the defensive counterweight question got more concrete.</p>
+      <p class="wn">What's next: Enterprise Frontier Safeguards — letting qualifying orgs keep retention data in their own infrastructure — ships later this fall.</p>
+      <div class="foot">
+        <span class="src"><a href="https://www.anthropic.com/news/cyber-verification-program" target="_blank" rel="noopener">Anthropic</a></span>
+        <a class="godeeper" data-q="Read this article: https://www.anthropic.com/news/cyber-verification-program — then assess: how do the three tiers (Defense, Red Team, Specialized) differ in what they unlock and who qualifies, what does the CyScenarioBench block-rate data say about the tradeoff being made, and how should a mid-size security team decide whether to apply?" target="_blank" rel="noopener">Go deeper</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · Sports -->
+  <section>
+    <div class="sechead" style="color: var(--muted); border-color: var(--border);">Your Teams</div>
+
+    <div class="grid2">
+      <div class="story">
+        <div class="tag"><span class="beatname niners">49ers · 4-0</span><span class="score">6/10</span></div>
+        <h2>4-0 Niners turn to Seattle with a banged-up backfield</h2>
+        <p class="wim"><b>Why it matters:</b> George Kittle's fourth-quarter touchdown sealed Saturday's 24-14 win over Denver and a 4-0 start,
+          but the injury report is the story of the week: Kyle Juszczyk is out two to three weeks with a knee sprain (no ligament damage),
+          Mike Evans is limited with a rib issue, and Mykel Williams is expected back from his ACL tear for Sunday's divisional test against
+          the Seahawks. Nick Bosa's return is not expected this week.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.ninersnation.com/san-francisco-49ers-news/163817/san-francisco-49ers-news-5-observations-win-over-denver-broncos-brock-purdy-kyle-shanahan" target="_blank" rel="noopener">Niners Nation</a></span>
+          <a class="godeeper" data-q="Read this article: https://www.ninersnation.com/san-francisco-49ers-news/163817/san-francisco-49ers-news-5-observations-win-over-denver-broncos-brock-purdy-kyle-shanahan — if the URL is unavailable, search for &quot;49ers observations win over Broncos 4-0&quot; and find the original reporting — then preview Sunday's 49ers-Seahawks game: how does losing Juszczyk change the run game, what does Mykel Williams's return add, and what does this game mean for the NFC West race?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+      <div class="story">
+        <div class="tag"><span class="beatname sharks">Sharks</span><span class="score">6/10</span></div>
+        <h2>Cagnoni's first career goal caps a Sharks opening statement; St. Louis tonight</h2>
+        <p class="wim"><b>Why it matters:</b> The season-opening 4-3 overtime win over Florida had everything the rebuild promised: Will Smith
+          scored twice — shorthanded, then on the power play, both set up by
+          <a class="ent s" data-q="Profile Macklin Celebrini's development entering the 2026-27 NHL season — his production arc since going first overall in 2024, and whether the Sharks' young core can end the franchise's playoff drought this year." style="color: var(--sharks); border-bottom-color: var(--sharks);">Macklin Celebrini</a> —
+          then fed 21-year-old Luca Cagnoni for the overtime winner, his first NHL goal. After jumping from 52 to 86 points last season,
+          San Jose plays at the Blues tonight to close a two-game trip.</p>
+        <div class="foot">
+          <span class="src"><a href="https://www.nhl.com/news/florida-panthers-san-jose-sharks-game-recap-october-1-2026" target="_blank" rel="noopener">NHL.com</a></span>
+          <a class="godeeper" data-q="Read this article: https://www.nhl.com/news/florida-panthers-san-jose-sharks-game-recap-october-1-2026 — if the URL is unavailable, search for &quot;Smith sets up Cagnoni overtime winner Sharks Panthers&quot; and find the original reporting — then assess: is the Sharks' young core (Celebrini, Smith, Cagnoni, Stenberg) ahead of schedule, and what would it take for San Jose to end its playoff drought this season?" target="_blank" rel="noopener">Go deeper</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px;">
+      <div class="sb-league">
+        <div class="sb-label">MLB · Division Series</div>
+        <div class="sb-row">
+          <div class="sb-card"><div class="teamline"><span class="win">Dodgers 4</span></div><div class="teamline"><span>Braves 1</span></div><div class="status">Final · LAD win series 3-1</div></div>
+          <div class="sb-card"><div class="teamline"><span class="win">Rays 4</span></div><div class="teamline"><span>Yankees 3</span></div><div class="status">Final · TB sweep 3-0</div></div>
+          <div class="sb-card"><div class="teamline"><span class="win">Brewers 3</span></div><div class="teamline"><span>Padres 1</span></div><div class="status">Final · MIL win series 3-1</div></div>
+          <div class="sb-card"><div class="teamline"><span class="win">Guardians 9</span></div><div class="teamline"><span>White Sox 3</span></div><div class="status">Final · CHW lead series 2-1</div></div>
+          <div class="sb-card"><div class="teamline"><span>Guardians</span></div><div class="teamline"><span>White Sox</span></div><div class="status live">Tonight · Game 4 · ESPN</div></div>
+        </div>
+      </div>
+      <div class="sb-league">
+        <div class="sb-label">NFL · Week 5</div>
+        <div class="sb-row">
+          <div class="sb-card"><div class="teamline"><span>Buccaneers</span></div><div class="teamline"><span>Cowboys</span></div><div class="status live">Tonight · 5:15pm PT · Prime</div></div>
+        </div>
+      </div>
+      <div class="sb-league">
+        <div class="sb-label">NHL · Opening week</div>
+        <div class="sb-row">
+          <div class="sb-card fav-sharks"><div class="teamline"><span>Sharks</span></div><div class="teamline"><span>Blues</span></div><div class="status live">Tonight · in St. Louis</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · Ending -->
+  <div class="ending">
+    <div class="fin">That's your briefing. You're caught up.</div>
+    <div class="sub">18 stories this morning — every headline, source link, and dotted link goes deeper.<br>
+      <a href="archive/">Browse the archive</a></div>
+  </div>
+
+  <!-- 13 · Sources -->
+  <details class="sources">
+    <summary>Sources (18)</summary>
+    <ul>
+      <li>Washington drafts options to restart the Iran war — <a href="https://www.nbcnews.com/politics/national-security/us-military-prepares-new-iran-war-options-ahead-midterm-elections-rcna601725" target="_blank" rel="noopener">NBC News</a> — content verified via search excerpt; direct fetch blocked by sandbox network policy</li>
+      <li>Tanker attacks escalate in the Strait of Hormuz — <a href="https://www.nbcnews.com/business/energy/hormuz-oil-exports-increase-ship-attacks-rcna601597" target="_blank" rel="noopener">NBC News</a> — verified via search excerpt; On Peace casualty detail corroborated by Al Jazeera (Oct 7)</li>
+      <li>Three carriers by Thanksgiving — <a href="https://www.aljazeera.com/news/2026/10/2/new-aircraft-carrier-10000-us-troops-is-the-iran-war-about-to-escalate" target="_blank" rel="noopener">Al Jazeera</a> — verified via search excerpt; article dated Oct 2, deployment ongoing</li>
+      <li>Stocks back off records on Fed minutes — <a href="https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-7-dow-sp-500-nasdaq-080241833.html" target="_blank" rel="noopener">Yahoo Finance</a> — closing figures cross-checked against Investing.com and TheStreet</li>
+      <li>Samsung's first ₩100T quarter — <a href="https://finance.yahoo.com/markets/stocks/articles/samsung-q3-2026-earnings-80-113016465.html" target="_blank" rel="noopener">Yahoo Finance</a> — preliminary guidance figures (Reuters-sourced) cross-checked against Korea JoongAng Daily</li>
+      <li>Europe's bond market remembers how to panic — <a href="https://www.bloomberg.com/news/articles/2026-10-04/whispers-of-contagion-risk-are-returning-to-europe-s-bond-market" target="_blank" rel="noopener">Bloomberg</a> — paywalled; preview and search excerpts verified, spread data corroborated by Reuters coverage</li>
+      <li>Kenya confirms first Ebola case — <a href="https://www.africanews.com/2026/10/06/kenya-confirms-first-ebola-death-as-28-contacts-traced/" target="_blank" rel="noopener">Africanews</a> — verified via search excerpt; details corroborated by AP syndication</li>
+      <li>Ethiopia accuses neighbors over Tigray — <a href="https://abcnews.com/International/wireStory/ethiopias-army-chief-accuses-eritrea-sudan-egypt-supporting-136825185" target="_blank" rel="noopener">AP via ABC News</a> — wire story (Sept 28) verified via search excerpt; fighting ongoing</li>
+      <li>Iraq devalues its currency — <a href="https://fortune.com/article/price-of-oil-10-08-2026" target="_blank" rel="noopener">Fortune</a> — single-fact sourcing from Fortune's Oct 8 oil-price coverage; treated narrowly</li>
+      <li>GPT-6 to every ChatGPT tier — <a href="https://openai.com/index/gpt-6-for-everyone/" target="_blank" rel="noopener">OpenAI</a> — primary announcement; details corroborated by Engadget and gHacks</li>
+      <li>AI-run breach of Korean banks — <a href="https://www.infosecurity-magazine.com/news/chinese-hacker-ai-korean-banks/" target="_blank" rel="noopener">Infosecurity Magazine</a> — coverage of CrowdStrike's Oct 7 report; victim counts corroborated by Reuters and The Straits Times</li>
+      <li>32 zero-days at Pwn2Own Ireland — <a href="https://www.zerodayinitiative.com/blog/2026/10/6/pwn2own-ireland-2026-day-one-results" target="_blank" rel="noopener">Zero Day Initiative</a> — organizer's own results post (primary); day-one payout totals vary by source so omitted</li>
+      <li>Roman telescope doubles its lifespan — <a href="https://space.com/astronomy/22-years-of-science-nasas-roman-space-telescope-doubles-its-lifetime-with-super-precise-engine-burn" target="_blank" rel="noopener">Space.com</a> — figures match NASA's Roman mission blog (Sept 14, primary)</li>
+      <li>Tonight's sky: Draconids, Saturn, Pallas — <a href="https://www.astronomy.com/observing/the-sky-today-thursday-october-8-2026/" target="_blank" rel="noopener">Astronomy Magazine</a> — verified via search excerpt, dated today</li>
+      <li>Claude Haiku 5.5 — <a href="https://www.anthropic.com/claude-haiku-5-5" target="_blank" rel="noopener">Anthropic</a> — fetched directly; primary announcement</li>
+      <li>Cyber Verification Program — <a href="https://www.anthropic.com/news/cyber-verification-program" target="_blank" rel="noopener">Anthropic</a> — fetched directly; primary announcement</li>
+      <li>49ers at 4-0, injuries, Seattle next — <a href="https://www.ninersnation.com/san-francisco-49ers-news/163817/san-francisco-49ers-news-5-observations-win-over-denver-broncos-brock-purdy-kyle-shanahan" target="_blank" rel="noopener">Niners Nation</a> — verified via search excerpt; injury detail corroborated by 49ersWebzone</li>
+      <li>Sharks opener OT win, Blues tonight — <a href="https://www.nhl.com/news/florida-panthers-san-jose-sharks-game-recap-october-1-2026" target="_blank" rel="noopener">NHL.com</a> — league recap (primary); tonight's game per Sharks schedule announcement</li>
+    </ul>
+    <div class="vnote">Market data: index closes from Yahoo Finance/Investing.com end-of-day reports; Brent/WTI from Investing.com front-month closes; gold from Trading Economics; bitcoin from Fortune/Coinbase Wednesday-morning snapshots (no confirmed close found, labeled accordingly); European yields from Trading Economics and ideal-investisseur (OAT–Bund 134.4bps, Oct 7). The S&amp;P 200-day moving average was dropped — sources conflicted by ~450 points. Scoreboard: ESPN/MLB.com and CBS Sports postseason coverage. This page's outbound fetches were limited by the build environment's network policy; verification relied on retrieved search excerpts quoting each article, noted per story above.</div>
+  </details>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  // Conversation layer: build claude.ai links from data-q prompts.
+  document.querySelectorAll('a[data-q]').forEach(function (a) {
+    a.href = 'https://claude.ai/new?q=' + encodeURIComponent(a.getAttribute('data-q'));
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+
+  var spx = { labels: ['Oct 1', 'Oct 2', 'Oct 5', 'Oct 6', 'Oct 7'], values: [7666.45, 7722.72, 7773.95, 7818.93, 7801.77] };
+  var brent = { labels: ['Oct 1', 'Oct 2', 'Oct 5', 'Oct 6', 'Oct 7'], values: [102.31, 102.25, 100.32, 100.58, 101.90] };
+  var yields = { labels: ['UK', 'US', 'France', 'Italy', 'Germany'], values: [5.43, 5.31, 4.83, 4.63, 3.50] };
+
+  function fallback(id, text) {
+    var c = document.getElementById(id);
+    if (c && c.parentNode) { c.parentNode.innerHTML = '<div class="chart-fallback">' + text + '</div>'; }
+  }
+
+  if (typeof Chart === 'undefined') {
+    fallback('spxChart', 'S&amp;P 500: 7,666 → 7,802 over five sessions (record 7,819 Tuesday, −0.22% Wednesday).');
+    fallback('brentChart', 'Brent: $102.31 → $101.90 — five straight settlements above $100.');
+    fallback('yieldChart', '10-yr yields: UK 5.43% · US 5.31% · France 4.83% · Italy 4.63% · Germany 3.50%.');
+    return;
+  }
+
+  var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var tick = dark ? '#9aa0a6' : '#666666';
+  var grid = dark ? 'rgba(42,47,58,0.6)' : 'rgba(227,227,222,0.9)';
+  var mono = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+
+  function lineCfg(data, color, minPad) {
+    var min = Math.min.apply(null, data.values), max = Math.max.apply(null, data.values);
+    var pad = (max - min) * 0.25 + minPad;
+    return {
+      type: 'line',
+      data: { labels: data.labels, datasets: [{ data: data.values, borderColor: color, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 2.5, pointBackgroundColor: color, tension: 0 }] },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: tick, font: { family: mono, size: 11 } }, grid: { display: false }, border: { color: grid } },
+          y: { min: min - pad, max: max + pad, ticks: { color: tick, font: { family: mono, size: 11 }, maxTicksLimit: 4 }, grid: { color: grid }, border: { display: false } }
+        }
+      }
+    };
+  }
+
+  new Chart(document.getElementById('spxChart'), lineCfg(spx, '#7aa2f7', 10));
+  new Chart(document.getElementById('brentChart'), lineCfg(brent, '#d4a27f', 0.3));
+
+  new Chart(document.getElementById('yieldChart'), {
+    type: 'bar',
+    data: {
+      labels: yields.labels,
+      datasets: [{
+        data: yields.values,
+        backgroundColor: ['#7aa2f7', '#7aa2f7', '#f7768e', '#7aa2f7', '#9ece6a'],
+        borderWidth: 0, barPercentage: 0.55
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { min: 0, max: 6, ticks: { color: tick, font: { family: mono, size: 11 }, callback: function (v) { return v + '%'; } }, grid: { color: grid }, border: { display: false } },
+        y: { ticks: { color: tick, font: { family: mono, size: 12 } }, grid: { display: false }, border: { color: grid } }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
