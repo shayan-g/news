@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — Tuesday, November 10, 2026</title>
+<style>
+:root{--bg:#0f1115;--surface:#171a21;--border:#2a2f3a;--text:#e8e8e8;--muted:#9aa0a6;--up:#9ece6a;--down:#f7768e;--tech:#7aa2f7;--world:#f7768e;--business:#9ece6a;--science:#bb9af7;--anthropic:#d4a27f;}
+@media (prefers-color-scheme: light){:root{--bg:#fafaf8;--surface:#ffffff;--border:#e3e3de;--text:#1f1f1f;--muted:#666666;--up:#3f7d20;--down:#c23b55;--tech:#2b5fc7;--world:#c23b55;--business:#3f7d20;--science:#7b4fc9;--anthropic:#8a5a35;}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font:400 16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:720px;margin:0 auto;padding:20px 16px 48px}
+a{color:inherit}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.up{color:var(--up)}.dn{color:var(--down)}.mut{color:var(--muted)}
+.ent{color:inherit;text-decoration:none;border-bottom:1px dotted var(--muted)}
+.ent:hover{border-bottom-style:solid}
+.wire{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.9}
+.wire .tkl{color:var(--muted)}
+.wire .dot{color:var(--border);padding:0 7px}
+.wire-note{font-size:12px;color:var(--muted);margin-top:4px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.lede{margin:34px 0 8px;border-top:1px solid var(--border);padding-top:26px}
+.dateline{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.thesis{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:23px;line-height:1.3;font-weight:500;margin-bottom:14px}
+.narrative{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:17px;line-height:1.65}
+.readtime{display:inline-block;margin-top:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px}
+.sop{display:grid;grid-template-columns:repeat(5,1fr);margin:34px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sop-item{padding:16px 12px;border-left:1px solid var(--border)}
+.sop-item:first-child{border-left:none}
+.sop-val{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:18px;font-weight:500}
+.sop-lab{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.sop-ctx{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45}
+@media (max-width:640px){.sop{grid-template-columns:repeat(3,1fr)}.sop-item:nth-child(4){border-left:none}.sop-item{border-top:1px solid var(--border)}.sop-item:nth-child(-n+3){border-top:none}}
+@media (max-width:420px){.sop{grid-template-columns:repeat(2,1fr)}.sop-item:nth-child(odd){border-left:none}.sop-item:nth-child(even){border-left:1px solid var(--border)}.sop-item{border-top:1px solid var(--border)}.sop-item:nth-child(-n+2){border-top:none}}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:10px 0 6px}
+@media (max-width:600px){.charts{grid-template-columns:1fr}}
+.chartbox{background:var(--surface);border:1px solid var(--border);padding:14px}
+.chartbox h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:10px}
+.chartbox .cwrap{position:relative;height:150px}
+.chartnote{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.45}
+.cod{margin:24px 0 8px}
+.cod .cwrap{height:170px}
+.beat{margin-top:44px}
+.beat h2{font-size:14px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border-bottom:1px solid;padding-bottom:8px;margin-bottom:22px}
+.story{margin-bottom:26px}
+.story .chip{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);padding:3px 9px;margin-bottom:10px}
+.blabel{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.badge{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--muted)}
+.story h3{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:19px;line-height:1.35;font-weight:500;margin-bottom:8px}
+.story.lead h3{font-size:22px}
+.why{font-size:15px;line-height:1.6}
+.why strong{font-weight:500}
+.next{font-size:14px;font-style:italic;color:var(--muted);margin-top:7px}
+.srow{display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
+.src{font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.src:hover{color:var(--text)}
+.deeper{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--text);text-decoration:none;border:1px solid var(--border);background:var(--surface);padding:4px 11px}
+.deeper:hover{border-color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.grid2 .story{padding-right:0}
+.grid2 .story:nth-child(odd){border-right:1px solid var(--border);padding-right:28px}
+@media (max-width:600px){.grid2{grid-template-columns:1fr}.grid2 .story:nth-child(odd){border-right:none;padding-right:0}}
+.sb-row{margin-bottom:18px}
+.sb-head{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.sb-league{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.sb-ctx{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--muted)}
+.sb-scroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.sb-scroll::-webkit-scrollbar{display:none}
+.scard{min-width:120px;background:var(--surface);border:1px solid var(--border);padding:8px 10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;flex:0 0 auto}
+.scard.team{border-left:3px solid}
+.sline{display:flex;justify-content:space-between;gap:12px}
+.sstat{font-size:11px;color:var(--muted);margin-top:4px}
+.ending{text-align:center;margin:56px 0 8px;font-family:"Iowan Old Style",Palatino,Georgia,serif}
+.ending h2{font-size:22px;font-weight:500;margin-bottom:8px}
+.ending p{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;color:var(--muted)}
+.ending a{color:var(--muted)}
+details.sources{margin-top:40px;border-top:1px solid var(--border);padding-top:14px}
+details.sources summary{cursor:pointer;font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.man{font-size:12px;color:var(--muted);margin-top:9px;line-height:1.5}
+.man .mh{color:var(--text)}
+.man a{color:var(--muted)}
+.man .mn{font-style:italic}
+</style>
+</head>
+<body>
+
+<div class="wire" aria-label="market wire">
+<span class="tkl">S&amp;P 500</span> 7,549.94 <span class="up">+2.35%</span><span class="dot">·</span><span class="tkl">Dow</span> 52,389.75 <span class="up">+2.15%</span><span class="dot">·</span><span class="tkl">Nasdaq</span> 25,253.14 <span class="up">+2.74%</span><span class="dot">·</span><span class="tkl">Russell 2K</span> 2,840.81 <span class="up">+3.15%</span><span class="dot">·</span><span class="tkl">VIX</span> 19.92 <span class="dn">−22%</span><span class="dot">·</span><span class="tkl">10Y</span> 4.88% <span class="up">+2bp</span><span class="dot">·</span><span class="tkl">Brent</span> $92.57 <span class="dn">−5.85%</span><span class="dot">·</span><span class="tkl">WTI</span> $87.80<span class="dot">·</span><span class="tkl">Gold</span> $4,141 <span class="up">+1.7%</span><span class="dot">·</span><span class="tkl">BTC</span> $74,549 <span class="dn">−1.7%</span>
+</div>
+<div class="wire-note">Monday close (Nov 9) — oil kept falling after settlement; US markets reopen this morning</div>
+
+<section class="lede">
+<div class="dateline">Tuesday, November 10, 2026 — generated 6:53am PT</div>
+<h1 class="thesis">The war premium is coming out of everything.</h1>
+<p class="narrative">Eight months of war closed the <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20the%20Strait%20of%20Hormuz%20%E2%80%94%20why%20a%20fifth%20of%20global%20oil%20transits%20it%2C%20how%20Iran%20closed%20it%20during%20the%202026%20war%2C%20and%20the%20mechanics%20and%20realistic%20timeline%20of%20reopening%20it%20safely.">Strait of Hormuz</a> and put a fear tax on every asset — and on Monday the market decided the tax is ending: Brent fell 5.85%, the S&amp;P 500 had its best day since April, and the VIX closed under 20 for the first time since the crash. The catalyst was less a deal than a tone, with Washington and Tehran still talking through <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=What%20is%20Qatar's%20role%20as%20mediator%20between%20Washington%20and%20Tehran%20in%20the%202026%20US%E2%80%93Iran%20war%20%E2%80%94%20why%20Doha%2C%20what%20leverage%20does%20it%20hold%2C%20and%20what%20has%20its%20mediation%20achieved%20so%20far%3F">Qatar</a> and Trump signaling no new strikes. Into that window steps <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Anthropic%20as%20it%20goes%20public%20in%20November%202026%20%E2%80%94%20founding%2C%20the%20Claude%20model%20line%2C%20revenue%20trajectory%2C%20and%20how%20the%20ANT%20Nasdaq%20listing%20reshapes%20the%20AI%20capital%20race.">Anthropic</a>, which launched a roadshow this morning for a Nasdaq listing that would out-raise every IPO in history except SpaceX’s five months ago — even as Nvidia, the last cycle’s standard-bearer, fell against the rally while its board investigates <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Jensen%20Huang%20%E2%80%94%20his%20three%20decades%20building%20Nvidia%2C%20his%20centrality%20to%20the%20AI%20trade%2C%20and%20why%20a%20board%20investigation%20of%20the%20CEO%20is%20a%20market%20event.">Jensen Huang</a>. A week after the midterms handed Democrats both chambers, the macro question has flipped from how bad it gets to how fast risk unwinds — and <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20the%20October%202026%20US%20CPI%20release%20%E2%80%94%20what%20economists%20expected%2C%20how%20it%20interacts%20with%20the%20%2B165K%20October%20payrolls%20surprise%2C%20and%20what%20it%20means%20for%20a%20possible%20December%20Fed%20rate%20hike.">October CPI</a> lands this morning to test the answer.</p>
+<span class="readtime">~5 min read — 20 stories · 4 beats + Anthropic &amp; sports</span>
+</section>
+
+<section class="sop" aria-label="state of play">
+<div class="sop-item"><div class="sop-val up">$92.57</div><div class="sop-lab">Brent, Mon settle</div><div class="sop-ctx">−5.85%, lowest since late August — the war premium deflating</div></div>
+<div class="sop-item"><div class="sop-val up">19.92</div><div class="sop-lab">VIX close</div><div class="sop-ctx">First close under 20 since the selloff began</div></div>
+<div class="sop-item"><div class="sop-val">$70–78</div><div class="sop-lab">ANT range</div><div class="sop-ctx">825M shares — up to a $64B raise, second-largest IPO ever</div></div>
+<div class="sop-item"><div class="sop-val">+165K</div><div class="sop-lab">Oct payrolls</div><div class="sop-ctx">≈ 3× consensus; a December Fed hike is now in play</div></div>
+<div class="sop-item"><div class="sop-val">54</div><div class="sop-lab">Dem Senate seats</div><div class="sop-ctx">Full control of Congress for the first time since 2023</div></div>
+</section>
+
+<section class="charts">
+<div class="chartbox"><h4>S&amp;P 500 — last five closes</h4><div class="cwrap"><canvas id="spChart"></canvas></div><div class="chartnote">Wednesday’s −4.36% was the worst day since April 2025; Monday’s +2.35% the best since April. Round trip: −0.3% in five sessions.</div></div>
+<div class="chartbox"><h4>Brent — last five settlements</h4><div class="cwrap"><canvas id="brentChart"></canvas></div><div class="chartnote">Through $100 the day after the midterms, a Friday bounce, then Monday’s plunge on de-escalation signals.</div></div>
+</section>
+
+<section class="chartbox cod"><h4>Chart of the day — largest IPO raises in history ($B)</h4><div class="cwrap"><canvas id="codChart"></canvas></div><div class="chartnote">At the top of its range, Anthropic’s base offering grosses $64.4B — second only to <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Compare%20the%20SpaceX%20and%20Anthropic%20IPOs%20%E2%80%94%20%2475%20billion%20raised%20in%20June%202026%20at%20a%20%241.77%20trillion%20valuation%20versus%20ANT's%20%2470%E2%80%9378%20range%20%E2%80%94%20and%20what%20the%20two%20debuts%20say%20about%20late-2026%20risk%20appetite.">SpaceX’s June debut</a>, and more than double any IPO before this year. Sources: Reuters, company filings, Statista.</div></section>
+
+<section class="beat" id="world">
+<h2 style="color:var(--world);border-color:var(--world)">World &amp; Geopolitics</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel" style="color:var(--world)">World · Lead</span><span class="badge">9/10</span></div>
+<h3>Washington and Tehran keep talking — and the oil market is calling the war’s end</h3>
+<p class="why"><strong>Why it matters:</strong> Eight months into the US–Iran war, talks mediated through <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=What%20is%20Qatar's%20role%20as%20mediator%20between%20Washington%20and%20Tehran%20in%20the%202026%20US%E2%80%93Iran%20war%20%E2%80%94%20why%20Doha%2C%20what%20leverage%20does%20it%20hold%2C%20and%20what%20has%20its%20mediation%20achieved%20so%20far%3F">Qatar</a> ended Nov 2 without a breakthrough — but contacts continue, and Trump’s signal that no new strikes are coming helped knock Brent down 5.85% Monday. Iran’s core offer: reopen the <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20the%20Strait%20of%20Hormuz%20%E2%80%94%20why%20a%20fifth%20of%20global%20oil%20transits%20it%2C%20how%20Iran%20closed%20it%20during%20the%202026%20war%2C%20and%20the%20mechanics%20and%20realistic%20timeline%20of%20reopening%20it%20safely.">Strait of Hormuz</a> in exchange for Washington lifting its port blockade and waiving oil sanctions.</p>
+<p class="next">What’s next: The US insists on nuclear-program progress before concessions; Reuters’ Iranian sources still rate another American strike as likelier than a deal.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.aljazeera.com/news/2026/11/1/iran-and-us-explore-diplomacy-amid-rising-threats-of-war">Al Jazeera</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.aljazeera.com%2Fnews%2F2026%2F11%2F1%2Firan-and-us-explore-diplomacy-amid-rising-threats-of-war%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Iran%20and%20US%20explore%20diplomacy%20amid%20rising%20threats%20of%20war%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20map%20the%20negotiating%20positions%3A%20what%20exactly%20has%20Iran%20offered%20on%20the%20Strait%20of%20Hormuz%2C%20what%20is%20Washington%20demanding%20on%20the%20nuclear%20program%2C%20and%20what%20would%20each%20side's%20minimum%20viable%20deal%20look%20like%3F">Go deeper</a></div>
+</article>
+<div class="grid2">
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--world)">World</span><span class="badge">7/10</span></div>
+<h3>One week on, Washington reorganizes around a Democratic Congress</h3>
+<p class="why"><strong>Why it matters:</strong> Democrats hold at least 54 Senate seats and roughly 251 House seats — full control of Congress for the first time since 2023 — with <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Hakeem%20Jeffries%20and%20his%20path%20to%20the%20House%20Speakership%20in%20January%202027%20%E2%80%94%20his%20leadership%20record%20and%20how%20he%20is%20likely%20to%20run%20a%20narrow-majority%20House.">Hakeem Jeffries</a> in line for Speaker and <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20James%20Talarico%20%E2%80%94%20the%20Texas%20Democrat%20who%20beat%20Ken%20Paxton%20for%20US%20Senate%20in%202026%20%E2%80%94%20his%20background%20and%20what%20his%20win%20says%20about%20Texas%20politics.">James Talarico</a>’s Texas upset the signature flip. Exit polls put cost of living as a major factor for 89% of voters; Trump’s approval sat at 38%.</p>
+<p class="next">What’s next: The new Congress is seated January 3; appropriations and the fight over federal AI preemption come first.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.npr.org/2026/11/03/g-s1-149526/2026-midterms-congress-balance-of-power">NPR</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.npr.org%2F2026%2F11%2F03%2Fg-s1-149526%2F2026-midterms-congress-balance-of-power%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%222026%20election%3A%20Democrats%20win%20full%20control%20of%20Congress%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20what%20a%20Democratic%20House%20and%20Senate%20can%20actually%20do%20against%20a%20Trump%20White%20House%20in%202027%3A%20which%20levers%20%E2%80%94%20appropriations%2C%20subpoenas%2C%20confirmations%20%E2%80%94%20matter%20most%2C%20and%20where%20is%20gridlock%20certain%3F">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--world)">World</span><span class="badge">7/10</span></div>
+<h3>COP31 opens in Antalya with the US absent and ~50 climate plans missing</h3>
+<p class="why"><strong>Why it matters:</strong> Türkiye hosts while Australia holds the negotiating presidency — an unusual <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20the%20COP31%20split%20presidency%20%E2%80%94%20why%20T%C3%BCrkiye%20hosts%20the%20summit%20while%20Australia%20runs%20the%20negotiations%2C%20how%20that%20compromise%20emerged%2C%20and%20the%20risks%20it%20creates.">split arrangement</a> — and nearly 50 parties arrived without updated <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20NDCs%20(nationally%20determined%20contributions)%20%E2%80%94%20how%20the%20Paris%20Agreement%20mechanism%20works%2C%20why%20roughly%2050%20parties%20were%20late%20with%20updates%20in%202026%2C%20and%20what%20that%20means%20for%20COP31's%20credibility.">NDCs</a>. Europe and small-island states want a fossil-fuel transition roadmap written into the summit’s cover decision.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.climatechangenews.com/2026/11/05/cop31-briefing-what-to-expect-from-the-antalya-climate-summit/">Climate Home News</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.climatechangenews.com%2F2026%2F11%2F05%2Fcop31-briefing-what-to-expect-from-the-antalya-climate-summit%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22COP31%20briefing%3A%20what%20to%20expect%20from%20the%20Antalya%20climate%20summit%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20the%20T%C3%BCrkiye%E2%80%93Australia%20split%20presidency%3A%20how%20does%20it%20work%20in%20practice%2C%20and%20what%20are%20realistic%20outcomes%20for%20the%20cover%20decision%20given%20roughly%2050%20missing%20NDCs%20and%20no%20US%20delegation%3F">Go deeper</a></div>
+</article>
+</div>
+</section>
+
+<section class="beat" id="business">
+<h2 style="color:var(--business);border-color:var(--business)">Business &amp; Markets</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel" style="color:var(--business)">Business · Lead</span><span class="badge">8/10</span></div>
+<h3>Stocks post their best day since April as the war trade unwinds</h3>
+<p class="why"><strong>Why it matters:</strong> S&P 500 +2.35% to 7,549.94, Dow +1,104 points, Nasdaq +2.74%, Russell 2000 +3.15% — and the <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20the%20VIX%20%E2%80%94%20and%20what%20a%20close%20back%20under%2020%20after%20a%20volatility%20spike%20has%20historically%20signaled%20for%20equities%20over%20the%20following%20months.">VIX</a> closed at 19.92, under 20 for the first time since the selloff began. Semis led the reversal: AMD +13% while Nvidia fell 4%.</p>
+<p class="next">What’s next: October CPI lands this morning — a hot print would test a rally built on de-escalation hopes.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.cnbc.com/2026/11/08/stock-market-today-live-updates.html">CNBC</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F11%2F08%2Fstock-market-today-live-updates.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Stock%20market%20news%20for%20Nov%209%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20evaluate%20whether%20Monday%E2%80%99s%20rally%20is%20durable%3A%20what%20does%20a%20sub-20%20VIX%20plus%20a%20possible%20December%20Fed%20hike%20historically%20mean%20for%20equities%20over%20the%20following%20quarter%3F">Go deeper</a></div>
+</article>
+<div class="grid2">
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--business)">Business</span><span class="badge">8/10</span></div>
+<h3>Brent settles at $92.57 — lowest since August — and keeps falling after hours</h3>
+<p class="why"><strong>Why it matters:</strong> Monday’s 5.85% drop extended past $7 a barrel in post-settlement trade after Trump downplayed new strikes on Iran. <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=What%20is%20OPEC%2B%20in%20late%202026%20%E2%80%94%20who%20remains%20after%20the%20UAE's%20exit%2C%20how%20the%20Iran%20war%20scrambled%20its%20strategy%2C%20and%20what%20is%20at%20stake%20at%20the%20November%2029%20ministerial%20on%20the%202027%20production%20framework%3F">OPEC+</a> held December targets steady for a third straight month as war-disrupted exports scramble its math.</p>
+<p class="next">What’s next: The harder call — the 2027 production framework — lands at the November 29 ministerial.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.brecorder.com/news/40448204/oil-down-over-usd7-a-barrel-in-post-settlement-trade">Reuters (via Business Recorder)</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.brecorder.com%2Fnews%2F40448204%2Foil-down-over-usd7-a-barrel-in-post-settlement-trade%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Oil%20down%20over%20USD7%20a%20barrel%20in%20post%20settlement%20trade%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20quantify%20the%20remaining%20war%20premium%20in%20Brent%3A%20where%20were%20prices%20before%20the%20Hormuz%20closure%2C%20where%20are%20they%20now%2C%20and%20what%20happens%20to%20the%20futures%20curve%20if%20the%20strait%20actually%20reopens%3F">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--business)">Business</span><span class="badge">7/10</span></div>
+<h3>October payrolls triple expectations and put a December hike in play</h3>
+<p class="why"><strong>Why it matters:</strong> +165,000 jobs against roughly 65,000 expected, unemployment down to 4.1%, and +84,000 in upward revisions — strength that has markets expecting the <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=What%20would%20a%20December%202026%20Fed%20rate%20hike%20mean%20%E2%80%94%20why%20did%20markets%20flip%20from%20expecting%20cuts%20to%20a%20hike%2C%20and%20which%20data%20between%20now%20and%20the%20meeting%20decides%20it%3F">Federal Reserve</a> to raise rates in December, with inflation at 3.7% outrunning 3.1% wage growth.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.bls.gov/news.release/empsit.nr0.htm">Bureau of Labor Statistics</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.bls.gov%2Fnews.release%2Fempsit.nr0.htm%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22BLS%20Employment%20Situation%20October%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20reconcile%20the%20labor%20strength%20with%203.7%25%20inflation%3A%20what%20does%20%2B165K%20payrolls%20with%203.1%25%20wage%20growth%20imply%20for%20the%20December%20FOMC%20decision%20and%20for%20real%20household%20income%3F">Go deeper</a></div>
+</article>
+</div>
+</section>
+
+<section class="beat" id="tech">
+<h2 style="color:var(--tech);border-color:var(--tech)">Tech &amp; AI</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel" style="color:var(--tech)">Tech & AI · Lead</span><span class="badge">8/10</span></div>
+<h3>Nvidia’s board opens an espionage-adjacent investigation of Jensen Huang</h3>
+<p class="why"><strong>Why it matters:</strong> Independent directors hired outside counsel Sunday after <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Jensen%20Huang%20%E2%80%94%20his%20three%20decades%20building%20Nvidia%2C%20his%20centrality%20to%20the%20AI%20trade%2C%20and%20why%20a%20board%20investigation%20of%20the%20CEO%20is%20a%20market%20event.">Huang</a> admitted an affair with a woman US intelligence reportedly assessed as a Chinese spy. The board says it has no reason to believe company secrets were compromised — but the stock fell 4.27% Monday against a +2.7% Nasdaq.</p>
+<p class="next">What’s next: A closed-door briefing with the <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=What%20is%20the%20House%20Select%20Committee%20on%20China%20%E2%80%94%20its%20mandate%20and%20track%20record%2C%20and%20why%20does%20it%20summon%20chip%20executives%20like%20Jensen%20Huang%20to%20closed-door%20briefings%3F">House China Committee</a> on Nov 18 — one day after Q3 earnings on Nov 17.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.nbcnews.com/tech/tech-news/nvidia-ceo-jensen-huang-investigation-rcna608148">NBC News</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nbcnews.com%2Ftech%2Ftech-news%2Fnvidia-ceo-jensen-huang-investigation-rcna608148%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Nvidia%20opens%20investigation%20after%20CEO%20Jensen%20Huang%20affair%20with%20alleged%20Chinese%20spy%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20lay%20out%20the%20governance%20picture%3A%20what%20can%20an%20independent-director%20investigation%20at%20Nvidia%20actually%20examine%2C%20what%20are%20the%20key-man%20risks%20around%20Jensen%20Huang%2C%20and%20what%20should%20investors%20watch%20at%20the%20Nov%2017%20earnings%20and%20the%20Nov%2018%20House%20briefing%3F">Go deeper</a></div>
+</article>
+<div class="grid2">
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--tech)">Tech & AI</span><span class="badge">7/10</span></div>
+<h3>Beijing blocks the China piece of SoftBank’s $5.4B ABB robotics deal</h3>
+<p class="why"><strong>Why it matters:</strong> China’s foreign-investment security review vetoed the transfer of <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=What%20is%20ABB%20Robotics%20%E2%80%94%20its%20market%20position%20versus%20Fanuc%20and%20KUKA%2C%20why%20roughly%2090%25%20of%20its%20robots%20are%20built%20in%20China%2C%20and%20why%20SoftBank%20wants%20to%20buy%20it%3F">ABB’s robotics business</a> inside China — where roughly 90% of its robots are built — over fears its operational data could train foreign AI systems. The deal had cleared China’s antitrust review in February.</p>
+<p class="next">What’s next: ABB and SoftBank say they remain in dialogue on restructuring the transaction.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.therobotreport.com/chinese-regulators-block-softbanks-5-4b-acquisition-of-abb-robotics/">The Robot Report</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.therobotreport.com%2Fchinese-regulators-block-softbanks-5-4b-acquisition-of-abb-robotics%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Chinese%20regulators%20block%20SoftBank%205.4B%20acquisition%20of%20ABB%20Robotics%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20China%E2%80%99s%20foreign-investment%20security%20review%3A%20how%20new%20is%20this%20tool%2C%20how%20does%20blocking%20only%20the%20China%20portion%20reshape%20the%20deal%E2%80%99s%20economics%2C%20and%20what%20precedent%20does%20it%20set%20for%20cross-border%20robotics%20and%20AI%20M%26A%3F">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--tech)">Tech & AI</span><span class="badge">6/10</span></div>
+<h3>Google commits $17 billion to its first Wyoming data center</h3>
+<p class="why"><strong>Why it matters:</strong> The Laramie County campus near Cheyenne — announced Nov 5, full build-out targeted for 2031 — will be air-cooled to spare local water, in a state where a University of Wyoming poll found only 30% of residents favor more large <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Compare%20the%202026%20AI%20data-center%20buildouts%20%E2%80%94%20Google's%20%2417B%20Wyoming%20campus%20versus%20the%20largest%20Microsoft%2C%20Meta%20and%20Amazon%20commitments%20%E2%80%94%20and%20the%20power-grid%20constraints%20they%20all%20face.">AI data centers</a>.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/">Google</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fblog.google%2Finnovation-and-ai%2Finfrastructure-and-cloud%2Fglobal-network%2Fwyoming-data-center%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Google%20investing%20in%20Wyoming%20data%20center%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20the%20siting%20logic%3A%20why%20Wyoming%2C%20what%20does%20air-cooling%20at%20this%20scale%20trade%20off%2C%20and%20how%20does%20%2417%20billion%20compare%20with%20Google%E2%80%99s%20other%202026%20data-center%20commitments%3F">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--tech)">Tech & AI</span><span class="badge">6/10</span></div>
+<h3>DDoS attacks triple as botnets shift from giants to swarms</h3>
+<p class="why"><strong>Why it matters:</strong> Cloudflare mitigated 18.2 million network-layer attacks in Q3 — up 208% year over year — yet attacks above 1 Tbps fell from 805 to 251, as takedowns of the big botnets pushed <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20DDoS%20booter%20services%20%E2%80%94%20how%20the%20attack-for-hire%20economy%20works%2C%20what%20the%202026%20law-enforcement%20takedowns%20changed%2C%20and%20why%20attacks%20got%20smaller%20but%20far%20more%20numerous.">booter services</a> toward short swarm attacks; 96% ended inside ten minutes.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://blog.cloudflare.com/ddos-threat-report-2026-q3/">Cloudflare</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fblog.cloudflare.com%2Fddos-threat-report-2026-q3%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Cloudflare%20DDoS%20Threat%20Report%202026%20Q3%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20the%20swarm%20shift%3A%20why%20did%20takedowns%20of%20large%20botnets%20produce%20three%20times%20more%20but%20smaller%20attacks%2C%20and%20what%20does%20a%2096%25-under-ten-minutes%20profile%20mean%20for%20how%20defenders%20should%20architect%20mitigation%3F">Go deeper</a></div>
+</article>
+</div>
+</section>
+
+<section class="beat" id="science">
+<h2 style="color:var(--science);border-color:var(--science)">Science &amp; Space</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel" style="color:var(--science)">Science · Lead</span><span class="badge">7/10</span></div>
+<h3>Physicists confirm a third kind of magnetism</h3>
+<p class="why"><strong>Why it matters:</strong> A SLAC/Stanford team directly observed <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20altermagnetism%20%E2%80%94%20the%20newly%20confirmed%20third%20magnetic%20phase%20%E2%80%94%20how%20it%20differs%20from%20ferromagnetism%20and%20antiferromagnetism%2C%20and%20why%20spintronics%20researchers%20care.">altermagnetism</a> in <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=What%20is%20manganese%20telluride%20(MnTe)%20%E2%80%94%20the%20material%20in%20which%20altermagnetism%20was%20confirmed%20in%202026%20%E2%80%94%20and%20why%20is%20it%20a%20good%20testbed%20for%20new%20magnetic%20phases%3F">manganese telluride</a> — a chiral, spiral-like spin arrangement caught with polarized X-rays — in work published in Science on Oct 29. The phase points toward spintronics and denser memory, though applications remain prospective.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://news.stanford.edu/stories/2026/10/altermagnetism-magnetic-phase-research">Stanford Report</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fnews.stanford.edu%2Fstories%2F2026%2F10%2Faltermagnetism-magnetic-phase-research%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22SLAC%20researchers%20find%20proof%20of%20altermagnetism%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20altermagnetism%20for%20a%20technical%20reader%3A%20how%20does%20it%20differ%20from%20ferro-%20and%20antiferromagnetism%2C%20what%20did%20the%20chirality%20measurement%20actually%20show%2C%20and%20what%20is%20a%20realistic%20path%20to%20spintronics%20applications%3F">Go deeper</a></div>
+</article>
+<div class="grid2">
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--science)">Science</span><span class="badge">6/10</span></div>
+<h3>Vulcan set to fly Friday after nine months on the ground</h3>
+<p class="why"><strong>Why it matters:</strong> ULA’s return-to-flight carries 40 <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=What%20is%20Amazon%20Leo%20%E2%80%94%20the%20renamed%20Kuiper%20broadband%20constellation%20%E2%80%94%20how%20many%20satellites%20are%20in%20orbit%2C%20and%20how%20dependent%20is%20its%20deployment%20on%20Vulcan%20and%20New%20Glenn%20flying%20on%20schedule%3F">Amazon Leo</a> broadband satellites on the first Vulcan with six solid boosters, flying a redesigned nozzle after February’s in-flight failure froze national-security launches.</p>
+<p class="next">What’s next: Targeted for Nov 13 from Cape Canaveral, pending range approval.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://spaceflightnow.com/2026/10/28/united-launch-alliance-announces-mid-november-return-to-flight-for-vulcan-rocket/">Spaceflight Now</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fspaceflightnow.com%2F2026%2F10%2F28%2Funited-launch-alliance-announces-mid-november-return-to-flight-for-vulcan-rocket%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22United%20Launch%20Alliance%20announces%20mid-November%20return%20to%20flight%20for%20Vulcan%20rocket%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20the%20stakes%20of%20Friday%E2%80%99s%20launch%3A%20what%20failed%20on%20the%20GEM-63XL%20nozzle%20in%20February%2C%20what%20changed%2C%20and%20what%20has%20nine%20months%20of%20Vulcan%20downtime%20meant%20for%20Space%20Force%20launch%20assignments%3F">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--science)">Science</span><span class="badge">6/10</span></div>
+<h3>Blue Origin pushes New Glenn’s return into January</h3>
+<p class="why"><strong>Why it matters:</strong> CEO <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Dave%20Limp%20%E2%80%94%20his%20move%20from%20Amazon%20devices%20chief%20to%20Blue%20Origin%20CEO%2C%20and%20his%20track%20record%20on%20New%20Glenn's%20cadence%20promises.">Dave Limp</a> told staff the next flight slips to January 2027 while the company rebuilds the Cape Canaveral pad damaged in May’s hotfire accident, which destroyed a vehicle. The slip ripples into Amazon Leo deployment and AST SpaceMobile’s 2027 service timeline.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://thenextweb.com/news/blue-origin-new-glenn-return-to-flight-delayed-january">The Next Web</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fthenextweb.com%2Fnews%2Fblue-origin-new-glenn-return-to-flight-delayed-january%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Blue%20Origin%20delays%20New%20Glenn%20return%20to%20flight%20until%20January%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20compare%20Blue%20Origin%E2%80%99s%20and%20ULA%E2%80%99s%20recovery%20timelines%3A%20what%20does%20the%20January%20slip%20mean%20for%20Amazon%20Leo%E2%80%99s%20deployment%20schedule%20and%20for%20AST%20SpaceMobile%E2%80%99s%202027%20service%20plans%3F">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--science)">Science</span><span class="badge">6/10</span></div>
+<h3>A 24-hour fast primes the gut to heal itself after radiation</h3>
+<p class="why"><strong>Why it matters:</strong> MD Anderson researchers showed in mice (PNAS) that fasting boosts <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20Akkermansia%20muciniphila%20%E2%80%94%20the%20gut%20bacterium%20linked%20to%20intestinal%20repair%2C%20metabolic%20health%20and%20now%20radiation%20recovery%20%E2%80%94%20and%20the%20state%20of%20evidence%20for%20interventions%20that%20raise%20it.">Akkermansia muciniphila</a>, whose propionate output primes intestinal cells for faster repair after radiation damage — remove the bacterium, and the benefit disappears.</p>
+<p class="next">What’s next: Preclinical only; whether the pathway works in patients receiving abdominal radiation is the open question.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.mdanderson.org/newsroom/research-newsroom/2026/07/fasting-primes-gut-microbiome-to-improve-intestinal-recovery-after-radiation-treatment.html">MD Anderson Cancer Center</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.mdanderson.org%2Fnewsroom%2Fresearch-newsroom%2F2026%2F07%2Ffasting-primes-gut-microbiome-to-improve-intestinal-recovery-after-radiation-treatment.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Fasting%20primes%20gut%20microbiome%20to%20improve%20intestinal%20recovery%20after%20radiation%20treatment%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20evaluate%20the%20evidence%3A%20how%20strong%20is%20the%20mouse%20data%20on%20Akkermansia%20muciniphila%20and%20propionate%2C%20what%20are%20the%20known%20risks%20of%20fasting%20around%20cancer%20treatment%2C%20and%20what%20would%20a%20patient%20trial%20need%20to%20show%3F">Go deeper</a></div>
+</article>
+</div>
+</section>
+
+<section class="beat" id="anthropic">
+<h2 style="color:var(--anthropic);border-color:var(--anthropic)">Anthropic</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel" style="color:var(--anthropic)">Anthropic · Lead</span><span class="badge">9/10</span></div>
+<h3>Anthropic launches its IPO roadshow: 825 million shares at $70–78</h3>
+<p class="why"><strong>Why it matters:</strong> The <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20how%20an%20IPO%20roadshow%20and%20pricing%20work%2C%20using%20Anthropic%E2%80%99s%20%2470%E2%80%9378%20ANT%20range%20as%20the%20example%20%E2%80%94%20who%20sets%20the%20final%20price%2C%20what%20the%20greenshoe%20option%20is%2C%20and%20what%20happens%20between%20roadshow%20and%20first%20trade%20on%20Nasdaq.">“ANT” listing</a> on Nasdaq would gross up to $64.4 billion before the greenshoe — second only to SpaceX’s $75 billion June debut — with Goldman Sachs and Morgan Stanley leading, after reports of investor pushback on a $2 trillion ask.</p>
+<p class="next">What’s next: Reports point to pricing the week of November 16, putting the debut before Thanksgiving.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.anthropic.com/news/roadshow-launch">Anthropic</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.anthropic.com%2Fnews%2Froadshow-launch%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Anthropic%20launches%20roadshow%20for%20proposed%20initial%20public%20offering%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20build%20the%20bull%20and%20bear%20case%20for%20the%20ANT%20IPO%20at%20%2470%E2%80%9378%3A%20implied%20valuation%20versus%20the%20%24965%20billion%20May%20private%20round%2C%20comparison%20with%20SpaceX%E2%80%99s%20June%20debut%2C%20and%20the%20key%20risks%20a%20prospective%20investor%20should%20weigh.">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:var(--anthropic)">Anthropic</span><span class="badge">7/10</span></div>
+<h3>Claude Fable 5.2 and Mythos 5.2 land a day ahead of the roadshow</h3>
+<p class="why"><strong>Why it matters:</strong> The new flagships beat Opus 5.5 on nearly every evaluated capability — 69.9% vs 62.3% on FrontierSWE v2 — at $8/$40 per million tokens. <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Explain%20Anthropic's%20Fable%2FMythos%20split%20%E2%80%94%20one%20underlying%20model%20offered%20in%20two%20safeguard%20tiers%20%E2%80%94%20and%20compare%20it%20with%20how%20other%20frontier%20labs%20gate%20dual-use%20capabilities.">Mythos</a>, the same model with dual-use safeguards removed, stays limited to vetted cyber and life-science organizations.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Anthropic</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.anthropic.com%2Fclaude-fable-and-mythos-5-2%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Introducing%20Claude%20Fable%205.2%20and%20Claude%20Mythos%205.2%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20analyze%20the%20two-tier%20release%20strategy%3A%20what%20does%20splitting%20Fable%20(safeguarded)%20from%20Mythos%20(vetted%20access)%20signal%20about%20frontier-model%20governance%2C%20and%20how%20do%20the%20claimed%20coding%20gains%20compare%20with%20the%20prior%20generation%3F">Go deeper</a></div>
+</article>
+</section>
+
+<section class="beat" id="sports">
+<h2 style="color:var(--muted);border-color:var(--border)">Your Teams</h2>
+<div class="grid2">
+<article class="story">
+<div class="chip"><span class="blabel" style="color:#AA0000">49ers</span><span class="badge">7/10</span></div>
+<h3>49ers maul the Raiders 38–17 and sit at 7–1</h3>
+<p class="why"><strong>Why it matters:</strong> Five forced turnovers after halftime, two <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Brock%20Purdy's%202026%20season%20%E2%80%94%20his%20numbers%20through%20the%2049ers'%207%E2%80%931%20start%20and%20where%20he%20ranks%20among%20NFC%20quarterbacks.">Brock Purdy</a> touchdown passes and 414 total yards Sunday at Levi’s — San Francisco hits the season’s midpoint tied for the NFL’s best record.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.espn.com/nfl/game/_/gameId/401873047/raiders-49ers">ESPN</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.espn.com%2Fnfl%2Fgame%2F_%2FgameId%2F401873047%2Fraiders-49ers%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%2249ers%2038-17%20Raiders%20Nov%208%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20break%20down%20how%20the%2049ers%E2%80%99%20defense%20forced%20five%20second-half%20turnovers%2C%20and%20what%20a%207%E2%80%931%20start%20means%20for%20their%20playoff%20seeding%20odds.">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:#1D428A">Warriors</span><span class="badge">7/10</span></div>
+<h3>Warriors blast the Pelicans by 51 for an eighth straight win</h3>
+<p class="why"><strong>Why it matters:</strong> 138–87 Monday — the fourth-largest margin in franchise history — with 25 points each from Curry and <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Brandin%20Podziemski%20%E2%80%94%20his%20leap%20in%20the%202026-27%20season%20alongside%20Stephen%20Curry%20and%20his%20role%20in%20the%20Warriors'%20eight-game%20winning%20streak.">Brandin Podziemski</a> and 21 made threes. The streak follows an 0–3 start.</p>
+<p class="next">What’s next: Wednesday at Houston.</p>
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.nba.com/warriors/news/gameday-recap-20261109">Warriors / NBA.com</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nba.com%2Fwarriors%2Fnews%2Fgameday-recap-20261109%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Warriors%20complete%20perfect%20homestand%20with%2051-point%20victory%20over%20the%20Pelicans%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20put%20the%2051-point%20win%20in%20context%3A%20how%20unusual%20is%20an%20eight-game%20win%20streak%20immediately%20after%20an%200%E2%80%933%20start%2C%20and%20what%20changed%20in%20the%20Warriors%E2%80%99%20rotation%3F">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:#006D75">Sharks</span><span class="badge">6/10</span></div>
+<h3>Stenberg ends an eight-round shootout — and a five-game skid</h3>
+<p class="why"><strong>Why it matters:</strong> <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Ivar%20Stenberg%20%E2%80%94%20the%20San%20Jose%20Sharks%20rookie%20forward%20%E2%80%94%20his%20draft%20pedigree%20and%20how%20he%20fits%20the%20rebuild%20timeline%20alongside%20Macklin%20Celebrini.">Ivar Stenberg</a>’s shootout winner beat the Islanders 3–2 Monday, lifting San Jose to 8–11–1; Macklin Celebrini had three assists in Friday’s near-comeback in Dallas.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.espn.com/nhl/game/_/gameId/401892682/islanders-sharks">ESPN</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.espn.com%2Fnhl%2Fgame%2F_%2FgameId%2F401892682%2Fislanders-sharks%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Sharks%203-2%20Islanders%20Nov%209%202026%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20the%20Sharks%E2%80%99%20rebuild%3A%20at%208%E2%80%9311%E2%80%931%2C%20what%20do%20Celebrini%E2%80%99s%20and%20Stenberg%E2%80%99s%20early%20seasons%20suggest%20about%20the%20timeline%20back%20to%20the%20playoffs%3F">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel" style="color:#F4793E">Giants</span><span class="badge">6/10</span></div>
+<h3>Giants start the 40-man shuffle after a 97-loss season</h3>
+<p class="why"><strong>Why it matters:</strong> Grant McCray and Braxton Roxby were claimed off waivers as San Francisco trims a roster that used a record-tying 71 players in 2026; pitching is the stated priority in a free-agent class topped by <a class="ent" target="_blank" rel="noopener" href="https://claude.ai/new?q=Profile%20Tarik%20Skubal%20as%20the%20top%20free%20agent%20of%20the%202026-27%20MLB%20offseason%20%E2%80%94%20his%20track%20record%2C%20a%20realistic%20contract%20projection%2C%20and%20whether%20the%20San%20Francisco%20Giants%20can%20land%20him.">Tarik Skubal</a>.</p>
+
+<div class="srow"><a class="src" target="_blank" rel="noopener" href="https://www.mlb.com/giants/news/grant-mccray-braxton-roxby-claimed-off-waivers">MLB.com</a><a class="deeper" target="_blank" rel="noopener" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.mlb.com%2Fgiants%2Fnews%2Fgrant-mccray-braxton-roxby-claimed-off-waivers%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Giants%20lose%20McCray%20Roxby%20to%20waiver%20claims%20as%2040-man%20shuffle%20begins%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20sketch%20the%20Giants%E2%80%99%20offseason%20plan%3A%20after%2097%20losses%20and%2071%20players%20used%2C%20which%20rotation%20and%20second-base%20targets%20make%20sense%2C%20and%20is%20a%20Tarik%20Skubal%20pursuit%20realistic%3F">Go deeper</a></div>
+</article>
+</div>
+<div class="sb-row"><div class="sb-head"><span class="sb-league" style="color:var(--muted)">NFL</span><span class="sb-ctx">Week 9</span></div><div class="sb-scroll"><div class="scard team" style="border-left-color:#AA0000">
+<div class="sline"><span>LV</span><span class="mut">17</span></div>
+<div class="sline"><span>SF</span><span class="up">38</span></div>
+<div class="sstat">Final · Sun</div></div><div class="scard">
+<div class="sline"><span>BUF</span><span class="up">23</span></div>
+<div class="sline"><span>MIN</span><span class="mut">6</span></div>
+<div class="sstat">Final · Mon</div></div></div></div>
+<div class="sb-row"><div class="sb-head"><span class="sb-league" style="color:var(--muted)">NBA</span><span class="sb-ctx">Nov 9 slate</span></div><div class="sb-scroll"><div class="scard team" style="border-left-color:#1D428A">
+<div class="sline"><span>NOP</span><span class="mut">87</span></div>
+<div class="sline"><span>GSW</span><span class="up">138</span></div>
+<div class="sstat">Final</div></div><div class="scard">
+<div class="sline"><span>IND</span><span class="mut">122</span></div>
+<div class="sline"><span>DAL</span><span class="up">125</span></div>
+<div class="sstat">Final</div></div><div class="scard">
+<div class="sline"><span>SAS</span><span class="up">122</span></div>
+<div class="sline"><span>PHX</span><span class="mut">96</span></div>
+<div class="sstat">Final</div></div><div class="scard">
+<div class="sline"><span>LAL</span><span class="up">124</span></div>
+<div class="sline"><span>ATL</span><span class="mut">114</span></div>
+<div class="sstat">Final</div></div><div class="scard">
+<div class="sline"><span>DEN</span><span class="mut">100</span></div>
+<div class="sline"><span>HOU</span><span class="up">110</span></div>
+<div class="sstat">Final</div></div><div class="scard">
+<div class="sline"><span>CHA</span><span class="up">124</span></div>
+<div class="sline"><span>CLE</span><span class="mut">112</span></div>
+<div class="sstat">Final</div></div></div></div>
+<div class="sb-row"><div class="sb-head"><span class="sb-league" style="color:var(--muted)">NHL</span><span class="sb-ctx">20 games in</span></div><div class="sb-scroll"><div class="scard team" style="border-left-color:#006D75">
+<div class="sline"><span>NYI</span><span class="mut">2</span></div>
+<div class="sline"><span>SJS</span><span class="up">3</span></div>
+<div class="sstat">Final / SO</div></div></div></div>
+</section>
+
+<section class="ending">
+<h2>That’s your briefing. You’re caught up.</h2>
+<p>20 stories this morning — every headline, source and dotted link goes deeper.<br><a href="archive/">Browse the archive →</a></p>
+</section>
+
+<details class="sources">
+<summary>Sources (21)</summary>
+<p class="man"><span class="mh">Washington and Tehran keep talking…</span> — <a target="_blank" rel="noopener" href="https://www.aljazeera.com/news/2026/11/1/iran-and-us-explore-diplomacy-amid-rising-threats-of-war">Al Jazeera</a> — <span class="mn">fetch blocked by session network policy; corroborated across Al Jazeera, Al-Monitor, gCaptain, Energy Connects (Nov 1–3)</span></p>
+<p class="man"><span class="mh">One week on, Washington reorganizes…</span> — <a target="_blank" rel="noopener" href="https://www.npr.org/2026/11/03/g-s1-149526/2026-midterms-congress-balance-of-power">NPR</a> — <span class="mn">corroborated by NPR, CBS, CNBC, CBC; seat counts are projections, a few races uncalled</span></p>
+<p class="man"><span class="mh">COP31 opens in Antalya…</span> — <a target="_blank" rel="noopener" href="https://www.climatechangenews.com/2026/11/05/cop31-briefing-what-to-expect-from-the-antalya-climate-summit/">Climate Home News</a> — <span class="mn">pre-summit briefing (Nov 5); Nov 9 opening corroborated by NBC News, dialogue.earth</span></p>
+<p class="man"><span class="mh">Stocks post their best day since April…</span> — <a target="_blank" rel="noopener" href="https://www.cnbc.com/2026/11/08/stock-market-today-live-updates.html">CNBC</a> — <span class="mn">closes cross-checked vs TheStreet, Washington Post, Motley Fool — all agree</span></p>
+<p class="man"><span class="mh">Brent settles at $92.57…</span> — <a target="_blank" rel="noopener" href="https://www.brecorder.com/news/40448204/oil-down-over-usd7-a-barrel-in-post-settlement-trade">Reuters (via Business Recorder)</a> — <span class="mn">Reuters wire copy; settle corroborated by Gulf News, Investing.com; after-hours slide by Nation Thailand</span></p>
+<p class="man"><span class="mh">October payrolls triple expectations…</span> — <a target="_blank" rel="noopener" href="https://www.bls.gov/news.release/empsit.nr0.htm">BLS</a> — <span class="mn">primary release (rolling URL); figures corroborated by Fox Business, IndustryWeek</span></p>
+<p class="man"><span class="mh">Nvidia’s board opens an investigation…</span> — <a target="_blank" rel="noopener" href="https://www.nbcnews.com/tech/tech-news/nvidia-ceo-jensen-huang-investigation-rcna608148">NBC News</a> — <span class="mn">board statement fetch blocked; corroborated via Bloomberg, NBC, CNBC, ABC News</span></p>
+<p class="man"><span class="mh">Beijing blocks SoftBank–ABB…</span> — <a target="_blank" rel="noopener" href="https://www.therobotreport.com/chinese-regulators-block-softbanks-5-4b-acquisition-of-abb-robotics/">The Robot Report</a> — <span class="mn">corroborated by Evertiq, PYMNTS, ABB statement quotes; regulator naming varies across outlets</span></p>
+<p class="man"><span class="mh">Google commits $17B to Wyoming…</span> — <a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/">Google (company blog, primary)</a> — <span class="mn">corroborated by Baxtel, Cowboy State Daily</span></p>
+<p class="man"><span class="mh">DDoS attacks triple…</span> — <a target="_blank" rel="noopener" href="https://blog.cloudflare.com/ddos-threat-report-2026-q3/">Cloudflare (primary report)</a> — <span class="mn">figures corroborated by The Hacker News, CXOToday</span></p>
+<p class="man"><span class="mh">Physicists confirm a third kind of magnetism</span> — <a target="_blank" rel="noopener" href="https://news.stanford.edu/stories/2026/10/altermagnetism-magnetic-phase-research">Stanford Report</a> — <span class="mn">Science paper Oct 29; corroborated by Newswise/DOE, ScienceDaily</span></p>
+<p class="man"><span class="mh">Vulcan set to fly Friday…</span> — <a target="_blank" rel="noopener" href="https://spaceflightnow.com/2026/10/28/united-launch-alliance-announces-mid-november-return-to-flight-for-vulcan-rocket/">Spaceflight Now</a> — <span class="mn">Nov 13 target “pending range approval” per Air & Space Forces, SpaceNexus</span></p>
+<p class="man"><span class="mh">Blue Origin pushes New Glenn…</span> — <a target="_blank" rel="noopener" href="https://thenextweb.com/news/blue-origin-new-glenn-return-to-flight-delayed-january">The Next Web</a> — <span class="mn">summarizes Reuters/Bloomberg reporting of Limp memo (Nov 5); corroborated by Silicon UK</span></p>
+<p class="man"><span class="mh">A 24-hour fast primes the gut…</span> — <a target="_blank" rel="noopener" href="https://www.mdanderson.org/newsroom/research-newsroom/2026/07/fasting-primes-gut-microbiome-to-improve-intestinal-recovery-after-radiation-treatment.html">MD Anderson (primary)</a> — <span class="mn">institutional release for PNAS paper; resurfaced via ScienceDaily Nov 8</span></p>
+<p class="man"><span class="mh">Anthropic launches its IPO roadshow…</span> — <a target="_blank" rel="noopener" href="https://www.anthropic.com/news/roadshow-launch">Anthropic (primary)</a> — <span class="mn">fetched and confirmed: 825M shares, $70–78, Nasdaq “ANT”; $64.4B = 825M × $78 (arithmetic)</span></p>
+<p class="man"><span class="mh">Claude Fable 5.2 and Mythos 5.2…</span> — <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Anthropic (primary)</a> — <span class="mn">fetched and confirmed: benchmarks, pricing, access tiers</span></p>
+<p class="man"><span class="mh">49ers maul the Raiders 38–17…</span> — <a target="_blank" rel="noopener" href="https://www.espn.com/nfl/game/_/gameId/401873047/raiders-49ers">ESPN</a> — <span class="mn">score and 7–1 record corroborated by CBS Sports, SI, VAVEL</span></p>
+<p class="man"><span class="mh">Warriors blast the Pelicans by 51…</span> — <a target="_blank" rel="noopener" href="https://www.nba.com/warriors/news/gameday-recap-20261109">Warriors / NBA.com</a> — <span class="mn">corroborated by Sofascore, VAVEL, wire reports</span></p>
+<p class="man"><span class="mh">Stenberg ends an eight-round shootout…</span> — <a target="_blank" rel="noopener" href="https://www.espn.com/nhl/game/_/gameId/401892682/islanders-sharks">ESPN</a> — <span class="mn">8–11–1 record corroborated by CBS Sports box scores Nov 4–9</span></p>
+<p class="man"><span class="mh">Giants start the 40-man shuffle…</span> — <a target="_blank" rel="noopener" href="https://www.mlb.com/giants/news/grant-mccray-braxton-roxby-claimed-off-waivers">MLB.com</a> — <span class="mn">roster context from NBC Bay Area</span></p>
+<p class="man"><span class="mh">Market data & charts</span> — <a target="_blank" rel="noopener" href="https://www.investing.com/indices/us-spx-500-historical-data">multiple</a> — <span class="mn">S&P closes: Investing.com/Yahoo tables. Brent: Nov 3 $103.60 (GlobalOilShock, least certain), Nov 4 $93.52 (FinanceFeeds/Admiral), Nov 5 $94.62 (implied by Gulf News arithmetic), Nov 6 $98.32, Nov 9 $92.57 (Reuters). WTI $87.80 Trading Economics (settlement unconfirmed). Gold $4,141 Trading Economics; BTC $74,549 Fortune (7:30am ET Nov 9). IPO chart: SpaceX $75B (Reuters/Davis Polk), Aramco $29.4B (Reuters), Alibaba $25B (Statista), Anthropic $64.4B top-of-range arithmetic</span></p>
+</details>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function(){
+  var sp = {labels:["Nov 3","Nov 4","Nov 5","Nov 6","Nov 9"], data:[7568.92,7688.62,7353.73,7376.86,7549.94]};
+  var br = {labels:["Nov 3","Nov 4","Nov 5","Nov 6","Nov 9"], data:[103.60,93.52,94.62,98.32,92.57]};
+  var cod = {labels:["SpaceX · Jun 2026","Anthropic · top of range","Saudi Aramco · 2019","Alibaba · 2014"], data:[75.0,64.4,29.4,25.0]};
+  if (typeof Chart === 'undefined') {
+    var fb = function(id, txt){ var c=document.getElementById(id); if(c&&c.parentNode){ c.parentNode.innerHTML='<p style="font-size:13px;color:#9aa0a6;font-family:ui-monospace,Menlo,monospace">'+txt+'</p>'; } };
+    fb('spChart','S&P 500: 7,568.92 → 7,549.94 over five sessions (−0.3%); Monday +2.35%.');
+    fb('brentChart','Brent settlements: $103.60 → $92.57 over five sessions; Monday −5.85%.');
+    fb('codChart','Largest IPO raises ($B): SpaceX 75.0 · Anthropic up to 64.4 · Aramco 29.4 · Alibaba 25.0.');
+    return;
+  }
+  var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var tick = dark ? '#9aa0a6' : '#666666';
+  var grid = dark ? 'rgba(154,160,166,0.14)' : 'rgba(0,0,0,0.08)';
+  var cSp   = dark ? '#7aa2f7' : '#2b5fc7';
+  var cBr   = dark ? '#d4a27f' : '#8a5a35';
+  var cAnt  = dark ? '#d4a27f' : '#8a5a35';
+  var cMut  = dark ? '#565d6b' : '#b9b9b2';
+  function line(id, s, color){
+    new Chart(document.getElementById(id), {type:'line',
+      data:{labels:s.labels,datasets:[{data:s.data,borderColor:color,backgroundColor:'transparent',pointBackgroundColor:color,pointRadius:3,borderWidth:2,tension:0}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{ticks:{color:tick,font:{size:11}},grid:{display:false}},y:{ticks:{color:tick,font:{size:11}},grid:{color:grid}}}}});
+  }
+  line('spChart', sp, cSp);
+  line('brentChart', br, cBr);
+  new Chart(document.getElementById('codChart'), {type:'bar',
+    data:{labels:cod.labels,datasets:[{data:cod.data,backgroundColor:[cMut,cAnt,cMut,cMut],borderWidth:0,barThickness:18}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:tick,font:{size:11}},grid:{color:grid}},y:{ticks:{color:tick,font:{size:11}},grid:{display:false}}}}});
+})();
+</script>
+</body>
+</html>
