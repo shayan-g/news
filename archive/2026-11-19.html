@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — November 19, 2026</title>
+<style>
+:root{
+  --bg:#0f1115; --surface:#171a21; --border:#2a2f3a; --text:#e8e8e8; --muted:#9aa0a6;
+  --up:#9ece6a; --down:#f7768e;
+  --tech:#7aa2f7; --world:#f7768e; --business:#9ece6a; --science:#bb9af7; --anthropic:#d4a27f;
+  --serif:"Iowan Old Style",Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#fafaf8; --surface:#ffffff; --border:#e3e3de; --text:#1f1f1f; --muted:#666666;
+    --up:#4d7c0f; --down:#be123c;
+    --tech:#2563ab; --world:#be123c; --business:#4d7c0f; --science:#7e5bbf; --anthropic:#a06b42;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+a{color:inherit}
+em{font-style:italic}
+strong,b{font-weight:500}
+
+/* wire strip */
+.wire{font-family:var(--mono);font-size:13px;line-height:1.9;border-bottom:1px solid var(--border);padding-bottom:10px}
+.wire .n{color:var(--muted)}
+.wire .u{color:var(--up)} .wire .d{color:var(--down)} .wire .f{color:var(--muted)}
+.wire .sep{color:var(--border);padding:0 4px}
+.wire-label{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px}
+
+/* lede */
+.lede{padding:28px 0 8px;border-bottom:1px solid var(--border)}
+.dateline{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.thesis{font-family:var(--serif);font-size:23px;line-height:1.3;font-weight:500;margin:14px 0 12px}
+.narrative{font-family:var(--serif);font-size:17px;line-height:1.65;color:var(--text)}
+.readtime{display:inline-block;font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--border);padding:3px 10px;margin:16px 0 14px}
+
+/* entity + deeper links */
+a.ent{color:var(--accent,var(--tech));text-decoration:none;border-bottom:1px dotted var(--accent,var(--tech))}
+a.deeper{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent,var(--text));border:1px solid var(--border);background:var(--surface);padding:4px 12px;text-decoration:none}
+.srcrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.srcrow .src{font-size:13px;color:var(--muted)}
+.srcrow .src a{color:var(--muted)}
+
+/* state of play */
+.sop{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--border);padding:18px 0}
+.sop>div{padding:0 12px;border-left:1px solid var(--border)}
+.sop>div:first-child{border-left:none;padding-left:0}
+.sop .v{font-family:var(--mono);font-size:18px}
+.sop .l{font-size:12px;margin-top:3px}
+.sop .c{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+.sop .v.down{color:var(--down)} .sop .v.up{color:var(--up)}
+@media(max-width:640px){
+  .sop{grid-template-columns:repeat(6,1fr)}
+  .sop>div{grid-column:span 2;border-left:none;border-top:1px solid var(--border);padding:10px 0 0}
+  .sop>div:nth-child(1),.sop>div:nth-child(2),.sop>div:nth-child(3){border-top:none;padding-top:0}
+  .sop>div:nth-child(4){grid-column:1/span 3}
+  .sop>div:nth-child(5){grid-column:4/span 3}
+}
+
+/* charts */
+.charts{padding:20px 0;border-bottom:1px solid var(--border)}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.chart-grid{grid-template-columns:1fr}}
+.chartbox .t{font-size:13px;font-weight:500;margin-bottom:8px}
+.chartbox .note{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.45}
+.chartbox canvas{max-width:100%}
+.chart-fallback{font-family:var(--mono);font-size:13px;color:var(--muted);border:1px solid var(--border);padding:12px}
+
+/* sections */
+.section{padding:26px 0 8px}
+.sec-h{font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:6px;margin-bottom:18px}
+.story{margin-bottom:22px}
+.chip{display:inline-flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--border);padding:2px 8px;margin-bottom:8px}
+.chip .b{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.chip .score{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.story h3{font-family:var(--serif);font-size:19px;line-height:1.3;font-weight:500;margin-bottom:8px}
+.lead-story h3{font-size:22px}
+.story .why{font-size:15px;line-height:1.55}
+.story .why b{font-weight:500}
+.story .next{font-size:14px;font-style:italic;color:var(--muted);margin-top:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;border-top:1px solid var(--border);padding-top:20px;position:relative}
+.grid::before{content:"";position:absolute;top:20px;bottom:0;left:50%;width:1px;background:var(--border)}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.grid::before{display:none}}
+.lead-story{padding-bottom:20px}
+
+/* sports */
+.team-h .b{color:var(--teamc)}
+.sports-note{font-size:13px;color:var(--muted);margin:4px 0 16px}
+
+/* ending */
+.ending{text-align:center;padding:44px 0 10px}
+.ending .big{font-family:var(--serif);font-size:22px;font-weight:500}
+.ending .sub{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6}
+.ending a{color:var(--muted)}
+
+/* sources */
+details.sources{margin-top:30px;border-top:1px solid var(--border);padding-top:14px}
+details.sources summary{font-size:14px;font-weight:500;cursor:pointer;color:var(--muted)}
+details.sources ul{list-style:none;margin-top:10px}
+details.sources li{font-size:12px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--border);line-height:1.5}
+details.sources a{color:var(--muted)}
+.secwrap{--accent:var(--tech)}
+.sec-world{--accent:var(--world)} .sec-business{--accent:var(--business)} .sec-tech{--accent:var(--tech)}
+.sec-science{--accent:var(--science)} .sec-anthropic{--accent:var(--anthropic)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1 · WIRE -->
+<div class="wire">
+  <span><span class="n">S&amp;P 500</span> 7,323.63 <span class="d">−0.23%</span></span><span class="sep">·</span>
+  <span><span class="n">Dow</span> 50,198.17 <span class="d">−1.11%</span></span><span class="sep">·</span>
+  <span><span class="n">Nasdaq</span> 24,429.89 <span class="u">+0.42%</span></span><span class="sep">·</span>
+  <span><span class="n">Russell 2K</span> 2,714.31 <span class="u">+0.46%</span></span><span class="sep">·</span>
+  <span><span class="n">VIX</span> 24.56 <span class="u">−3.53%</span></span><span class="sep">·</span>
+  <span><span class="n">10-yr</span> 5.07% <span class="u">−4bp</span></span><span class="sep">·</span>
+  <span><span class="n">Brent</span> $93.14 <span class="f">Tue settle</span></span><span class="sep">·</span>
+  <span><span class="n">WTI</span> $86.01 <span class="f">Tue settle</span></span><span class="sep">·</span>
+  <span><span class="n">Gold</span> $3,741.90 <span class="d">−3.16%</span></span><span class="sep">·</span>
+  <span><span class="n">Bitcoin</span> ≈$62,300 <span class="d">−4.0%</span></span>
+</div>
+<div class="wire-label">Wednesday close (Nov 18) — markets reopen this morning with the Anthropic IPO. Brent/WTI show Tuesday settlements; Wednesday's could not be confirmed at press time.</div>
+
+<!-- 2 · LEDE -->
+<div class="lede secwrap">
+  <div class="dateline">Thursday, November 19, 2026 — generated 6:49am PT</div>
+  <div class="thesis">Everything gets a price today: Anthropic at $1.5 trillion, a December hike at 91%, a three-power world at 90 minutes.</div>
+  <p class="narrative">Sometime after this morning's open, ANT prints its first trade and the AI boom gets its public verdict — $83 a share, $81.3 billion raised, the largest IPO ever recorded, priced by <a class="ent" data-q="Profile Dario Amodei — his path from OpenAI safety researcher to CEO of a $1.5 trillion public company, and what control he retains after the Anthropic IPO">Dario Amodei</a>'s company into the S&amp;P 500's fifth straight losing session. The money that spent 2026 hiding in gold and bitcoin is now leaving both, because Wednesday's Fed minutes said the quiet part aloud: <a class="ent" data-q="Profile Kevin Warsh — his record since becoming Fed chair and why the 2026 Fed is signaling more interest-rate hikes while stock markets fall">Kevin Warsh</a>'s committee is nearly unanimous that more hikes are coming. Half a world away in Shenzhen, Trump, Xi and Putin sat down together for <a class="ent" data-q="Explain why a US-China-Russia trilateral summit never happened before November 2026, what each power risks by formalizing three-way talks, and what it means for the old bilateral arms-control architecture">the first trilateral in history</a> while Iran answered the US strike on <a class="ent" data-q="What is Qeshm Island, what did the United States strike there in November 2026, and how central is the island to Iran's drone and missile infrastructure?">Qeshm Island</a> with its widest Gulf barrage yet and Ukraine put a third hole in the <a class="ent" data-q="Explain the Kerch Bridge — why it matters militarily and symbolically to Russia, and the history of Ukrainian strikes on it from 2022 through November 2026">Kerch Bridge</a>. It is all one story: a world of maximum stakes being repriced in real time — by markets, by missiles, and by three men at a villa.</p>
+  <span class="readtime">~5 min read — 16 stories across 4 beats, plus the IPO of record</span>
+</div>
+
+<!-- 3 · STATE OF PLAY -->
+<div class="sop">
+  <div><div class="v up">$81.3B</div><div class="l">Anthropic IPO raise</div><div class="c">Largest ever, before a 147M-share greenshoe</div></div>
+  <div><div class="v down">91%</div><div class="l">December hike odds</div><div class="c">Kalshi pricing after hawkish Fed minutes</div></div>
+  <div><div class="v down">5.07%</div><div class="l">10-year Treasury</div><div class="c">The gravity under every risk asset</div></div>
+  <div><div class="v down">4</div><div class="l">Iranian waves on Bahrain</div><div class="c">In six days, at the 5th Fleet's home port</div></div>
+  <div><div class="v down">≈$62.3K</div><div class="l">Bitcoin</div><div class="c">Down ~20% this month as rate bets harden</div></div>
+</div>
+
+<!-- 4 · CHARTS -->
+<div class="charts secwrap">
+  <div class="chart-grid">
+    <div class="chartbox" id="spBox">
+      <div class="t">S&amp;P 500 — last five closes</div>
+      <canvas id="spChart" height="190"></canvas>
+      <div class="note">Five straight losses, the longest streak since June — a 3.5% slide while the Fed talks itself into December.</div>
+    </div>
+    <div class="chartbox" id="antBox">
+      <div class="t">Chart of the day — Anthropic's valuation path, $B (log scale)</div>
+      <canvas id="antChart" height="190"></canvas>
+      <div class="note">From $4.1B to $1.5T in three and a half years. <a class="ent" data-q="Compare Anthropic's valuation path to its $1.5 trillion IPO with what Google, Facebook and Nvidia were worth at their IPOs, adjusted for inflation — is public-market AI pricing rational or a bubble?">Is the public market rational to pay this?</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 · DOMINANT: ANTHROPIC / THE IPO -->
+<div class="section sec-anthropic secwrap" style="--accent:var(--anthropic)">
+  <div class="sec-h">The IPO of record</div>
+
+  <div class="story lead-story">
+    <div class="chip"><span class="b">Anthropic</span><span class="score">9/10</span></div>
+    <h3>The largest IPO in history starts trading this morning</h3>
+    <p class="why"><b>Why it matters:</b> Anthropic priced 980 million Class A shares at $83 — above the $70–78 marketed range — for a gross raise of about $81.3 billion at a roughly $1.5 trillion valuation, the biggest IPO ever recorded and a cash pile (~$79.4B to the company) that will fund years of compute. Goldman Sachs and Morgan Stanley led the deal, with a 147-million-share <a class="ent" data-q="Explain how a greenshoe (over-allotment) option works in an IPO, using Anthropic's 147-million-share, 30-day over-allotment as the worked example">greenshoe</a> on top.</p>
+    <p class="next">What's next: the offering closes tomorrow, Nov 20 — and the first public read on AI's flagship asset prints on the Nasdaq tape today under the ticker ANT.</p>
+    <div class="srcrow">
+      <span class="src">Source: <a href="https://www.anthropic.com/news/anthropic-prices-initial-public-offering" target="_blank" rel="noopener">Anthropic</a></span>
+      <a class="deeper" data-q="Read this article: https://www.anthropic.com/news/anthropic-prices-initial-public-offering — if the URL is unavailable, search for &quot;Anthropic prices initial public offering&quot; and find the original announcement — then explain what the $81.3 billion raise will actually fund, how Anthropic's governance (including the Long-Term Benefit Trust) works in a public company, and what a $1.5 trillion valuation implies about expected AI revenue">Go deeper</a>
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="chip"><span class="b">Anthropic</span><span class="score">7/10</span></div>
+    <h3>ANT lands on the worst tape of the year</h3>
+    <p class="why"><b>Why it matters:</b> The deal priced above range into a five-session S&amp;P slide — a bet that AI demand outruns a hiking Fed. Retail order flow is reported to rival SpaceX's debut, crypto pre-IPO contracts changed hands about 24% above the $83 offer overnight, and <a class="ent" data-q="What is Morningstar's fair-value methodology for newly public companies, and how seriously should investors take its $92 fair-value estimate for Anthropic stock before the first trade?">Morningstar</a> initiated coverage at a $92 fair value before the first print.</p>
+    <p class="next">What's next: large IPOs often take until midday to match their first trade — the opening print, not the 9:30 bell, is the number to watch.</p>
+    <div class="srcrow">
+      <span class="src">Source: <a href="https://finance.yahoo.com/technology/live/anthropic-ipo-live-company-said-to-price-stock-at-83-begin-trading-thursday-212656452.html" target="_blank" rel="noopener">Yahoo Finance</a></span>
+      <a class="deeper" data-q="Read this article: https://finance.yahoo.com/technology/live/anthropic-ipo-live-company-said-to-price-stock-at-83-begin-trading-thursday-212656452.html — if the URL is unavailable, search for &quot;Anthropic IPO live $83 begin trading&quot; and find the original reporting — then assess what above-range pricing, heavy retail demand and a 24% pre-IPO premium suggest about where ANT trades by year-end, and lay out the main downside scenarios">Go deeper</a>
+    </div>
+  </div>
+</div>
+
+<!-- 6 · WORLD -->
+<div class="section sec-world secwrap" style="--accent:var(--world)">
+  <div class="sec-h">World &amp; Geopolitics</div>
+
+  <div class="story lead-story">
+    <div class="chip"><span class="b">World</span><span class="score">9/10</span></div>
+    <h3>Trump, Xi and Putin make history — 90 minutes at Kylin Villa</h3>
+    <p class="why"><b>Why it matters:</b> The first-ever US–China–Russia trilateral ran about an hour and a half in Shenzhen on the <a class="ent" data-q="What is APEC, why was the 2026 summit hosted in Shenzhen significant, and how has China used summit hosting as a diplomatic instrument?">APEC</a> sidelines, with nuclear arms, Ukraine and the Iran war on the table — a format Beijing had refused for decades. Trump held separate one-on-ones with both leaders first, told them they were "really making history," and said the three powers are "uniquely positioned" to cut nuclear arsenals. No joint readout followed.</p>
+    <p class="next">What's next: watch for whether a standing trilateral arms-control channel is announced — that, not the photo, would be the deliverable.</p>
+    <div class="srcrow">
+      <span class="src">Source: <a href="https://www.scmp.com/news/china/diplomacy/article/3375055/xi-trump-and-putin-meet-landmark-trilateral-talks-apec" target="_blank" rel="noopener">South China Morning Post</a></span>
+      <a class="deeper" data-q="Read this article: https://www.scmp.com/news/china/diplomacy/article/3375055/xi-trump-and-putin-meet-landmark-trilateral-talks-apec — if the URL is unavailable, search for &quot;Xi Trump Putin trilateral talks APEC Shenzhen&quot; and find the original reporting — then analyze what each of the three leaders wanted from the meeting, what was actually agreed, and what it means for Ukraine and for nuclear arms control">Go deeper</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="story">
+      <div class="chip"><span class="b">World</span><span class="score">8/10</span></div>
+      <h3>Iran answers Qeshm with its widest Gulf barrage yet</h3>
+      <p class="why"><b>Why it matters:</b> Iran says its drones targeted Patriot batteries at Kuwait's <a class="ent" data-q="What is Ali Al-Salem Air Base in Kuwait, what US assets are stationed there, and why has Kuwait become a target in the 2026 Iran war?">Ali Al-Salem Air Base</a> and struck Bahrain — the 5th Fleet's home — for the fourth time in six days, after a US strike on Qeshm Island. Saudi defenses intercepted two Houthi cruise missiles over Riyadh; the PIF Tower was damaged.</p>
+      <p class="next">What's next: Trump is weighing fresh strikes on Iran, with Gulf escalation now touching four capitals at once.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://www.pbs.org/newshour/world/iran-widens-gulf-attacks-by-targeting-u-s-air-base-in-kuwait-and-sites-in-bahrain" target="_blank" rel="noopener">AP via PBS NewsHour</a></span>
+        <a class="deeper" data-q="Read this article: https://www.pbs.org/newshour/world/iran-widens-gulf-attacks-by-targeting-u-s-air-base-in-kuwait-and-sites-in-bahrain — if the URL is unavailable, search for &quot;Iran widens Gulf attacks Kuwait air base Bahrain&quot; and find the original AP reporting — then map Iran's escalation ladder against the Gulf states: why strike Kuwait and Bahrain now, where are US basing vulnerabilities, and what would trigger direct US strikes on the Iranian mainland?">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="chip"><span class="b">World</span><span class="score">7/10</span></div>
+      <h3>The Kerch Bridge takes a third hit in five days</h3>
+      <p class="why"><b>Why it matters:</b> A Ukrainian drone strike early today closed the bridge's railway section — per Russia's Transport Ministry — two days after a strike dropped a road arch into the strait. The timing, landing while Putin sat with Trump and Xi in Shenzhen, was the message.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://www.bloomberg.com/news/articles/2026-11-19/ukraine-strikes-crimea-bridge-again-as-xi-hosts-trump-and-putin" target="_blank" rel="noopener">Bloomberg</a></span>
+        <a class="deeper" data-q="Read this article: https://www.bloomberg.com/news/articles/2026-11-19/ukraine-strikes-crimea-bridge-again-as-xi-hosts-trump-and-putin — if the URL is unavailable, search for &quot;Ukraine strikes Crimea bridge again Xi hosts Trump Putin&quot; and find the original reporting — then assess how degraded the Kerch Bridge now is, what losing it means for Russian logistics in Crimea, and why Ukraine timed strikes to the Shenzhen summit">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="chip"><span class="b">World</span><span class="score">7/10</span></div>
+      <h3>Denmark's Folketing votes today to seal the Arctic pact</h3>
+      <p class="why"><b>Why it matters:</b> The final ratification vote on the US–Denmark–Greenland agreement is scheduled in Copenhagen today: two new US defense areas at Narsarsuaq and Mestersvig, plus components of <a class="ent" data-q="Explain the Golden Dome missile defense system — its architecture, projected cost, and why Greenland's geography matters to it">Golden Dome</a>. Greenland's parliament approved it 16–0 on Nov 3.</p>
+      <p class="next">What's next: once Denmark sends its diplomatic note to Washington the open-ended pact enters into force — no US Senate vote required.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://www.latintimes.com/denmark-ratification-arctic-defense-pact-greenland-601296" target="_blank" rel="noopener">Latin Times</a></span>
+        <a class="deeper" data-q="Read this article: https://www.latintimes.com/denmark-ratification-arctic-defense-pact-greenland-601296 — if the URL is unavailable, search for &quot;Denmark ratification Arctic defense pact Greenland Folketing&quot; and find the original reporting — then explain exactly what the US gains at Narsarsuaq and Mestersvig, what Greenland gets in return, and how the pact changes Arctic security">Go deeper</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7 · BUSINESS -->
+<div class="section sec-business secwrap" style="--accent:var(--business)">
+  <div class="sec-h">Business &amp; Markets</div>
+
+  <div class="story lead-story">
+    <div class="chip"><span class="b">Business</span><span class="score">8/10</span></div>
+    <h3>"Almost all" Fed officials want more — and markets believed them</h3>
+    <p class="why"><b>Why it matters:</b> Wednesday's FOMC minutes showed nearly every policymaker judged further hikes likely appropriate. The Dow fell 561 points (−1.11%, a third straight down day, with UnitedHealth the biggest drag), the S&amp;P 500 logged a fifth consecutive loss at 7,323.63, and <a class="ent" data-q="What is Kalshi, and how well have prediction markets forecast Federal Reserve decisions compared with fed funds futures?">Kalshi</a> priced a December hike at 91%. Only the Nasdaq rose, +0.42%, on IPO-eve AI demand.</p>
+    <p class="next">What's next: the December FOMC decision is three weeks out, with the 10-year already at 5.07%.</p>
+    <div class="srcrow">
+      <span class="src">Source: <a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nasdaq-p-125812319.html" target="_blank" rel="noopener">Yahoo Finance</a></span>
+      <a class="deeper" data-q="Read this article: https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nasdaq-p-125812319.html — if the URL is unavailable, search for &quot;Dow plunges 560 points S&P 500 extends losing streak Fed minutes November 18 2026&quot; and find the original reporting — then explain why the Fed is hiking in late 2026, what the minutes signal for December, and how much tightening the 5.07% 10-year yield already prices in">Go deeper</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="story">
+      <div class="chip"><span class="b">Business</span><span class="score">7/10</span></div>
+      <h3>Gold has its worst day in more than a year</h3>
+      <p class="why"><b>Why it matters:</b> December futures settled down $122.30 (−3.16%) at $3,741.90/oz, the weakest level in over a year, as rising <a class="ent" data-q="Explain real yields — why they drive gold prices, and what a 5.07% nominal 10-year Treasury yield means for every other asset class">real yields</a> and a 19-month-high dollar cracked 2026's defining safe-haven trade.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026" target="_blank" rel="noopener">FinWire</a></span>
+        <a class="deeper" data-q="Read this article: https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026 — if the URL is unavailable, search for &quot;gold futures settle 3741 November 18 2026&quot; and find the original reporting — then walk through the real-rate mechanics of why gold fell 3% on hawkish Fed minutes after rallying all year, and what would restart the rally">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="chip"><span class="b">Business</span><span class="score">6/10</span></div>
+      <h3>Bitcoin slides to ≈$62,300 — November's rout nears 20%</h3>
+      <p class="why"><b>Why it matters:</b> Bitcoin fell about 4% Wednesday, extending Tuesday's six-month low as hardening rate expectations drained speculative liquidity. The one crypto bid left: pre-IPO ANT contracts trading well above the $83 offer.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026" target="_blank" rel="noopener">FinWire</a></span>
+        <a class="deeper" data-q="Read this article: https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026 — if the URL is unavailable, search for &quot;bitcoin 62,300 November 18 2026&quot; and find the original reporting — then analyze whether bitcoin's November drawdown is about rates, liquidity or crypto-specific flows, and what the premium on Anthropic pre-IPO contracts says about where speculative money went">Go deeper</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8 · TECH -->
+<div class="section sec-tech secwrap" style="--accent:var(--tech)">
+  <div class="sec-h">Tech &amp; AI</div>
+
+  <div class="story lead-story">
+    <div class="chip"><span class="b">Tech</span><span class="score">8/10</span></div>
+    <h3>California calls Waymo an "imminent hazard" — and the freeways empty nationwide</h3>
+    <p class="why"><b>Why it matters:</b> The <a class="ent" data-q="What authority does the California DMV have over autonomous vehicles, and how have its actions against Cruise and Waymo reshaped the robotaxi industry?">California DMV</a> barred Waymo from state freeways effective Nov 11 — disclosed only Tuesday — after three robotaxis drove through an active Highway 101 work zone near Burlingame. Waymo then paused freeway rides in every US market, its second freeway suspension this year after the May incidents.</p>
+    <p class="next">What's next: surface-street service continues; the order stands until Waymo satisfies the DMV's safety findings.</p>
+    <div class="srcrow">
+      <span class="src">Source: <a href="https://sfstandard.com/2026/11/17/california-dmv-bans-waymo-from-freeways/" target="_blank" rel="noopener">The San Francisco Standard</a></span>
+      <a class="deeper" data-q="Read this article: https://sfstandard.com/2026/11/17/california-dmv-bans-waymo-from-freeways/ — if the URL is unavailable, search for &quot;California DMV bans Waymo from freeways imminent hazard&quot; and find the original reporting — then explain exactly what Waymo's robotaxis did wrong on Highway 101, how the DMV's imminent-hazard authority works, and what Waymo must show to get freeway access back">Go deeper</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="story">
+      <div class="chip"><span class="b">Tech</span><span class="score">7/10</span></div>
+      <h3>A week of outages gets an official answer: "not a cyberattack"</h3>
+      <p class="why"><b>Why it matters:</b> After Microsoft 365 (Nov 12), an FAA ground stop (Nov 13), JPMorgan Chase (Nov 16) and the <a class="ent" data-q="What is the NSA's classified communications network that went down in November 2026, how unusual is such an outage, and what does it reveal about federal patch management?">NSA's classified network</a> (Nov 17) all failed inside a week, DNI <a class="ent" data-q="Profile Jay Clayton — from SEC chair to Director of National Intelligence, and his role in the November 2026 outage investigations">Jay Clayton</a> said flatly "this is not a cyber attack," pointing to botched security patching — including a PHP vulnerability fix at NSA.</p>
+      <p class="next">What's next: bipartisan lawmakers want briefings on why so much US infrastructure failed at once.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://www.foxbusiness.com/technology/jay-clayton-addresses-concerns-amid-widespread-tech-outages" target="_blank" rel="noopener">Fox Business</a></span>
+        <a class="deeper" data-q="Read this article: https://www.foxbusiness.com/technology/jay-clayton-addresses-concerns-amid-widespread-tech-outages — if the URL is unavailable, search for &quot;Jay Clayton tech outages not a cyber attack&quot; and find the original reporting — then evaluate the official explanation that a week of outages at Microsoft, the FAA, Chase and the NSA was uncoordinated patching failures: what evidence supports it and what questions remain?">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="chip"><span class="b">Tech</span><span class="score">7/10</span></div>
+      <h3>Washington closes the cloud loophole on Chinese AI compute</h3>
+      <p class="why"><b>Why it matters:</b> A <a class="ent" data-q="What is the Bureau of Industry and Security, and how did it become the chokepoint agency of US-China technology competition?">Bureau of Industry and Security</a> interim final rule issued Monday requires licenses to ship advanced chips to any data center worldwide that may serve Chinese firms — with linked facilities counted together — and the FT reports Nvidia is telling data-center customers to keep at least 51% of capacity non-Chinese.</p>
+      <p class="next">What's next: export lawyers question BIS's authority over remote access; the House-passed Remote Access Security Act awaits the Senate.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://www.scmp.com/tech/article/3374639/us-tightens-ai-chip-export-curbs-close-chinas-overseas-data-centre-loophole" target="_blank" rel="noopener">South China Morning Post</a></span>
+        <a class="deeper" data-q="Read this article: https://www.scmp.com/tech/article/3374639/us-tightens-ai-chip-export-curbs-close-chinas-overseas-data-centre-loophole — if the URL is unavailable, search for &quot;US tightens AI chip export curbs overseas data centre loophole&quot; and find the original reporting — then explain how Chinese firms used overseas data centers to access restricted AI chips, how the BIS rule closes that path, and whether Commerce can legally police remote access">Go deeper</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9 · SCIENCE -->
+<div class="section sec-science secwrap" style="--accent:var(--science)">
+  <div class="sec-h">Science &amp; Space</div>
+
+  <div class="story lead-story">
+    <div class="chip"><span class="b">Science</span><span class="score">7/10</span></div>
+    <h3>Why aging brains wash themselves less at night</h3>
+    <p class="why"><b>Why it matters:</b> MIT researchers report in <em>Nature Aging</em> that the cerebrospinal-fluid waves that flush waste from the brain during deep sleep are significantly weaker in older adults — tracking the loss of slow brain waves, not shorter sleep — and correlating with gray-matter atrophy. A weakening <a class="ent" data-q="Explain the glymphatic system — how the brain clears waste during sleep, and why its failure is implicated in Alzheimer's disease">glymphatic system</a> is a leading suspect in Alzheimer's.</p>
+    <p class="next">What's next: the Lewis lab is studying older adults whose CSF flow stays youthful, and testing pink-noise stimulation to boost slow waves.</p>
+    <div class="srcrow">
+      <span class="src">Source: <a href="https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113" target="_blank" rel="noopener">MIT News</a></span>
+      <a class="deeper" data-q="Read this article: https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113 — if the URL is unavailable, search for &quot;waste-clearing waves in brain during sleep impaired in older adults MIT&quot; and find the original release — then explain how cerebrospinal fluid waves clear brain waste during deep sleep, why they weaken with age, and what this means for Alzheimer's prevention">Go deeper</a>
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="chip"><span class="b">Science</span><span class="score">7/10</span></div>
+    <h3>COP31's endgame: a $120 billion promise nobody has agreed to pay</h3>
+    <p class="why"><b>Why it matters:</b> In Antalya's final hours, a draft decision calls for tripling <a class="ent" data-q="Explain climate adaptation finance — how it differs from mitigation funding, who pays for it today, and why the gap between pledges and need is so large">adaptation finance</a> to at least $120 billion a year by 2035 — yet UN chief Guterres warned even that covers under 30% of what vulnerable nations need, and the EU wants the goal moved to a different negotiating track.</p>
+    <p class="next">What's next: the conference is scheduled to close tomorrow; an "Antalya-to-Addis roadmap" is the likely vehicle for whatever survives.</p>
+    <div class="srcrow">
+      <span class="src">Source: <a href="https://enb.iisd.org/sites/default/files/2026-11/enb12908e.pdf" target="_blank" rel="noopener">Earth Negotiations Bulletin (IISD)</a></span>
+      <a class="deeper" data-q="Read this document: https://enb.iisd.org/sites/default/files/2026-11/enb12908e.pdf — if the URL is unavailable, search for &quot;COP31 Antalya daily report adaptation finance tripling&quot; and find the Earth Negotiations Bulletin coverage — then explain what is in the draft COP31 decision on adaptation finance, who would actually pay the $120 billion a year, and what happens if Antalya closes without agreement">Go deeper</a>
+    </div>
+  </div>
+</div>
+
+<!-- 10 · SPORTS -->
+<div class="section secwrap" style="--accent:var(--muted)">
+  <div class="sec-h" style="--accent:var(--text);color:var(--text);border-color:var(--border)">Your teams</div>
+  <div class="sports-note">Wednesday's NBA and NHL box scores couldn't be verified at press time, so no scoreboard today — team storylines below are confirmed.</div>
+
+  <div class="grid">
+    <div class="story team-h" style="--teamc:#AA0000">
+      <div class="chip"><span class="b" style="color:var(--teamc)">49ers</span><span class="score">6/10</span></div>
+      <h3>Sunday in Mexico City is a No. 1-seed game</h3>
+      <p class="why"><b>Why it matters:</b> The 49ers meet the Vikings at <a class="ent" data-q="How does playing at Estadio Banorte's 7,200-foot altitude in Mexico City change NFL game planning — conditioning, kicking distances and play-calling?">Estadio Banorte</a> on Sunday Night Football (5:20pm PT, NBC) with the NFC's top seed on the line — Minnesota allows a league-low 14.5 points per game, and a Vikings win vaults them to the conference's top spot.</p>
+      <p class="next">What's next: an altitude-adjustment week at 7,200 feet, fresh off closing out Dallas.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://sfstandard.com/2026/11/16/brock-purdy-brian-flores-49ers-vikings/" target="_blank" rel="noopener">The San Francisco Standard</a></span>
+        <a class="deeper" data-q="Read this article: https://sfstandard.com/2026/11/16/brock-purdy-brian-flores-49ers-vikings/ — if the URL is unavailable, search for &quot;Brock Purdy Brian Flores 49ers Vikings Mexico City&quot; and find the original reporting — then break down 49ers-Vikings in Mexico City: how does Brian Flores's league-best defense match up against Brock Purdy, and how does 7,200 feet of altitude change the game?">Go deeper</a>
+      </div>
+    </div>
+
+    <div class="story team-h" style="--teamc:#1D428A">
+      <div class="chip"><span class="b" style="color:var(--teamc)">Warriors</span><span class="score">6/10</span></div>
+      <h3>Three straight without Steph, and San Antonio looms</h3>
+      <p class="why"><b>Why it matters:</b> An MRI confirmed an oblique abdominal tear that sidelines Stephen Curry at least two weeks; the Warriors (8-4) have dropped three straight since, and visit the 10-2 Spurs — riding a 10-game win streak — on Friday in <a class="ent" data-q="Explain the NBA Cup — how group play and knockout rounds work, and what winning it is actually worth to players and teams">NBA Cup</a> West Group C play.</p>
+      <div class="srcrow">
+        <span class="src">Source: <a href="https://dubnationhq.com/p/preview-warriors-stare-at-new-nba" target="_blank" rel="noopener">DubNation HQ</a></span>
+        <a class="deeper" data-q="Read this article: https://dubnationhq.com/p/preview-warriors-stare-at-new-nba — if the URL is unavailable, search for &quot;Warriors Spurs preview Curry abdominal November 2026&quot; and find the original reporting — then assess how the Warriors survive two-plus weeks without Stephen Curry: which lineups work, and can they stay in the NBA Cup race starting Friday in San Antonio?">Go deeper</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11 · ENDING -->
+<div class="ending">
+  <div class="big">That's your briefing. You're caught up.</div>
+  <div class="sub">16 stories this morning — every link above goes deeper.<br><a href="archive/">Browse the archive →</a></div>
+</div>
+
+<!-- 12 · SOURCES -->
+<details class="sources">
+  <summary>Sources (16)</summary>
+  <ul>
+    <li>The largest IPO in history starts trading — <a href="https://www.anthropic.com/news/anthropic-prices-initial-public-offering" target="_blank" rel="noopener">Anthropic</a> — company pricing release fetched directly (primary); contains all share and price terms.</li>
+    <li>ANT lands on the worst tape of the year — <a href="https://finance.yahoo.com/technology/live/anthropic-ipo-live-company-said-to-price-stock-at-83-begin-trading-thursday-212656452.html" target="_blank" rel="noopener">Yahoo Finance</a> — fetch blocked by network policy; demand/premium details corroborated across Yahoo, AP syndication, Fast Company and Morningstar excerpts.</li>
+    <li>Trump–Xi–Putin trilateral — <a href="https://www.scmp.com/news/china/diplomacy/article/3375055/xi-trump-and-putin-meet-landmark-trilateral-talks-apec" target="_blank" rel="noopener">SCMP</a> — fetch blocked; corroborated across SCMP, RFE/RL, NBC, Fox and CNBC excerpts; duration per CCTV.</li>
+    <li>Iran widens Gulf attacks — <a href="https://www.pbs.org/newshour/world/iran-widens-gulf-attacks-by-targeting-u-s-air-base-in-kuwait-and-sites-in-bahrain" target="_blank" rel="noopener">AP via PBS NewsHour</a> — fetch blocked; AP story corroborated via PBS, KSAT, Washington Post excerpts.</li>
+    <li>Kerch Bridge third strike — <a href="https://www.bloomberg.com/news/articles/2026-11-19/ukraine-strikes-crimea-bridge-again-as-xi-hosts-trump-and-putin" target="_blank" rel="noopener">Bloomberg</a> — paywalled; headline and substance corroborated by a second live blog; Nov 17 arch collapse per Novaya Gazeta / Ukrainska Pravda / Meduza.</li>
+    <li>Denmark's Folketing vote — <a href="https://www.latintimes.com/denmark-ratification-arctic-defense-pact-greenland-601296" target="_blank" rel="noopener">Latin Times</a> — fetch blocked; vote schedule (Nov 11 first reading, Nov 19 final vote) per excerpt; outcome not yet confirmed at press time, so framed as scheduled.</li>
+    <li>Fed minutes / market rout — <a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nasdaq-p-125812319.html" target="_blank" rel="noopener">Yahoo Finance</a> — fetch blocked; closes cross-checked against three independent end-of-day recaps; minutes language and 91% Kalshi odds per two independent recaps.</li>
+    <li>Gold's worst day — <a href="https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026" target="_blank" rel="noopener">FinWire</a> — fetch blocked; $122.30/−3.16% settle consistent across two trackers.</li>
+    <li>Bitcoin ≈$62,300 — <a href="https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026" target="_blank" rel="noopener">FinWire</a> — fetch blocked; two trackers printed $62,305 and $62,534, stated here as ≈$62,300.</li>
+    <li>Waymo freeway ban — <a href="https://sfstandard.com/2026/11/17/california-dmv-bans-waymo-from-freeways/" target="_blank" rel="noopener">The San Francisco Standard</a> — fetch blocked; disclosure corroborated by ABC7, CNN-affiliate, Scripps and KTLA excerpts.</li>
+    <li>Outages "not a cyberattack" — <a href="https://www.foxbusiness.com/technology/jay-clayton-addresses-concerns-amid-widespread-tech-outages" target="_blank" rel="noopener">Fox Business</a> — fetch blocked; Clayton quotes per Fox Business/CNBC excerpts; NSA/PHP detail per Federal News Network (AP) and ITV.</li>
+    <li>BIS cloud-loophole rule — <a href="https://www.scmp.com/tech/article/3374639/us-tightens-ai-chip-export-curbs-close-chinas-overseas-data-centre-loophole" target="_blank" rel="noopener">SCMP</a> — fetch blocked; rule corroborated by SCMP, Boston Globe, TechRepublic and law-firm advisory excerpts; 51% detail per FT via two secondary excerpts.</li>
+    <li>MIT sleep/CSF study — <a href="https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113" target="_blank" rel="noopener">MIT News</a> — fetch blocked; corroborated by EurekAlert and News-Medical; Nature Aging DOI 10.1038/s43587-026-01270-4.</li>
+    <li>COP31 endgame — <a href="https://enb.iisd.org/sites/default/files/2026-11/enb12908e.pdf" target="_blank" rel="noopener">Earth Negotiations Bulletin (IISD)</a> — PDF unfetchable in this session; $120B draft per TradeArabia and ENB excerpts; Guterres quote per APP.</li>
+    <li>49ers in Mexico City — <a href="https://sfstandard.com/2026/11/16/brock-purdy-brian-flores-49ers-vikings/" target="_blank" rel="noopener">The San Francisco Standard</a> — fetch blocked; game date/venue/broadcast per 49ers.com, Vikings.com and ESPN listings; stakes per SF Standard excerpt.</li>
+    <li>Warriors skid / Curry injury — <a href="https://dubnationhq.com/p/preview-warriors-stare-at-new-nba" target="_blank" rel="noopener">DubNation HQ</a> — fetch blocked; Curry MRI and two-week timeline per TSN, ClutchPoints and NBA.com excerpts; record, streak and Friday NBA Cup game per preview excerpt.</li>
+  </ul>
+  <p style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">Notes: direct URL fetches were blocked for most news domains by this session's network policy; stories above were verified across multiple independent search-index excerpts as noted per item. Market data: Wednesday index closes per CNBC/Yahoo EOD reports, corroborated by independent trackers; S&amp;P series Nov 12–17 carried over from this briefing's previously sourced closes. The Brent five-session chart was dropped (Wednesday settlement unconfirmed), and Wednesday's NBA/NHL scoreboard was omitted because finals could not be verified. The S&amp;P 200-day moving average was not sourced and is not shown. Anthropic valuation chart: funding-round valuations per widely reported company disclosures (May 2023 $4.1B, early 2024 $18.4B, Mar 2025 $61.5B, Sep 2025 $183B); IPO valuation per AP/Anthropic pricing.</p>
+</details>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function(){
+  // conversation layer
+  var base='https://claude.ai/new?q=';
+  document.querySelectorAll('a[data-q]').forEach(function(a){
+    a.href=base+encodeURIComponent(a.getAttribute('data-q'));
+    a.target='_blank'; a.rel='noopener';
+  });
+
+  var spData={labels:['Nov 12','Nov 13','Mon 16','Tue 17','Wed 18'],values:[7592.40,7561.67,7416.59,7340.53,7323.63]};
+  var antData={labels:["May '23","Early '24","Mar '25","Sep '25","IPO '26"],values:[4.1,18.4,61.5,183,1500]};
+
+  if(typeof Chart==='undefined'){
+    var f1=document.createElement('div');f1.className='chart-fallback';
+    f1.textContent='S&P 500 closes: 7,592 → 7,562 → 7,417 → 7,341 → 7,324 — down 3.5% over five sessions.';
+    var c1=document.getElementById('spChart');c1.replaceWith(f1);
+    var f2=document.createElement('div');f2.className='chart-fallback';
+    f2.textContent='Anthropic valuation, $B: 4.1 (May ’23) → 18.4 (early ’24) → 61.5 (Mar ’25) → 183 (Sep ’25) → 1,500 (IPO ’26).';
+    var c2=document.getElementById('antChart');c2.replaceWith(f2);
+    return;
+  }
+
+  var dark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var tick=dark?'#9aa0a6':'#666666', grid=dark?'#2a2f3a':'#e3e3de';
+  var barC=dark?'#d4a27f':'#a06b42', downC=dark?'#f7768e':'#be123c';
+
+  new Chart(document.getElementById('spChart'),{
+    type:'line',
+    data:{labels:spData.labels,datasets:[{data:spData.values,borderColor:downC,backgroundColor:'transparent',pointBackgroundColor:downC,pointRadius:3,borderWidth:2,tension:0.25}]},
+    options:{plugins:{legend:{display:false}},scales:{
+      x:{ticks:{color:tick,font:{family:'ui-monospace,Menlo,monospace',size:11}},grid:{color:grid,display:false}},
+      y:{ticks:{color:tick,font:{family:'ui-monospace,Menlo,monospace',size:11}},grid:{color:grid}}
+    }}
+  });
+
+  new Chart(document.getElementById('antChart'),{
+    type:'bar',
+    data:{labels:antData.labels,datasets:[{data:antData.values,backgroundColor:barC,borderWidth:0}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return '$'+ctx.parsed.y+'B';}}}},scales:{
+      x:{ticks:{color:tick,font:{family:'ui-monospace,Menlo,monospace',size:11}},grid:{display:false}},
+      y:{type:'logarithmic',min:1,max:2000,ticks:{color:tick,font:{family:'ui-monospace,Menlo,monospace',size:11},callback:function(v){return [1,10,100,1000].indexOf(v)>-1?'$'+v+'B':null;}},grid:{color:grid}}
+    }}
+  });
+
+})();
+</script>
+</body>
+</html>
