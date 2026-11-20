@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>Morning Briefing — November 19, 2026</title>
+<title>Morning Briefing — November 20, 2026</title>
 <style>
 :root{
   --bg:#0f1115; --surface:#171a21; --border:#2a2f3a; --text:#e8e8e8; --muted:#9aa0a6;
@@ -73,6 +73,7 @@ a.deeper{display:inline-block;font-family:var(--sans);font-size:13px;color:var(-
 .chartbox .note{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.45}
 .chartbox canvas{max-width:100%}
 .chart-fallback{font-family:var(--mono);font-size:13px;color:var(--muted);border:1px solid var(--border);padding:12px}
+.cotd{margin-top:24px}
 
 /* sections */
 .section{padding:26px 0 8px}
@@ -94,6 +95,17 @@ a.deeper{display:inline-block;font-family:var(--sans);font-size:13px;color:var(-
 /* sports */
 .team-h .b{color:var(--teamc)}
 .sports-note{font-size:13px;color:var(--muted);margin:4px 0 16px}
+.sb-league{margin-top:16px}
+.sb-league .lg{display:flex;align-items:baseline;gap:10px}
+.sb-league .lg .name{font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.sb-league .lg .ctx{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.sb-row{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:8px 0 4px}
+.sb-row::-webkit-scrollbar{display:none}
+.sb-card{flex:0 0 auto;min-width:150px;border:1px solid var(--border);background:var(--surface);padding:8px 10px;font-family:var(--mono);font-size:12px;line-height:1.6}
+.sb-card.fav{border-left:3px solid var(--teamc)}
+.sb-card .st{color:var(--muted)}
+.sb-card .st.live{color:var(--down)}
+.sb-card .w{color:var(--up)}
 
 /* ending */
 .ending{text-align:center;padding:44px 0 10px}
@@ -107,7 +119,6 @@ details.sources summary{font-size:14px;font-weight:500;cursor:pointer;color:var(
 details.sources ul{list-style:none;margin-top:10px}
 details.sources li{font-size:12px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--border);line-height:1.5}
 details.sources a{color:var(--muted)}
-.secwrap{--accent:var(--tech)}
 .sec-world{--accent:var(--world)} .sec-business{--accent:var(--business)} .sec-tech{--accent:var(--tech)}
 .sec-science{--accent:var(--science)} .sec-anthropic{--accent:var(--anthropic)}
 </style>
@@ -117,259 +128,288 @@ details.sources a{color:var(--muted)}
 
 <!-- 1 · WIRE -->
 <div class="wire">
-  <span><span class="n">S&amp;P 500</span> 7,323.63 <span class="d">−0.23%</span></span><span class="sep">·</span>
-  <span><span class="n">Dow</span> 50,198.17 <span class="d">−1.11%</span></span><span class="sep">·</span>
-  <span><span class="n">Nasdaq</span> 24,429.89 <span class="u">+0.42%</span></span><span class="sep">·</span>
-  <span><span class="n">Russell 2K</span> 2,714.31 <span class="u">+0.46%</span></span><span class="sep">·</span>
-  <span><span class="n">VIX</span> 24.56 <span class="u">−3.53%</span></span><span class="sep">·</span>
-  <span><span class="n">10-yr</span> 5.07% <span class="u">−4bp</span></span><span class="sep">·</span>
-  <span><span class="n">Brent</span> $93.14 <span class="f">Tue settle</span></span><span class="sep">·</span>
-  <span><span class="n">WTI</span> $86.01 <span class="f">Tue settle</span></span><span class="sep">·</span>
-  <span><span class="n">Gold</span> $3,741.90 <span class="d">−3.16%</span></span><span class="sep">·</span>
-  <span><span class="n">Bitcoin</span> ≈$62,300 <span class="d">−4.0%</span></span>
+  <span><span class="n">S&amp;P 500</span> 7,175.83 <span class="d">−2.02%</span></span><span class="sep">·</span>
+  <span><span class="n">Dow</span> 49,097.06 <span class="d">−2.19%</span></span><span class="sep">·</span>
+  <span><span class="n">Nasdaq</span> 23,879.20 <span class="d">−2.30%</span></span><span class="sep">·</span>
+  <span><span class="n">Russell 2K</span> 2,655.11 <span class="d">−2.18%</span></span><span class="sep">·</span>
+  <span><span class="n">VIX</span> 28.44 <span class="d">+15.8%</span></span><span class="sep">·</span>
+  <span><span class="n">10Y</span> 5.04% <span class="f">≈−3bp</span></span><span class="sep">·</span>
+  <span><span class="n">Brent</span> $91.98 <span class="f">+0.03</span></span><span class="sep">·</span>
+  <span><span class="n">WTI</span> $83.21 <span class="f">−0.05</span></span><span class="sep">·</span>
+  <span><span class="n">Gold</span> $3,608.62 <span class="d">−3.56%</span></span><span class="sep">·</span>
+  <span><span class="n">Bitcoin</span> ≈$61,300 <span class="d">−3.3%</span></span>
 </div>
-<div class="wire-label">Wednesday close (Nov 18) — markets reopen this morning with the Anthropic IPO. Brent/WTI show Tuesday settlements; Wednesday's could not be confirmed at press time.</div>
+<div class="wire-label">Thursday close (Nov 19) — markets reopen this morning. Gold is the December futures settle; bitcoin is a Friday-morning level.</div>
 
 <!-- 2 · LEDE -->
-<div class="lede secwrap">
-  <div class="dateline">Thursday, November 19, 2026 — generated 6:49am PT</div>
-  <div class="thesis">Everything gets a price today: Anthropic at $1.5 trillion, a December hike at 91%, a three-power world at 90 minutes.</div>
-  <p class="narrative">Sometime after this morning's open, ANT prints its first trade and the AI boom gets its public verdict — $83 a share, $81.3 billion raised, the largest IPO ever recorded, priced by <a class="ent" data-q="Profile Dario Amodei — his path from OpenAI safety researcher to CEO of a $1.5 trillion public company, and what control he retains after the Anthropic IPO">Dario Amodei</a>'s company into the S&amp;P 500's fifth straight losing session. The money that spent 2026 hiding in gold and bitcoin is now leaving both, because Wednesday's Fed minutes said the quiet part aloud: <a class="ent" data-q="Profile Kevin Warsh — his record since becoming Fed chair and why the 2026 Fed is signaling more interest-rate hikes while stock markets fall">Kevin Warsh</a>'s committee is nearly unanimous that more hikes are coming. Half a world away in Shenzhen, Trump, Xi and Putin sat down together for <a class="ent" data-q="Explain why a US-China-Russia trilateral summit never happened before November 2026, what each power risks by formalizing three-way talks, and what it means for the old bilateral arms-control architecture">the first trilateral in history</a> while Iran answered the US strike on <a class="ent" data-q="What is Qeshm Island, what did the United States strike there in November 2026, and how central is the island to Iran's drone and missile infrastructure?">Qeshm Island</a> with its widest Gulf barrage yet and Ukraine put a third hole in the <a class="ent" data-q="Explain the Kerch Bridge — why it matters militarily and symbolically to Russia, and the history of Ukrainian strikes on it from 2022 through November 2026">Kerch Bridge</a>. It is all one story: a world of maximum stakes being repriced in real time — by markets, by missiles, and by three men at a villa.</p>
-  <span class="readtime">~5 min read — 16 stories across 4 beats, plus the IPO of record</span>
+<div class="lede">
+  <div class="dateline">Friday, November 20, 2026 — generated 6:37am PT</div>
+  <h1 class="thesis">History's biggest IPO listed into a market that stopped believing.</h1>
+  <p class="narrative"><a class="ent" style="--accent:var(--anthropic)" data-q="Analyze Anthropic's position as a newly public company: its revenue trajectory, compute commitments, and the bull and bear cases at its IPO valuation after the November 2026 debut">Anthropic</a> banked $119.5 billion and closed its first day up 17% — and the tape treated even that as a selling opportunity. The Dow broke below 50,000 for the first time since June, Nvidia fell a sixth straight session despite a $115.8&nbsp;billion quarter, and by this morning the unwind was global: Taiwan −6.2%, Seoul −5.2%, Tokyo −5.1%. The common thread is a Fed under <a class="ent" style="--accent:var(--business)" data-q="Profile Kevin Warsh — his record since becoming Fed chair, and why the Federal Reserve is raising rates into a falling stock market in late 2026">Kevin Warsh</a> that keeps repricing what a promise of 2030 earnings is worth today. Away from the tape, the <a class="ent" style="--accent:var(--world)" data-q="What is the International Court of Justice, how do its genocide cases work, and why had no state ever been found responsible for genocide at the ICJ before November 2026?">World Court</a> delivered the first state genocide verdict in its 80-year history, tankers burned on Iranian mines in the <a class="ent" style="--accent:var(--world)" data-q="Explain the Strait of Hormuz closure that began in July 2026 — and why Brent crude is barely reacting to tankers hitting mines there in November 2026">Strait of Hormuz</a> while Brent barely moved, and <a class="ent" style="--accent:var(--science)" data-q="What is at stake in COP31's final hours in November 2026 — the dropped $120 billion adaptation-finance target, the missing fossil-fuel language, and what overtime could restore?">COP31</a> reached its closing day with both fossil fuels and the $120&nbsp;billion adaptation pledge cut from the text.</p>
+  <span class="readtime">~6 min read — 19 stories across 4 beats, plus Anthropic &amp; your teams</span>
 </div>
 
 <!-- 3 · STATE OF PLAY -->
 <div class="sop">
-  <div><div class="v up">$81.3B</div><div class="l">Anthropic IPO raise</div><div class="c">Largest ever, before a 147M-share greenshoe</div></div>
-  <div><div class="v down">91%</div><div class="l">December hike odds</div><div class="c">Kalshi pricing after hawkish Fed minutes</div></div>
-  <div><div class="v down">5.07%</div><div class="l">10-year Treasury</div><div class="c">The gravity under every risk asset</div></div>
-  <div><div class="v down">4</div><div class="l">Iranian waves on Bahrain</div><div class="c">In six days, at the 5th Fleet's home port</div></div>
-  <div><div class="v down">≈$62.3K</div><div class="l">Bitcoin</div><div class="c">Down ~20% this month as rate bets harden</div></div>
+  <div><div class="v up">$97.17</div><div class="l">ANT first-day close</div><div class="c">+17.1% over the $83 IPO price — after a 34% opening pop faded all afternoon</div></div>
+  <div><div class="v down">49,097</div><div class="l">Dow Jones</div><div class="c">First close below 50,000 since June; the S&amp;P 500's sixth straight loss</div></div>
+  <div><div class="v down">−6.2%</div><div class="l">Taiwan's Taiex today</div><div class="c">The AI selloff went global overnight — Kospi −5.2%, Nikkei −5.1%</div></div>
+  <div><div class="v down">≈10,000</div><div class="l">Rohingya killed</div><div class="c">The toll the ICJ cited in its first-ever genocide ruling against a state</div></div>
+  <div><div class="v down">40</div><div class="l">satellites lost</div><div class="c">Amazon Leo craft destroyed in Vulcan's first failure — fuel starvation suspected</div></div>
 </div>
 
 <!-- 4 · CHARTS -->
-<div class="charts secwrap">
+<div class="charts">
   <div class="chart-grid">
-    <div class="chartbox" id="spBox">
+    <div class="chartbox">
       <div class="t">S&amp;P 500 — last five closes</div>
-      <canvas id="spChart" height="190"></canvas>
-      <div class="note">Five straight losses, the longest streak since June — a 3.5% slide while the Fed talks itself into December.</div>
+      <canvas id="spChart" height="160"></canvas>
+      <div class="note">Six straight losing sessions, and a third straight close below the 200-day average (dashed, 7,347).</div>
     </div>
-    <div class="chartbox" id="antBox">
-      <div class="t">Chart of the day — Anthropic's valuation path, $B (log scale)</div>
-      <canvas id="antChart" height="190"></canvas>
-      <div class="note">From $4.1B to $1.5T in three and a half years. <a class="ent" data-q="Compare Anthropic's valuation path to its $1.5 trillion IPO with what Google, Facebook and Nvidia were worth at their IPOs, adjusted for inflation — is public-market AI pricing rational or a bubble?">Is the public market rational to pay this?</a></div>
+    <div class="chartbox">
+      <div class="t">Brent — last five settlements</div>
+      <canvas id="brentChart" height="160"></canvas>
+      <div class="note">Flat at $92 while tankers burn in Hormuz — the global surplus is, for now, out-arguing the war.</div>
     </div>
+  </div>
+  <div class="chartbox cotd">
+    <div class="t">Chart of the day — ANT's first day, dollars per share</div>
+    <canvas id="antChart" height="150"></canvas>
+    <div class="note">From the $83 offer to a $111.50 first print to a $97.17 close: the fade, not the pop, is what the rest of the market traded on. <a class="ent" style="--accent:var(--anthropic)" data-q="Walk through Anthropic's first-day IPO price path on November 19, 2026 — priced $83, opened $111.50, high $115.10, closed $97.17 — and explain what a fading debut historically signals for a mega-cap listing's first year">What does a faded debut predict?</a></div>
   </div>
 </div>
 
-<!-- 5 · DOMINANT: ANTHROPIC / THE IPO -->
-<div class="section sec-anthropic secwrap" style="--accent:var(--anthropic)">
-  <div class="sec-h">The IPO of record</div>
-
+<!-- 5 · BUSINESS -->
+<div class="section sec-business">
+  <h2 class="sec-h">Business &amp; Markets</h2>
   <div class="story lead-story">
-    <div class="chip"><span class="b">Anthropic</span><span class="score">9/10</span></div>
-    <h3>The largest IPO in history starts trading this morning</h3>
-    <p class="why"><b>Why it matters:</b> Anthropic priced 980 million Class A shares at $83 — above the $70–78 marketed range — for a gross raise of about $81.3 billion at a roughly $1.5 trillion valuation, the biggest IPO ever recorded and a cash pile (~$79.4B to the company) that will fund years of compute. Goldman Sachs and Morgan Stanley led the deal, with a 147-million-share <a class="ent" data-q="Explain how a greenshoe (over-allotment) option works in an IPO, using Anthropic's 147-million-share, 30-day over-allotment as the worked example">greenshoe</a> on top.</p>
-    <p class="next">What's next: the offering closes tomorrow, Nov 20 — and the first public read on AI's flagship asset prints on the Nasdaq tape today under the ticker ANT.</p>
-    <div class="srcrow">
-      <span class="src">Source: <a href="https://www.anthropic.com/news/anthropic-prices-initial-public-offering" target="_blank" rel="noopener">Anthropic</a></span>
-      <a class="deeper" data-q="Read this article: https://www.anthropic.com/news/anthropic-prices-initial-public-offering — if the URL is unavailable, search for &quot;Anthropic prices initial public offering&quot; and find the original announcement — then explain what the $81.3 billion raise will actually fund, how Anthropic's governance (including the Long-Term Benefit Trust) works in a public company, and what a $1.5 trillion valuation implies about expected AI revenue">Go deeper</a>
-    </div>
+    <span class="chip"><span class="b">Business</span><span class="score">8/10</span></span>
+    <h3>The AI trade cracks: Dow sheds 1,101 points and closes below 50,000</h3>
+    <p class="why"><b>Why it matters:</b> Thursday's 2.19% drop to 49,097.06 — the Dow's first close under 50,000 since June — came with the S&amp;P 500 down 2.02% for a sixth straight loss and <a class="ent" data-q="What is happening at Nvidia in November 2026 — Jensen Huang's resignation, Colette Kress as interim CEO, a $115.8 billion quarter that got sold, and the halt of licensed China shipments?">Nvidia</a> down a sixth straight session despite a $115.8&nbsp;billion, +103% revenue quarter. When blowout earnings get sold, the market regime has changed.</p>
+    <p class="next">What's next: futures pointed sharply lower again before this morning's open.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://abcnews.com/Business/wireStory/major-us-stock-indexes-fared-thursday-11192026-138303454" target="_blank" rel="noopener">AP via ABC News</a></span><a class="deeper" data-q="Read this article: https://abcnews.com/Business/wireStory/major-us-stock-indexes-fared-thursday-11192026-138303454 — if the URL is unavailable, search for &quot;Dow closes below 50,000 for first time since June November 19 2026&quot; and find the original reporting — then explain why the market is now selling blowout AI earnings, and what that regime change implies for how deep this correction runs">Go deeper</a></div>
   </div>
-
-  <div class="story">
-    <div class="chip"><span class="b">Anthropic</span><span class="score">7/10</span></div>
-    <h3>ANT lands on the worst tape of the year</h3>
-    <p class="why"><b>Why it matters:</b> The deal priced above range into a five-session S&amp;P slide — a bet that AI demand outruns a hiking Fed. Retail order flow is reported to rival SpaceX's debut, crypto pre-IPO contracts changed hands about 24% above the $83 offer overnight, and <a class="ent" data-q="What is Morningstar's fair-value methodology for newly public companies, and how seriously should investors take its $92 fair-value estimate for Anthropic stock before the first trade?">Morningstar</a> initiated coverage at a $92 fair value before the first print.</p>
-    <p class="next">What's next: large IPOs often take until midday to match their first trade — the opening print, not the 9:30 bell, is the number to watch.</p>
-    <div class="srcrow">
-      <span class="src">Source: <a href="https://finance.yahoo.com/technology/live/anthropic-ipo-live-company-said-to-price-stock-at-83-begin-trading-thursday-212656452.html" target="_blank" rel="noopener">Yahoo Finance</a></span>
-      <a class="deeper" data-q="Read this article: https://finance.yahoo.com/technology/live/anthropic-ipo-live-company-said-to-price-stock-at-83-begin-trading-thursday-212656452.html — if the URL is unavailable, search for &quot;Anthropic IPO live $83 begin trading&quot; and find the original reporting — then assess what above-range pricing, heavy retail demand and a 24% pre-IPO premium suggest about where ANT trades by year-end, and lay out the main downside scenarios">Go deeper</a>
+  <div class="grid">
+    <div class="story">
+      <span class="chip"><span class="b">Business</span><span class="score">8/10</span></span>
+      <h3>The chip rout goes global: Taiex −6.2%, Kospi −5.2%, Nikkei −5.1%</h3>
+      <p class="why"><b>Why it matters:</b> Friday's Asian sessions turned the US selloff into a synchronized worldwide unwind, with AMD down another ~7% and <a class="ent" data-q="How exposed is TSMC's valuation to US AI capex in 2026, and what would a sustained AI-datacenter spending slowdown do to its revenue mix?">TSMC</a> ADRs −4.2% in premarket. A global chip de-rating is a different animal from a one-day US tech dip.</p>
+      <p class="next">What's next: Nasdaq futures were down as much as 1.9% before today's open — the test is whether dip-buyers show up before the weekend.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://247wallst.com/investing/2026/11/20/amd-stock-drops-another-7-0-before-the-bell-and-taiwan-semiconductor-slides-4-2-as-nasdaq-futures-fall-1-6-after-asias-chip-selloff/" target="_blank" rel="noopener">24/7 Wall St</a></span><a class="deeper" data-q="Read this article: https://247wallst.com/investing/2026/11/20/amd-stock-drops-another-7-0-before-the-bell-and-taiwan-semiconductor-slides-4-2-as-nasdaq-futures-fall-1-6-after-asias-chip-selloff/ — if the URL is unavailable, search for &quot;Taiex Kospi Nikkei chip selloff November 20 2026&quot; and find the original reporting — then assess how much of Asia's chip complex is priced off US AI capex and which market is most exposed if the unwind continues">Go deeper</a></div>
+    </div>
+    <div class="story">
+      <span class="chip"><span class="b">Business</span><span class="score">7/10</span></span>
+      <h3>Walmart posts $188.8B and raises its outlook — the consumer didn't get the memo</h3>
+      <p class="why"><b>Why it matters:</b> Revenue rose 5.2% and full-year EPS guidance went up to $2.84–$2.89 while the rest of the tape panicked, with e-commerce up 17% and US advertising up 37%. <a class="ent" data-q="Profile John Furner, Walmart's CEO — his path to the job and how his pricing strategy is positioning Walmart against inflation in 2026">John Furner</a>'s consumer is still spending even as the AI complex reprices.</p>
+      <p class="next">What's next: the 4.9–5.2% holiday-quarter guidance is now the benchmark for retail earnings through December.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningsreleasefy27q3.htm" target="_blank" rel="noopener">Walmart 8-K (SEC)</a></span><a class="deeper" data-q="Read this article: https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningsreleasefy27q3.htm — if the URL is unavailable, search for &quot;Walmart Q3 FY2027 earnings November 19 2026&quot; and find the original release — then analyze what the 17% e-commerce and 37% advertising growth say about where Walmart's margin now comes from, and whether the US consumer is healthy or just trading down">Go deeper</a></div>
     </div>
   </div>
 </div>
 
 <!-- 6 · WORLD -->
-<div class="section sec-world secwrap" style="--accent:var(--world)">
-  <div class="sec-h">World &amp; Geopolitics</div>
-
+<div class="section sec-world">
+  <h2 class="sec-h">World &amp; Geopolitics</h2>
   <div class="story lead-story">
-    <div class="chip"><span class="b">World</span><span class="score">9/10</span></div>
-    <h3>Trump, Xi and Putin make history — 90 minutes at Kylin Villa</h3>
-    <p class="why"><b>Why it matters:</b> The first-ever US–China–Russia trilateral ran about an hour and a half in Shenzhen on the <a class="ent" data-q="What is APEC, why was the 2026 summit hosted in Shenzhen significant, and how has China used summit hosting as a diplomatic instrument?">APEC</a> sidelines, with nuclear arms, Ukraine and the Iran war on the table — a format Beijing had refused for decades. Trump held separate one-on-ones with both leaders first, told them they were "really making history," and said the three powers are "uniquely positioned" to cut nuclear arsenals. No joint readout followed.</p>
-    <p class="next">What's next: watch for whether a standing trilateral arms-control channel is announced — that, not the photo, would be the deliverable.</p>
-    <div class="srcrow">
-      <span class="src">Source: <a href="https://www.scmp.com/news/china/diplomacy/article/3375055/xi-trump-and-putin-meet-landmark-trilateral-talks-apec" target="_blank" rel="noopener">South China Morning Post</a></span>
-      <a class="deeper" data-q="Read this article: https://www.scmp.com/news/china/diplomacy/article/3375055/xi-trump-and-putin-meet-landmark-trilateral-talks-apec — if the URL is unavailable, search for &quot;Xi Trump Putin trilateral talks APEC Shenzhen&quot; and find the original reporting — then analyze what each of the three leaders wanted from the meeting, what was actually agreed, and what it means for Ukraine and for nuclear arms control">Go deeper</a>
-    </div>
+    <span class="chip"><span class="b">World</span><span class="score">9/10</span></span>
+    <h3>The World Court finds Myanmar committed genocide — a first against any state</h3>
+    <p class="why"><b>Why it matters:</b> The ICJ ruled 9–6 for The Gambia on Thursday that Myanmar committed genocide against the Rohingya in Rakhine State, with court president Yuji Iwasawa citing some 10,000 killed in the 2017 crackdown. In eight decades, no state had ever been held responsible for genocide by the court — a precedent that will be read closely in <a class="ent" data-q="Explain South Africa's genocide case against Israel at the ICJ — its current status in late 2026 and how the Myanmar genocide ruling's reasoning could affect it">South Africa's Gaza case</a>.</p>
+    <p class="next">What's next: Myanmar is ordered to prosecute perpetrators and pay compensation set in a later phase — though the court has no enforcement arm.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://www.aljazeera.com/news/2026/11/19/un-top-court-finds-myanmar-killed-10000-rohingya-as-it-rules-on-genocide" target="_blank" rel="noopener">Al Jazeera</a></span><a class="deeper" data-q="Read this article: https://www.aljazeera.com/news/2026/11/19/un-top-court-finds-myanmar-killed-10000-rohingya-as-it-rules-on-genocide — if the URL is unavailable, search for &quot;ICJ Myanmar Rohingya genocide ruling November 19 2026&quot; and find the original reporting — then explain exactly what the court found on genocide versus failure to prevent, what remedies it ordered, and what precedent this sets for pending ICJ cases">Go deeper</a></div>
   </div>
-
   <div class="grid">
     <div class="story">
-      <div class="chip"><span class="b">World</span><span class="score">8/10</span></div>
-      <h3>Iran answers Qeshm with its widest Gulf barrage yet</h3>
-      <p class="why"><b>Why it matters:</b> Iran says its drones targeted Patriot batteries at Kuwait's <a class="ent" data-q="What is Ali Al-Salem Air Base in Kuwait, what US assets are stationed there, and why has Kuwait become a target in the 2026 Iran war?">Ali Al-Salem Air Base</a> and struck Bahrain — the 5th Fleet's home — for the fourth time in six days, after a US strike on Qeshm Island. Saudi defenses intercepted two Houthi cruise missiles over Riyadh; the PIF Tower was damaged.</p>
-      <p class="next">What's next: Trump is weighing fresh strikes on Iran, with Gulf escalation now touching four capitals at once.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://www.pbs.org/newshour/world/iran-widens-gulf-attacks-by-targeting-u-s-air-base-in-kuwait-and-sites-in-bahrain" target="_blank" rel="noopener">AP via PBS NewsHour</a></span>
-        <a class="deeper" data-q="Read this article: https://www.pbs.org/newshour/world/iran-widens-gulf-attacks-by-targeting-u-s-air-base-in-kuwait-and-sites-in-bahrain — if the URL is unavailable, search for &quot;Iran widens Gulf attacks Kuwait air base Bahrain&quot; and find the original AP reporting — then map Iran's escalation ladder against the Gulf states: why strike Kuwait and Bahrain now, where are US basing vulnerabilities, and what would trigger direct US strikes on the Iranian mainland?">Go deeper</a>
-      </div>
+      <span class="chip"><span class="b">World</span><span class="score">8/10</span></span>
+      <h3>Trump, Xi and Putin sign a four-point declaration — Ukraine and Iran go unmentioned</h3>
+      <p class="why"><b>Why it matters:</b> The first-ever trilateral ended Thursday in Shenzhen with a joint text on nuclear risk ("a nuclear war cannot be won"), energy supplies, UN reform — and a pointed rebuke of the <a class="ent" data-q="What is the International Criminal Court, how does it differ from the ICJ, and why does the November 2026 Shenzhen declaration's attack on it matter while the ICC holds an arrest warrant for Putin?">ICC</a>, the court holding an arrest warrant for Putin. No binding agreements, and neither active war appears in the text.</p>
+      <p class="next">What's next: Trump says Xi agreed Hormuz must stay open and Iran must not get nuclear weapons — claims Beijing has not confirmed.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://www.rferl.org/a/trump-and-putin-hold-brief-apec-meeting/33901539.html" target="_blank" rel="noopener">RFE/RL</a></span><a class="deeper" data-q="Read this article: https://www.rferl.org/a/trump-and-putin-hold-brief-apec-meeting/33901539.html — if the URL is unavailable, search for &quot;Trump Xi Putin Shenzhen trilateral declaration November 19 2026&quot; and find the original reporting — then analyze the four points, what was deliberately left out, and what the joint rebuke of the ICC means for international justice">Go deeper</a></div>
     </div>
-
     <div class="story">
-      <div class="chip"><span class="b">World</span><span class="score">7/10</span></div>
-      <h3>The Kerch Bridge takes a third hit in five days</h3>
-      <p class="why"><b>Why it matters:</b> A Ukrainian drone strike early today closed the bridge's railway section — per Russia's Transport Ministry — two days after a strike dropped a road arch into the strait. The timing, landing while Putin sat with Trump and Xi in Shenzhen, was the message.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://www.bloomberg.com/news/articles/2026-11-19/ukraine-strikes-crimea-bridge-again-as-xi-hosts-trump-and-putin" target="_blank" rel="noopener">Bloomberg</a></span>
-        <a class="deeper" data-q="Read this article: https://www.bloomberg.com/news/articles/2026-11-19/ukraine-strikes-crimea-bridge-again-as-xi-hosts-trump-and-putin — if the URL is unavailable, search for &quot;Ukraine strikes Crimea bridge again Xi hosts Trump Putin&quot; and find the original reporting — then assess how degraded the Kerch Bridge now is, what losing it means for Russian logistics in Crimea, and why Ukraine timed strikes to the Shenzhen summit">Go deeper</a>
-      </div>
+      <span class="chip"><span class="b">World</span><span class="score">8/10</span></span>
+      <h3>Tankers are burning in the Strait of Hormuz as Iran's minefields claim ships</h3>
+      <p class="why"><b>Why it matters:</b> Iran's military says two more tankers caught fire Thursday after striking mines east of the strait, a day after the <a class="ent" data-q="What is the IRGC Navy, how does it differ from Iran's regular navy, and what role does it play in the Strait of Hormuz closure of 2026?">IRGC</a> claimed two supertankers carrying 4+ million barrels combined hit mines and exploded; ADNOC separately reported an attack injuring 11 crew. The chokepoint, closed since July 12, is becoming physically impassable outside Iranian-designated corridors.</p>
+      <p class="next">What's next: Iran demands ships coordinate transits with its forces — the core of the stalled US–Iran navigation dispute.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://aa.com.tr/en/middle-east/2-oil-tankers-catch-fire-after-hitting-mines-in-waters-east-of-strait-of-hormuz-iranian-army/4131604" target="_blank" rel="noopener">Anadolu Agency</a></span><a class="deeper" data-q="Read this article: https://aa.com.tr/en/middle-east/2-oil-tankers-catch-fire-after-hitting-mines-in-waters-east-of-strait-of-hormuz-iranian-army/4131604 — if the URL is unavailable, search for &quot;tankers mines Strait of Hormuz November 2026&quot; and find the original reporting — then separate what is independently confirmed from what rests only on Iranian military statements, and explain why Brent crude has barely moved despite burning tankers">Go deeper</a></div>
     </div>
-
     <div class="story">
-      <div class="chip"><span class="b">World</span><span class="score">7/10</span></div>
-      <h3>Denmark's Folketing votes today to seal the Arctic pact</h3>
-      <p class="why"><b>Why it matters:</b> The final ratification vote on the US–Denmark–Greenland agreement is scheduled in Copenhagen today: two new US defense areas at Narsarsuaq and Mestersvig, plus components of <a class="ent" data-q="Explain the Golden Dome missile defense system — its architecture, projected cost, and why Greenland's geography matters to it">Golden Dome</a>. Greenland's parliament approved it 16–0 on Nov 3.</p>
-      <p class="next">What's next: once Denmark sends its diplomatic note to Washington the open-ended pact enters into force — no US Senate vote required.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://www.latintimes.com/denmark-ratification-arctic-defense-pact-greenland-601296" target="_blank" rel="noopener">Latin Times</a></span>
-        <a class="deeper" data-q="Read this article: https://www.latintimes.com/denmark-ratification-arctic-defense-pact-greenland-601296 — if the URL is unavailable, search for &quot;Denmark ratification Arctic defense pact Greenland Folketing&quot; and find the original reporting — then explain exactly what the US gains at Narsarsuaq and Mestersvig, what Greenland gets in return, and how the pact changes Arctic security">Go deeper</a>
-      </div>
+      <span class="chip"><span class="b">World</span><span class="score">7/10</span></span>
+      <h3>Copenhagen votes 109–0: the US gets its Greenland bases</h3>
+      <p class="why"><b>Why it matters:</b> The Folketing adopted the US–Greenland security pact Thursday without a single vote against, authorizing two new American bases and <a class="ent" data-q="Explain the Golden Dome missile-defense system — its architecture, projected cost, and why Greenland's geography matters to it">Golden Dome</a> infrastructure under an update to the 1951 accord. A year of Arctic sovereignty tension ends in a negotiated US presence rather than a confrontation.</p>
+      <p class="next">What's next: the pact enters into force once Denmark sends a diplomatic note — no US Senate vote is required.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://www.aljazeera.com/news/2026/11/19/denmark-parliament-approves-security-deal-with-greenland-and-us" target="_blank" rel="noopener">Al Jazeera</a></span><a class="deeper" data-q="Read this article: https://www.aljazeera.com/news/2026/11/19/denmark-parliament-approves-security-deal-with-greenland-and-us — if the URL is unavailable, search for &quot;Denmark Folketing approves Greenland US security pact 109-0&quot; and find the original reporting — then explain what the pact permits, why the vote was unanimous, and what Greenland received in exchange">Go deeper</a></div>
     </div>
   </div>
 </div>
 
-<!-- 7 · BUSINESS -->
-<div class="section sec-business secwrap" style="--accent:var(--business)">
-  <div class="sec-h">Business &amp; Markets</div>
-
+<!-- 7 · TECH -->
+<div class="section sec-tech">
+  <h2 class="sec-h">Tech &amp; AI</h2>
   <div class="story lead-story">
-    <div class="chip"><span class="b">Business</span><span class="score">8/10</span></div>
-    <h3>"Almost all" Fed officials want more — and markets believed them</h3>
-    <p class="why"><b>Why it matters:</b> Wednesday's FOMC minutes showed nearly every policymaker judged further hikes likely appropriate. The Dow fell 561 points (−1.11%, a third straight down day, with UnitedHealth the biggest drag), the S&amp;P 500 logged a fifth consecutive loss at 7,323.63, and <a class="ent" data-q="What is Kalshi, and how well have prediction markets forecast Federal Reserve decisions compared with fed funds futures?">Kalshi</a> priced a December hike at 91%. Only the Nasdaq rose, +0.42%, on IPO-eve AI demand.</p>
-    <p class="next">What's next: the December FOMC decision is three weeks out, with the 10-year already at 5.07%.</p>
-    <div class="srcrow">
-      <span class="src">Source: <a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nasdaq-p-125812319.html" target="_blank" rel="noopener">Yahoo Finance</a></span>
-      <a class="deeper" data-q="Read this article: https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nasdaq-p-125812319.html — if the URL is unavailable, search for &quot;Dow plunges 560 points S&P 500 extends losing streak Fed minutes November 18 2026&quot; and find the original reporting — then explain why the Fed is hiking in late 2026, what the minutes signal for December, and how much tightening the 5.07% 10-year yield already prices in">Go deeper</a>
-    </div>
+    <span class="chip"><span class="b">Tech</span><span class="score">8/10</span></span>
+    <h3>Nvidia quietly stops shipping the China chips Washington approved</h3>
+    <p class="why"><b>Why it matters:</b> Interim CEO <a class="ent" data-q="Profile Colette Kress — her tenure as Nvidia CFO, how she became interim CEO after Jensen Huang's November 2026 resignation, and the decisions now on her desk">Colette Kress</a> confirmed Nvidia is no longer shipping licensed Hopper chips to China — a $2.4&nbsp;billion business last quarter — and has zeroed China out of its ~$130&nbsp;billion forecast, conceding the world's second-largest AI market with no explanation given. Roughly 600,000 H200s are reportedly parked in Hong Kong awaiting Beijing's approval.</p>
+    <p class="next">What's next: watch whether Beijing clears the stranded H200s — or whether the halt outlasts the leadership transition.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://www.foxbusiness.com/fox-news-tech/nvidia-halts-china-ai-chip-shipments-despite-us-approval" target="_blank" rel="noopener">Fox Business</a></span><a class="deeper" data-q="Read this article: https://www.foxbusiness.com/fox-news-tech/nvidia-halts-china-ai-chip-shipments-despite-us-approval — if the URL is unavailable, search for &quot;Nvidia halts licensed Hopper shipments China November 2026&quot; and find the original reporting — then explain what Colette Kress actually said, what the $2.4 billion at stake represents, and who gains if 600,000 H200s stay parked in Hong Kong">Go deeper</a></div>
   </div>
-
   <div class="grid">
     <div class="story">
-      <div class="chip"><span class="b">Business</span><span class="score">7/10</span></div>
-      <h3>Gold has its worst day in more than a year</h3>
-      <p class="why"><b>Why it matters:</b> December futures settled down $122.30 (−3.16%) at $3,741.90/oz, the weakest level in over a year, as rising <a class="ent" data-q="Explain real yields — why they drive gold prices, and what a 5.07% nominal 10-year Treasury yield means for every other asset class">real yields</a> and a 19-month-high dollar cracked 2026's defining safe-haven trade.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026" target="_blank" rel="noopener">FinWire</a></span>
-        <a class="deeper" data-q="Read this article: https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026 — if the URL is unavailable, search for &quot;gold futures settle 3741 November 18 2026&quot; and find the original reporting — then walk through the real-rate mechanics of why gold fell 3% on hawkish Fed minutes after rallying all year, and what would restart the rally">Go deeper</a>
-      </div>
+      <span class="chip"><span class="b">Tech</span><span class="score">8/10</span></span>
+      <h3>Meta's Muse agent caught pulling Signal messages it was never connected to</h3>
+      <p class="why"><b>Why it matters:</b> A Reuters investigation showed Muse reading Signal message content via Android push notifications and macOS accessibility permissions — no connector required — as Meta scales the agent to hundreds of millions of users. <a class="ent" data-q="Profile Meredith Whittaker — her path from Google walkout organizer to Signal president, and her critique of the AI-agent privacy model">Meredith Whittaker</a> called the deployment "technologically reckless"; encryption wasn't broken, device permissions were simply used.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://www.ctvnews.ca/sci-tech/article/as-meta-bets-big-on-muse-ai-agent-early-safety-mishaps-surface/" target="_blank" rel="noopener">Reuters (via CTV News)</a></span><a class="deeper" data-q="Read this article: https://www.ctvnews.ca/sci-tech/article/as-meta-bets-big-on-muse-ai-agent-early-safety-mishaps-surface/ — if the URL is unavailable, search for &quot;Meta Muse AI agent Signal messages Reuters investigation&quot; and find the original reporting — then explain technically how Muse read Signal content without a connector, and which device permissions a privacy-conscious user should revoke today">Go deeper</a></div>
     </div>
-
     <div class="story">
-      <div class="chip"><span class="b">Business</span><span class="score">6/10</span></div>
-      <h3>Bitcoin slides to ≈$62,300 — November's rout nears 20%</h3>
-      <p class="why"><b>Why it matters:</b> Bitcoin fell about 4% Wednesday, extending Tuesday's six-month low as hardening rate expectations drained speculative liquidity. The one crypto bid left: pre-IPO ANT contracts trading well above the $83 offer.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026" target="_blank" rel="noopener">FinWire</a></span>
-        <a class="deeper" data-q="Read this article: https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026 — if the URL is unavailable, search for &quot;bitcoin 62,300 November 18 2026&quot; and find the original reporting — then analyze whether bitcoin's November drawdown is about rates, liquidity or crypto-specific flows, and what the premium on Anthropic pre-IPO contracts says about where speculative money went">Go deeper</a>
-      </div>
+      <span class="chip"><span class="b">Tech</span><span class="score">7/10</span></span>
+      <h3>Big banks to customers: your AI agent's mistakes are your problem</h3>
+      <p class="why"><b>Why it matters:</b> Citi, PNC and Citizens this week joined JPMorgan and Bank of America in rewriting agreements so anything a third-party AI agent does in your account — including after the agent is hacked — is on you, with no reversals. The industry is unilaterally settling the <a class="ent" data-q="Explain the open question of liability for AI-agent transactions in US banking — how the new 2026 bank terms interact with Regulation E and where the CFPB stands">biggest liability question of the agentic era</a> before any regulator weighs in.</p>
+      <p class="next">What's next: Wells Fargo's version, treating all AI-agent transactions as authorized, takes effect November 24.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/" target="_blank" rel="noopener">TechCrunch</a></span><a class="deeper" data-q="Read this article: https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/ — if the URL is unavailable, search for &quot;banks AI agents customer liability terms November 2026&quot; and find the original reporting — then analyze what the new terms actually say, whether they are enforceable against Regulation E, and what recourse a customer has after an agent is compromised">Go deeper</a></div>
+    </div>
+    <div class="story">
+      <span class="chip"><span class="b">Tech</span><span class="score">7/10</span></span>
+      <h3>Google wedges Gemini 4 Neon into the frontier tier at half the price</h3>
+      <p class="why"><b>Why it matters:</b> Neon debuted at #2 on the Vals Index (70.9%, 0.4 points behind Claude Fable 5.2) at $3/$15 per million tokens — less than half the cost per task of the models above it — sharpening the <a class="ent" data-q="Compare frontier-model pricing in late 2026 — Gemini 4 Neon at $3/$15 per million tokens versus Anthropic and OpenAI flagships — and explain what the price war does to AI lab margins">frontier price war</a> just before the enterprise budget cycle.</p>
+      <p class="next">What's next: "Gemini 4 Neon for cyber" rolls out to vetted defenders in the coming days.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" target="_blank" rel="noopener">Google (official blog)</a></span><a class="deeper" data-q="Read this article: https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ — if the URL is unavailable, search for &quot;Google Gemini 4 Neon launch&quot; and find the announcement — then assess where Neon lands against Claude Fable 5.2 on price-per-task, and what the Fairwind cyber program rollout signals about offensive-defensive AI">Go deeper</a></div>
+    </div>
+    <div class="story">
+      <span class="chip"><span class="b">Tech</span><span class="score">7/10</span></span>
+      <h3>"NGINX2Root" puts a third of the web on urgent patch duty</h3>
+      <p class="why"><b>Why it matters:</b> F5 and nginx.org disclosed ~10 vulnerabilities including five memory-corruption bugs that researchers at <a class="ent" data-q="What is Xint, the security research firm behind the NGINX2Root vulnerability disclosures, and what is their track record?">Xint</a> showed can yield unauthenticated remote code execution in nginx workers (CVSS 4.0: 9.2). Fixes are in nginx 1.30.7 and 1.31.9; no in-the-wild exploitation as of Nov 18 — yet a related May flaw was exploited.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-nginx-could-allow-for-remote-code-execution_2026-136" target="_blank" rel="noopener">MS-ISAC advisory 2026-136</a></span><a class="deeper" data-q="Read this article: https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-nginx-could-allow-for-remote-code-execution_2026-136 — if the URL is unavailable, search for &quot;NGINX2Root nginx vulnerabilities MS-ISAC 2026-136&quot; and find the advisory — then explain which versions are affected, how exploitable the flaws really are given ASLR, and what an ops team should patch first">Go deeper</a></div>
+    </div>
+    <div class="story">
+      <span class="chip"><span class="b">Tech</span><span class="score">6/10</span></span>
+      <h3>Palo Alto pays $4.5B for a one-year-old company — to own "secure open-weight AI"</h3>
+      <p class="why"><b>Why it matters:</b> The all-stock deal for <a class="ent" data-q="What is Applied Compute — the startup Palo Alto Networks agreed to buy for $4.5 billion in November 2026 — who founded it, and how did it reach a $100M revenue run rate in 18 months?">Applied Compute</a> lands $1.25&nbsp;billion above the valuation the startup set on November 2, one of the fastest zero-to-$4.5B exits on record. It's a marker of how M&amp;A is pricing AI talent even as public AI stocks sell off.</p>
+      <p class="next">What's next: the deal needs regulatory clearance; expected to close in Palo Alto's fiscal Q3.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://www.sec.gov/Archives/edgar/data/0001327567/000132756726000030/ex992pressrelease_november.htm" target="_blank" rel="noopener">Palo Alto Networks 8-K (SEC)</a></span><a class="deeper" data-q="Read this article: https://www.sec.gov/Archives/edgar/data/0001327567/000132756726000030/ex992pressrelease_november.htm — if the URL is unavailable, search for &quot;Palo Alto Networks Applied Compute acquisition $4.5 billion&quot; and find the original release — then explain what Applied Compute actually does, why a security vendor paid $4.5B for it, and what the premium says about AI M&amp;A pricing">Go deeper</a></div>
     </div>
   </div>
 </div>
 
-<!-- 8 · TECH -->
-<div class="section sec-tech secwrap" style="--accent:var(--tech)">
-  <div class="sec-h">Tech &amp; AI</div>
-
+<!-- 8 · SCIENCE -->
+<div class="section sec-science">
+  <h2 class="sec-h">Science &amp; Space</h2>
   <div class="story lead-story">
-    <div class="chip"><span class="b">Tech</span><span class="score">8/10</span></div>
-    <h3>California calls Waymo an "imminent hazard" — and the freeways empty nationwide</h3>
-    <p class="why"><b>Why it matters:</b> The <a class="ent" data-q="What authority does the California DMV have over autonomous vehicles, and how have its actions against Cruise and Waymo reshaped the robotaxi industry?">California DMV</a> barred Waymo from state freeways effective Nov 11 — disclosed only Tuesday — after three robotaxis drove through an active Highway 101 work zone near Burlingame. Waymo then paused freeway rides in every US market, its second freeway suspension this year after the May incidents.</p>
-    <p class="next">What's next: surface-street service continues; the order stands until Waymo satisfies the DMV's safety findings.</p>
-    <div class="srcrow">
-      <span class="src">Source: <a href="https://sfstandard.com/2026/11/17/california-dmv-bans-waymo-from-freeways/" target="_blank" rel="noopener">The San Francisco Standard</a></span>
-      <a class="deeper" data-q="Read this article: https://sfstandard.com/2026/11/17/california-dmv-bans-waymo-from-freeways/ — if the URL is unavailable, search for &quot;California DMV bans Waymo from freeways imminent hazard&quot; and find the original reporting — then explain exactly what Waymo's robotaxis did wrong on Highway 101, how the DMV's imminent-hazard authority works, and what Waymo must show to get freeway access back">Go deeper</a>
-    </div>
+    <span class="chip"><span class="b">Science</span><span class="score">8/10</span></span>
+    <h3>COP31's closing day: fossil fuels and the $120B are both gone from the text</h3>
+    <p class="why"><b>Why it matters:</b> On the summit's scheduled final day, the draft decision contains no mention of fossil fuels, and the $120&nbsp;billion <a class="ent" data-q="Explain climate adaptation finance — how it differs from mitigation funding, why the $120 billion COP31 target was dropped, and who pays under current pledges">adaptation-finance target</a> has been cut, replaced by a baseline-free promise to discuss tripling funds by 2035. Panama has vowed to formally object; talks are expected to run into Saturday overtime.</p>
+    <p class="next">What's next: a deal or a breakdown within roughly 24–48 hours.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://www.cnn.com/2026/11/20/climate/cop31-talks-fossil-fuels-finance-electrification" target="_blank" rel="noopener">CNN Climate</a></span><a class="deeper" data-q="Read this article: https://www.cnn.com/2026/11/20/climate/cop31-talks-fossil-fuels-finance-electrification — if the URL is unavailable, search for &quot;COP31 final draft fossil fuels adaptation finance November 20 2026&quot; and find the original reporting — then explain what was stripped from the text, who pushed for the removals, and what it would take to restore finance language in overtime">Go deeper</a></div>
   </div>
-
   <div class="grid">
     <div class="story">
-      <div class="chip"><span class="b">Tech</span><span class="score">7/10</span></div>
-      <h3>A week of outages gets an official answer: "not a cyberattack"</h3>
-      <p class="why"><b>Why it matters:</b> After Microsoft 365 (Nov 12), an FAA ground stop (Nov 13), JPMorgan Chase (Nov 16) and the <a class="ent" data-q="What is the NSA's classified communications network that went down in November 2026, how unusual is such an outage, and what does it reveal about federal patch management?">NSA's classified network</a> (Nov 17) all failed inside a week, DNI <a class="ent" data-q="Profile Jay Clayton — from SEC chair to Director of National Intelligence, and his role in the November 2026 outage investigations">Jay Clayton</a> said flatly "this is not a cyber attack," pointing to botched security patching — including a PHP vulnerability fix at NSA.</p>
-      <p class="next">What's next: bipartisan lawmakers want briefings on why so much US infrastructure failed at once.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://www.foxbusiness.com/technology/jay-clayton-addresses-concerns-amid-widespread-tech-outages" target="_blank" rel="noopener">Fox Business</a></span>
-        <a class="deeper" data-q="Read this article: https://www.foxbusiness.com/technology/jay-clayton-addresses-concerns-amid-widespread-tech-outages — if the URL is unavailable, search for &quot;Jay Clayton tech outages not a cyber attack&quot; and find the original reporting — then evaluate the official explanation that a week of outages at Microsoft, the FAA, Chase and the NSA was uncoordinated patching failures: what evidence supports it and what questions remain?">Go deeper</a>
-      </div>
+      <span class="chip"><span class="b">Science</span><span class="score">7/10</span></span>
+      <h3>ULA's first-ever failure traced to fuel starvation, not the BE-4 engines</h3>
+      <p class="why"><b>Why it matters:</b> ULA's preliminary finding says inadequate fuel supply to the <a class="ent" data-q="Explain the Blue Origin BE-4 engine — who uses it, its development history, and why ULA's fuel-starvation finding matters for its reputation">BE-4</a> first-stage engines doomed the Nov 15 Vulcan flight, destroying 40 Amazon Leo satellites — the company's first outright mission failure since its 2006 founding. The fleet is grounded, squeezing the Pentagon's launch schedule and Amazon's Starlink rival at once.</p>
+      <p class="next">What's next: ULA and the FAA continue the root-cause investigation; no return-to-flight date.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://spaceflightnow.com/2026/11/18/vulcan-failure-investigation-focuses-on-inadequate-fuel-supply-to-booster-engines/" target="_blank" rel="noopener">Spaceflight Now</a></span><a class="deeper" data-q="Read this article: https://spaceflightnow.com/2026/11/18/vulcan-failure-investigation-focuses-on-inadequate-fuel-supply-to-booster-engines/ — if the URL is unavailable, search for &quot;Vulcan failure investigation fuel supply BE-4&quot; and find the original reporting — then explain what fuel starvation versus an engine fault means for Blue Origin's BE-4, and how the grounding affects Amazon Leo's deployment schedule">Go deeper</a></div>
     </div>
-
     <div class="story">
-      <div class="chip"><span class="b">Tech</span><span class="score">7/10</span></div>
-      <h3>Washington closes the cloud loophole on Chinese AI compute</h3>
-      <p class="why"><b>Why it matters:</b> A <a class="ent" data-q="What is the Bureau of Industry and Security, and how did it become the chokepoint agency of US-China technology competition?">Bureau of Industry and Security</a> interim final rule issued Monday requires licenses to ship advanced chips to any data center worldwide that may serve Chinese firms — with linked facilities counted together — and the FT reports Nvidia is telling data-center customers to keep at least 51% of capacity non-Chinese.</p>
-      <p class="next">What's next: export lawyers question BIS's authority over remote access; the House-passed Remote Access Security Act awaits the Senate.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://www.scmp.com/tech/article/3374639/us-tightens-ai-chip-export-curbs-close-chinas-overseas-data-centre-loophole" target="_blank" rel="noopener">South China Morning Post</a></span>
-        <a class="deeper" data-q="Read this article: https://www.scmp.com/tech/article/3374639/us-tightens-ai-chip-export-curbs-close-chinas-overseas-data-centre-loophole — if the URL is unavailable, search for &quot;US tightens AI chip export curbs overseas data centre loophole&quot; and find the original reporting — then explain how Chinese firms used overseas data centers to access restricted AI chips, how the BIS rule closes that path, and whether Commerce can legally police remote access">Go deeper</a>
-      </div>
+      <span class="chip"><span class="b">Science</span><span class="score">7/10</span></span>
+      <h3>NASA races to save 25-year-old Mars Odyssey after a reaction wheel stops</h3>
+      <p class="why"><b>Why it matters:</b> One of <a class="ent" data-q="What is Mars Odyssey — the orbiter launched in 2001 — what has it accomplished in 25 years, and what happens to Mars surface missions if its relay goes dark?">Odyssey</a>'s reaction wheels has stopped spinning — a second failed in 2013, and three are needed to point the spacecraft — forcing the longest-serving Mars orbiter onto thrusters with an estimated one to two months of hydrazine. Perseverance's science is paused too, over a separate issue.</p>
+      <p class="next">What's next: NASA aims to restore operations in the last week of November; one test already got the stuck wheel moving.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://science.nasa.gov/blogs/mars/2026/11/19/nasas-perseverance-odyssey-teams-investigate-technical-issues/" target="_blank" rel="noopener">NASA Science</a></span><a class="deeper" data-q="Read this article: https://science.nasa.gov/blogs/mars/2026/11/19/nasas-perseverance-odyssey-teams-investigate-technical-issues/ — if the URL is unavailable, search for &quot;Mars Odyssey reaction wheel Perseverance paused November 2026&quot; and find NASA's post — then explain how a spacecraft points itself with reaction wheels, and what is lost if the longest-serving Mars orbiter dies">Go deeper</a></div>
+    </div>
+    <div class="story">
+      <span class="chip"><span class="b">Science</span><span class="score">6/10</span></span>
+      <h3>The rocks miners want are alive: Pacific nodules shelter animals found nowhere nearby</h3>
+      <p class="why"><b>Why it matters:</b> A Scientific Reports study of 244 polymetallic nodules from the <a class="ent" data-q="What is the Clarion-Clipperton Zone — the Pacific region targeted for deep-sea mining — who holds exploration contracts there, and what is the state of US permitting in 2026?">Clarion-Clipperton Zone</a> found their crevices host distinct communities of sub-millimeter animals — up to 245 in a single nodule — absent from surrounding sediment. Mining would erase a habitat that takes millions of years to form, just as the US weighs its first commercial permit.</p>
+      <div class="srcrow"><span class="src">Source: <a href="https://doi.org/10.1038/s41598-026-76737-w" target="_blank" rel="noopener">Scientific Reports (DOI)</a></span><a class="deeper" data-q="Read this article: https://doi.org/10.1038/s41598-026-76737-w — if the URL is unavailable, search for &quot;polymetallic nodules meiofauna Clarion-Clipperton Scientific Reports 2026&quot; and find the paper — then summarize what the researchers found living inside the nodules and how it changes the environmental case against the first US commercial deep-sea mining permit">Go deeper</a></div>
     </div>
   </div>
 </div>
 
-<!-- 9 · SCIENCE -->
-<div class="section sec-science secwrap" style="--accent:var(--science)">
-  <div class="sec-h">Science &amp; Space</div>
-
+<!-- 9 · ANTHROPIC -->
+<div class="section sec-anthropic">
+  <h2 class="sec-h">Anthropic</h2>
   <div class="story lead-story">
-    <div class="chip"><span class="b">Science</span><span class="score">7/10</span></div>
-    <h3>Why aging brains wash themselves less at night</h3>
-    <p class="why"><b>Why it matters:</b> MIT researchers report in <em>Nature Aging</em> that the cerebrospinal-fluid waves that flush waste from the brain during deep sleep are significantly weaker in older adults — tracking the loss of slow brain waves, not shorter sleep — and correlating with gray-matter atrophy. A weakening <a class="ent" data-q="Explain the glymphatic system — how the brain clears waste during sleep, and why its failure is implicated in Alzheimer's disease">glymphatic system</a> is a leading suspect in Alzheimer's.</p>
-    <p class="next">What's next: the Lewis lab is studying older adults whose CSF flow stays youthful, and testing pink-noise stimulation to boost slow waves.</p>
-    <div class="srcrow">
-      <span class="src">Source: <a href="https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113" target="_blank" rel="noopener">MIT News</a></span>
-      <a class="deeper" data-q="Read this article: https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113 — if the URL is unavailable, search for &quot;waste-clearing waves in brain during sleep impaired in older adults MIT&quot; and find the original release — then explain how cerebrospinal fluid waves clear brain waste during deep sleep, why they weaken with age, and what this means for Alzheimer's prevention">Go deeper</a>
-    </div>
+    <span class="chip"><span class="b">Anthropic</span><span class="score">9/10</span></span>
+    <h3>A 34% pop fades to 17%: ANT's first day as history's biggest IPO</h3>
+    <p class="why"><b>Why it matters:</b> Anthropic priced at $83, opened at $111.50, touched $115.10 and closed its Nasdaq debut at $97.17 — a 17.1% gain that still left the stock $14 below its first trade, on a day the rest of the market fell 2%. The fade, not the pop, is what Wall Street took home: even the biggest IPO ever couldn't fight the tape it listed into — and the <a class="ent" data-q="Compare the biggest IPO first days in history — Anthropic 2026, Saudi Aramco 2019, Alibaba 2014 — on size, first-day move, and what happened in the following year">record books</a> say pops matter less than second weeks.</p>
+    <p class="next">What's next: today's session tests whether the fade extends toward the $83 offer price; ANT traded lower again in premarket.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://finance.yahoo.com/technology/live/anthropic-ipo-live-anthropic-stock-begins-trading-in-record-81b-raise-with-15t-valuation-192410598.html" target="_blank" rel="noopener">Yahoo Finance</a></span><a class="deeper" data-q="Read this article: https://finance.yahoo.com/technology/live/anthropic-ipo-live-anthropic-stock-begins-trading-in-record-81b-raise-with-15t-valuation-192410598.html — if the URL is unavailable, search for &quot;Anthropic ANT first day trading close 97.17&quot; and find the original reporting — then walk through the first-day price path and assess how much AI optimism was already priced in before the first trade printed">Go deeper</a></div>
   </div>
-
   <div class="story">
-    <div class="chip"><span class="b">Science</span><span class="score">7/10</span></div>
-    <h3>COP31's endgame: a $120 billion promise nobody has agreed to pay</h3>
-    <p class="why"><b>Why it matters:</b> In Antalya's final hours, a draft decision calls for tripling <a class="ent" data-q="Explain climate adaptation finance — how it differs from mitigation funding, who pays for it today, and why the gap between pledges and need is so large">adaptation finance</a> to at least $120 billion a year by 2035 — yet UN chief Guterres warned even that covers under 30% of what vulnerable nations need, and the EU wants the goal moved to a different negotiating track.</p>
-    <p class="next">What's next: the conference is scheduled to close tomorrow; an "Antalya-to-Addis roadmap" is the likely vehicle for whatever survives.</p>
-    <div class="srcrow">
-      <span class="src">Source: <a href="https://enb.iisd.org/sites/default/files/2026-11/enb12908e.pdf" target="_blank" rel="noopener">Earth Negotiations Bulletin (IISD)</a></span>
-      <a class="deeper" data-q="Read this document: https://enb.iisd.org/sites/default/files/2026-11/enb12908e.pdf — if the URL is unavailable, search for &quot;COP31 Antalya daily report adaptation finance tripling&quot; and find the Earth Negotiations Bulletin coverage — then explain what is in the draft COP31 decision on adaptation finance, who would actually pay the $120 billion a year, and what happens if Antalya closes without agreement">Go deeper</a>
-    </div>
+    <span class="chip"><span class="b">Anthropic</span><span class="score">7/10</span></span>
+    <h3>The deal closes: $119.5 billion raised, $26 billion of it from the chip supply chain</h3>
+    <p class="why"><b>Why it matters:</b> The IPO formally closed today: 1.127&nbsp;billion Class A shares at $83 for ~$93.5B gross, plus a concurrent $26B private placement of <a class="ent" data-q="Explain Anthropic's Class N shares — the non-registered class sold to AMD, Broadcom, Google, Micron, Microsoft, Nvidia and TSMC in the November 2026 private placement — and why suppliers bought in alongside the IPO">Class N shares</a> to AMD, Broadcom, Google, Micron, Microsoft, Nvidia and TSMC — the companies that build the compute Anthropic buys. Roughly $91.6B of the proceeds go to Anthropic itself.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://www.anthropic.com/news/ipo-close" target="_blank" rel="noopener">Anthropic</a></span><a class="deeper" data-q="Read this article: https://www.anthropic.com/news/ipo-close — if the URL is unavailable, search for &quot;Anthropic announces closing of initial public offering&quot; and find the announcement — then explain the structure: Class A versus Class N shares, why the $26 billion private placement went to suppliers, and what a lab does with $91.6 billion in proceeds">Go deeper</a></div>
   </div>
 </div>
 
 <!-- 10 · SPORTS -->
-<div class="section secwrap" style="--accent:var(--muted)">
-  <div class="sec-h" style="--accent:var(--text);color:var(--text);border-color:var(--border)">Your teams</div>
-  <div class="sports-note">Wednesday's NBA and NHL box scores couldn't be verified at press time, so no scoreboard today — team storylines below are confirmed.</div>
+<div class="section">
+  <h2 class="sec-h" style="--accent:var(--text);color:var(--text);border-color:var(--border)">Your Teams</h2>
 
-  <div class="grid">
-    <div class="story team-h" style="--teamc:#AA0000">
-      <div class="chip"><span class="b" style="color:var(--teamc)">49ers</span><span class="score">6/10</span></div>
-      <h3>Sunday in Mexico City is a No. 1-seed game</h3>
-      <p class="why"><b>Why it matters:</b> The 49ers meet the Vikings at <a class="ent" data-q="How does playing at Estadio Banorte's 7,200-foot altitude in Mexico City change NFL game planning — conditioning, kicking distances and play-calling?">Estadio Banorte</a> on Sunday Night Football (5:20pm PT, NBC) with the NFC's top seed on the line — Minnesota allows a league-low 14.5 points per game, and a Vikings win vaults them to the conference's top spot.</p>
-      <p class="next">What's next: an altitude-adjustment week at 7,200 feet, fresh off closing out Dallas.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://sfstandard.com/2026/11/16/brock-purdy-brian-flores-49ers-vikings/" target="_blank" rel="noopener">The San Francisco Standard</a></span>
-        <a class="deeper" data-q="Read this article: https://sfstandard.com/2026/11/16/brock-purdy-brian-flores-49ers-vikings/ — if the URL is unavailable, search for &quot;Brock Purdy Brian Flores 49ers Vikings Mexico City&quot; and find the original reporting — then break down 49ers-Vikings in Mexico City: how does Brian Flores's league-best defense match up against Brock Purdy, and how does 7,200 feet of altitude change the game?">Go deeper</a>
-      </div>
+  <div class="story" style="--teamc:#1D428A">
+    <span class="chip team-h"><span class="b" style="color:var(--teamc)">Warriors</span><span class="score">7/10</span></span>
+    <h3>Routed in Memphis: the Curry-less skid reaches four</h3>
+    <p class="why"><b>Why it matters:</b> Golden State lost 126–98 to the Grizzlies Thursday night — a fourth straight defeat since <a class="ent" style="--accent:#1D428A" data-q="How have the Warriors' offensive and defensive ratings changed since Stephen Curry's oblique injury on November 11, 2026, and what is their realistic path until he returns?">Steph Curry</a>'s oblique tear on Nov 11, a stretch that includes a 38-point blowout in San Antonio. Memphis has now won five straight.</p>
+    <p class="next">What's next: NBA Cup group play vs. Sacramento at Chase Center, Wednesday Nov 25 — right around Curry's two-week re-evaluation.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://www.cbssports.com/nba/gametracker/boxscore/NBA_20261119_GS@MEM/" target="_blank" rel="noopener">CBS Sports</a></span><a class="deeper" data-q="Read this article: https://www.cbssports.com/nba/gametracker/boxscore/NBA_20261119_GS@MEM/ — if the URL is unavailable, search for &quot;Warriors Grizzlies final November 19 2026&quot; and find the box score — then break down how the Warriors' offense has collapsed without Curry and what must change before the November 25 Kings game">Go deeper</a></div>
+  </div>
+
+  <div class="story" style="--teamc:#AA0000">
+    <span class="chip team-h"><span class="b" style="color:var(--teamc)">49ers</span><span class="score">7/10</span></span>
+    <h3>Near full strength for Mexico City: Evans back at practice</h3>
+    <p class="why"><b>Why it matters:</b> Mike Evans returned from Achilles tendinitis and Dre Greenlaw was back Thursday, leaving backup QB Mac Jones (illness) the only absence before Sunday night's Week 11 game against Minnesota at Estadio Banorte. The Vikings are the banged-up side: <a class="ent" style="--accent:#AA0000" data-q="How limited is Kyler Murray by the hamstring injury listed on Minnesota's November 2026 injury report, and how do the Vikings adjust if he can't go Sunday against the 49ers?">Kyler Murray</a> (hamstring) and Jordan Addison (thumb) didn't practice.</p>
+    <p class="next">What's next: Vikings at 49ers, Sunday 5:20pm PT, NBC/Peacock, Mexico City.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/mike-evans-renardo-green-practice-injury-report/1981591/" target="_blank" rel="noopener">NBC Sports Bay Area</a></span><a class="deeper" data-q="Read this article: https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/mike-evans-renardo-green-practice-injury-report/1981591/ — if the URL is unavailable, search for &quot;49ers Vikings injury report Mexico City November 2026&quot; and find the original reporting — then assess how the two injury reports tilt Sunday's matchup and what Mexico City's altitude does to both game plans">Go deeper</a></div>
+  </div>
+
+  <div class="story" style="--teamc:#006D75">
+    <span class="chip team-h"><span class="b" style="color:var(--teamc)">Sharks</span><span class="score">6/10</span></span>
+    <h3>A statement win, then a flat night: Sharks sit 10-12-2</h3>
+    <p class="why"><b>Why it matters:</b> San Jose snapped Nashville's seven-game win streak 4–2 behind a three-point night from <a class="ent" style="--accent:#006D75" data-q="Where does Macklin Celebrini rank among NHL scorers in the 2026-27 season, and is the Sharks' rebuild ahead of schedule?">Macklin Celebrini</a>, then dropped a 5–2 home game to Calgary in which Jonathan Castagna scored his first two NHL goals.</p>
+    <p class="next">What's next: Sharks host Seattle on Saturday — the Kraken arrive off a 5–1 win featuring Berkly Catton's first NHL hat trick.</p>
+    <div class="srcrow"><span class="src">Source: <a href="https://www.nhl.com/sharks/news/calgary-flames-san-jose-sharks-game-recap-november-17-2026-x1751" target="_blank" rel="noopener">NHL.com</a></span><a class="deeper" data-q="Read this article: https://www.nhl.com/sharks/news/calgary-flames-san-jose-sharks-game-recap-november-17-2026-x1751 — if the URL is unavailable, search for &quot;Sharks Flames recap November 17 2026&quot; and find the original reporting — then assess whether the Sharks' rebuild is ahead of schedule and what Celebrini's season says about their playoff timeline">Go deeper</a></div>
+  </div>
+
+  <h2 class="sec-h" style="--accent:var(--text);color:var(--text);border-color:var(--border);margin-top:10px">Last Night / Tonight</h2>
+  <p class="sports-note">Thursday's finals and tonight's slate. NBA tip times are approximate; two additional Thursday NBA finals could not be verified and are omitted. Giants: quiet offseason week, no news that clears the bar.</p>
+
+  <div class="sb-league">
+    <div class="lg"><span class="name">NFL</span><span class="ctx">Week 11</span></div>
+    <div class="sb-row">
+      <div class="sb-card">IND 3 — <span class="w">HOU 26</span><br><span class="st">Final (Thu)</span></div>
     </div>
+  </div>
 
-    <div class="story team-h" style="--teamc:#1D428A">
-      <div class="chip"><span class="b" style="color:var(--teamc)">Warriors</span><span class="score">6/10</span></div>
-      <h3>Three straight without Steph, and San Antonio looms</h3>
-      <p class="why"><b>Why it matters:</b> An MRI confirmed an oblique abdominal tear that sidelines Stephen Curry at least two weeks; the Warriors (8-4) have dropped three straight since, and visit the 10-2 Spurs — riding a 10-game win streak — on Friday in <a class="ent" data-q="Explain the NBA Cup — how group play and knockout rounds work, and what winning it is actually worth to players and teams">NBA Cup</a> West Group C play.</p>
-      <div class="srcrow">
-        <span class="src">Source: <a href="https://dubnationhq.com/p/preview-warriors-stare-at-new-nba" target="_blank" rel="noopener">DubNation HQ</a></span>
-        <a class="deeper" data-q="Read this article: https://dubnationhq.com/p/preview-warriors-stare-at-new-nba — if the URL is unavailable, search for &quot;Warriors Spurs preview Curry abdominal November 2026&quot; and find the original reporting — then assess how the Warriors survive two-plus weeks without Stephen Curry: which lineups work, and can they stay in the NBA Cup race starting Friday in San Antonio?">Go deeper</a>
-      </div>
+  <div class="sb-league" style="--teamc:#1D428A">
+    <div class="lg"><span class="name">NBA</span><span class="ctx">NBA Cup group play tonight</span></div>
+    <div class="sb-row">
+      <div class="sb-card fav">GSW 98 — <span class="w">MEM 126</span><br><span class="st">Final</span></div>
+      <div class="sb-card"><span class="w">NYK 102</span> — MIN 99<br><span class="st">Final</span></div>
+      <div class="sb-card">CHA @ ATL<br><span class="st">7:00pm ET</span></div>
+      <div class="sb-card">IND @ CLE<br><span class="st">7:30pm ET</span></div>
+      <div class="sb-card">ORL @ BKN<br><span class="st">7:30pm ET</span></div>
+      <div class="sb-card">TOR @ DET<br><span class="st">7:30pm ET</span></div>
+      <div class="sb-card">NOP @ OKC<br><span class="st">8:00pm ET</span></div>
+      <div class="sb-card">WAS @ CHI<br><span class="st">8:00pm ET</span></div>
+      <div class="sb-card">PHX @ UTA<br><span class="st">9:30pm ET</span></div>
+      <div class="sb-card">HOU @ DEN<br><span class="st">10:00pm ET</span></div>
+      <div class="sb-card">SAC @ LAL<br><span class="st">10:00pm ET</span></div>
+    </div>
+  </div>
+
+  <div class="sb-league">
+    <div class="lg"><span class="name">NHL</span><span class="ctx">≈ Game 22 of 82 — no games tonight; 10-game slate Saturday</span></div>
+    <div class="sb-row">
+      <div class="sb-card"><span class="w">MTL 2</span> — CAR 1<br><span class="st">Final/OT</span></div>
+      <div class="sb-card"><span class="w">STL 5</span> — PIT 2<br><span class="st">Final</span></div>
+      <div class="sb-card"><span class="w">BUF 6</span> — WSH 3<br><span class="st">Final</span></div>
+      <div class="sb-card"><span class="w">PHI 6</span> — OTT 5<br><span class="st">Final/OT</span></div>
+      <div class="sb-card">EDM 1 — <span class="w">TBL 3</span><br><span class="st">Final</span></div>
+      <div class="sb-card"><span class="w">MIN 4</span> — CGY 1<br><span class="st">Final</span></div>
+      <div class="sb-card">ANA 0 — <span class="w">COL 4</span><br><span class="st">Final</span></div>
+      <div class="sb-card">VAN 1 — <span class="w">SEA 5</span><br><span class="st">Final</span></div>
+      <div class="sb-card"><span class="w">LAK 4</span> — TOR 3<br><span class="st">Final/SO</span></div>
+      <div class="sb-card">NYI 3 — <span class="w">WPG 4</span><br><span class="st">Final/OT</span></div>
+      <div class="sb-card"><span class="w">DAL 4</span> — VGK 3<br><span class="st">Final/SO</span></div>
     </div>
   </div>
 </div>
@@ -377,31 +417,38 @@ details.sources a{color:var(--muted)}
 <!-- 11 · ENDING -->
 <div class="ending">
   <div class="big">That's your briefing. You're caught up.</div>
-  <div class="sub">16 stories this morning — every link above goes deeper.<br><a href="archive/">Browse the archive →</a></div>
+  <div class="sub">19 stories across business, world, tech, science and Anthropic, plus your teams.<br>Every "Go deeper" and dotted link opens a fresh Claude conversation. <a href="archive/">Browse the archive</a>.</div>
 </div>
 
 <!-- 12 · SOURCES -->
 <details class="sources">
-  <summary>Sources (16)</summary>
+  <summary>Sources (22)</summary>
   <ul>
-    <li>The largest IPO in history starts trading — <a href="https://www.anthropic.com/news/anthropic-prices-initial-public-offering" target="_blank" rel="noopener">Anthropic</a> — company pricing release fetched directly (primary); contains all share and price terms.</li>
-    <li>ANT lands on the worst tape of the year — <a href="https://finance.yahoo.com/technology/live/anthropic-ipo-live-company-said-to-price-stock-at-83-begin-trading-thursday-212656452.html" target="_blank" rel="noopener">Yahoo Finance</a> — fetch blocked by network policy; demand/premium details corroborated across Yahoo, AP syndication, Fast Company and Morningstar excerpts.</li>
-    <li>Trump–Xi–Putin trilateral — <a href="https://www.scmp.com/news/china/diplomacy/article/3375055/xi-trump-and-putin-meet-landmark-trilateral-talks-apec" target="_blank" rel="noopener">SCMP</a> — fetch blocked; corroborated across SCMP, RFE/RL, NBC, Fox and CNBC excerpts; duration per CCTV.</li>
-    <li>Iran widens Gulf attacks — <a href="https://www.pbs.org/newshour/world/iran-widens-gulf-attacks-by-targeting-u-s-air-base-in-kuwait-and-sites-in-bahrain" target="_blank" rel="noopener">AP via PBS NewsHour</a> — fetch blocked; AP story corroborated via PBS, KSAT, Washington Post excerpts.</li>
-    <li>Kerch Bridge third strike — <a href="https://www.bloomberg.com/news/articles/2026-11-19/ukraine-strikes-crimea-bridge-again-as-xi-hosts-trump-and-putin" target="_blank" rel="noopener">Bloomberg</a> — paywalled; headline and substance corroborated by a second live blog; Nov 17 arch collapse per Novaya Gazeta / Ukrainska Pravda / Meduza.</li>
-    <li>Denmark's Folketing vote — <a href="https://www.latintimes.com/denmark-ratification-arctic-defense-pact-greenland-601296" target="_blank" rel="noopener">Latin Times</a> — fetch blocked; vote schedule (Nov 11 first reading, Nov 19 final vote) per excerpt; outcome not yet confirmed at press time, so framed as scheduled.</li>
-    <li>Fed minutes / market rout — <a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nasdaq-p-125812319.html" target="_blank" rel="noopener">Yahoo Finance</a> — fetch blocked; closes cross-checked against three independent end-of-day recaps; minutes language and 91% Kalshi odds per two independent recaps.</li>
-    <li>Gold's worst day — <a href="https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026" target="_blank" rel="noopener">FinWire</a> — fetch blocked; $122.30/−3.16% settle consistent across two trackers.</li>
-    <li>Bitcoin ≈$62,300 — <a href="https://finwire.io/news/forex-news/financial-forex-market-recap-nov-18-2026" target="_blank" rel="noopener">FinWire</a> — fetch blocked; two trackers printed $62,305 and $62,534, stated here as ≈$62,300.</li>
-    <li>Waymo freeway ban — <a href="https://sfstandard.com/2026/11/17/california-dmv-bans-waymo-from-freeways/" target="_blank" rel="noopener">The San Francisco Standard</a> — fetch blocked; disclosure corroborated by ABC7, CNN-affiliate, Scripps and KTLA excerpts.</li>
-    <li>Outages "not a cyberattack" — <a href="https://www.foxbusiness.com/technology/jay-clayton-addresses-concerns-amid-widespread-tech-outages" target="_blank" rel="noopener">Fox Business</a> — fetch blocked; Clayton quotes per Fox Business/CNBC excerpts; NSA/PHP detail per Federal News Network (AP) and ITV.</li>
-    <li>BIS cloud-loophole rule — <a href="https://www.scmp.com/tech/article/3374639/us-tightens-ai-chip-export-curbs-close-chinas-overseas-data-centre-loophole" target="_blank" rel="noopener">SCMP</a> — fetch blocked; rule corroborated by SCMP, Boston Globe, TechRepublic and law-firm advisory excerpts; 51% detail per FT via two secondary excerpts.</li>
-    <li>MIT sleep/CSF study — <a href="https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113" target="_blank" rel="noopener">MIT News</a> — fetch blocked; corroborated by EurekAlert and News-Medical; Nature Aging DOI 10.1038/s43587-026-01270-4.</li>
-    <li>COP31 endgame — <a href="https://enb.iisd.org/sites/default/files/2026-11/enb12908e.pdf" target="_blank" rel="noopener">Earth Negotiations Bulletin (IISD)</a> — PDF unfetchable in this session; $120B draft per TradeArabia and ENB excerpts; Guterres quote per APP.</li>
-    <li>49ers in Mexico City — <a href="https://sfstandard.com/2026/11/16/brock-purdy-brian-flores-49ers-vikings/" target="_blank" rel="noopener">The San Francisco Standard</a> — fetch blocked; game date/venue/broadcast per 49ers.com, Vikings.com and ESPN listings; stakes per SF Standard excerpt.</li>
-    <li>Warriors skid / Curry injury — <a href="https://dubnationhq.com/p/preview-warriors-stare-at-new-nba" target="_blank" rel="noopener">DubNation HQ</a> — fetch blocked; Curry MRI and two-week timeline per TSN, ClutchPoints and NBA.com excerpts; record, streak and Friday NBA Cup game per preview excerpt.</li>
+    <li>Dow below 50,000 — <a href="https://abcnews.com/Business/wireStory/major-us-stock-indexes-fared-thursday-11192026-138303454" target="_blank" rel="noopener">AP via ABC News</a> — fetch blocked; closes cross-corroborated across AP syndications, CNBC-sourced live blogs and a Friday premarket recap.</li>
+    <li>Global chip rout — <a href="https://247wallst.com/investing/2026/11/20/amd-stock-drops-another-7-0-before-the-bell-and-taiwan-semiconductor-slides-4-2-as-nasdaq-futures-fall-1-6-after-asias-chip-selloff/" target="_blank" rel="noopener">24/7 Wall St</a> — fetch blocked; Asia closes corroborated vs StockTitan/CNBC live blog and RTTNews; futures varied by snapshot (−0.7% to −1.9%).</li>
+    <li>Walmart Q3 — <a href="https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningsreleasefy27q3.htm" target="_blank" rel="noopener">Walmart 8-K (SEC)</a> — fetch blocked; figures agree across the filing's indexed content, CNBC and AP snapshots.</li>
+    <li>ICJ Myanmar ruling — <a href="https://www.aljazeera.com/news/2026/11/19/un-top-court-finds-myanmar-killed-10000-rohingya-as-it-rules-on-genocide" target="_blank" rel="noopener">Al Jazeera</a> — fetch blocked; date, 9–6 vote, ~10,000 figure and first-ever status agree across Al Jazeera, HRW, RFA, Democracy Now.</li>
+    <li>Shenzhen declaration — <a href="https://www.rferl.org/a/trump-and-putin-hold-brief-apec-meeting/33901539.html" target="_blank" rel="noopener">RFE/RL</a> — fetch blocked; contents and omissions agree across RFE/RL, Al Jazeera, Fox News, NewsNation, Democracy Now.</li>
+    <li>Hormuz mines — <a href="https://aa.com.tr/en/middle-east/2-oil-tankers-catch-fire-after-hitting-mines-in-waters-east-of-strait-of-hormuz-iranian-army/4131604" target="_blank" rel="noopener">Anadolu Agency</a> — fetch blocked; corroborated across Anadolu, Al Arabiya, Dawn/Reuters, Iran International. Vessel counts rest on Iranian military statements, not independently confirmed.</li>
+    <li>Greenland pact vote — <a href="https://www.aljazeera.com/news/2026/11/19/denmark-parliament-approves-security-deal-with-greenland-and-us" target="_blank" rel="noopener">Al Jazeera</a> — fetch blocked; 109–0 count and terms agree across Al Jazeera, Gulf News/AFP and wire syndications.</li>
+    <li>Nvidia China halt — <a href="https://www.foxbusiness.com/fox-news-tech/nvidia-halts-china-ai-chip-shipments-despite-us-approval" target="_blank" rel="noopener">Fox Business</a> — fetch blocked; Kress quote and guidance exclusion confirmed via domain-restricted search, corroborated by Bloomberg Government and Reuters wire copies.</li>
+    <li>Meta Muse / Signal — <a href="https://www.ctvnews.ca/sci-tech/article/as-meta-bets-big-on-muse-ai-agent-early-safety-mishaps-surface/" target="_blank" rel="noopener">Reuters via CTV News</a> — Reuters original reporting; reuters.com rejects automated access, full wire copy linked; corroborated by TechCrunch.</li>
+    <li>Bank AI-agent liability — <a href="https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/" target="_blank" rel="noopener">TechCrunch</a> — fetch blocked; terms confirmed via domain-restricted search, corroborated by American Banker.</li>
+    <li>Gemini 4 Neon — <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" target="_blank" rel="noopener">Google blog (primary)</a> — fetch blocked; pricing/benchmarks corroborated by 9to5Google, Vercel changelog, TestingCatalog.</li>
+    <li>NGINX2Root — <a href="https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-nginx-could-allow-for-remote-code-execution_2026-136" target="_blank" rel="noopener">MS-ISAC advisory 2026-136</a> — fetch blocked; advisory existence, date and CVE set confirmed via domain-restricted search; corroborated by Semgrep, Ox Security, Cloudflare Radar.</li>
+    <li>Palo Alto / Applied Compute — <a href="https://www.sec.gov/Archives/edgar/data/0001327567/000132756726000030/ex992pressrelease_november.htm" target="_blank" rel="noopener">Palo Alto 8-K (SEC, primary)</a> — fetch blocked; terms confirmed via domain-restricted search of sec.gov and the matching IR release.</li>
+    <li>COP31 endgame — <a href="https://www.cnn.com/2026/11/20/climate/cop31-talks-fossil-fuels-finance-electrification" target="_blank" rel="noopener">CNN Climate</a> — fetch blocked; stripped language, dropped $120B and expected overtime agree across CNN, UN News, AP, ENB excerpts.</li>
+    <li>Vulcan failure — <a href="https://spaceflightnow.com/2026/11/18/vulcan-failure-investigation-focuses-on-inadequate-fuel-supply-to-booster-engines/" target="_blank" rel="noopener">Spaceflight Now</a> — fetch blocked; date, 40 satellites and fuel-supply finding agree across Spaceflight Now, The Register, GeekWire, SpacePolicyOnline.</li>
+    <li>Mars Odyssey — <a href="https://science.nasa.gov/blogs/mars/2026/11/19/nasas-perseverance-odyssey-teams-investigate-technical-issues/" target="_blank" rel="noopener">NASA Science (primary)</a> — fetch blocked; corroborated by NASA post excerpts and two independent recaps.</li>
+    <li>Nodule meiofauna — <a href="https://doi.org/10.1038/s41598-026-76737-w" target="_blank" rel="noopener">Scientific Reports DOI</a> — fetch blocked; DOI from the MARUM institutional release; corroborated by phys.org, ScienceDaily, Oceanographic.</li>
+    <li>ANT first day — <a href="https://finance.yahoo.com/technology/live/anthropic-ipo-live-anthropic-stock-begins-trading-in-record-81b-raise-with-15t-valuation-192410598.html" target="_blank" rel="noopener">Yahoo Finance</a> — fetch blocked; $83/$111.50/$115.10/$97.17 agree across Yahoo, Forbes, Fox Business, NPR excerpts.</li>
+    <li>IPO closing — <a href="https://www.anthropic.com/news/ipo-close" target="_blank" rel="noopener">Anthropic (primary)</a> — confirmed via direct fetch; contains all claimed figures.</li>
+    <li>Warriors at Memphis — <a href="https://www.cbssports.com/nba/gametracker/boxscore/NBA_20261119_GS@MEM/" target="_blank" rel="noopener">CBS Sports</a> — fetch blocked; final confirmed via two dated box-score pages (CBS, Fox Sports).</li>
+    <li>49ers practice report — <a href="https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/mike-evans-renardo-green-practice-injury-report/1981591/" target="_blank" rel="noopener">NBC Sports Bay Area</a> — fetch blocked; corroborated across NBC Sports Bay Area, 49ers Webzone, Star Tribune; game details per 49ers.com.</li>
+    <li>Sharks week — <a href="https://www.nhl.com/sharks/news/calgary-flames-san-jose-sharks-game-recap-november-17-2026-x1751" target="_blank" rel="noopener">NHL.com</a> — fetch blocked; both results cross-confirmed via NHL.com recaps, ESPN and CBS box scores.</li>
+    <li>Scoreboard — NFL final per ESPN dated game page and NBC recap; NBA finals per dated CBS/Fox box scores; NHL finals per nine NHL.com recaps plus ESPN game pages. Two Thursday NBA games (POR-MIL, SA-LAC) could not be verified and are omitted.</li>
   </ul>
-  <p style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">Notes: direct URL fetches were blocked for most news domains by this session's network policy; stories above were verified across multiple independent search-index excerpts as noted per item. Market data: Wednesday index closes per CNBC/Yahoo EOD reports, corroborated by independent trackers; S&amp;P series Nov 12–17 carried over from this briefing's previously sourced closes. The Brent five-session chart was dropped (Wednesday settlement unconfirmed), and Wednesday's NBA/NHL scoreboard was omitted because finals could not be verified. The S&amp;P 200-day moving average was not sourced and is not shown. Anthropic valuation chart: funding-round valuations per widely reported company disclosures (May 2023 $4.1B, early 2024 $18.4B, Mar 2025 $61.5B, Sep 2025 $183B); IPO valuation per AP/Anthropic pricing.</p>
+  <p style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">Notes: direct URL fetches were blocked for most news domains by this session's network policy; stories above were verified across multiple independent search-index excerpts as noted per item (anthropic.com was directly fetchable). Market data: Thursday closes per CNBC/AP EOD reports cross-checked against independent trackers; all five S&amp;P closes and Brent settlements chain exactly against independently reported day changes. The S&amp;P 200-day moving average (7,347.31) per a Nov 19 market report, consistent with CNBC's Nov 17 figure. VIX close reported between 28.33 and 28.44 across sources (28.44 shown); 10-year yield reported between 5.04% and 5.06% (5.04% shown). Gold is the front-month futures settle; spot sources differ by ~$20. Bitcoin is a Friday-morning level (~7:15am ET), not a Thursday close. ANT premarket levels varied by snapshot and are described qualitatively only.</p>
 </details>
 
 </div>
@@ -416,38 +463,53 @@ details.sources a{color:var(--muted)}
     a.target='_blank'; a.rel='noopener';
   });
 
-  var spData={labels:['Nov 12','Nov 13','Mon 16','Tue 17','Wed 18'],values:[7592.40,7561.67,7416.59,7340.53,7323.63]};
-  var antData={labels:["May '23","Early '24","Mar '25","Sep '25","IPO '26"],values:[4.1,18.4,61.5,183,1500]};
+  var spData={labels:['Nov 13','Mon 16','Tue 17','Wed 18','Thu 19'],values:[7561.67,7416.59,7340.53,7323.63,7175.83],dma:7347.31};
+  var brData={labels:['Nov 13','Mon 16','Tue 17','Wed 18','Thu 19'],values:[95.84,92.44,93.14,91.95,91.98]};
+  var antData={labels:['$83 IPO price','First trade','Session high','Close'],values:[83.00,111.50,115.10,97.17]};
 
+  function fallback(id,text){
+    var f=document.createElement('div');f.className='chart-fallback';f.textContent=text;
+    var c=document.getElementById(id);if(c)c.replaceWith(f);
+  }
   if(typeof Chart==='undefined'){
-    var f1=document.createElement('div');f1.className='chart-fallback';
-    f1.textContent='S&P 500 closes: 7,592 → 7,562 → 7,417 → 7,341 → 7,324 — down 3.5% over five sessions.';
-    var c1=document.getElementById('spChart');c1.replaceWith(f1);
-    var f2=document.createElement('div');f2.className='chart-fallback';
-    f2.textContent='Anthropic valuation, $B: 4.1 (May ’23) → 18.4 (early ’24) → 61.5 (Mar ’25) → 183 (Sep ’25) → 1,500 (IPO ’26).';
-    var c2=document.getElementById('antChart');c2.replaceWith(f2);
+    fallback('spChart','S&P 500 closes: 7,562 → 7,417 → 7,341 → 7,324 → 7,176 — down 5.1% over five sessions, below the 200-day average (7,347).');
+    fallback('brentChart','Brent settlements: $95.84 → $92.44 → $93.14 → $91.95 → $91.98 — roughly flat this week despite Hormuz.');
+    fallback('antChart','ANT first day: $83 IPO price → $111.50 first trade → $115.10 high → $97.17 close (+17.1%).');
     return;
   }
 
   var dark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
   var tick=dark?'#9aa0a6':'#666666', grid=dark?'#2a2f3a':'#e3e3de';
-  var barC=dark?'#d4a27f':'#a06b42', downC=dark?'#f7768e':'#be123c';
+  var downC=dark?'#f7768e':'#be123c', flatC=dark?'#9aa0a6':'#666666', antC=dark?'#d4a27f':'#a06b42';
+  var monoFont={family:'ui-monospace,Menlo,monospace',size:11};
 
   new Chart(document.getElementById('spChart'),{
     type:'line',
-    data:{labels:spData.labels,datasets:[{data:spData.values,borderColor:downC,backgroundColor:'transparent',pointBackgroundColor:downC,pointRadius:3,borderWidth:2,tension:0.25}]},
+    data:{labels:spData.labels,datasets:[
+      {data:spData.values,borderColor:downC,backgroundColor:'transparent',pointBackgroundColor:downC,pointRadius:3,borderWidth:2,tension:0.25},
+      {data:spData.labels.map(function(){return spData.dma;}),borderColor:tick,borderDash:[5,5],borderWidth:1,pointRadius:0}
+    ]},
     options:{plugins:{legend:{display:false}},scales:{
-      x:{ticks:{color:tick,font:{family:'ui-monospace,Menlo,monospace',size:11}},grid:{color:grid,display:false}},
-      y:{ticks:{color:tick,font:{family:'ui-monospace,Menlo,monospace',size:11}},grid:{color:grid}}
+      x:{ticks:{color:tick,font:monoFont},grid:{display:false}},
+      y:{ticks:{color:tick,font:monoFont},grid:{color:grid}}
+    }}
+  });
+
+  new Chart(document.getElementById('brentChart'),{
+    type:'line',
+    data:{labels:brData.labels,datasets:[{data:brData.values,borderColor:flatC,backgroundColor:'transparent',pointBackgroundColor:flatC,pointRadius:3,borderWidth:2,tension:0.25}]},
+    options:{plugins:{legend:{display:false}},scales:{
+      x:{ticks:{color:tick,font:monoFont},grid:{display:false}},
+      y:{ticks:{color:tick,font:monoFont,callback:function(v){return '$'+v;}},grid:{color:grid}}
     }}
   });
 
   new Chart(document.getElementById('antChart'),{
     type:'bar',
-    data:{labels:antData.labels,datasets:[{data:antData.values,backgroundColor:barC,borderWidth:0}]},
-    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return '$'+ctx.parsed.y+'B';}}}},scales:{
-      x:{ticks:{color:tick,font:{family:'ui-monospace,Menlo,monospace',size:11}},grid:{display:false}},
-      y:{type:'logarithmic',min:1,max:2000,ticks:{color:tick,font:{family:'ui-monospace,Menlo,monospace',size:11},callback:function(v){return [1,10,100,1000].indexOf(v)>-1?'$'+v+'B':null;}},grid:{color:grid}}
+    data:{labels:antData.labels,datasets:[{data:antData.values,backgroundColor:antC,borderWidth:0}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return '$'+ctx.parsed.y.toFixed(2);}}}},scales:{
+      x:{ticks:{color:tick,font:monoFont},grid:{display:false}},
+      y:{min:60,ticks:{color:tick,font:monoFont,callback:function(v){return '$'+v;}},grid:{color:grid}}
     }}
   });
 
