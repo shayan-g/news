@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Morning Briefing — November 27, 2026</title>
+<style>
+:root{--bg:#0f1115;--surface:#171a21;--border:#2a2f3a;--text:#e8e8e8;--muted:#9aa0a6;
+--up:#9ece6a;--down:#f7768e;--tech:#7aa2f7;--world:#f7768e;--business:#9ece6a;--science:#bb9af7;--anthropic:#d4a27f;
+--serif:"Iowan Old Style",Palatino,Georgia,serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: light){:root{--bg:#fafaf8;--surface:#ffffff;--border:#e3e3de;--text:#1f1f1f;--muted:#666666;
+--up:#4a7c1f;--down:#c42847;--tech:#2b5fc7;--world:#c42847;--business:#4a7c1f;--science:#7a4fc0;--anthropic:#9c6b43}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+a{color:inherit}
+/* wire strip */
+.wire{font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--muted)}
+.wire b{color:var(--text);font-weight:500}
+.wire .sep{margin:0 6px;color:var(--border)}
+.u{color:var(--up)}.d{color:var(--down)}.m{color:var(--muted)}
+.wirelabel{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px;border-bottom:1px solid var(--border);padding-bottom:14px}
+/* lede */
+.dateline{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+h1{font-family:var(--serif);font-size:23px;font-weight:500;line-height:1.3;margin-bottom:12px}
+.lede{font-family:var(--serif);font-size:17px;line-height:1.65}
+.lede a,.why a{color:inherit;text-decoration:underline dotted;text-underline-offset:3px;text-decoration-thickness:1px}
+.elede{color:var(--tech)}
+.readtime{font-family:var(--mono);font-size:12px;color:var(--muted);margin:14px 0 8px}
+/* state of play */
+.sopgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:18px 0}
+.sop{padding:14px 10px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
+.sop:first-child{border-left:none}
+.num{font-family:var(--mono);font-size:18px}
+.slab{font-size:12px;color:var(--text)}
+.sctx{font-size:12px;color:var(--muted)}
+@media (max-width:620px){.sopgrid{grid-template-columns:repeat(6,1fr)}
+.sop{grid-column:span 2}.sop:nth-child(4){grid-column:1/span 3;border-left:none;border-top:1px solid var(--border)}
+.sop:nth-child(5){grid-column:4/span 3;border-top:1px solid var(--border)}}
+/* charts */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+@media (max-width:620px){.charts{grid-template-columns:1fr}}
+.chartbox{background:var(--surface);border:1px solid var(--border);padding:12px}
+.clabel{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.cnote{font-size:12px;color:var(--muted);margin-top:8px}
+.cnote a{color:var(--tech);text-decoration:underline dotted;text-underline-offset:3px}
+.cwrap{position:relative;height:170px}
+/* beats */
+.beat{margin-top:34px}
+.bhead{font-size:14px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.b-world-h{color:var(--world)}.b-business-h{color:var(--business)}.b-tech-h{color:var(--tech)}.b-science-h{color:var(--science)}.b-anthropic-h{color:var(--anthropic)}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;position:relative}
+.sgrid::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border)}
+@media (max-width:620px){.sgrid{grid-template-columns:1fr}.sgrid::before{display:none}}
+.story{padding:16px 0;border-top:1px solid var(--border)}
+.story.lead{border-top:none;padding-top:4px}
+.story.lead .shead{font-size:21px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:3px 8px;margin-bottom:8px}
+.blabel{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.b-world{color:var(--world)}.b-business{color:var(--business)}.b-tech{color:var(--tech)}.b-science{color:var(--science)}.b-anthropic{color:var(--anthropic)}
+.badge{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.shead{font-family:var(--serif);font-size:17px;font-weight:500;line-height:1.35;margin-bottom:8px}
+.why{font-size:14px;color:var(--text)}
+.why b{font-weight:500}
+.wnext{font-size:14px;font-style:italic;color:var(--muted);margin-top:6px}
+.sfoot{display:flex;align-items:center;gap:14px;margin-top:10px}
+.src{font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.godeep{font-size:13px;text-decoration:none;border:1px solid var(--border);background:var(--surface);padding:4px 12px;color:var(--text)}
+/* sports */
+.team-h{font-size:14px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.lrow{margin-top:14px}
+.lhead{display:flex;gap:10px;align-items:baseline;margin-bottom:8px}
+.lname{font-family:var(--mono);font-size:13px;color:var(--text)}
+.lctx{font-size:12px;color:var(--muted)}
+.lcards{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.lcards::-webkit-scrollbar{display:none}
+.scard{min-width:150px;background:var(--surface);border:1px solid var(--border);padding:10px 12px;font-family:var(--mono);font-size:13px;display:flex;flex-direction:column;gap:3px}
+.scard .t{display:flex;justify-content:space-between;gap:12px}
+.scard b{font-weight:500}
+.gs{font-size:12px;color:var(--muted);margin-top:4px}
+.gs.live{color:var(--down)}
+/* ending + sources */
+.ending{text-align:center;margin:44px 0 28px;font-family:var(--serif)}
+.ending h2{font-size:21px;font-weight:500}
+.ending p{font-size:13px;color:var(--muted);font-family:var(--sans);margin-top:8px}
+.ending a{color:var(--muted)}
+details{border:1px solid var(--border);background:var(--surface);padding:12px 16px;margin-top:20px}
+summary{cursor:pointer;font-size:14px;color:var(--muted)}
+details ul{list-style:none;margin-top:10px}
+details li{font-size:12px;color:var(--muted);padding:4px 0;border-top:1px solid var(--border)}
+details li a{color:var(--text)}
+.mnote{font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="wire" aria-label="market wire"><span class="tk">S&amp;P 500 <b>7,182.78</b> <span class="d">−0.3%</span></span><span class="sep">·</span><span class="tk">Dow <b>50,182.95</b> <span class="u">+0.3%</span></span><span class="sep">·</span><span class="tk">Nasdaq <b>23,585.80</b> <span class="d">−0.6%</span></span><span class="sep">·</span><span class="tk">Russell 2K <b>2,704.06</b> <span class="u">+0.7%</span></span><span class="sep">·</span><span class="tk">VIX <b>28.29</b> <span class="d">+7.3%</span></span><span class="sep">·</span><span class="tk">10-yr <b>4.85%</b></span><span class="sep">·</span><span class="tk">Brent <b>$94.61</b> <span class="d">+3.5%</span></span><span class="sep">·</span><span class="tk">WTI <b>$83.68</b> <span class="d">+2.0%</span></span><span class="sep">·</span><span class="tk">Gold <b>$3,476</b> <span class="d">−2.2%</span></span><span class="sep">·</span><span class="tk">Bitcoin <b>$60,251</b> <span class="u">+0.8%</span></span></div>
+<div class="wirelabel">Wednesday, Nov 25 close — markets closed Thursday; today is a shortened session (1 p.m. ET close)</div>
+
+<p class="dateline">Friday, November 27, 2026 — generated 7:05am PT</p>
+<h1>The tape paused. The pressure didn&rsquo;t.</h1>
+<p class="lede">Thursday closed the markets, and nothing else. Drones Kuwait attributes to Iran killed two <a class="elede" href="https://claude.ai/new?q=What%20is%20Rheinmetall%2C%20who%20leads%20it%2C%20and%20why%20are%20its%20Italian%20technicians%20operating%20air-defense%20sites%20in%20Kuwait%20during%20the%20Iran%20war%3F" target="_blank" rel="noopener">Rheinmetall</a> technicians at a Gulf air-defense site — the war's first European dead on Gulf soil — while the EU's budget summit collapsed and Congo's Ebola count passed 12,021. The holiday did nothing to soften the trade fight either: China, the EU, Japan and Singapore spent it rejecting the <a class="elede" href="https://claude.ai/new?q=What%20is%20the%20Office%20of%20the%20US%20Trade%20Representative%2C%20and%20what%20does%20its%20Section%20301%20overcapacity%20finding%20against%2014%20trading%20partners%20actually%20claim%3F" target="_blank" rel="noopener">USTR</a> theory behind tariffs on 14 economies, and Huawei answered the memory embargo with a <a class="elede" href="https://claude.ai/new?q=Explain%20Huawei%27s%204%2C096-pin%20high-bandwidth%20memory%20design%20disclosed%20for%20ISSCC%202027%20%E2%80%94%20what%20it%20claims%2C%20how%20it%20compares%20to%20SK%20Hynix%20and%20Samsung%20parts%2C%20and%20whether%20China%20can%20produce%20it%20at%20scale" target="_blank" rel="noopener">4,096-pin HBM design</a> aimed straight at Samsung and SK Hynix. Against all that, America goes shopping: Adobe expects a record $12.9 billion online today as the first <a class="elede" href="https://claude.ai/new?q=Explain%20the%20NRF%20forecast%20that%202026%20US%20November-December%20retail%20sales%20will%20top%20%241%20trillion%20for%20the%20first%20time%20%E2%80%94%20how%20much%20is%20real%20growth%20versus%20inflation%3F" target="_blank" rel="noopener">$1 trillion holiday season</a> opens, and ANT gets half a trading day to hold its premarket bounce back above the <a class="elede" href="https://claude.ai/new?q=Explain%20how%20IPO%20pricing%20and%20lockup%20expirations%20work%2C%20using%20Anthropic%27s%20%2483%20IPO%2C%20its%20first-week%20slide%20below%20issue%2C%20and%20the%20December%2015%20lockup%20release%20as%20the%20example" target="_blank" rel="noopener">$83 issue price</a>.</p>
+<p class="readtime">~5 min read — 18 stories across 4 beats, plus Anthropic and your teams</p>
+
+<div class="sopgrid"><div class="sop"><span class="num d">12,021</span><span class="slab">confirmed Ebola cases in Congo</span><span class="sctx">history's fastest-growing outbreak, 5,904 dead</span></div><div class="sop"><span class="num u">$12.9B</span><span class="slab">Adobe's forecast for today's US online spend</span><span class="sctx">a record Black Friday, up 9.2% on last year</span></div><div class="sop"><span class="num">14</span><span class="slab">trading partners facing Section 301 tariffs</span><span class="sctx">China, the EU, Japan and Singapore all reject the premise</span></div><div class="sop"><span class="num">4,096</span><span class="slab">data pins on Huawei's new HBM design</span><span class="sctx">double the density of chips Samsung and SK Hynix mass-produce</span></div><div class="sop"><span class="num d">28.29</span><span class="slab">VIX at Wednesday's close</span><span class="sctx">up 7.3% into the holiday after a 3.2% intraday plunge</span></div></div>
+
+<div class="charts">
+<div class="chartbox"><div class="clabel">S&amp;P 500 — last five closes</div><div class="cwrap"><canvas id="spChart"></canvas></div>
+<p class="cnote">Up 3.9% on the week into the holiday — a round trip through Friday&rsquo;s 6,910 low, with Wednesday&rsquo;s 3.2% morning plunge bought back by the close.</p></div>
+<div class="chartbox"><div class="clabel">Chart of the day — the $1 trillion season opens</div><div class="cwrap"><canvas id="bfChart"></canvas></div>
+<p class="cnote">Adobe sees a record $12.9B online today and $15.1B Monday, inside the first <a href="https://claude.ai/new?q=Explain%20the%20NRF%20forecast%20that%202026%20US%20November-December%20retail%20sales%20will%20exceed%20%241%20trillion%20for%20the%20first%20time%20%E2%80%94%20how%20much%20is%20volume%20growth%20versus%20inflation%2C%20and%20what%20does%20it%20say%20about%20the%20consumer%3F" target="_blank" rel="noopener">$1T holiday season</a>.</p></div>
+</div>
+
+<section class="beat">
+<h2 class="bhead b-world-h">World &amp; Geopolitics</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel b-world">World</span><span class="badge">8/10</span></div>
+<h3 class="shead">Iran's war reaches Kuwait: two Italian technicians killed at an air-defense site</h3>
+<p class="why"><b>Why it matters:</b> Drones that Kuwait and Italy attribute to Iran struck an air-defense surveillance station on Thursday, killing two <a class="elink" href="https://claude.ai/new?q=What%20is%20Rheinmetall%2C%20who%20leads%20it%2C%20and%20why%20are%20its%20Italian%20technicians%20operating%20air-defense%20surveillance%20sites%20in%20Kuwait%3F" target="_blank" rel="noopener">Rheinmetall</a> Italia technicians — the first European deaths from strikes on a Gulf state in this war, and the first such incident since early September. Tehran denies involvement; foreign minister <a class="elink" href="https://claude.ai/new?q=Profile%20Abbas%20Araghchi%20%E2%80%94%20his%20background%2C%20his%20role%20in%20Iran%27s%20wartime%20diplomacy%2C%20and%20the%20significance%20of%20his%20offer%20to%20join%20Kuwait%27s%20investigation%20into%20the%20drone%20strike%20that%20killed%20two%20Italian%20technicians" target="_blank" rel="noopener">Abbas Araghchi</a> offered to join Kuwait's investigation.</p>
+<p class="wnext">What&rsquo;s next: Italy's response and Kuwait's investigation will test whether Gulf states harden their air-defense posture — or their neutrality.</p>
+<div class="sfoot"><a class="src" href="https://www.cnn.com/2026/11/26/middleeast/italians-killed-iranian-attack-kuwait-intl" target="_blank" rel="noopener">CNN</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnn.com%2F2026%2F11%2F26%2Fmiddleeast%2Fitalians-killed-iranian-attack-kuwait-intl%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Iran%27s%20war%20reaches%20Kuwait%3A%20two%20Italian%20technicians%20killed%20at%20an%20air-defense%20site%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20would%20the%20first%20European%20deaths%20from%20an%20Iranian-attributed%20strike%20on%20a%20Gulf%20state%20mean%20for%20European%20involvement%2C%20Kuwait%27s%20posture%2C%20and%20the%20fragile%20ceasefire%20framework%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="sgrid"><article class="story">
+<div class="chip"><span class="blabel b-world">World</span><span class="badge">7/10</span></div>
+<h3 class="shead">Israel steps up targeted killings in Gaza; Hamas says a response is on the table</h3>
+<p class="why"><b>Why it matters:</b> An airstrike in Deir al-Balah killed Khaled Abu Nada, whom Israel calls Hamas's money manager — the third senior figure killed since Tuesday, with Netanyahu claiming roughly 80 militants dead in a month under a ceasefire that is holding in name only. Hamas chief negotiator <a class="elink" href="https://claude.ai/new?q=Profile%20Khalil%20al-Hayya%20%E2%80%94%20his%20role%20in%20Hamas%27s%20leadership%20after%20the%20war%2C%20and%20what%20options%20he%20has%20in%20responding%20to%20Israel%27s%20assassination%20campaign%20without%20collapsing%20the%20ceasefire" target="_blank" rel="noopener">Khalil al-Hayya</a> says the group is consulting other factions on a response as Washington presses Netanyahu to stick to the ceasefire plan.</p>
+
+<div class="sfoot"><a class="src" href="https://www.cnn.com/2026/11/26/middleeast/israel-gaza-assassinations-intl" target="_blank" rel="noopener">CNN</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnn.com%2F2026%2F11%2F26%2Fmiddleeast%2Fisrael-gaza-assassinations-intl%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Israel%20steps%20up%20targeted%20killings%20in%20Gaza%3B%20Hamas%20says%20a%20response%20is%20on%20the%20table%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20leverage%20does%20Washington%20actually%20have%20to%20restrain%20the%20assassination%20campaign%2C%20and%20what%20forms%20could%20a%20Hamas%20response%20take%20without%20ending%20the%20ceasefire%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="blabel b-world">World</span><span class="badge">7/10</span></div>
+<h3 class="shead">The EU's €1.7 trillion budget summit collapses — everything moves to December</h3>
+<p class="why"><b>Why it matters:</b> Leaders failed to agree on any of the three pillars of the 2028–2034 budget and cancelled the summit's second day, with Baltic states refusing a proposed €39 billion cut to defense funding and the €45 billion Ukraine loan deferred along with ECB appointments. Council president António Costa now has three weeks to rescue the <a class="elink" href="https://claude.ai/new?q=Explain%20the%20EU%27s%20Multiannual%20Financial%20Framework%20%E2%80%94%20how%20the%20seven-year%20budget%20works%2C%20why%20the%202028-2034%20round%20is%20deadlocked%20between%20net%20contributors%20and%20recipients%2C%20and%20what%20happens%20if%20no%20deal%20is%20reached" target="_blank" rel="noopener">Multiannual Financial Framework</a> before the December 17–18 summit.</p>
+<p class="wnext">What&rsquo;s next: Leaders reconvene December 17–18 with the Ukraine loan, the ECB bench and the full budget all unresolved.</p>
+<div class="sfoot"><a class="src" href="https://www.euronews.com/2026/11/27/eu-budget-summit-collapses-as-row-over-money-exposes-clash-over-europes-strategic-tasks" target="_blank" rel="noopener">Euronews</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.euronews.com%2F2026%2F11%2F27%2Feu-budget-summit-collapses-as-row-over-money-exposes-clash-over-europes-strategic-tasks%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22The%20EU%27s%20%E2%82%AC1.7%20trillion%20budget%20summit%20collapses%20%E2%80%94%20everything%20moves%20to%20December%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20which%20member%20states%20blocked%20which%20of%20the%20three%20budget%20pillars%2C%20and%20what%20realistically%20has%20to%20change%20before%20the%20December%2017-18%20summit%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="blabel b-world">World</span><span class="badge">7/10</span></div>
+<h3 class="shead">Congo's Ebola outbreak passes 12,000 cases as responders pull back</h3>
+<p class="why"><b>Why it matters:</b> Government data released Wednesday counts 12,021 confirmed infections and 5,904 deaths across 8 of Congo's 26 provinces — the fastest-growing Ebola outbreak on record, driven by the <a class="elink" href="https://claude.ai/new?q=Explain%20the%20Bundibugyo%20strain%20of%20Ebola%20%E2%80%94%20how%20it%20differs%20from%20Zaire%20ebolavirus%2C%20why%20there%20is%20no%20approved%20vaccine%20or%20treatment%20for%20it%2C%20and%20what%20candidates%20are%20in%20trials" target="_blank" rel="noopener">Bundibugyo strain</a> for which no approved vaccine exists. Only 15% of new cases come from contacts already known to health authorities, and fighting between rebels and the army is forcing some responders to evacuate.</p>
+
+<div class="sfoot"><a class="src" href="https://www.npr.org/2026/11/26/g-s1-155957/congo-ebola-responders" target="_blank" rel="noopener">NPR</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.npr.org%2F2026%2F11%2F26%2Fg-s1-155957%2Fcongo-ebola-responders%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Congo%27s%20Ebola%20outbreak%20passes%2012%2C000%20cases%20as%20responders%20pull%20back%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20why%20is%20the%20Bundibugyo%20outbreak%20outpacing%20containment%2C%20and%20what%20would%20it%20take%20to%20control%20an%20epidemic%20where%2085%25%20of%20new%20cases%20arise%20outside%20known%20contact%20chains%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="blabel b-world">World</span><span class="badge">7/10</span></div>
+<h3 class="shead">A second judge blocks the second birthright-citizenship order</h3>
+<p class="why"><b>Why it matters:</b> Judge Christopher Cooper in Washington enjoined Executive Order 14418 — the August rewrite that targets children of parents who are neither citizens nor permanent residents — writing that "the President cannot carve out new exceptions to birthright citizenship." It is the second injunction after Maryland's in September, and it follows the Supreme Court's 6–3 ruling in June striking down the first order.</p>
+<p class="wnext">What&rsquo;s next: The administration must now overturn two injunctions in two circuits to ever enforce the order.</p>
+<div class="sfoot"><a class="src" href="https://dailymaverick.co.za/article/2026-11-26-trumps-newest-order-curtailing-birthright-citizenship-is-blocked-by-second-judge" target="_blank" rel="noopener">AP via Daily Maverick</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fdailymaverick.co.za%2Farticle%2F2026-11-26-trumps-newest-order-curtailing-birthright-citizenship-is-blocked-by-second-judge%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20second%20judge%20blocks%20the%20second%20birthright-citizenship%20order%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20trace%20the%20legal%20path%20from%20here%20%E2%80%94%20can%20either%20injunction%20reach%20the%20Supreme%20Court%20this%20term%2C%20and%20what%20did%20the%20June%20ruling%20leave%20open%20for%20a%20narrower%20executive%20order%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article></div>
+</section><section class="beat">
+<h2 class="bhead b-business-h">Business &amp; Markets</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel b-business">Business</span><span class="badge">8/10</span></div>
+<h3 class="shead">Four of the world's biggest economies tell Washington its tariff theory is wrong</h3>
+<p class="why"><b>Why it matters:</b> China called the overcapacity premise "false," Brussels answered that Europe is among the economies most exposed to overcapacity rather than responsible for it, Japan's government said its industry has no structural excess, and Singapore declared itself "very disappointed" — a coordinated rejection of the <a class="elink" href="https://claude.ai/new?q=What%20is%20the%20Office%20of%20the%20US%20Trade%20Representative%2C%20who%20leads%20it%2C%20and%20what%20power%20does%20Section%20301%20of%20the%20Trade%20Act%20give%20it%20to%20impose%20tariffs%20without%20new%20legislation%3F" target="_blank" rel="noopener">USTR</a> findings behind proposed Section 301 rates of up to 15% on Japan and the EU and 20% on China.</p>
+<p class="wnext">What&rsquo;s next: A public-comment period runs before duties can take effect — January 2027 at the earliest.</p>
+<div class="sfoot"><a class="src" href="https://www.mprnews.org/story/2026/11/26/china-and-other-us-trading-partners-hit-back-at-trumps-new-tariff-plans" target="_blank" rel="noopener">AP via MPR News</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.mprnews.org%2Fstory%2F2026%2F11%2F26%2Fchina-and-other-us-trading-partners-hit-back-at-trumps-new-tariff-plans%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Four%20of%20the%20world%27s%20biggest%20economies%20tell%20Washington%20its%20tariff%20theory%20is%20wrong%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20assess%20the%20overcapacity%20theory%20on%20the%20merits%20%E2%80%94%20which%20of%20the%2014%20targeted%20economies%20actually%20subsidize%20loss-making%20exporters%2C%20and%20how%20would%20January%20tariffs%20reroute%20supply%20chains%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="sgrid"><article class="story">
+<div class="chip"><span class="blabel b-business">Business</span><span class="badge">7/10</span></div>
+<h3 class="shead">A record $12.9 billion Black Friday opens the first $1 trillion holiday season</h3>
+<p class="why"><b>Why it matters:</b> Adobe Analytics projects US shoppers will spend $12.9 billion online today, up 9.2% from last year's $11.8 billion, inside a season it forecasts at a record $275.1 billion online — while the <a class="elink" href="https://claude.ai/new?q=What%20is%20the%20National%20Retail%20Federation%2C%20and%20how%20reliable%20are%20its%20holiday%20forecasts%3F%20Its%202026%20call%3A%20total%20November-December%20retail%20sales%20topping%20%241%20trillion%20for%20the%20first%20time%2C%20up%204.2%25." target="_blank" rel="noopener">National Retail Federation</a> expects total November–December retail sales to top $1 trillion for the first time. The catch: with inflation still hot, part of the record is price, not volume.</p>
+<p class="wnext">What&rsquo;s next: Cyber Monday, projected at $15.1 billion, remains the season's biggest single day.</p>
+<div class="sfoot"><a class="src" href="https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record" target="_blank" rel="noopener">Adobe</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fnews.adobe.com%2Fnews%2F2026%2F09%2Fadobe-us-holiday-shopping-season-to-hit-record%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20record%20%2412.9%20billion%20Black%20Friday%20opens%20the%20first%20%241%20trillion%20holiday%20season%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20accurate%20have%20Adobe%27s%20Black%20Friday%20forecasts%20been%20in%20past%20years%2C%20and%20what%20does%202026%27s%20projected%20growth%20look%20like%20adjusted%20for%20inflation%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="blabel b-business">Business</span><span class="badge">7/10</span></div>
+<h3 class="shead">“Not a close case”: judge rules the FCC illegally targeted ABC</h3>
+<p class="why"><b>Why it matters:</b> Judge Loren AliKhan's preliminary injunction, issued Wednesday, blocks the FCC from putting ABC's station licenses under early review, finding that chair <a class="elink" href="https://claude.ai/new?q=Profile%20Brendan%20Carr%20%E2%80%94%20his%20record%20as%20FCC%20chair%2C%20the%20actions%20he%20has%20taken%20against%20broadcasters%2C%20and%20the%20court%20finding%20that%20he%20treated%20presidential%20rhetoric%20as%20directives" target="_blank" rel="noopener">Brendan Carr</a> treated the president's public attacks on the network as marching orders. The ruling leaves the FCC's separate workplace-discrimination probe of ABC intact, and the agency says it expects to prevail.</p>
+
+<div class="sfoot"><a class="src" href="https://www.npr.org/2026/11/26/nx-s1-6000576/fcc-disney-abc-first-amendment-trump-brendan-carr" target="_blank" rel="noopener">NPR</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.npr.org%2F2026%2F11%2F26%2Fnx-s1-6000576%2Ffcc-disney-abc-first-amendment-trump-brendan-carr%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22%22Not%20a%20close%20case%22%3A%20judge%20rules%20the%20FCC%20illegally%20targeted%20ABC%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20precedent%20does%20this%20injunction%20set%20for%20FCC%20independence%2C%20and%20how%20does%20it%20interact%20with%20the%20still-pending%20workplace-discrimination%20investigation%20of%20ABC%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="blabel b-business">Business</span><span class="badge">6/10</span></div>
+<h3 class="shead">A 3.9% up-week that felt like a crash reopens for half a day</h3>
+<p class="why"><b>Why it matters:</b> The S&P 500 enters today's shortened session up 3.9% for the week and the Dow up 4.2% — numbers that conceal Wednesday's 3.2% intraday plunge, bought back almost entirely by the close, and an AI complex that still lagged: the Nasdaq finished down 0.6% while most S&P stocks rose.</p>
+<p class="wnext">What&rsquo;s next: Thin holiday volumes today; the December FOMC meeting, with a hike now priced in, is the next real test.</p>
+<div class="sfoot"><a class="src" href="https://wtop.com/national/2026/11/how-major-us-stock-indexes-fared-wednesday-11-25-2026" target="_blank" rel="noopener">AP via WTOP</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwtop.com%2Fnational%2F2026%2F11%2Fhow-major-us-stock-indexes-fared-wednesday-11-25-2026%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%203.9%25%20up-week%20that%20felt%20like%20a%20crash%20reopens%20for%20half%20a%20day%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20drove%20Wednesday%27s%203.2%25%20intraday%20plunge%20and%20recovery%20into%20the%20Thanksgiving%20close%2C%20and%20what%20are%20the%20market%27s%20main%20risks%20into%20the%20December%20FOMC%20meeting%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article></div>
+</section><section class="beat">
+<h2 class="bhead b-tech-h">Tech &amp; AI</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel b-tech">Tech &amp; AI</span><span class="badge">8/10</span></div>
+<h3 class="shead">Huawei's 4,096-pin answer to the memory embargo</h3>
+<p class="why"><b>Why it matters:</b> A research paper slated for ISSCC 2027 describes a Huawei <a class="elink" href="https://claude.ai/new?q=Explain%20high-bandwidth%20memory%20%28HBM%29%20%E2%80%94%20what%20it%20is%2C%20why%20AI%20accelerators%20depend%20on%20it%2C%20why%20SK%20Hynix%20and%20Samsung%20dominate%20supply%2C%20and%20why%20US%20export%20rules%20block%20HBM%20sales%20to%20China" target="_blank" rel="noopener">high-bandwidth memory</a> design with 64 channels, a 4,096-bit interface and five-layer wafer-on-wafer hybrid bonding — twice the data-pin density of anything Samsung or SK Hynix mass-produce, built under export rules that bar all three major HBM makers from selling to China. It is a disclosure, not a product, but it jolted memory stocks anyway.</p>
+<p class="wnext">What&rsquo;s next: The paper is presented at ISSCC in February; analysts doubt near-term production at scale.</p>
+<div class="sfoot"><a class="src" href="https://www.thestar.com.my/tech/tech-news/2026/11/27/huawei-teases-next-gen-ai-memory-chip-to-take-on-samsung-hynix" target="_blank" rel="noopener">Bloomberg via The Star</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.thestar.com.my%2Ftech%2Ftech-news%2F2026%2F11%2F27%2Fhuawei-teases-next-gen-ai-memory-chip-to-take-on-samsung-hynix%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Huawei%27s%204%2C096-pin%20answer%20to%20the%20memory%20embargo%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20far%20is%20a%204%2C096-pin%20research%20design%20from%20mass%20production%2C%20and%20what%20would%20it%20take%20for%20China%20to%20break%20the%20SK%20Hynix-Samsung%20HBM%20duopoly%20this%20decade%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="sgrid"><article class="story">
+<div class="chip"><span class="blabel b-tech">Tech &amp; AI</span><span class="badge">7/10</span></div>
+<h3 class="shead">Nvidia's middlemen hunt for new buyers as the remote-access rule bites</h3>
+<p class="why"><b>Why it matters:</b> CNBC reports resellers are scrambling to re-place AI chips after the Commerce Department's November 19 rule required licenses for overseas data centers serving Chinese clients — Nvidia has halted AI server shipments to four Southeast Asian countries, and Moonshot AI cancelled a $150 million compute lease in Indonesia. The <a class="elink" href="https://claude.ai/new?q=Explain%20the%20US%20Commerce%20Department%27s%20November%202026%20interim%20rule%20on%20remote%20access%20to%20AI%20chips%20%E2%80%94%20what%20loophole%20it%20closes%2C%20which%20countries%20and%20data%20centers%20it%20affects%2C%20and%20how%20it%20changes%20the%20economics%20of%20GPU%20leasing" target="_blank" rel="noopener">remote-access rule</a> closes the loophole that let Chinese firms rent restricted silicon abroad.</p>
+<p class="wnext">What&rsquo;s next: Jensen Huang testifies before Congress on Monday about chip diversions to China.</p>
+<div class="sfoot"><a class="src" href="https://www.cnbc.com/2026/11/25/nvidia-china-ai-chip-remote-access.html" target="_blank" rel="noopener">CNBC</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.cnbc.com%2F2026%2F11%2F25%2Fnvidia-china-ai-chip-remote-access.html%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Nvidia%27s%20middlemen%20hunt%20for%20new%20buyers%20as%20the%20remote-access%20rule%20bites%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20map%20who%20loses%20revenue%20under%20the%20remote-access%20rule%20%E2%80%94%20Nvidia%2C%20Southeast%20Asian%20data%20centers%2C%20or%20Chinese%20AI%20labs%20%E2%80%94%20and%20where%20the%20displaced%20compute%20demand%20goes%20instead." target="_blank" rel="noopener">Go deeper</a></div>
+</article><article class="story">
+<div class="chip"><span class="blabel b-tech">Tech &amp; AI</span><span class="badge">7/10</span></div>
+<h3 class="shead">The first AI-assistant Black Friday is sending shoppers to fake stores</h3>
+<p class="why"><b>Why it matters:</b> Brand-protection studies found AI chatbots steering shoppers to suspected fake storefronts for one in six major brands, with over 18% of shopping answers in one test pointing to fraudulent or invalid sites — and <a class="elink" href="https://claude.ai/new?q=What%20is%20Darktrace%2C%20and%20what%20did%20it%20find%20about%20Black%20Friday%20phishing%20in%20November%202026%3F%20Explain%20how%20AI-generated%20scam%20storefronts%20get%20into%20chatbot%20shopping%20recommendations." target="_blank" rel="noopener">Darktrace</a> measured daily Black Friday phishing up more than thirteenfold in early November. The FBI ties similar holiday fraud to more than $500 million stolen in 2025.</p>
+
+<div class="sfoot"><a class="src" href="https://www.poynter.org/fact-checking/2026/how-to-spot-fake-black-friday-scam-deals/" target="_blank" rel="noopener">Poynter</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.poynter.org%2Ffact-checking%2F2026%2Fhow-to-spot-fake-black-friday-scam-deals%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22The%20first%20AI-assistant%20Black%20Friday%20is%20sending%20shoppers%20to%20fake%20stores%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20exactly%20do%20fraudulent%20storefronts%20get%20into%20AI%20chatbot%20recommendations%2C%20and%20what%20should%20shoppers%20and%20AI%20companies%20each%20do%20to%20break%20the%20chain%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article></div>
+</section><section class="beat">
+<h2 class="bhead b-science-h">Science &amp; Space</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel b-science">Science</span><span class="badge">6/10</span></div>
+<h3 class="shead">43% of the ground turkey failed the test. Nothing happens next.</h3>
+<p class="why"><b>Why it matters:</b> Federal inspection data show salmonella in roughly 43% of ground-turkey samples across four Butterball plants — at the largest, Mount Olive, 16 of 45 samples (36%) against the <a class="elink" href="https://claude.ai/new?q=Explain%20the%20USDA%20Food%20Safety%20and%20Inspection%20Service%27s%20salmonella%20performance%20standards%20%E2%80%94%20why%20a%20plant%20exceeding%20the%2013.5%25%20ground-turkey%20limit%20faces%20no%20fine%20or%20recall%2C%20and%20what%20reforms%20have%20been%20proposed" target="_blank" rel="noopener">FSIS</a> performance standard of 13.5% — yet under USDA rules a failing plant faces no fine and no recall, only a request to explain itself. Whole birds and ready-to-eat products tested clean.</p>
+
+<div class="sfoot"><a class="src" href="https://www.foodpoisonjournal.com/food-poisoning-information/inspectors-found-salmonella-in-43-percent-of-butterballs-ground-turkey-the-federal-standard-is-13-5-percent-and-nothing-happens-to-a-plant-that-fails-it/" target="_blank" rel="noopener">Food Poison Journal</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.foodpoisonjournal.com%2Ffood-poisoning-information%2Finspectors-found-salmonella-in-43-percent-of-butterballs-ground-turkey-the-federal-standard-is-13-5-percent-and-nothing-happens-to-a-plant-that-fails-it%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%2243%25%20of%20the%20ground%20turkey%20failed%20the%20test.%20Nothing%20happens%20next.%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20the%2013.5%25%20FSIS%20salmonella%20performance%20standard%20%E2%80%94%20why%20exceeding%20it%20carries%20no%20penalty%2C%20how%20often%20plants%20fail%20it%2C%20and%20what%20reform%20proposals%20exist." target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<div class="sgrid"><article class="story">
+<div class="chip"><span class="blabel b-science">Science</span><span class="badge">6/10</span></div>
+<h3 class="shead">A census of the gut's 116,000 unknown viruses turns up an IBS signal</h3>
+<p class="why"><b>Why it matters:</b> Researchers at King's College London, Helmholtz Munich and Nottingham catalogued more than 116,000 viral groups in the human gut (Nature Communications) and found 50 <a class="elink" href="https://claude.ai/new?q=Explain%20bacteriophages%20in%20the%20human%20gut%20%E2%80%94%20what%20they%20do%20to%20bacterial%20communities%2C%20and%20why%20a%20depleted%20virome%20might%20matter%20in%20irritable%20bowel%20syndrome" target="_blank" rel="noopener">bacteriophage</a> groups associated with irritable bowel syndrome, most of them depleted in people with the condition (Gut). It is observational — but it maps a layer of the microbiome medicine has mostly ignored.</p>
+
+<div class="sfoot"><a class="src" href="https://www.eurekalert.org/news-releases/1151958" target="_blank" rel="noopener">EurekAlert (KCL release)</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.eurekalert.org%2Fnews-releases%2F1151958%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22A%20census%20of%20the%20gut%27s%20116%2C000%20unknown%20viruses%20turns%20up%20an%20IBS%20signal%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20what%20are%20the%2050%20IBS-associated%20phage%20groups%2C%20and%20how%20could%20researchers%20establish%20whether%20a%20depleted%20gut%20virome%20is%20a%20cause%20or%20a%20consequence%20of%20the%20condition%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article></div>
+</section>
+
+<section class="beat">
+<h2 class="bhead b-anthropic-h">Anthropic</h2>
+<article class="story lead">
+<div class="chip"><span class="blabel b-anthropic">Anthropic</span><span class="badge">7/10</span></div>
+<h3 class="shead">Back above water: ANT points higher into a half-day session</h3>
+<p class="why"><b>Why it matters:</b> Priced at $83 and opened at $111 on November 19, Anthropic stock closed Wednesday at $82.79 — 21 cents under issue — before Friday premarket gains of roughly 3–5% lifted it back above the IPO price. Week one has become the market's live referendum on <a class="elink" href="https://claude.ai/new?q=Compare%20Anthropic%27s%20first%20week%20as%20a%20public%20company%20with%20other%20landmark%20tech%20debuts%20%28Meta%202012%2C%20Alibaba%202014%29%20%E2%80%94%20what%20do%20early%20post-IPO%20slumps%20predict%2C%20and%20what%20is%20different%20about%20pricing%20an%20AI%20lab%3F" target="_blank" rel="noopener">AI valuations</a> more than on the company itself.</p>
+<p class="wnext">What&rsquo;s next: Today's 1 p.m. ET close gives the rebound only half a session to stick.</p>
+<div class="sfoot"><a class="src" href="https://www.gurufocus.com/news/9228619/anthropic-ant-shares-rise-33-premarket-after-struggling-postipo" target="_blank" rel="noopener">GuruFocus</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.gurufocus.com%2Fnews%2F9228619%2Fanthropic-ant-shares-rise-33-premarket-after-struggling-postipo%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Back%20above%20water%3A%20ANT%20points%20higher%20into%20a%20half-day%20session%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20separate%20signal%20from%20noise%20in%20ANT%27s%20first%20six%20trading%20sessions%20%E2%80%94%20what%20do%20comparable%20mega-IPO%20debuts%20suggest%20about%20where%20the%20stock%20settles%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+<article class="story">
+<div class="chip"><span class="blabel b-anthropic">Anthropic</span><span class="badge">6/10</span></div>
+<h3 class="shead">The Street's first verdict: Oppenheimer says it's worth $150</h3>
+<p class="why"><b>Why it matters:</b> The first major initiation carries an outperform rating and a $150 target — roughly 80% above Wednesday's close — even as CEO Dario Amodei and President Daniela Amodei each disclosed selling about $280 million of shares in the IPO. The bull case and the insider supply now have a date with each other.</p>
+<p class="wnext">What&rsquo;s next: The December 15 lockup release is the first real test of how much insider stock meets the market.</p>
+<div class="sfoot"><a class="src" href="https://invezz.com/news/2026/11/27/anthropic-stock-buy-after-ipo-selloff/" target="_blank" rel="noopener">Invezz</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Finvezz.com%2Fnews%2F2026%2F11%2F27%2Fanthropic-stock-buy-after-ipo-selloff%2F%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22The%20Street%27s%20first%20verdict%3A%20Oppenheimer%20says%20it%27s%20worth%20%24150%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20stress-test%20Oppenheimer%27s%20%24150%20target%20against%20the%20December%2015%20lockup%20expiration%20%E2%80%94%20how%20much%20insider%20supply%20could%20reach%20the%20market%2C%20and%20what%20happened%20in%20comparable%20lockups%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article>
+</section>
+
+<section class="beat">
+<h2 class="bhead" style="color:var(--muted)">Sports — Your Teams</h2>
+<div style="margin-top:18px"><h3 class="team-h" style="color:#AA0000">49ers</h3><article class="story lead">
+<div class="chip"><span class="blabel b-sports" style="color:#AA0000">49ers</span><span class="badge">7/10</span></div>
+<h3 class="shead">Two missed practices: Purdy's ankle turns Friday into decision day</h3>
+<p class="why"><b>Why it matters:</b> Kyle Shanahan says it isn't a high ankle sprain and Purdy is day-to-day, but after sitting both Wednesday and Thursday, today's practice report effectively decides whether Mac Jones starts Sunday against the Seahawks — a game with first place in the NFC West in view.</p>
+
+<div class="sfoot"><a class="src" href="https://www.nfl.com/news/brock-purdy-sits-out-practice-ankle-sprain-49ers-seahawks" target="_blank" rel="noopener">NFL.com</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nfl.com%2Fnews%2Fbrock-purdy-sits-out-practice-ankle-sprain-49ers-seahawks%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Two%20missed%20practices%3A%20Purdy%27s%20ankle%20turns%20Friday%20into%20decision%20day%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20how%20do%20the%2049ers%27%20playoff%20and%20NFC%20West%20odds%20change%20if%20Mac%20Jones%20starts%20against%20Seattle%2C%20based%20on%20his%20play%20this%20season%3F" target="_blank" rel="noopener">Go deeper</a></div>
+</article></div><div style="margin-top:18px"><h3 class="team-h" style="color:#1D428A">Warriors</h3><article class="story lead">
+<div class="chip"><span class="blabel b-sports" style="color:#1D428A">Warriors</span><span class="badge">6/10</span></div>
+<h3 class="shead">Cup math in Portland: the group finale is tonight</h3>
+<p class="why"><b>Why it matters:</b> Wednesday's 129–110 rout of the Kings — eight threes from De'Anthony Melton, tying his career high — put Golden State at 2–1 in NBA Cup group play. Tonight's 6:30 PT finale in Portland closes out the group stage and decides whether the Warriors, now 10–8, play on in the knockout rounds.</p>
+
+<div class="sfoot"><a class="src" href="https://www.nba.com/warriors/news/gameday-recap-20261125" target="_blank" rel="noopener">NBA.com</a><a class="godeep" href="https://claude.ai/new?q=Read%20this%20article%3A%20https%3A%2F%2Fwww.nba.com%2Fwarriors%2Fnews%2Fgameday-recap-20261125%20%E2%80%94%20if%20the%20URL%20is%20unavailable%2C%20search%20for%20%22Cup%20math%20in%20Portland%3A%20the%20group%20finale%20is%20tonight%22%20and%20find%20the%20original%20reporting%20%E2%80%94%20then%20explain%20the%20NBA%20Cup%20knockout%20qualification%20scenarios%20for%20the%20Warriors%20heading%20into%20their%20final%20group%20game%20in%20Portland." target="_blank" rel="noopener">Go deeper</a></div>
+</article></div>
+<div style="margin-top:22px">
+<h3 class="team-h" style="color:var(--muted)">Last night / tonight</h3>
+<div class="lrow"><div class="lhead"><span class="lname">NFL</span><span class="lctx">Thanksgiving finals + Black Friday</span></div><div class="lcards"><div class="scard"><span class="t">Bears <b class="u">39</b></span><span class="t">Lions <b class="m">35</b></span><span class="gs">Final</span></div><div class="scard"><span class="t">Eagles <b class="u">39</b></span><span class="t">Cowboys <b class="m">38</b></span><span class="gs">Final</span></div><div class="scard"><span class="t">Bills <b class="u">13</b></span><span class="t">Chiefs <b class="m">10</b></span><span class="gs">Final</span></div><div class="scard"><span class="t">Broncos</span><span class="t">Steelers</span><span class="gs live">Today 12:00 PT · Prime</span></div></div></div><div class="lrow"><div class="lhead"><span class="lname">NBA</span><span class="lctx">Cup group finales</span></div><div class="lcards"><div class="scard" style="border-left:3px solid #1D428A"><span class="t">Warriors</span><span class="t">Blazers</span><span class="gs live">Tonight 6:30 PT</span></div></div></div><div class="lrow"><div class="lhead"><span class="lname">NHL</span><span class="lctx">Black Friday matinee</span></div><div class="lcards"><div class="scard" style="border-left:3px solid #006D75"><span class="t">Golden Knights</span><span class="t">Sharks</span><span class="gs live">Today 1:00 PT</span></div></div></div>
+</div>
+</section>
+
+<div class="ending">
+<h2>That&rsquo;s your briefing. You&rsquo;re caught up.</h2>
+<p>18 stories this morning — every link above goes deeper. <a href="archive/">Archive</a></p>
+</div>
+
+<details>
+<summary>Sources (18)</summary>
+<ul><li>Iran's war reaches Kuwait: two Italian technicians killed… — <a href="https://www.cnn.com/2026/11/26/middleeast/italians-killed-iranian-attack-kuwait-intl" target="_blank" rel="noopener">CNN</a> — cross-verified via Reuters (Internazionale/Yahoo), Al Jazeera, ABC (AU); direct fetch unavailable in this build environment</li><li>Israel steps up targeted killings in Gaza; Hamas says a r… — <a href="https://www.cnn.com/2026/11/26/middleeast/israel-gaza-assassinations-intl" target="_blank" rel="noopener">CNN</a> — cross-verified via NBC News, Times of Israel; casualty figures differ across outlets and are treated as provisional</li><li>The EU's €1.7 trillion budget summit collapses — everythi… — <a href="https://www.euronews.com/2026/11/27/eu-budget-summit-collapses-as-row-over-money-exposes-clash-over-europes-strategic-tasks" target="_blank" rel="noopener">Euronews</a> — cross-verified via CNBC, Politis, UNN; direct fetch unavailable in this build environment</li><li>Congo's Ebola outbreak passes 12,000 cases as responders … — <a href="https://www.npr.org/2026/11/26/g-s1-155957/congo-ebola-responders" target="_blank" rel="noopener">NPR</a> — cross-verified via Reuters (U.S. News), Euronews; figures from Nov 26 government data</li><li>A second judge blocks the second birthright-citizenship o… — <a href="https://dailymaverick.co.za/article/2026-11-26-trumps-newest-order-curtailing-birthright-citizenship-is-blocked-by-second-judge" target="_blank" rel="noopener">AP via Daily Maverick</a> — AP wire story; cross-verified via Washington Examiner, Reason (Volokh), Fox News</li><li>Four of the world's biggest economies tell Washington its… — <a href="https://www.mprnews.org/story/2026/11/26/china-and-other-us-trading-partners-hit-back-at-trumps-new-tariff-plans" target="_blank" rel="noopener">AP via MPR News</a> — AP wire story; cross-verified via Air Cargo Week, Particle, Political.org</li><li>A record $12.9 billion Black Friday opens the first $1 tr… — <a href="https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record" target="_blank" rel="noopener">Adobe</a> — company newsroom release (primary, Sept 28); figures corroborated by Business Wire, Retail TouchPoints, Digital Commerce 360</li><li>“Not a close case”: judge rules the FCC illegally targete… — <a href="https://www.npr.org/2026/11/26/nx-s1-6000576/fcc-disney-abc-first-amendment-trump-brendan-carr" target="_blank" rel="noopener">NPR</a> — cross-verified via Time, AP (PBS NewsHour), Al Jazeera, The Spokesman-Review</li><li>A 3.9% up-week that felt like a crash reopens for half a day — <a href="https://wtop.com/national/2026/11/how-major-us-stock-indexes-fared-wednesday-11-25-2026" target="_blank" rel="noopener">AP via WTOP</a> — AP market report; closes cross-verified via ABC News, WRAL, myMotherLode</li><li>Huawei's 4,096-pin answer to the memory embargo — <a href="https://www.thestar.com.my/tech/tech-news/2026/11/27/huawei-teases-next-gen-ai-memory-chip-to-take-on-samsung-hynix" target="_blank" rel="noopener">Bloomberg via The Star</a> — Bloomberg original reporting via syndication; cross-verified via SBS, Interesting Engineering, The Star</li><li>Nvidia's middlemen hunt for new buyers as the remote-acce… — <a href="https://www.cnbc.com/2026/11/25/nvidia-china-ai-chip-remote-access.html" target="_blank" rel="noopener">CNBC</a> — CNBC original reporting (Nov 25); rule context cross-verified via NBC News, NPR, Time</li><li>The first AI-assistant Black Friday is sending shoppers t… — <a href="https://www.poynter.org/fact-checking/2026/how-to-spot-fake-black-friday-scam-deals/" target="_blank" rel="noopener">Poynter</a> — cross-verified via Boston Globe (FBI warning), ITBrief (Podqi study), UK NCSC advisory</li><li>43% of the ground turkey failed the test. Nothing happens… — <a href="https://www.foodpoisonjournal.com/food-poisoning-information/inspectors-found-salmonella-in-43-percent-of-butterballs-ground-turkey-the-federal-standard-is-13-5-percent-and-nothing-happens-to-a-plant-that-fails-it/" target="_blank" rel="noopener">Food Poison Journal</a> — food-safety law blog analyzing FSIS data; figures cross-verified via Medical Daily, inkl; no recall on the FSIS list as of Nov 26</li><li>A census of the gut's 116,000 unknown viruses turns up an… — <a href="https://www.eurekalert.org/news-releases/1151958" target="_blank" rel="noopener">EurekAlert (KCL release)</a> — institutional news release via EurekAlert; papers published Nov 17 in Nature Communications and Gut; cross-verified via News-Medical</li><li>Back above water: ANT points higher into a half-day session — <a href="https://www.gurufocus.com/news/9228619/anthropic-ant-shares-rise-33-premarket-after-struggling-postipo" target="_blank" rel="noopener">GuruFocus</a> — premarket move cross-verified via Invezz, Yahoo Finance; Wednesday close per StockAnalysis/Morningstar (prior-day record)</li><li>The Street's first verdict: Oppenheimer says it's worth $150 — <a href="https://invezz.com/news/2026/11/27/anthropic-stock-buy-after-ipo-selloff/" target="_blank" rel="noopener">Invezz</a> — cross-verified via GuruFocus (Oppenheimer initiation), Motley Fool (Nov 26 analysis)</li><li>Two missed practices: Purdy's ankle turns Friday into dec… — <a href="https://www.nfl.com/news/brock-purdy-sits-out-practice-ankle-sprain-49ers-seahawks" target="_blank" rel="noopener">NFL.com</a> — cross-verified via ESPN, NBC Sports, Yahoo Sports</li><li>Cup math in Portland: the group finale is tonight — <a href="https://www.nba.com/warriors/news/gameday-recap-20261125" target="_blank" rel="noopener">NBA.com</a> — team site recap (primary); schedule cross-verified via SofaScore, ESPN</li><li class="mnote">Market data reflects the Wednesday, Nov 25 US close (markets closed Thursday for Thanksgiving); index closes per AP, cross-verified across syndications. A five-day Brent settlement series could not be sourced consistently, so no Brent chart appears today. Holiday-spend chart: Adobe Analytics (Sept 28 release). Thanksgiving NFL scores cross-verified via SportsNewsReport and The Sportscast.</li></ul>
+</details>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function(){
+  var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var tick = dark ? '#9aa0a6' : '#666666';
+  var grid = dark ? '#2a2f3a' : '#e3e3de';
+  function fallback(id, text){var el=document.getElementById(id); if(el){el.parentNode.innerHTML='<p style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:'+tick+'">'+text+'</p>';}}
+  if (typeof Chart === 'undefined'){
+    fallback('spChart','S&P 500: 7,182.78 Wednesday close — up 3.9% over the five sessions, including a full round trip through Friday\u2019s 6,910 low.');
+    fallback('bfChart','Online spend: Black Friday 2025 $11.8B; 2026 forecast $12.9B; Cyber Monday 2026 forecast $15.1B (Adobe).');
+    return;
+  }
+  Chart.defaults.font.family = 'ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
+  Chart.defaults.font.size = 11;
+  new Chart(document.getElementById('spChart'), {
+    type:'line',
+    data:{labels:["Nov 19", "Nov 20", "Nov 23", "Nov 24", "Nov 25"],datasets:[{data:[7175.83, 6910.39, 7237.17, 7201.09, 7182.78],borderColor:dark?'#7aa2f7':'#2b5fc7',backgroundColor:'transparent',pointRadius:3,pointBackgroundColor:dark?'#7aa2f7':'#2b5fc7',borderWidth:2,tension:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:tick},grid:{color:grid,drawTicks:false}},
+              y:{ticks:{color:tick},grid:{color:grid,drawTicks:false}}}}
+  });
+  new Chart(document.getElementById('bfChart'), {
+    type:'bar',
+    data:{labels:["Black Friday '25", "Black Friday '26 (fcst)", "Cyber Monday '26 (fcst)"],datasets:[{data:[11.8, 12.9, 15.1],backgroundColor:[dark?'#2a2f3a':'#e3e3de',dark?'#9ece6a':'#4a7c1f',dark?'#7aa2f7':'#2b5fc7'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:tick},grid:{display:false}},
+              y:{ticks:{color:tick,callback:function(v){return '$'+v+'B';}},grid:{color:grid,drawTicks:false}}}}
+  });
+})();
+</script>
+</body>
+</html>
